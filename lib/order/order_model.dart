@@ -32,14 +32,14 @@ class Order {
 
   Order(
       {required this.id,
-      required this.name,
-      required this.contact,
-      required this.address,
-      required this.city,
-      required this.status,
-      required this.placedOn,
-      required this.total,
-      required this.products});
+        required this.name,
+        required this.contact,
+        required this.address,
+        required this.city,
+        required this.status,
+        required this.placedOn,
+        required this.total,
+        required this.products});
 }
 
 Order order = Order(
@@ -55,7 +55,7 @@ Order order = Order(
     Product(
       id: 1,
       image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
       title: "Wireless Controller for PS4™",
       price: 1000,
       quantity: 2,
@@ -65,7 +65,7 @@ Order order = Order(
     Product(
       id: 2,
       image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
       title: "Wireless Controller for PS4™",
       price: 1000,
       quantity: 2,
@@ -82,14 +82,14 @@ List<Order> demoOrders = [
     name: 'Faakeha Ahmed',
     address: 'Iba Karachi akjskajd sajdka akjdksd',
     city: 'Karachi',
-    status: 'Placed',
+    status: 'Confirmed',
     placedOn: DateTime.now(),
     total: 1000,
     products: [
       Product(
         id: 1,
         image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
         quantity: 2,
@@ -99,7 +99,7 @@ List<Order> demoOrders = [
       Product(
         id: 2,
         image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
         quantity: 2,
@@ -114,14 +114,14 @@ List<Order> demoOrders = [
     name: 'Faakeha Ahmed',
     address: 'Iba Karachi akjskajd sajdka akjdksd',
     city: 'Karachi',
-    status: 'Placed',
+    status: 'Cancelled',
     placedOn: DateTime.now(),
     total: 1000,
     products: [
       Product(
         id: 1,
         image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
         quantity: 2,
@@ -131,7 +131,7 @@ List<Order> demoOrders = [
       Product(
         id: 2,
         image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
         quantity: 2,
@@ -153,7 +153,7 @@ List<Order> demoOrders = [
       Product(
         id: 1,
         image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
         quantity: 2,
@@ -163,7 +163,7 @@ List<Order> demoOrders = [
       Product(
         id: 2,
         image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
         quantity: 2,
@@ -185,7 +185,7 @@ List<Order> demoOrders = [
       Product(
         id: 1,
         image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
         quantity: 2,
@@ -195,7 +195,7 @@ List<Order> demoOrders = [
       Product(
         id: 2,
         image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
         quantity: 2,
@@ -217,7 +217,7 @@ List<Order> demoOrders = [
       Product(
         id: 1,
         image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
         quantity: 2,
@@ -227,7 +227,7 @@ List<Order> demoOrders = [
       Product(
         id: 2,
         image:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
         quantity: 2,
