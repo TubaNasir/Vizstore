@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutterdemo/home/home_model.dart';
 import 'package:flutterdemo/search/search.dart';
 import 'package:flutterdemo/widgets/customAppBar.dart';
@@ -6,7 +7,8 @@ import 'package:flutter/material.dart';
 import '../home/home.dart';
 
 class StoreMain extends StatelessWidget {
-  const StoreMain({Key? key}) : super(key: key);
+  const StoreMain({Key? key, required this.camera}) : super(key: key);
+  final CameraDescription camera;
 
 
   @override
@@ -17,12 +19,14 @@ class StoreMain extends StatelessWidget {
         backButton: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(14.0),
+        padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 10.0),
         child: Column(
           children: [
-            //Heading(text: 'Products'),
-            SizedBox(height: 20,),
-            ProductList(demoList: demoProducts,),
+            SingleChildScrollView(
+                physics: NeverScrollableScrollPhysics(),
+                child: Products(demoList: demoProducts, camera: camera,)),
+            const SizedBox(height: 100),
+
           ],
         ),
       ),

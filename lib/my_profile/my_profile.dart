@@ -78,12 +78,6 @@ class AccountBody extends StatelessWidget {
             }
         ),
         ProfileMenu(
-            icon: Icon(Icons.mic, color: PrimaryColor),
-            text: "Voice Assisstant",
-            iconRight: Icon(Icons.toggle_off, color: PrimaryColor),  //HAVE TO IMPLEMENT TOGGLE FUNCTIONALITY LATER
-            press: () {}
-        ),
-        ProfileMenu(
             icon: Icon(Icons.logout, color: PrimaryColor),
             text: "Log Out",
             iconRight: Icon(Icons.chevron_right, color: PrimaryColor),  //HAVE TO IMPLEMENT TOGGLE FUNCTIONALITY LATER
@@ -159,5 +153,3 @@ class ProfileMenu extends StatelessWidget {
     );
   }
 }
-
-//testcommit

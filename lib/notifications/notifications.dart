@@ -21,7 +21,6 @@ class _NotificationsState extends State<Notifications> {
         body: SingleChildScrollView(
             child: ListView.builder(
                 shrinkWrap: true,
-                //physics: NeverScrollableScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 itemCount: notificationList.length,
                 itemBuilder: (context, index) => Padding(

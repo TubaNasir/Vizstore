@@ -68,7 +68,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
         CustomButton(
             text: "Edit",
             pressed: () {
-              print('hello');
               //state mgmt set enabled to tru; if enabled = true, button = save changes
             }),
       ],
