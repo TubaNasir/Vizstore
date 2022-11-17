@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../constants.dart';
 import '../home/home_model.dart';
+import '../order/order.dart';
 import '../widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import '../widgets/layout.dart';
 
@@ -44,7 +45,7 @@ class _WishlistState extends State<Wishlist> {
                         .map((e) => WishListCard(
                               productImage: e.image,
                               title: e.title,
-                              price: "Rs. " + e.price.toString(),
+                              price: "Rs. ${e.price}",
                               icon: Icon(
                                 Icons.favorite,
                                 color: (fav == true ? Colors.red : Colors.grey),
@@ -54,7 +55,7 @@ class _WishlistState extends State<Wishlist> {
                             ))
                         .toList(),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 100,
                   ),
                 ],
@@ -90,7 +91,7 @@ class WishListCard extends StatelessWidget {
       child: ElevatedButton(
         onPressed: press,
         style: ElevatedButton.styleFrom(
-            elevation: 5,
+            elevation: 2,
             padding: EdgeInsets.zero,
             backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
@@ -98,65 +99,65 @@ class WishListCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(
-              width: 88,
-              child: AspectRatio(
-                aspectRatio: 1.11,
-                child: Container(
-                    //width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    decoration: BoxDecoration(
-                      color: SecondaryColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10.0),
-                        bottomLeft: Radius.circular(10.0),
-                      ),
-                    ),
-                    child: Image.network(productImage)),
-              ),
-            ),
+            ImageWidget(productImage: productImage),
             SizedBox(
               width: 20,
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: Container(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              title,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          icon
-                        ],
-                      ),
-                      SizedBox(
-                        height: 3,
-                      ),
-                      Text("Store name", style: Theme.of(context).textTheme.bodySmall),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        price,
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-                      )
-                    ],
+            TitleWidget(title: title, icon: icon, price: price),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TitleWidget extends StatelessWidget {
+  const TitleWidget({
+    Key? key,
+    required this.title,
+    required this.icon,
+    required this.price,
+  }) : super(key: key);
+
+  final String title;
+  final Widget icon;
+  final String price;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: Text(
+                    title,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-              ),
+                icon
+              ],
             ),
+            SizedBox(
+              height: 3,
+            ),
+            Text("Store name", style: Theme.of(context).textTheme.bodySmall),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              price,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            )
           ],
         ),
       ),

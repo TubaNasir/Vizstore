@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:camera/camera.dart';
 import 'package:flutterdemo/checkout/checkout.dart';
 import 'package:flutterdemo/constants.dart';
+import 'package:flutterdemo/store/store_main.dart';
 import 'package:flutterdemo/widgets/curve_clipper.dart';
 import 'package:flutterdemo/widgets/customAppBar2.dart';
 import 'package:flutter/material.dart';
@@ -97,8 +98,17 @@ class _ProductDetailState extends State<ProductDetail> {
                                   SizedBox(height: 5),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                                    child: Text('By Clothing Brand',
-                                      style: Theme.of(context).textTheme.caption?.copyWith(fontWeight: FontWeight.bold),
+                                    child: InkWell(
+                                      onTap: (){
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) => StoreMain(camera: camera,),
+                                          ),
+                                        );
+                                      },
+                                      child: Text('By Clothing Brand',
+                                        style: Theme.of(context).textTheme.caption?.copyWith(fontWeight: FontWeight.bold),
+                                      ),
                                     ),
                                   ),
                                 ],
