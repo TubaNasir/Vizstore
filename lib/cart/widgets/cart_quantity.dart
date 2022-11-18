@@ -6,9 +6,9 @@ import '../../home/home_model.dart';
 class CartQuantity extends StatefulWidget {
   const CartQuantity(
       {Key? key,
-        required this.cartList,
-        required this.product,
-        required this.onCartChanged})
+      required this.cartList,
+      required this.product,
+      required this.onCartChanged})
       : super(key: key);
   final List<Product> cartList;
   final Product product;
@@ -25,8 +25,8 @@ class _CartQuantityState extends State<CartQuantity> {
       padding: const EdgeInsets.only(bottom: 4.0),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         SizedBox(
-          height: 30,
-          width: 30,
+          height: 25,
+          width: 25,
           child: IconButton(
               padding: EdgeInsets.zero,
               constraints: BoxConstraints(),
@@ -57,8 +57,8 @@ class _CartQuantityState extends State<CartQuantity> {
           ),
         ),
         SizedBox(
-          height: 30,
-          width: 30,
+          height: 25,
+          width: 25,
           child: IconButton(
               padding: EdgeInsets.zero,
               constraints: BoxConstraints(),

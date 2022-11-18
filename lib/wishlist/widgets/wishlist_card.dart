@@ -7,11 +7,12 @@ import '../../widgets/image_widget.dart';
 class WishListCard extends StatelessWidget {
   const WishListCard(
       {Key? key,
-        required this.productImage,
-        required this.title,
-        required this.price,
-        required this.icon,
-        required this.storeName, required this.camera})
+      required this.productImage,
+      required this.title,
+      required this.price,
+      required this.icon,
+      required this.storeName,
+      required this.camera})
       : super(key: key);
 
   final String productImage;
@@ -19,17 +20,16 @@ class WishListCard extends StatelessWidget {
   final Widget icon;
   final CameraDescription camera;
 
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 30.0),
       child: ElevatedButton(
-        onPressed: (){
+        onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => ProductDetail(
-                camera: camera,
-              )));
+                    camera: camera,
+                  )));
         },
         style: ElevatedButton.styleFrom(
             elevation: 2,
@@ -41,10 +41,11 @@ class WishListCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             ImageWidget(productImage: productImage),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
-            TitleWidgetWishlist(title: title, icon: icon, price: price, storeName: storeName,),
+            TitleWidgetWishlist(
+                title: title, icon: icon, price: price, storeName: storeName),
           ],
         ),
       ),

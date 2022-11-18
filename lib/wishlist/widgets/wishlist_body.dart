@@ -18,7 +18,7 @@ class WishlistBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Column(
@@ -30,7 +30,7 @@ class WishlistBody extends StatelessWidget {
                       icon: Icon(
                         Icons.favorite,
                         color: (fav == true ? Colors.red : Colors.grey),
-                        size: 30,
+                        size: 25,
                       ),
                       storeName: 'Store Name', camera: camera,
                     ))

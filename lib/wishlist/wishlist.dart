@@ -23,7 +23,7 @@ class _WishlistState extends State<Wishlist> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: CustomAppBar(
+        appBar: const CustomAppBar(
           title: "Wishlist",
           backButton: false,
         ),
