@@ -57,7 +57,7 @@ class ProductCard extends StatelessWidget {
                                   .titleLarge
                                   ?.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      color: PrimaryColor)
+                                      color: TextColor1)
                           ),
                           Icon(Icons.favorite),
                           // Container(

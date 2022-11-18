@@ -69,7 +69,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                       .headlineSmall
                                       ?.copyWith(
                                           fontWeight: FontWeight.bold,
-                                          color: PrimaryColor),
+                                          color: TextColor1),
                                 ),
                               ),
                               const SizedBox(height: 10),
@@ -174,11 +174,11 @@ class _ProductDetailState extends State<ProductDetail> {
                                     });
                                     setState(() {});
                                   },
-                                  icon: const Icon(
-                                    Icons.remove_circle,
-                                    color: Colors.black,
-                                    size: 30,
-                                  ),
+                                  icon: CircleAvatar(
+                                        radius: 10,
+                                        backgroundColor: PrimaryColor,
+                                        child: Icon(Icons.remove,color: Colors.black,size: 20,)
+                                      )
                                 ),
                                 Text(
                                   " ${product.quantity} ",
@@ -194,11 +194,11 @@ class _ProductDetailState extends State<ProductDetail> {
                                     });
                                     setState(() {});
                                   },
-                                  icon: const Icon(
-                                    Icons.add_circle,
-                                    color: Colors.black,
-                                    size: 30,
-                                  ),
+                                  icon: CircleAvatar(
+                                        radius: 10,
+                                        backgroundColor: PrimaryColor,
+                                        child: Icon(Icons.add,color: Colors.black,size: 20,)
+                                    )
                                 ),
                               ]),
                         ],

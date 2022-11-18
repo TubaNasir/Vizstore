@@ -14,7 +14,7 @@ class PopularProducts extends StatelessWidget {
       children: [
         Expanded(
           child: Container(
-            height: 200,
+            height: 210,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: demoProducts
