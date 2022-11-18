@@ -1,9 +1,7 @@
 import 'package:flutterdemo/constants.dart';
-import 'package:flutterdemo/home/home_model.dart';
-import 'package:flutterdemo/widgets/horizontal_card.dart';
 import 'package:flutter/material.dart';
-
-import '../order_model.dart';
+import '../../order_model.dart';
+import 'horizontal_product_card.dart';
 
 class ProductsCard extends StatefulWidget {
   const ProductsCard({Key? key, required this.order}) : super(key: key);
@@ -57,7 +55,7 @@ class _ProductsCardState extends State<ProductsCard> {
                       //physics: NeverScrollableScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       itemCount: order.products.length,
-                      itemBuilder: (context, index) => HorizontalCard(
+                      itemBuilder: (context, index) => HorizontalProductCard(
                         productImage: order.products[index].image,
                         cardTitle: order.products[index].title,
                         cardSubtitle: order.products[index].price.toString(),

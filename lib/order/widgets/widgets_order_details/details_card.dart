@@ -34,9 +34,7 @@ class _DetailsCardState extends State<DetailsCard> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
-
                 children: [
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
 
-class HorizontalCard extends StatelessWidget {
-  HorizontalCard({
+class HorizontalOrderCard extends StatelessWidget {
+  HorizontalOrderCard({
     Key? key,
     required this.productImage,
     required this.cardTitle,
@@ -35,7 +34,7 @@ class HorizontalCard extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      // color: PrimaryLightColor,
+                    // color: PrimaryLightColor,
                       borderRadius: BorderRadius.circular(15)),
                   child: Image.network(productImage),
                 ),

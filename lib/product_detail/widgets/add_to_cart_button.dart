@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/checkout/checkout.dart';
 import 'package:flutterdemo/constants.dart';
 
+import '../../cart/cart.dart';
+
 class AddToCartButton extends StatelessWidget {
   const AddToCartButton({
     Key? key,
@@ -23,7 +25,7 @@ class AddToCartButton extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => Checkout(camera: camera,),
+              builder: (context) => Cart(camera: camera,),
             ),
           );
         },
@@ -38,7 +40,7 @@ class AddToCartButton extends StatelessWidget {
             child: Text(
               'Add to Cart',
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(color: TextColor1),
             ),
           ),
         ),

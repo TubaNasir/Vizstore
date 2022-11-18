@@ -28,7 +28,7 @@ class StoreHome extends StatelessWidget {
                   children: [
                     //Heading(text: 'Products'),
                     SizedBox(height: 20,),
-                    ProductList(demoList: demoProducts),
+                    //ProductList(demoList: demoProducts),
                     SizedBox(height: 40,),
                   ],
                 ),
