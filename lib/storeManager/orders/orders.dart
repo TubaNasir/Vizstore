@@ -3,7 +3,6 @@ import 'package:flutterdemo/storeManager/orders/widgets/horizontal_order_card.da
 import 'package:flutterdemo/widgets/custom_app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import '../../order/order_model.dart';
-import '../store_home/store_home.dart';
 import 'order_detail_store.dart';
 
 class Orders extends StatelessWidget {
@@ -33,7 +32,6 @@ class Orders extends StatelessWidget {
               selectedIndex == 3 ?
               OrderCard(orderList: demoOrders.where((e) => e.status == 'Cancelled').toList()) :
               OrderCard(orderList: demoOrders)
-
 
             ],
           ),
