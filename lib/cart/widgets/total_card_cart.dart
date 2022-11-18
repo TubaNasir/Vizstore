@@ -27,7 +27,7 @@ class TotalCardCart extends StatelessWidget {
               children: [
                 Text(
                   'Total: ',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.titleMedium,
                   textAlign: TextAlign.left,
                 ),
                 Text(

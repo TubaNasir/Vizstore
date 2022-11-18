@@ -1,12 +1,15 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/my_profile/widgets/profile_menu.dart';
 import 'package:flutterdemo/my_profile/widgets/profile_pic.dart';
 import '../../constants.dart';
+import '../../login/login.dart';
 import '../../order/order.dart';
 import '../edit_profile.dart';
 
 class AccountBody extends StatelessWidget {
-  const AccountBody({Key? key}) : super(key: key);
+  const AccountBody({Key? key, required this.camera}) : super(key: key);
+  final CameraDescription camera;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +47,13 @@ class AccountBody extends StatelessWidget {
             icon: Icon(Icons.logout, color: PrimaryColor),
             text: "Log Out",
             iconRight: Icon(Icons.chevron_right, color: PrimaryColor),  //HAVE TO IMPLEMENT TOGGLE FUNCTIONALITY LATER
-            press: () {}
+            press: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => Login(camera: camera,),
+                ),
+              );
+            }
         ),
         SizedBox(height: 100,)
       ],

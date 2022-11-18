@@ -31,7 +31,7 @@ class _MyProfileState extends State<MyProfile> {
         body: Stack(
           children: [
             Layout(
-              widget: AccountBody(),
+              widget: AccountBody(camera: camera,),
             ),
             //AccountBody(),
             BottomNavBar(
