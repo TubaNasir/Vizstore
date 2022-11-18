@@ -1,6 +1,6 @@
 import 'package:flutterdemo/constants.dart';
 import 'package:flutterdemo/storeManager/widgets/bottom_nav_bar_store/bottom_nav_bar_store.dart';
-import 'package:flutterdemo/widgets/customAppBar.dart';
+import 'package:flutterdemo/widgets/custom_app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/home/home_model.dart';
 

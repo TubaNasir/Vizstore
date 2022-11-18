@@ -1,5 +1,5 @@
 import 'package:flutterdemo/notifications/widgets/notification_body.dart';
-import 'package:flutterdemo/widgets/customAppBar.dart';
+import 'package:flutterdemo/widgets/custom_app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class Notifications extends StatefulWidget {
@@ -21,4 +21,3 @@ class _NotificationsState extends State<Notifications> {
     );
   }
 }
-

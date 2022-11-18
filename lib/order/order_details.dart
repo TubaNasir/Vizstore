@@ -1,6 +1,7 @@
+import 'package:flutterdemo/widgets/custom_app_bar/custom_app_bar.dart';
 import 'package:flutterdemo/order/widgets/widgets_order_details/products_card.dart';
 import 'package:flutterdemo/order/widgets/widgets_order_details/total_card.dart';
-import 'package:flutterdemo/widgets/customAppBar.dart';
+import 'package:flutterdemo/widgets/custom_app_bar/custom_app_bar.dart';
 import 'package:flutterdemo/widgets/layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/order/order_model.dart';

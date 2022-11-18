@@ -1,9 +1,10 @@
 import 'package:camera/camera.dart';
 import 'package:flutterdemo/my_profile/widgets/account_body.dart';
-import 'package:flutterdemo/widgets/customAppBar.dart';
+import 'package:flutterdemo/widgets/custom_app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import '../widgets/layout.dart';
+import '../constants.dart';
 
 class MyProfile extends StatefulWidget {
   final CameraDescription camera;

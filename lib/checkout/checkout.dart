@@ -3,7 +3,7 @@ import 'package:flutterdemo/checkout/widgets/checkout_form.dart';
 import 'package:flutterdemo/checkout/widgets/order_summary.dart';
 import 'package:flutterdemo/constants.dart';
 import 'package:flutterdemo/success/success.dart';
-import 'package:flutterdemo/widgets/customAppBar.dart';
+import 'package:flutterdemo/widgets/custom_app_bar/custom_app_bar.dart';
 import 'package:flutterdemo/widgets/layout.dart';
 import 'package:flutterdemo/widgets/suffix_icon.dart';
 import 'package:flutter/material.dart';

@@ -1,9 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:flutterdemo/home/home_model.dart';
 import 'package:flutterdemo/product_detail/product_detail.dart';
-import 'package:flutterdemo/widgets/customAppBar.dart';
+import 'package:flutterdemo/widgets/custom_app_bar/custom_app_bar.dart';
 import 'package:flutterdemo/widgets/layout.dart';
-import 'package:flutterdemo/widgets/searchBar.dart';
+import 'package:flutterdemo/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/widgets/product.dart';
 import 'package:flutterdemo/widgets/staggered_products.dart';

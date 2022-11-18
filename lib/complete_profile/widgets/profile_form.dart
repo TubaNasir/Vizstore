@@ -1,6 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutterdemo/login/login.dart';
-import 'package:flutterdemo/widgets/button.dart';
+import 'package:flutterdemo/widgets/custom_button.dart';
 import 'package:flutterdemo/widgets/form_field.dart';
 import 'package:flutterdemo/widgets/suffix_icon.dart';
 import 'package:flutter/material.dart';
