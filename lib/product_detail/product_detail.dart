@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutterdemo/constants.dart';
 import 'package:flutterdemo/product_detail/widgets/add_to_cart_button.dart';
 import 'package:flutterdemo/product_detail/widgets/clipped_image.dart';
+import 'package:flutterdemo/product_detail/widgets/quantity_counter.dart';
 import 'package:flutterdemo/product_detail/widgets/store_details.dart';
 import 'package:flutterdemo/product_detail/widgets/title_row.dart';
 import 'package:flutterdemo/widgets/custom_app_bar2.dart';
@@ -154,55 +155,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           colors: [Color(0xFFA7B2AD), Colors.white],
                         ),
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      //widget.actualProduct.qty--;
-                                      if (product.quantity == 0) {
-                                        return;
-                                      } else {
-                                        product.quantity--;
-                                      }
-                                    });
-                                    setState(() {});
-                                  },
-                                  icon: CircleAvatar(
-                                        radius: 10,
-                                        backgroundColor: PrimaryColor,
-                                        child: Icon(Icons.remove,color: Colors.black,size: 20,)
-                                      )
-                                ),
-                                Text(
-                                  " ${product.quantity} ",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge
-                                      ?.copyWith(fontWeight: FontWeight.bold),
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      product.quantity++;
-                                    });
-                                    setState(() {});
-                                  },
-                                  icon: CircleAvatar(
-                                        radius: 10,
-                                        backgroundColor: PrimaryColor,
-                                        child: Icon(Icons.add,color: Colors.black,size: 20,)
-                                    )
-                                ),
-                              ]),
-                        ],
-                      ),
+                      child: QuantityCounter(product: product),
                     ),
                     AddToCartButton(camera: camera),
                   ],
@@ -216,3 +169,4 @@ class _ProductDetailState extends State<ProductDetail> {
     );
   }
 }
+
