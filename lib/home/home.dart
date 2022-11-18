@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: const CustomAppBar(title: 'Welcome, Tuba!', backButton: false),
+        appBar: const CustomAppBar(title: 'VizStore', backButton: false),
         body: Stack(
           children: [
             Layout(
