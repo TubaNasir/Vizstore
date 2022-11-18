@@ -17,9 +17,6 @@ class CurveClipper extends CustomClipper<Path>{
     return path;
   }
 
-
-
-
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
     return false;

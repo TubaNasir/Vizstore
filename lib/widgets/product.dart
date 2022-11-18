@@ -46,27 +46,30 @@ class ProductCard extends StatelessWidget {
                     AutoSizeText(demoProducts[0].title,
                         style: Theme.of(context).textTheme.titleSmall,
                         maxLines: 3,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Rs. ${demoProducts[0].price}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: PrimaryColor)
-                        ),
-                        Icon(Icons.favorite),
-                        // Container(
-                        //   height: 28,
-                        //   width: 28,
-                        //   decoration: BoxDecoration(
-                        //       color: SecondaryColor,
-                        //       shape: BoxShape.circle),
-                        //   child: Icon(Icons.favorite),
-                        // ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 3.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Rs. ${demoProducts[0].price}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: PrimaryColor)
+                          ),
+                          Icon(Icons.favorite),
+                          // Container(
+                          //   height: 28,
+                          //   width: 28,
+                          //   decoration: BoxDecoration(
+                          //       color: SecondaryColor,
+                          //       shape: BoxShape.circle),
+                          //   child: Icon(Icons.favorite),
+                          // ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
