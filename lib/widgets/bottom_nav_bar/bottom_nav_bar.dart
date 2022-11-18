@@ -1,6 +1,8 @@
 import 'package:camera/camera.dart';
+import 'package:flutterdemo/camera/camera.dart';
 import 'package:flutterdemo/constants.dart';
 import 'package:flutterdemo/my_profile/my_profile.dart';
+import 'package:flutterdemo/widgets/bottom_nav_bar/bottom_nav_bar_provider.dart';
 import 'package:flutterdemo/widgets/bottom_nav_bar/widgets/camera.dart';
 import 'package:flutterdemo/widgets/bottom_nav_bar/widgets/my_custom_painter.dart';
 import 'package:flutterdemo/widgets/bottom_nav_bar/widgets/nav_bar_icon.dart';
@@ -8,6 +10,7 @@ import 'package:flutterdemo/wishlist/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/home/home.dart';
 import 'package:flutterdemo/cart/cart.dart';
+import 'package:provider/provider.dart';
 
 class BottomNavBar extends StatelessWidget {
   final CameraDescription camera;
@@ -28,57 +31,85 @@ class BottomNavBar extends StatelessWidget {
               size: Size(size.width, 80),
               painter: MyCustomPainter(),
             ),
-            Camera(camera: camera),
+            Center(
+              heightFactor: 0.6,
+              child: FloatingActionButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => CameraScreen(camera:camera))
+                    );
+                  },
+                  backgroundColor: PrimaryColor,
+                  child: Icon(Icons.camera_alt_outlined, color: Colors.white,),
+                  elevation: 0.1),
+            ),
             Container(
               width: size.width,
               height: 80,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  NavBarIcon(
-                      icon: Icons.home,
-                      selectedIcon: navBarPages[0],
-                      camera: camera,
-                      onPress: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Home(camera: camera),
-                          ),
-                        );
-                      }),
-                  NavBarIcon(
-                      icon: Icons.shopping_cart,
-                      selectedIcon: navBarPages[1],
-                      camera: camera,
-                      onPress: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Cart(camera: camera),
-                          ),
-                        );
-                      }),
-                  NavBarIcon(
-                      icon: Icons.favorite,
-                      selectedIcon: navBarPages[2],
-                      camera: camera,
-                      onPress: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Wishlist(camera: camera),
-                          ),
-                        );
-                      }),
-                  NavBarIcon(
-                      icon: Icons.person,
-                      selectedIcon: navBarPages[3],
-                      camera: camera,
-                      onPress: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => MyProfile(camera: camera),
-                          ),
-                        );
-                      }),
+                  IconButton(
+                    icon: Icon(
+                      Icons.home,
+                      color: context.watch<NavBar>().page.toString() == navBarPages[0]
+                          ? Colors.black
+                          : Colors.grey,
+                    ),
+                    onPressed: () {
+                      context.read<NavBar>().setPage(navBarPages[0]);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => Home(camera: camera),
+                        ),
+                      );
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.shopping_cart,
+                      color: context.watch<NavBar>().page.toString() == navBarPages[1]
+                          ? Colors.black
+                          : Colors.grey,
+                    ),
+                    onPressed: () {
+                      context.read<NavBar>().setPage(navBarPages[1]);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => Cart(camera: camera,),
+                        ),
+                      );
+                    },
+                  ),
+                  Container(width: size.width * 0.20),
+                  IconButton(
+                    icon: Icon(Icons.favorite,
+                      color: context.watch<NavBar>().page.toString() == navBarPages[2]
+                          ? Colors.black
+                          : Colors.grey,),
+                    onPressed: () {
+                      context.read<NavBar>().setPage(navBarPages[2]);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => Wishlist(camera: camera,),
+                        ),
+                      );
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.person_outline_outlined,
+                        color: context.watch<NavBar>().page.toString() == navBarPages[3]
+                            ? Colors.black
+                            : Colors.grey),
+                    onPressed: () {
+                      context.read<NavBar>().setPage(navBarPages[3]);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MyProfile(camera: camera,),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
