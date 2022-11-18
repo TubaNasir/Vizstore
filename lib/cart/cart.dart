@@ -1,12 +1,9 @@
 import 'package:camera/camera.dart';
-import 'package:flutterdemo/cart/widgets/cart_card.dart';
-import 'package:flutterdemo/cart/widgets/total_card_cart.dart';
-import 'package:flutterdemo/checkout/checkout.dart';
+import 'package:flutterdemo/cart/widgets/cart_body.dart';
 import 'package:flutterdemo/widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import '../home/home_model.dart';
 import '../widgets/custom_app_bar/custom_app_bar.dart';
-import '../widgets/custom_button.dart';
 import '../widgets/layout.dart';
 
 class Cart extends StatefulWidget {
@@ -70,38 +67,13 @@ class _CartState extends State<Cart> {
           //backgroundColor: Colors.grey.shade200,
           body: Stack(children: [
             Layout(
-                widget: SingleChildScrollView(
-              child: Column(children: [
-                Column(
-                  children: cartList
-                      .map((e) => CartCard(
-                            product: e,
-                            cartList: cartList,
-                            onCartChanged: () {
-                              setState(() {});
-                            },
-                            camera: camera,
-                          ))
-                      .toList(),
-                ),
-                TotalCardCart(),
-                SizedBox(height: 20),
-                CustomButton(
-                  text: 'Checkout',
-                  pressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => Checkout(
-                              camera: camera,
-                            )));
-                  },
-                ),
-                SizedBox(height: 100),
-              ]),
-            )),
+                widget: CartBody(camera: camera, cartList: cartList,)),
             BottomNavBar(
               camera: camera,
             )
-          ])),
+          ])
+      ),
     );
   }
 }
+
