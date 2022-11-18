@@ -46,7 +46,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     gradient: PrimaryGradientColor,
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
