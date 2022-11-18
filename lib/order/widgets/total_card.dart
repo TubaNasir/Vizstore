@@ -7,11 +7,6 @@ class TotalCard extends StatelessWidget {
 
   final Order order;
 
-//   @override
-//   State<TotalCard> createState() => _TotalCardState();
-// }
-//
-// class _TotalCardState extends State<TotalCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(

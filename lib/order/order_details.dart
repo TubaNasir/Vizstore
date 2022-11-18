@@ -1,4 +1,3 @@
-import 'package:flutterdemo/constants.dart';
 import 'package:flutterdemo/widgets/customAppBar.dart';
 import 'package:flutterdemo/widgets/layout.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +11,6 @@ class OrderDetails extends StatelessWidget {
 
   final Order order;
 
-//   @override
-//   State<OrderDetails> createState() => _OrderDetailsState();
-// }
-//
-// class _OrderDetailsState extends State<OrderDetails> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

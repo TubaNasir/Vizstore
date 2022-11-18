@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/wishlist/widgets/title_widget_wishlist.dart';
-import '../../order/widgets/image_widget.dart';
+import 'package:flutterdemo/order/widgets/title_widget_order.dart';
 
-class WishListCard extends StatelessWidget {
-  const WishListCard(
-      {Key? key,
-        required this.productImage,
-        required this.title,
-        required this.price,
-        required this.icon,
-        required this.press, required this.storeName})
-      : super(key: key);
+import 'image_widget.dart';
+
+class OrderCard extends StatelessWidget {
+  const OrderCard({Key? key, required this.productImage, required this.title, required this.placedOn, required this.status, required this.icon, required this.press}) : super(key: key);
 
   final String productImage;
-  final String title, price, storeName;
+  final String title, placedOn, status;
   final Widget icon;
   final VoidCallback press;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -33,10 +26,14 @@ class WishListCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             ImageWidget(productImage: productImage),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
-            TitleWidgetWishlist(title: title, icon: icon, price: price),
+            TitleWidgetOrder(title: title, status: status, placedOn: placedOn),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: icon,
+            )
           ],
         ),
       ),
