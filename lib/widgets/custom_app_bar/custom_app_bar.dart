@@ -18,7 +18,8 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => throw UnimplementedError();
+  Size get preferredSize => const Size.fromHeight(130);
+
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
@@ -94,7 +95,4 @@ class _CustomAppBarState extends State<CustomAppBar> {
     );
   }
 
-  @override
-  // TODO: implement preferredSize
-  Size get preferredSize => const Size.fromHeight(130);
 }

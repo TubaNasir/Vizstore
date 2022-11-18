@@ -11,7 +11,7 @@ const SecondaryColor = Color(0xFFECE7E7);
 const TextColor1 = Colors.black;
 const TextColor2 = Color(0xFF757575);
 
-const navBarPages = ['home', 'cart', 'wishlist', 'checkout'];
+const navBarPages = ['home', 'cart', 'wishlist', 'my_profile'];
 
 final items = [
   "Islamabad",
