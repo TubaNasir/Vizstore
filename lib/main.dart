@@ -21,6 +21,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutterdemo/themes.dart';
 
+import 'login/login.dart';
+
 Future<void> main() async {
   // Ensure that plugin services are initialized so that `availableCameras()`
   // can be called before `runApp()`
@@ -54,7 +56,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: theme(),
-      home: Home(camera: camera,),
+      home: Login(camera: camera,),
     );
   }
 }

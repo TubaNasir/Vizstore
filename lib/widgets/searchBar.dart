@@ -35,7 +35,7 @@ class SearchBar extends StatelessWidget {
                 MaterialPageRoute(builder:(context) => CameraScreen(camera: camera))
               );
             }, 
-            icon: Icon(Icons.camera_alt,color: PrimaryColor,)
+            icon: Icon(Icons.camera_alt,color: Colors.black,)
           )
         ],
       ),

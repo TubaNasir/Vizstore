@@ -105,7 +105,7 @@ class CheckoutBottomBar extends StatelessWidget {
                   ),
                   Text('Rs. 1200',
                     textAlign: TextAlign.left,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(color: PrimaryColor, fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -135,7 +135,7 @@ class CheckoutBottomBar extends StatelessWidget {
                     child: Text(
                       'Place Order',
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white),
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(color: TextColor1),
                     ),
                   ),
                 ),

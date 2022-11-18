@@ -125,7 +125,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                                   child: Text('Rs. ${product.price}',
-                                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold, color: PrimaryColor),
+                                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold, color: TextColor1),
                                   ),
                                 ),
                               ),
@@ -223,11 +223,11 @@ class _ProductDetailState extends State<ProductDetail> {
                                     });
                                     setState(() {});
                                   },
-                                  icon: const Icon(
-                                    Icons.remove_circle,
-                                    color: Colors.black,
-                                    size: 30,
-                                  ),
+                                  icon: CircleAvatar(
+                                    radius: 30,
+                                    backgroundColor: PrimaryColor,
+                                    child: Icon(Icons.remove,color: Colors.black,)
+                                  )
                                 ),
                                 Text(
                                   " ${product.quantity} " ,
@@ -240,11 +240,16 @@ class _ProductDetailState extends State<ProductDetail> {
                                     });
                                     setState(() {});
                                   },
-                                  icon: const Icon(
-                                      Icons.add_circle,
-                                      color: Colors.black,
-                                      size: 30,
-                                  ),
+                                  // icon: const Icon(
+                                  //     Icons.add_circle,
+                                  //     color: PrimaryColor,
+                                  //     size: 30,
+                                  // ),
+                                  icon: CircleAvatar(
+                                    radius: 30,
+                                    backgroundColor: PrimaryColor,
+                                    child: Icon(Icons.add,color: Colors.black,)
+                                  )
                                 ),
                               ]),
                         ],
@@ -275,7 +280,7 @@ class _ProductDetailState extends State<ProductDetail> {
                             child: Text(
                               'Add to Cart',
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white),
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(color: TextColor1),
                             ),
                           ),
                         ),

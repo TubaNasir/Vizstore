@@ -296,11 +296,11 @@ class _CartCardState extends State<CartCard> {
                                           });
                                           onCartChanged();
                                         },
-                                        icon: const Icon(
-                                          Icons.remove_circle,
-                                          color: Colors.black,
-                                          size: 20,
-                                        ),
+                                        icon: CircleAvatar(
+                                          radius: 10,
+                                          backgroundColor: PrimaryColor,
+                                          child: Icon(Icons.remove,color: Colors.black,size: 20,)
+                                        )
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -318,10 +318,11 @@ class _CartCardState extends State<CartCard> {
                                             });
                                             onCartChanged();
                                           },
-                                          icon: const Icon(
-                                            Icons.add_circle,
-                                            color: Colors.black,
-                                            size: 20,),
+                                          icon: CircleAvatar(
+                                            radius: 10,
+                                            backgroundColor: PrimaryColor,
+                                            child: Icon(Icons.add,color: Colors.black,size: 20,)
+                                          )
                                         ),
                                     ]),
                               ],
