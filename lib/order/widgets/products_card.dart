@@ -64,7 +64,7 @@ class _ProductsCardState extends State<ProductsCard> {
                         icon: CircleAvatar(
                           radius: 15,
                           child:
-                              Text(order.products[index].quantity.toString()),
+                              Text(order.products[index].quantity.toString(),style: TextStyle(color: Colors.black),),
                           backgroundColor: PrimaryColor,
                         ),
                         press: () {},
