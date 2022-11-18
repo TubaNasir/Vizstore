@@ -53,7 +53,7 @@ class _CheckoutFormState extends State<CheckoutForm> {
           ),
           Container(
             height: 64,
-            padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+            padding: const EdgeInsets.only(left: 40.0, right: 20.0),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(28.0),
                 ),
