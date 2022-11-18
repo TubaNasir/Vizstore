@@ -59,7 +59,8 @@ class ProductCard extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                       color: TextColor1)
                           ),
-                          Icon(Icons.favorite),
+                          Icon(Icons.favorite,
+                          color: Colors.grey,),
                           // Container(
                           //   height: 28,
                           //   width: 28,
