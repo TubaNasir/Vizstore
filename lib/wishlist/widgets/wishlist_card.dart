@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/wishlist/widgets/title_widget_wishlist.dart';
-import '../../order/widgets/image_widget.dart';
+import '../../widgets/image_widget.dart';
 
 class WishListCard extends StatelessWidget {
   const WishListCard(
