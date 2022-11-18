@@ -54,18 +54,17 @@ class _ProductsCardState extends State<ProductsCard> {
                       shrinkWrap: true,
                       //physics: NeverScrollableScrollPhysics(),
                       scrollDirection: Axis.vertical,
-                      itemCount: order.products.length,
+                      itemCount: widget.order.products.length,
                       itemBuilder: (context, index) => HorizontalProductCard(
-                        productImage: order.products[index].image,
-                        cardTitle: order.products[index].title,
-                        cardSubtitle: order.products[index].price.toString(),
+                        productImage: widget.order.products[index].image,
+                        cardTitle: widget.order.products[index].title,
+                        cardSubtitle: "Rs. ${widget.order.products[index].price}",
                         icon: CircleAvatar(
                           radius: 15,
-                          child:
-                              Text(order.products[index].quantity.toString(),style: TextStyle(color: Colors.black),),
                           backgroundColor: PrimaryColor,
+                          child:
+                              Text(widget.order.products[index].quantity.toString(),style: TextStyle(color: Colors.black),),
                         ),
-                        press: () {},
                       ),
                     ),
                   )
