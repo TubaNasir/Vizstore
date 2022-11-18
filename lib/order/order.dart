@@ -7,12 +7,14 @@ class MyOrders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: 'My Orders',
-        backButton: true,
+    return SafeArea(
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title: 'My Orders',
+          backButton: true,
+        ),
+        body: OrderBody(),
       ),
-      body: OrderBody(),
     );
   }
 }
