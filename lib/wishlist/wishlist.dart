@@ -30,7 +30,7 @@ class _WishlistState extends State<Wishlist> {
         body: Stack(
           children: [
             Layout(
-                widget: WishlistBody()),
+                widget: WishlistBody(camera: camera,)),
             BottomNavBar(camera: camera,),
           ],
         ),

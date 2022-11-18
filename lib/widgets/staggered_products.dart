@@ -30,24 +30,23 @@ class StaggeredProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: GridView.builder(
-          padding: const EdgeInsets.only(bottom: 10.0),
-          physics: const BouncingScrollPhysics(),
-          shrinkWrap: true,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.75,
-          ),
-          itemCount: demoList.length,
-          itemBuilder: (context, index) {
-            return Transform.translate(
-              offset: Offset(0.0, index.isOdd ? 50 : 0.0),
-              child: _buildProducts(context, index),
-            );
-          }),
-    ));
+      padding: const EdgeInsets.only(bottom: 10.0),
+      physics: const BouncingScrollPhysics(),
+      shrinkWrap: true,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 0.75,
+      ),
+      itemCount: demoList.length,
+      itemBuilder: (context, index) {
+        return Transform.translate(
+          offset: Offset(0.0, index.isOdd ? 50 : 0.0),
+          child: _buildProducts(context, index),
+        );
+      }),
+    );
   }
 }

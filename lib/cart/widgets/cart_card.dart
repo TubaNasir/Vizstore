@@ -1,4 +1,6 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/product_detail/product_detail.dart';
 import '../../home/home_model.dart';
 import 'cart_quantity.dart';
 import 'delete_icon.dart';
@@ -9,12 +11,14 @@ class CartCard extends StatefulWidget {
       {Key? key,
       required this.product,
       required this.cartList,
-      required this.onCartChanged})
+      required this.onCartChanged, required this.camera})
       : super(key: key); //required this.actualProduct}) : super(key: key);
 
   final List<Product> cartList;
   final Product product;
   final VoidCallback onCartChanged;
+  final CameraDescription camera;
+
 
   //final Product actualProduct;
   @override
@@ -33,7 +37,12 @@ class _CartCardState extends State<CartCard> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 30.0),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => ProductDetail(
+                camera: widget.camera,
+              )));
+        },
         style: ElevatedButton.styleFrom(
             elevation: 2,
             padding: EdgeInsets.zero,

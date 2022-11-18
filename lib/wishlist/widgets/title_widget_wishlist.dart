@@ -5,10 +5,10 @@ class TitleWidgetWishlist extends StatelessWidget {
     Key? key,
     required this.title,
     required this.icon,
-    required this.price,
+    required this.price, required this.storeName,
   }) : super(key: key);
 
-  final String title;
+  final String title, storeName;
   final Widget icon;
   final String price;
 
@@ -39,7 +39,7 @@ class TitleWidgetWishlist extends StatelessWidget {
             SizedBox(
               height: 3,
             ),
-            Text("Store name", style: Theme.of(context).textTheme.bodySmall),
+            Text(storeName, style: Theme.of(context).textTheme.bodySmall),
             SizedBox(
               height: 5,
             ),

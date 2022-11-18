@@ -75,11 +75,13 @@ class _CartState extends State<Cart> {
                 Column(
                   children: cartList
                       .map((e) => CartCard(
-                          product: e,
-                          cartList: cartList,
-                          onCartChanged: () {
-                            setState(() {});
-                          }))
+                            product: e,
+                            cartList: cartList,
+                            onCartChanged: () {
+                              setState(() {});
+                            },
+                            camera: camera,
+                          ))
                       .toList(),
                 ),
                 TotalCardCart(),
