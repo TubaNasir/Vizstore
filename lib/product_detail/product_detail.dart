@@ -1,10 +1,6 @@
 import 'package:camera/camera.dart';
-import 'package:flutterdemo/constants.dart';
-import 'package:flutterdemo/product_detail/widgets/add_to_cart_button.dart';
-import 'package:flutterdemo/product_detail/widgets/clipped_image.dart';
-import 'package:flutterdemo/product_detail/widgets/quantity_counter.dart';
-import 'package:flutterdemo/product_detail/widgets/store_details.dart';
-import 'package:flutterdemo/product_detail/widgets/title_row.dart';
+import 'package:flutterdemo/product_detail/widgets/bottom_bar.dart';
+import 'package:flutterdemo/product_detail/widgets/product_body.dart';
 import 'package:flutterdemo/widgets/custom_app_bar2.dart';
 import 'package:flutter/material.dart';
 import '../home/home_model.dart';
@@ -31,137 +27,8 @@ class _ProductDetailState extends State<ProductDetail> {
         body: Stack(
           clipBehavior: Clip.none,
           children: [
-            Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        ClippedImage(product: product),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  TitleRow(product: product),
-                                  const SizedBox(height: 5),
-                                  StoreDetails(camera: camera),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Divider(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 12.0),
-                                child: Text(
-                                  'Rs. ${product.price}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineSmall
-                                      ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          color: TextColor1),
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Divider(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Description',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleMedium
-                                              ?.copyWith(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: TextColor2),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 5),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            product.description,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyLarge,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(height: 100),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Positioned(
-              bottom: 0,
-              width: MediaQuery.of(context).size.width + 8,
-              child: Container(
-                height: 70,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, -3), // changes position of shadow
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width / 2,
-                      height: 70,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [Color(0xFFA7B2AD), Colors.white],
-                        ),
-                      ),
-                      child: QuantityCounter(product: product),
-                    ),
-                    AddToCartButton(camera: camera),
-                  ],
-                ),
-              ),
-            ),
+            ProductBody(product: product, camera: camera),
+            BottomBar(product: product, camera: camera),
             const CustomAppBar2(),
           ],
         ),
