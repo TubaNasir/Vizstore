@@ -56,7 +56,7 @@ class BottomNavBar extends StatelessWidget {
                       color: context.watch<NavBar>().page.toString() == navBarPages[0] ? Colors.black : Colors.grey,
                       glowColor: context.watch<NavBar>().page.toString() == navBarPages[0] ? Colors.grey : Colors.transparent,
                       blurRadius: 9,
-                      size: 30,
+                      size: 24,
                     ),
                     onPressed: () {
                       context.read<NavBar>().setPage(navBarPages[0]);
@@ -73,7 +73,7 @@ class BottomNavBar extends StatelessWidget {
                       color: context.watch<NavBar>().page.toString() == navBarPages[1] ? Colors.black : Colors.grey,
                       glowColor: context.watch<NavBar>().page.toString() == navBarPages[1] ? Colors.grey : Colors.transparent,
                       blurRadius: 9,
-                      size: 30,
+                      size: 24,
                     ),
                     onPressed: () {
                       context.read<NavBar>().setPage(navBarPages[1]);
@@ -91,7 +91,7 @@ class BottomNavBar extends StatelessWidget {
                       color: context.watch<NavBar>().page.toString() == navBarPages[2] ? Colors.black : Colors.grey,
                       glowColor: context.watch<NavBar>().page.toString() == navBarPages[2] ? Colors.grey : Colors.transparent,
                       blurRadius: 9,
-                      size: 30,
+                      size: 24,
                     ),
                     onPressed: () {
                       context.read<NavBar>().setPage(navBarPages[2]);
@@ -108,7 +108,7 @@ class BottomNavBar extends StatelessWidget {
                       color: context.watch<NavBar>().page.toString() == navBarPages[3] ? Colors.black : Colors.grey,
                       glowColor: context.watch<NavBar>().page.toString() == navBarPages[3] ? Colors.grey : Colors.transparent,
                       blurRadius: 9,
-                      size: 30,
+                      size: 24,
                     ),
                     onPressed: () {
                       context.read<NavBar>().setPage(navBarPages[3]);

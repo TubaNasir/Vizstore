@@ -9,12 +9,6 @@ import 'package:flutterdemo/order/order_model.dart';
 import 'package:flutterdemo/search/search.dart';
 import 'package:flutterdemo/signup/signup.dart';
 import 'package:flutterdemo/store/store_main.dart';
-import 'package:flutterdemo/storeManager/orders/order_detail_store.dart';
-import 'package:flutterdemo/storeManager/orders/orders.dart';
-import 'package:flutterdemo/storeManager/product/add_product.dart';
-import 'package:flutterdemo/storeManager/product/edit_product.dart';
-import 'package:flutterdemo/storeManager/store_home/store_home.dart';
-import 'package:flutterdemo/storeManager/widgets/bottom_nav_bar_store/bottom_nav_bar_store_model.dart';
 import 'package:flutterdemo/success/success.dart';
 import 'package:flutterdemo/widgets/bottom_nav_bar/bottom_nav_bar_provider.dart';
 import 'package:flutter/material.dart';
@@ -37,8 +31,7 @@ Future<void> main() async {
   runApp(
       MultiProvider(
           providers: [
-            ChangeNotifierProvider(create: (_) => NavBar()),
-            ChangeNotifierProvider(create: (_) => NavBarStore())
+            ChangeNotifierProvider(create: (_) => NavBar())
           ],
     child: MyApp(camera: firstCamera),
     //create: (_) => NavBar(),
