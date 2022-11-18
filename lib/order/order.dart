@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/order/widgets/order_body.dart';
+import 'package:flutterdemo/order/widgets/widgets_order/order_body.dart';
 import '../widgets/customAppBar.dart';
 
 class MyOrders extends StatelessWidget {

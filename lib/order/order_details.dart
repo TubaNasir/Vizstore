@@ -1,10 +1,10 @@
+import 'package:flutterdemo/order/widgets/widgets_order_details/products_card.dart';
+import 'package:flutterdemo/order/widgets/widgets_order_details/total_card.dart';
 import 'package:flutterdemo/widgets/customAppBar.dart';
 import 'package:flutterdemo/widgets/layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/order/order_model.dart';
-import 'package:flutterdemo/order/widgets/details_card.dart';
-import 'package:flutterdemo/order/widgets/products_card.dart';
-import 'package:flutterdemo/order/widgets/total_card.dart';
+import 'package:flutterdemo/order/widgets/widgets_order_details/details_card.dart';
 
 class OrderDetails extends StatelessWidget {
   const OrderDetails({Key? key, required this.order}) : super(key: key);

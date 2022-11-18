@@ -1,6 +1,6 @@
 import 'package:flutterdemo/constants.dart';
 import 'package:flutter/material.dart';
-import '../order_model.dart';
+import '../../order_model.dart';
 import 'horizontal_product_card.dart';
 
 class ProductsCard extends StatefulWidget {

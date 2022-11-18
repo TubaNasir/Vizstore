@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/order/widgets/title_widget_order.dart';
-
-import 'image_widget.dart';
+import '../../../widgets/image_widget.dart';
+import 'title_widget_order.dart';
 
 class OrderCard extends StatelessWidget {
   const OrderCard({Key? key, required this.productImage, required this.title, required this.placedOn, required this.status, required this.icon, required this.press}) : super(key: key);
