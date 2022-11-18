@@ -1,7 +1,8 @@
 import 'package:camera/camera.dart';
+import 'package:flutterdemo/constants.dart';
 import 'package:flutterdemo/home/home.dart';
 import 'package:flutterdemo/widgets/bottom_nav_bar/bottom_nav_bar_provider.dart';
-import 'package:flutterdemo/widgets/button.dart';
+import 'package:flutterdemo/widgets/custom_button.dart';
 import 'package:flutterdemo/widgets/layout.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -37,7 +38,7 @@ class _SuccessState extends State<Success> {
               textAlign: TextAlign.center,),
               SizedBox(height: 5),
               CustomButton(text: 'Go to homepage', pressed: () {
-                context.read<NavBar>().setPage('home');
+                context.read<NavBar>().setPage(navBarPages[0]);
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => Home(camera: camera,)),
                 );

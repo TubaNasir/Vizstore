@@ -2,11 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:camera/camera.dart';
 import 'package:flutterdemo/checkout/checkout.dart';
 import 'package:flutterdemo/widgets/bottom_nav_bar/bottom_nav_bar.dart';
-import 'package:flutterdemo/widgets/button.dart';
+import 'package:flutterdemo/widgets/custom_app_bar/custom_app_bar.dart';
+import 'package:flutterdemo/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../success/success.dart';
-import '../widgets/customAppBar.dart';
 import '../widgets/layout.dart';
 import 'product_model.dart';
 

@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutterdemo/complete_profile/complete_profile.dart';
 import 'package:flutterdemo/signup/widgets/social_card.dart';
-import 'package:flutterdemo/widgets/button.dart';
+import 'package:flutterdemo/widgets/custom_button.dart';
 import 'package:flutterdemo/widgets/form_field.dart';
 import 'package:flutterdemo/widgets/suffix_icon.dart';
 import 'package:flutter/material.dart';

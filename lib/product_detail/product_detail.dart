@@ -4,7 +4,7 @@ import 'package:flutterdemo/product_detail/widgets/add_to_cart_button.dart';
 import 'package:flutterdemo/product_detail/widgets/clipped_image.dart';
 import 'package:flutterdemo/product_detail/widgets/store_details.dart';
 import 'package:flutterdemo/product_detail/widgets/title_row.dart';
-import 'package:flutterdemo/widgets/customAppBar2.dart';
+import 'package:flutterdemo/widgets/custom_app_bar2.dart';
 import 'package:flutter/material.dart';
 import '../home/home_model.dart';
 

@@ -5,7 +5,7 @@ import '../../order/order_model.dart';
 import '../../order/widgets/details_card.dart';
 import '../../order/widgets/products_card.dart';
 import '../../order/widgets/total_card.dart';
-import '../../widgets/customAppBar.dart';
+import '../../widgets/custom_app_bar/custom_app_bar.dart';
 import '../../widgets/layout.dart';
 
 class OrderDetailStore extends StatelessWidget {

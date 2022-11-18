@@ -1,5 +1,5 @@
 import 'package:camera/camera.dart';
-import 'package:flutterdemo/widgets/customAppBar.dart';
+import 'package:flutterdemo/widgets/custom_app_bar/custom_app_bar.dart';
 import 'package:flutterdemo/widgets/horizontal_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

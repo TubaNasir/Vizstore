@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutterdemo/my_profile/edit_profile.dart';
 import 'package:flutterdemo/order/order.dart';
-import 'package:flutterdemo/widgets/customAppBar.dart';
+import 'package:flutterdemo/widgets/custom_app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
