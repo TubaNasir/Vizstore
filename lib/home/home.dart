@@ -10,6 +10,7 @@ import 'package:flutterdemo/widgets/layout.dart';
 import 'package:flutterdemo/widgets/searchBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/widgets/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:flutterdemo/widgets/staggered_products.dart';
 
 class Home extends StatefulWidget {
   final CameraDescription camera;
@@ -52,7 +53,7 @@ class _HomeState extends State<Home> {
                     const SizedBox(height: 20),
                     const Heading(text: "New Arrivals"),
                     const SizedBox(height: 10),
-                    SingleChildScrollView(child: Products(demoList: demoProducts,camera: camera,),physics: NeverScrollableScrollPhysics(),),
+                    SingleChildScrollView(child: StaggeredProductView(demoList: demoProducts,camera: camera,),physics: NeverScrollableScrollPhysics(),),
                     const SizedBox(height: 100),
                   ],
                 ),
