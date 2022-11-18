@@ -3,10 +3,10 @@ import 'package:flutterdemo/cart/widgets/cart_card.dart';
 import 'package:flutterdemo/cart/widgets/total_card_cart.dart';
 import 'package:flutterdemo/checkout/checkout.dart';
 import 'package:flutterdemo/widgets/bottom_nav_bar/bottom_nav_bar.dart';
-import 'package:flutterdemo/widgets/button.dart';
 import 'package:flutter/material.dart';
 import '../home/home_model.dart';
-import '../widgets/customAppBar.dart';
+import '../widgets/custom_app_bar/custom_app_bar.dart';
+import '../widgets/custom_button.dart';
 import '../widgets/layout.dart';
 
 class Cart extends StatefulWidget {

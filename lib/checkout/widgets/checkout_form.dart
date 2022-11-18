@@ -43,37 +43,46 @@ class _CheckoutFormState extends State<CheckoutForm> {
           enabled: enabled,
         ),
         SizedBox(height: 20),
-        Container(
-          height: 65,
-          padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(28.0),
-              border: Border.all(color: TextColor2)),
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton(
-              iconDisabledColor: Colors.white,
-              iconEnabledColor: Colors.white,
-              borderRadius: BorderRadius.circular(28),
-              isExpanded: true,
-              value: dropdownvalue,
-              icon: const Icon(
-                Icons.keyboard_arrow_down,
-                color: SecondaryColor,
-              ),
-              items: items.map((String items) {
-                return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  dropdownvalue = newValue!;
-                });
-              },
+        Stack(children: [
+          TextFormField(
+            decoration: InputDecoration(
+              labelText: "City",
+              enabled: enabled,
+              floatingLabelBehavior: FloatingLabelBehavior.always,
             ),
           ),
-        ),
+          Container(
+            height: 64,
+            padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(28.0),
+                ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton(
+                iconDisabledColor: Colors.white,
+                iconEnabledColor: Colors.white,
+                borderRadius: BorderRadius.circular(28),
+                isExpanded: true,
+                value: dropdownvalue,
+                icon: const Icon(
+                  Icons.keyboard_arrow_down,
+                  color: SecondaryColor,
+                ),
+                items: items.map((String items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    dropdownvalue = newValue!;
+                  });
+                },
+              ),
+            ),
+          ),
+        ]),
         SizedBox(height: 20),
       ]),
     );
