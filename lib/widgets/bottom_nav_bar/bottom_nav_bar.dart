@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 import 'package:flutterdemo/camera/camera.dart';
 import 'package:flutterdemo/constants.dart';
 import 'package:flutterdemo/my_profile/my_profile.dart';
@@ -50,11 +51,12 @@ class BottomNavBar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   IconButton(
-                    icon: Icon(
+                    icon: GlowIcon(
                       Icons.home,
-                      color: context.watch<NavBar>().page.toString() == navBarPages[0]
-                          ? Colors.black
-                          : Colors.grey,
+                      color: context.watch<NavBar>().page.toString() == navBarPages[0] ? Colors.black : Colors.grey,
+                      glowColor: context.watch<NavBar>().page.toString() == navBarPages[0] ? Colors.grey : Colors.transparent,
+                      blurRadius: 9,
+                      size: 30,
                     ),
                     onPressed: () {
                       context.read<NavBar>().setPage(navBarPages[0]);
@@ -66,11 +68,12 @@ class BottomNavBar extends StatelessWidget {
                     },
                   ),
                   IconButton(
-                    icon: Icon(
+                    icon: GlowIcon(
                       Icons.shopping_cart,
-                      color: context.watch<NavBar>().page.toString() == navBarPages[1]
-                          ? Colors.black
-                          : Colors.grey,
+                      color: context.watch<NavBar>().page.toString() == navBarPages[1] ? Colors.black : Colors.grey,
+                      glowColor: context.watch<NavBar>().page.toString() == navBarPages[1] ? Colors.grey : Colors.transparent,
+                      blurRadius: 9,
+                      size: 30,
                     ),
                     onPressed: () {
                       context.read<NavBar>().setPage(navBarPages[1]);
@@ -83,10 +86,13 @@ class BottomNavBar extends StatelessWidget {
                   ),
                   Container(width: size.width * 0.20),
                   IconButton(
-                    icon: Icon(Icons.favorite,
-                      color: context.watch<NavBar>().page.toString() == navBarPages[2]
-                          ? Colors.black
-                          : Colors.grey,),
+                    icon: GlowIcon(
+                      Icons.favorite,
+                      color: context.watch<NavBar>().page.toString() == navBarPages[2] ? Colors.black : Colors.grey,
+                      glowColor: context.watch<NavBar>().page.toString() == navBarPages[2] ? Colors.grey : Colors.transparent,
+                      blurRadius: 9,
+                      size: 30,
+                    ),
                     onPressed: () {
                       context.read<NavBar>().setPage(navBarPages[2]);
                       Navigator.of(context).push(
@@ -97,10 +103,13 @@ class BottomNavBar extends StatelessWidget {
                     },
                   ),
                   IconButton(
-                    icon: Icon(Icons.person_outline_outlined,
-                        color: context.watch<NavBar>().page.toString() == navBarPages[3]
-                            ? Colors.black
-                            : Colors.grey),
+                    icon: GlowIcon(
+                      Icons.person,
+                      color: context.watch<NavBar>().page.toString() == navBarPages[3] ? Colors.black : Colors.grey,
+                      glowColor: context.watch<NavBar>().page.toString() == navBarPages[3] ? Colors.grey : Colors.transparent,
+                      blurRadius: 9,
+                      size: 30,
+                    ),
                     onPressed: () {
                       context.read<NavBar>().setPage(navBarPages[3]);
                       Navigator.of(context).push(
