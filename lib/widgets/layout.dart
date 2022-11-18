@@ -12,17 +12,9 @@ class Layout extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
-            child: Column(
-              children: [
-                Container(
-                  child: Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                      child: this.widget,
-                    ),
-                  ),
-                ),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: this.widget,
             ),
           ),
         ],

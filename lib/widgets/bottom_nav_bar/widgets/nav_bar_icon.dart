@@ -1,4 +1,3 @@
-
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/widgets/bottom_nav_bar/bottom_nav_bar_provider.dart';
@@ -30,6 +29,7 @@ class _NavBarIconState extends State<NavBarIcon> {
       onPressed: () {
         context.read<NavBar>().setPage(widget.selectedIcon);
         widget.onPress;
+        print(widget.selectedIcon.toString());
       },
     );
   }
