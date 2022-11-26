@@ -1,21 +1,11 @@
 import 'package:camera/camera.dart';
-import 'package:flutterdemo/camera/camera.dart';
-import 'package:flutterdemo/cart/cart.dart';
-import 'package:flutterdemo/checkout/checkout.dart';
-import 'package:flutterdemo/constants.dart';
-import 'package:flutterdemo/home/home.dart';
-import 'package:flutterdemo/order/order_details.dart';
-import 'package:flutterdemo/order/order_model.dart';
-import 'package:flutterdemo/search/search.dart';
-import 'package:flutterdemo/signup/signup.dart';
-import 'package:flutterdemo/store/store_main.dart';
-import 'package:flutterdemo/success/success.dart';
-import 'package:flutterdemo/widgets/bottom_nav_bar/bottom_nav_bar_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/screens/themes.dart';
+import 'package:flutterdemo/screens/widgets/bottom_nav_bar/bottom_nav_bar_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:flutterdemo/themes.dart';
 
-import 'login/login.dart';
+import 'screens/login/login.dart';
+
 
 Future<void> main() async {
   // Ensure that plugin services are initialized so that `availableCameras()`
