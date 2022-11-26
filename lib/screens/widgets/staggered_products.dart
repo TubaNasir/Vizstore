@@ -2,7 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/widgets/product.dart';
 
-import '../home/home_model.dart';
+import '../../models/product_model.dart';
 import '../product_detail/product_detail.dart';
 
 class StaggeredProductView extends StatelessWidget {

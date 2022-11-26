@@ -5,12 +5,12 @@ import 'package:flutterdemo/screens/home/widgets/heading.dart';
 import 'package:flutterdemo/screens/home/widgets/popular_products.dart';
 import 'package:flutterdemo/screens/home/widgets/promotion.dart';
 
+import '../../models/product_model.dart';
 import '../widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/layout.dart';
 import '../widgets/search_bar.dart';
 import '../widgets/staggered_products.dart';
-import 'home_model.dart';
 
 class Home extends StatefulWidget {
   final CameraDescription camera;

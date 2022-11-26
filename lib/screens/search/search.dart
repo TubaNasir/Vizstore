@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
-import '../home/home_model.dart';
+import '../../models/product_model.dart';
 import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/layout.dart';
 import '../widgets/search_bar.dart';

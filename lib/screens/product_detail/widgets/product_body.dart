@@ -4,7 +4,7 @@ import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutterdemo/screens/product_detail/widgets/store_details.dart';
 import 'package:flutterdemo/screens/product_detail/widgets/title_row.dart';
 
-import '../../home/home_model.dart';
+import '../../../models/product_model.dart';
 import 'clipped_image.dart';
 
 class ProductBody extends StatefulWidget {

@@ -1,5 +1,6 @@
 
-import '../screens/home/home_model.dart';
+
+import 'package:flutterdemo/models/product_model.dart';
 
 class Wishlist {
   List<Product> products;

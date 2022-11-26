@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../home/home_model.dart';
+
+import '../../../models/product_model.dart';
 
 class DeleteIcon extends StatefulWidget {
   const DeleteIcon(

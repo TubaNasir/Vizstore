@@ -1,8 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
+import '../../../models/product_model.dart';
 import '../../checkout/checkout.dart';
-import '../../home/home_model.dart';
 import '../../widgets/custom_button.dart';
 import 'cart_card.dart';
 import 'total_card_cart.dart';

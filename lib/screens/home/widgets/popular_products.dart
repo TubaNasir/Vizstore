@@ -1,9 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
+import '../../../models/product_model.dart';
 import '../../product_detail/product_detail.dart';
 import '../../widgets/product.dart';
-import '../home_model.dart';
 
 class PopularProducts extends StatelessWidget {
   final CameraDescription camera;

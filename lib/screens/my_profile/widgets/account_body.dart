@@ -5,7 +5,7 @@ import 'package:flutterdemo/screens/my_profile/widgets/profile_pic.dart';
 import '../../constants.dart';
 import '../../login/login.dart';
 import '../../order/order.dart';
-import '../edit_profile.dart';
+import '../../edit_profile/edit_profile.dart';
 
 class AccountBody extends StatelessWidget {
   const AccountBody({Key? key, required this.camera}) : super(key: key);

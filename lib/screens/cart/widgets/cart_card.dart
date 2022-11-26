@@ -1,6 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import '../../home/home_model.dart';
+import '../../../models/product_model.dart';
 import '../../product_detail/product_detail.dart';
 import 'cart_quantity.dart';
 import 'delete_icon.dart';

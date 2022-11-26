@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/constants.dart';
 
-import '../../home/home_model.dart';
+import '../../../models/product_model.dart';
 import 'curve_clipper.dart';
 
 class ClippedImage extends StatelessWidget {

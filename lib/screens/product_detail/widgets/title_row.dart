@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../home/home_model.dart';
+import '../../../models/product_model.dart';
+
 
 class TitleRow extends StatelessWidget {
   const TitleRow({

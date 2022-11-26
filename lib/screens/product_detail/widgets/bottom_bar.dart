@@ -2,7 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/product_detail/widgets/quantity_counter.dart';
 
-import '../../home/home_model.dart';
+import '../../../models/product_model.dart';
 import 'add_to_cart_button.dart';
 
 class BottomBar extends StatefulWidget {

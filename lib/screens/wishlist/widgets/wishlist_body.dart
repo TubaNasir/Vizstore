@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/wishlist/widgets/wishlist_card.dart';
-import '../../home/home_model.dart';
+import '../../../models/product_model.dart';
 import '../wishlist.dart';
 
 class WishlistBody extends StatelessWidget {

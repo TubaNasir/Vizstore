@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/product_model.dart';
 import '../../constants.dart';
-import '../../home/home_model.dart';
 
 class CartQuantity extends StatefulWidget {
   const CartQuantity(
