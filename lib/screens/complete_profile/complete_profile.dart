@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/complete_profile/widgets/complete_profile_message.dart';
 import 'package:flutterdemo/screens/complete_profile/widgets/profile_form.dart';
@@ -7,8 +8,9 @@ import '../widgets/form_field.dart';
 
 class CompleteProfile extends StatefulWidget {
   final CameraDescription camera;
-  const CompleteProfile({required this.camera, super.key});
+  const CompleteProfile({required this.camera, super.key, required this.user});
 
+  final UserCredential user;
   @override
   State<CompleteProfile> createState() => _CompleteProfileState(camera);
 }
@@ -33,6 +35,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                   SizedBox(height: 40),
                   ProfileForm(
                     camera: camera,
+                    user: widget.user
                   ),
                   SizedBox(height: 20),
                 ],

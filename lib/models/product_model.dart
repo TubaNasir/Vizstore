@@ -6,7 +6,7 @@ class Product {
   final String image;
   final int price;
   final int storeID;
-  int quantity;
+  int quantity; //stock
 
   Product({
     required this.id,
@@ -17,6 +17,26 @@ class Product {
     required this.storeID,
     required this.quantity,
   });
+
+  factory Product.fromJson(Map<String, dynamic> json) => Product(
+    id: json["productId"],
+    title: json["title"],
+    description: json["description"],
+    image: json["image"],
+    price: json["price"],
+    quantity: json["quantity"],
+    storeID: json["storeId"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "productId": id,
+    "title": title,
+    "description": description,
+    "image": image,
+    "price": price,
+    "quantity": quantity,
+    "storeId": storeID,
+  };
 }
 
 // Our demo Products

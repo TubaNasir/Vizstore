@@ -1,22 +1,30 @@
 import 'package:flutterdemo/models/wishlist_model.dart';
 import 'cart_model.dart';
 
-class User {
-  String email;
-  String password;
+class UserProfile {
+  String? id;
+  //String email;
+  //String password;
   String firstName;
   String lastName;
   String contactNo;
-  Cart cart;
-  Wishlist wishlist;
+  // Cart? cart = Cart(products: [], quantity: 0);
+  // Wishlist? wishlist = Wishlist(products: []);
 
-  User({
-    required this.email,
+  UserProfile({
+    required this.id,
+    //required this.email,
     required this.firstName,
     required this.lastName,
-    required this.password,
+    //required this.password,
     required this.contactNo,
-    required this.cart,
-    required this.wishlist,
+    // this.cart,
+    // this.wishlist,
   });
+
+  Map<String, dynamic> toJson() => {
+    "firstName": firstName,
+    "LastName": lastName,
+    "contactNo": contactNo,
+  };
 }

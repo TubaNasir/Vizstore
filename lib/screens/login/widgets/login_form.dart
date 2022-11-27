@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../home/home.dart';
@@ -9,6 +10,7 @@ import '../../widgets/suffix_icon.dart';
 
 class LoginForm extends StatefulWidget {
   final CameraDescription camera;
+
   const LoginForm({required this.camera, super.key});
 
   @override
@@ -17,40 +19,88 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   bool enabled = true;
+  bool error = false;
+  bool _passwordVisible = false;
   final CameraDescription camera;
+  FirebaseAuth firebaseauth = FirebaseAuth.instance;
 
   _LoginFormState(this.camera);
+  TextEditingController controllerEmail = TextEditingController();
+  TextEditingController controllerPassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+
     return Form(
       child: Column(
         children: [
-          CustomFormField(
-            labelText: "Email",
-            hintText: "Enter your email",
-            icon: SuffixIcon(icon: Icons.email),
-            enabled: enabled,
+          TextFormField(
+            onChanged: (text){
+              setState(() {
+                error = false;
+              });
+            },
+            decoration: InputDecoration(
+              labelText: "Email",
+              hintText: "Enter your email",
+              enabled: enabled,
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              suffixIcon: SuffixIcon(icon: Icons.email),
+            ),
+            controller: controllerEmail,
           ),
           SizedBox(
             height: 20,
           ),
-          CustomFormField(
-            labelText: "Password",
-            hintText: "Enter your password",
-            icon: SuffixIcon(icon: Icons.person),
-            enabled: enabled,
+          TextFormField(
+            decoration: InputDecoration(
+              labelText: "Password",
+              hintText: "Enter your password",
+              enabled: enabled,
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              suffixIcon: IconButton(
+                  icon: Icon(_passwordVisible ? Icons.visibility : Icons.visibility_off),
+                onPressed: () {
+                  setState(() {
+                    _passwordVisible = !_passwordVisible;
+                  });
+                },),
+            ),
+            controller: controllerPassword,
+            obscureText: !_passwordVisible,
           ),
+          error ? Column(
+            children: [
+              SizedBox(height: 5),
+              Text('Incorrect email or password', style: TextStyle(color: Colors.red, fontSize: 15),),
+            ],
+          ) :Text(""),
           SizedBox(height: 30),
           CustomButton(
               text: "Continue",
-              pressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => Home(
-                      camera: camera,
+              pressed: () async {
+                try {
+                  UserCredential userCred = await firebaseauth
+                      .signInWithEmailAndPassword(email: controllerEmail.text,
+                      password: controllerPassword.text);
+                  print(
+                      userCred.user?.uid);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          Home(
+                            camera: camera,
+                          ),
                     ),
-                  ),
-                );
+                  );
+                }
+                catch (e) {
+                  setState(() {
+                    error = true;
+                  });
+                  print(e); //add incorrect email or pass label if error
+                }
+
                 //state mgmt set enabled to tru; if enabled = true, button = save changes
               }),
           Text(
