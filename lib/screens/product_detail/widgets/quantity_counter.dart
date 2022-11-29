@@ -26,10 +26,10 @@ class _QuantityCounterState extends State<QuantityCounter> {
                   onPressed: () {
                     setState(() {
                       //widget.actualProduct.qty--;
-                      if (widget.product.quantity == 0) {
+                      if (widget.product.stock == 0) {
                         return;
                       } else {
-                        widget.product.quantity--;
+                        widget.product.stock--;
                       }
                     });
                     setState(() {});
@@ -43,7 +43,7 @@ class _QuantityCounterState extends State<QuantityCounter> {
                         size: 20,
                       ))),
               Text(
-                " ${widget.product.quantity} ",
+                " ${"1"} ",
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge
@@ -52,7 +52,7 @@ class _QuantityCounterState extends State<QuantityCounter> {
               IconButton(
                   onPressed: () {
                     setState(() {
-                      widget.product.quantity++;
+                      widget.product.stock++;
                     });
                     setState(() {});
                   },

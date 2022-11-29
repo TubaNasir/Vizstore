@@ -32,9 +32,9 @@ class _CartQuantityState extends State<CartQuantity> {
               constraints: BoxConstraints(),
               onPressed: () {
                 setState(() {
-                  widget.product.quantity--;
-                  //widget.actualProduct.quantity--;
-                  if (widget.product.quantity < 1) {
+                  widget.product.stock--;
+                  //widget.actualProduct.stock--;
+                  if (widget.product.stock < 1) {
                     widget.cartList.remove(widget.product);
                   }
                 });
@@ -52,7 +52,7 @@ class _CartQuantityState extends State<CartQuantity> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Text(
-            "${widget.product.quantity}",
+            "${widget.product.stock}",
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
@@ -64,7 +64,7 @@ class _CartQuantityState extends State<CartQuantity> {
               constraints: BoxConstraints(),
               onPressed: () {
                 setState(() {
-                  widget.product.quantity++;
+                  widget.product.stock++;
                 });
                 widget.onCartChanged();
               },

@@ -4,15 +4,15 @@ import 'package:flutterdemo/models/product_model.dart';
 
 class CartObject {
   Product product;
-  int quantity;
+  int stock;
 
   CartObject({
     required this.product,
-    required this.quantity
+    required this.stock
 });
 
   Map<String, dynamic> toJson() => {
     "product": product,
-    "quantity": quantity,
+    "stock": stock,
   };
 }

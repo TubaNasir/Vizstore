@@ -16,7 +16,7 @@ class UserRepository {
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
 
-   /* final cart = {"product": "", "quantity": 0};
+   /* final cart = {"product": "", "stock": 0};
     await db
         .collection("user")
         .doc(newUser.id)
@@ -25,7 +25,7 @@ class UserRepository {
         .then((value) => print("Cart Added"))
         .catchError((error) => print("Failed to add cart: $error"));
 
-    final wishlist = {"product": "", "quantity": 0};
+    final wishlist = {"product": "", "stock": 0};
     await db
         .collection("user")
         .doc(newUser.id)

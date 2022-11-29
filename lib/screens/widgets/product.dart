@@ -43,17 +43,17 @@ class ProductCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(6.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AutoSizeText(demoProducts[0].title,
+                    AutoSizeText(product.title,
                         style: Theme.of(context).textTheme.titleSmall,
-                        maxLines: 3,),
+                        maxLines: 1,),
                     Padding(
                       padding: const EdgeInsets.only(top: 3.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Rs. ${demoProducts[0].price}',
+                          Text('Rs. ${product.price}',
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge

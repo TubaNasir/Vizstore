@@ -1,16 +1,18 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/product_provider.dart';
 import 'package:flutterdemo/screens/home/widgets/catgories.dart';
 import 'package:flutterdemo/screens/home/widgets/heading.dart';
 import 'package:flutterdemo/screens/home/widgets/popular_products.dart';
 import 'package:flutterdemo/screens/home/widgets/promotion.dart';
-
 import '../../models/product_model.dart';
 import '../widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/layout.dart';
 import '../widgets/search_bar.dart';
 import '../widgets/staggered_products.dart';
+import 'package:provider/provider.dart';
+
 
 class Home extends StatefulWidget {
   final CameraDescription camera;
@@ -20,13 +22,21 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState(this.camera);
 }
 
+
 class _HomeState extends State<Home> {
+
+  void initState() {
+    super.initState();
+    context.read<ProductProvider>().getProductsList();
+  }
 
   final CameraDescription camera;
   _HomeState(this.camera);
 
   @override
   Widget build(BuildContext context) {
+    List<Product> products = context.watch<ProductProvider>().products;
+
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -51,7 +61,7 @@ class _HomeState extends State<Home> {
                     const SizedBox(height: 20),
                     const Heading(text: "New Arrivals"),
                     const SizedBox(height: 10),
-                    SingleChildScrollView(child: StaggeredProductView(demoList: demoProducts,camera: camera,),physics: NeverScrollableScrollPhysics(),),
+                    SingleChildScrollView(child: StaggeredProductView(demoList: products, camera: camera,),physics: NeverScrollableScrollPhysics(),),
                     const SizedBox(height: 100),
                   ],
                 ),

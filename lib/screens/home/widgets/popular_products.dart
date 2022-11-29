@@ -23,7 +23,7 @@ class PopularProducts extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 15.0),
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetail(camera: camera)));
+                            Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetail(product: product, camera: camera)));
                           },
                           child: ProductCard(product: product)
                         ),

@@ -26,17 +26,19 @@ class _SearchState extends State<Search> {
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(title: "Search", backButton: true),
         body: Layout(
-          widget: Column(
-            children: [
-              SearchBar(camera: camera),
-              const SizedBox(height: 20),
-              (demoProducts.isNotEmpty)
-                  ? StaggeredProductView(
-                      demoList: demoProducts,
-                      camera: camera,
-                    )
-                  : const Text('No Products Found'),
-            ],
+          widget: SingleChildScrollView(
+            child: Column(
+              children: [
+                SearchBar(camera: camera),
+                const SizedBox(height: 20),
+                (demoProducts.isNotEmpty)
+                    ? StaggeredProductView(
+                        demoList: demoProducts,
+                        camera: camera,
+                      )
+                    : const Text('No Products Found'),
+              ],
+            ),
           ),
         ),
       ),

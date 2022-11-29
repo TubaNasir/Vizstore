@@ -1,17 +1,34 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/store_provider.dart';
+import 'package:flutterdemo/models/product_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../store/store_main.dart';
 
-class StoreDetails extends StatelessWidget {
+class StoreDetails extends StatefulWidget {
   const StoreDetails({
     Key? key,
     required this.camera,
+    required this.product,
   }) : super(key: key);
 
+  final Product product;
   final CameraDescription camera;
 
   @override
+  State<StoreDetails> createState() => _StoreDetailsState();
+}
+
+class _StoreDetailsState extends State<StoreDetails> {
+
+  @override
+  void initState(){
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) =>
+    context.read<StoreProvider>().getStore(widget.product.storeId));
+  }
+
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -20,13 +37,13 @@ class StoreDetails extends StatelessWidget {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => StoreMain(
-                camera: camera,
+                camera: widget.camera,
               ),
             ),
           );
         },
         child: Text(
-          'By Clothing Brand',
+          context.watch<StoreProvider>().store.storeName,
           style: Theme.of(context)
               .textTheme
               .caption

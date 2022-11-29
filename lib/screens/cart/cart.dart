@@ -25,33 +25,39 @@ class _CartState extends State<Cart> {
   void initState() {
     cartList = [
       Product(
-          id: 1,
+          id: "1",
           image:
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
           title: "Wireless Controller for PS4™ nsadfk akjdnaksj kjands",
           price: 1000,
           description:
               "This is a red shirt. Material is agdjd dlfk skrn fjrndf erfr kenedf resjfnr",
-          storeID: 1,
-          quantity: 1),
+          storeId: "1",
+          category: "Clothing",
+
+          stock: 1),
       Product(
-          id: 2,
+          id: "2",
           image:
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
           title: "Wireless Controller for PS4™",
           price: 1000,
           description: "This is a red shirt. Material is agdjd",
-          storeID: 1,
-          quantity: 1),
+          storeId: "1",
+          category: "Clothing",
+
+          stock: 1),
       Product(
-          id: 3,
+          id: "3",
           image:
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
           title: "Wireless Controller for PS4™",
           price: 1000,
           description: "This is a red shirt. Material is agdjd",
-          storeID: 1,
-          quantity: 1),
+          storeId: "1",
+          category: "Clothing",
+
+          stock: 1),
     ];
     super.initState();
   }

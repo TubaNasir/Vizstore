@@ -41,6 +41,7 @@ class _CartCardState extends State<CartCard> {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => ProductDetail(
                 camera: widget.camera,
+                product: demoProducts[0],
               )));
         },
         style: ElevatedButton.styleFrom(

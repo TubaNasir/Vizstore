@@ -63,7 +63,7 @@ class _ProductsCardState extends State<ProductsCard> {
                           radius: 15,
                           backgroundColor: PrimaryColor,
                           child:
-                              Text(widget.order.products[index].quantity.toString(),style: TextStyle(color: Colors.black),),
+                              Text(widget.order.products[index].stock.toString(),style: TextStyle(color: Colors.black),),
                         ),
                       ),
                     ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/wishlist/widgets/title_widget_wishlist.dart';
 import '../../product_detail/product_detail.dart';
 import '../../widgets/image_widget.dart';
+import '../../../models/product_model.dart';
 
 class WishListCard extends StatelessWidget {
   const WishListCard(
@@ -27,7 +28,7 @@ class WishListCard extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => ProductDetail(
+              builder: (context) => ProductDetail(product: demoProducts[0],
                     camera: camera,
                   )));
         },

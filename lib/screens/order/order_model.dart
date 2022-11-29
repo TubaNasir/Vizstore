@@ -40,9 +40,9 @@ class Order {
 //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
 //       title: "Wireless Controller for PS4™",
 //       price: 1000,
-//       quantity: 2,
+//       stock: 2,
 //       description: "This is a red shirt. Material is agdjd",
-//       storeID: 1,
+//       storeId: 1,
 //     ),
 //     Product(
 //       id: 2,
@@ -50,9 +50,9 @@ class Order {
 //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
 //       title: "Wireless Controller for PS4™",
 //       price: 1000,
-//       quantity: 2,
+//       stock: 2,
 //       description: "This is a red shirt. Material is agdjd",
-//       storeID: 1,
+//       storeId: 1,
 //     ),
 //   ],
 // );
@@ -69,24 +69,28 @@ List<Order> demoOrders = [
     total: 1000,
     products: [
       Product(
-        id: 1,
+        id: "1",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
-        quantity: 2,
+        stock: 2,
         description: "This is a red shirt. Material is agdjd",
-        storeID: 1,
+        storeId: "1",
+        category: "Clothing",
+
       ),
       Product(
-        id: 2,
+        id: "2",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
-        quantity: 2,
+        stock: 2,
         description: "This is a red shirt. Material is agdjd",
-        storeID: 1,
+        storeId: "1",
+        category: "Clothing",
+
       ),
     ],
   ),
@@ -101,24 +105,28 @@ List<Order> demoOrders = [
     total: 1000,
     products: [
       Product(
-        id: 1,
+        id: "1",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
-        quantity: 2,
+        stock: 2,
         description: "This is a red shirt. Material is agdjd",
-        storeID: 1,
+        storeId: "1",
+        category: "Clothing",
+
       ),
       Product(
-        id: 2,
+        id: "2",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
-        quantity: 2,
+        stock: 2,
         description: "This is a red shirt. Material is agdjd",
-        storeID: 1,
+        storeId: "1",
+        category: "Clothing",
+
       ),
     ],
   ),
@@ -133,24 +141,28 @@ List<Order> demoOrders = [
     total: 1000,
     products: [
       Product(
-        id: 1,
+        id: "1",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
-        quantity: 2,
+        stock: 2,
         description: "This is a red shirt. Material is agdjd",
-        storeID: 1,
+        storeId: "1",
+        category: "Clothing",
+
       ),
       Product(
-        id: 2,
+        id: "2",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
-        quantity: 2,
+        stock: 2,
         description: "This is a red shirt. Material is agdjd",
-        storeID: 1,
+        storeId: "1",
+        category: "Clothing",
+
       ),
     ],
   ),
@@ -165,24 +177,28 @@ List<Order> demoOrders = [
     total: 1000,
     products: [
       Product(
-        id: 1,
+        id: "1",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
-        quantity: 2,
+        stock: 2,
         description: "This is a red shirt. Material is agdjd",
-        storeID: 1,
+        storeId: "1",
+        category: "Clothing",
+
       ),
       Product(
-        id: 2,
+        id: "2",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
-        quantity: 2,
+        stock: 2,
         description: "This is a red shirt. Material is agdjd",
-        storeID: 1,
+        storeId: "1",
+        category: "Clothing",
+
       ),
     ],
   ),
@@ -197,24 +213,28 @@ List<Order> demoOrders = [
     total: 1000,
     products: [
       Product(
-        id: 1,
+        id: "1",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
-        quantity: 2,
+        stock: 2,
         description: "This is a red shirt. Material is agdjd",
-        storeID: 1,
+        storeId: "1",
+        category: "Clothing",
+
       ),
       Product(
-        id: 2,
+        id: "2",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
         title: "Wireless Controller for PS4™",
         price: 1000,
-        quantity: 2,
+        stock: 2,
         description: "This is a red shirt. Material is agdjd",
-        storeID: 1,
+        storeId: "1",
+        category: "Clothing",
+
       ),
     ],
   )

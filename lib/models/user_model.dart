@@ -8,7 +8,7 @@ class UserProfile {
   String firstName;
   String lastName;
   String contactNo;
-  // Cart? cart = Cart(products: [], quantity: 0);
+  // Cart? cart = Cart(products: [], stock: 0);
   // Wishlist? wishlist = Wishlist(products: []);
 
   UserProfile({

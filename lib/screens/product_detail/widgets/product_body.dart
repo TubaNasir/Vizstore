@@ -7,16 +7,11 @@ import 'package:flutterdemo/screens/product_detail/widgets/title_row.dart';
 import '../../../models/product_model.dart';
 import 'clipped_image.dart';
 
-class ProductBody extends StatefulWidget {
+class ProductBody extends StatelessWidget {
   ProductBody({required this.product, required this.camera, Key? key}) : super(key: key);
 
   Product product;
   CameraDescription camera;
-  @override
-  State<ProductBody> createState() => _ProductBodyState();
-}
-
-class _ProductBodyState extends State<ProductBody> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,7 +20,7 @@ class _ProductBodyState extends State<ProductBody> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                ClippedImage(product: widget.product),
+                ClippedImage(product: product),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Column(
@@ -35,9 +30,9 @@ class _ProductBodyState extends State<ProductBody> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          TitleRow(product: widget.product),
+                          TitleRow(product: product),
                           const SizedBox(height: 5),
-                          StoreDetails(camera: widget.camera),
+                          StoreDetails(camera: camera, product: product),
                         ],
                       ),
                       const SizedBox(height: 10),
@@ -52,7 +47,7 @@ class _ProductBodyState extends State<ProductBody> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12.0),
                         child: Text(
-                          'Rs. ${widget.product.price}',
+                          'Rs. ${product.price}',
                           style: Theme.of(context)
                               .textTheme
                               .headlineSmall
@@ -93,7 +88,7 @@ class _ProductBodyState extends State<ProductBody> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    widget.product.description,
+                                    product.description,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyLarge,

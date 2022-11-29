@@ -5,19 +5,11 @@ import 'package:flutterdemo/screens/product_detail/widgets/product_body.dart';
 import '../../models/product_model.dart';
 import '../widgets/custom_app_bar2.dart';
 
-class ProductDetail extends StatefulWidget {
+class ProductDetail extends StatelessWidget {
   final CameraDescription camera;
-  ProductDetail({required this.camera, super.key});
+  const ProductDetail({required this.camera, required this.product, super.key});
 
-  @override
-  State<ProductDetail> createState() => _ProductDetailState(camera);
-}
-
-class _ProductDetailState extends State<ProductDetail> {
-  final Product product = demoProducts[0];
-
-  final CameraDescription camera;
-  _ProductDetailState(this.camera);
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
