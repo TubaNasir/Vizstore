@@ -1,6 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/controllers/store_provider.dart';
+import 'package:flutterdemo/controllers/home_provider.dart';
 import 'package:flutterdemo/models/product_model.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +26,7 @@ class _StoreDetailsState extends State<StoreDetails> {
   void initState(){
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) =>
-    context.read<StoreProvider>().getStore(widget.product.storeId));
+    context.read<HomeProvider>().getStore(widget.product.storeId));
   }
 
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class _StoreDetailsState extends State<StoreDetails> {
           );
         },
         child: Text(
-          context.watch<StoreProvider>().store.storeName,
+          context.watch<HomeProvider>().store.storeName,
           style: Theme.of(context)
               .textTheme
               .caption

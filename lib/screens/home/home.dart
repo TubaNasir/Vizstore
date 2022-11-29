@@ -1,6 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/controllers/product_provider.dart';
+import 'package:flutterdemo/controllers/home_provider.dart';
 import 'package:flutterdemo/screens/home/widgets/catgories.dart';
 import 'package:flutterdemo/screens/home/widgets/heading.dart';
 import 'package:flutterdemo/screens/home/widgets/popular_products.dart';
@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
 
   void initState() {
     super.initState();
-    context.read<ProductProvider>().getProductsList();
+    context.read<HomeProvider>().getProductsList();
   }
 
   final CameraDescription camera;
@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    List<Product> products = context.watch<ProductProvider>().products;
+    List<Product> products = context.watch<HomeProvider>().products;
 
     return SafeArea(
       child: Scaffold(
