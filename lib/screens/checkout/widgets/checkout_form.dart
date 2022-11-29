@@ -17,31 +17,46 @@ class _CheckoutFormState extends State<CheckoutForm> {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController controllerName = TextEditingController();
+    TextEditingController controllerAddress = TextEditingController();
+    TextEditingController controllerContact = TextEditingController();
     return Padding(
       padding: const EdgeInsets.all(13.0),
       child: Column(children: [
         SizedBox(height: 15),
-        CustomFormField(
-          labelText: "Name",
-          hintText: "Enter your name",
-          icon: SuffixIcon(icon: Icons.person),
-          enabled: enabled,
+        TextFormField(
+          decoration: InputDecoration(
+            labelText: "Name",
+            hintText: "Enter your name",
+            enabled: enabled,
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            suffixIcon: SuffixIcon(icon: Icons.person),
+          ),
+          controller: controllerName,
         ),
         SizedBox(
           height: 20,
         ),
-        CustomFormField(
-          labelText: "Contact",
-          hintText: "Enter your contact",
-          icon: SuffixIcon(icon: Icons.phone_android),
-          enabled: enabled,
+        TextFormField(
+          decoration: InputDecoration(
+            labelText: "Contact Number",
+            hintText: "Enter your contact number",
+            enabled: enabled,
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            suffixIcon: SuffixIcon(icon: Icons.phone_android),
+          ),
+          controller: controllerContact,
         ),
         SizedBox(height: 20),
-        CustomFormField(
-          labelText: "Address",
-          hintText: "Enter your address",
-          icon: SuffixIcon(icon: Icons.location_on),
-          enabled: enabled,
+        TextFormField(
+          decoration: InputDecoration(
+            labelText: "Address",
+            hintText: "Enter your address",
+            enabled: enabled,
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            suffixIcon: SuffixIcon(icon: Icons.location_on),
+          ),
+          controller: controllerAddress,
         ),
         SizedBox(height: 20),
         Stack(children: [

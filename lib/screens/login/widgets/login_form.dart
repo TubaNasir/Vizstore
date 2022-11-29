@@ -1,11 +1,12 @@
 import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../controllers/login_provider.dart';
 import '../../home/home.dart';
 import '../../signup/widgets/social_card.dart';
 import '../../widgets/custom_button.dart';
-import '../../widgets/form_field.dart';
 import '../../widgets/suffix_icon.dart';
 
 class LoginForm extends StatefulWidget {
@@ -19,8 +20,7 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   bool enabled = true;
-  bool error = false;
-  bool _passwordVisible = false;
+  //bool error = false;
   final CameraDescription camera;
   FirebaseAuth firebaseauth = FirebaseAuth.instance;
 
@@ -30,15 +30,19 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    bool passwordVisible = context.watch<LoginProvider>().passwordVisible;
+    bool error = context.watch<LoginProvider>().errorMessage;
 
     return Form(
       child: Column(
         children: [
           TextFormField(
             onChanged: (text){
-              setState(() {
-                error = false;
-              });
+              error = false;
+
+            },
+            onTap: (){
+            //  context.read<LoginProvider>().changeErrorMessage();
             },
             decoration: InputDecoration(
               labelText: "Email",
@@ -59,22 +63,20 @@ class _LoginFormState extends State<LoginForm> {
               enabled: enabled,
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: IconButton(
-                  icon: Icon(_passwordVisible ? Icons.visibility : Icons.visibility_off),
+                  icon: Icon(passwordVisible ? Icons.visibility : Icons.visibility_off),
                 onPressed: () {
-                  setState(() {
-                    _passwordVisible = !_passwordVisible;
-                  });
+                  context.read<LoginProvider>().changePasswordVisible();
                 },),
             ),
             controller: controllerPassword,
-            obscureText: !_passwordVisible,
+            obscureText: !passwordVisible,
           ),
           error ? Column(
             children: [
               SizedBox(height: 5),
               Text('Incorrect email or password', style: TextStyle(color: Colors.red, fontSize: 15),),
             ],
-          ) :Text(""),
+          ) :SizedBox(height: 0,),
           SizedBox(height: 30),
           CustomButton(
               text: "Continue",
@@ -96,7 +98,7 @@ class _LoginFormState extends State<LoginForm> {
                 }
                 catch (e) {
                   setState(() {
-                    error = true;
+                    context.read<LoginProvider>().changeErrorMessage();
                   });
                   print(e); //add incorrect email or pass label if error
                 }

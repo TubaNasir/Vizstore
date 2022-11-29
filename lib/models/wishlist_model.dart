@@ -2,10 +2,15 @@
 
 import 'package:flutterdemo/models/product_model.dart';
 
-class Wishlist {
-  List<Product> products;
+class WishlistItemJson {
+  final String productId;
 
-  Wishlist({
-    required this.products
+  WishlistItemJson({
+    required this.productId
 });
+
+  Map<String, dynamic> toJson() =>{
+    "productId": productId
+
+};
 }

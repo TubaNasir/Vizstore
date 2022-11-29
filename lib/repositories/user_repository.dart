@@ -8,7 +8,7 @@ import '../models/user_model.dart';
 class UserRepository {
   final db = FirebaseFirestore.instance;
 
-  addUser(UserProfile newUser) async {
+  addUser(UserJson newUser) async {
     await db
         .collection("user")
         .doc(newUser.id)

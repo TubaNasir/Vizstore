@@ -3,7 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../controllers/user_provider.dart';
+import '../../../controllers/login_provider.dart';
+import '../../../controllers/signup_provider.dart';
 import '../../../models/user_model.dart';
 import '../../login/login.dart';
 import '../../widgets/custom_button.dart';
@@ -79,15 +80,17 @@ class _ProfileFormState extends State<ProfileForm> {
         CustomButton(
             text: "Sign Up",
             pressed: () {
-              UserProfile newuser = UserProfile(
+              UserJson newuser = UserJson(
                 id: widget.user.user?.uid,
                 //email:  widget.user.user?.email,
                 firstName: controllerFname.text,
                 lastName: controllerLname.text,
                 //password:  widget.user.user?.,
                 contactNo: controllerContact.text,
+                cart: [],
+                wishlist: [],
                 );
-              context.read<UserProvider>().addNewUser(newuser);
+              context.read<SignupProvider>().addNewUser(newuser);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => Login(camera: camera),
