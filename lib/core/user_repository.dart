@@ -10,29 +10,40 @@ class UserRepository{
 
   UserJson _user = UserJson.empty();
 
-  Future<UserJson?> getUser() async {
-    await db.collection("user").doc(firebaseauth.currentUser?.uid).get().then((event) {
+  Future<void> setUser(String? id) async {
+    await db.collection("user").doc(id).get().then((event) {
       _user = UserJson.fromJson(event.data() as Map<String, dynamic>);
     }).catchError((error) => print("Failed to fetch user. Error : ${error}"));
 
+    print("alal" + _user.firstName);
+
 }
 
-  void signIn(String email, String password) async {
+  UserJson getUser() {
+    print('repo '+_user.firstName);
+    return _user;
+  }
 
+
+
+  Future<String?> signIn(String email, String password) async {
     try {
       UserCredential userCred = await firebaseauth
           .signInWithEmailAndPassword(email: email,
           password: password);
-      //String? user = firebaseauth.currentUser?.uid;
-      print(
-          userCred.user?.uid);
+
+      //print(userCred.user?.uid);
+
+     //await setUser(userCred.user?.uid);
+      return userCred.user?.uid;
+      //getuser from uid
     }
     catch (e) {
       print(e); //add incorrect email or pass label if error
     }
   }
 
-  Future<String?> signUp(String email, String password) async {
+  Future<User?> signUp(String email, String password) async {
     try {
       UserCredential userCred = await firebaseauth
           .createUserWithEmailAndPassword(
@@ -42,10 +53,10 @@ class UserRepository{
       print(
           userCred.user?.uid);
 
-      return userCred.user?.uid;
+      return userCred.user;
     }
     catch (e) {
-      print(e); //add incorrect email or pass label if error
+      print(e);
     }
   }
 

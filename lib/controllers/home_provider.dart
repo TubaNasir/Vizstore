@@ -29,10 +29,11 @@ class HomeProvider with ChangeNotifier{
     print(_store);
   }
 
-  void getUser() async{
-    _user = (await _userRepository.getUser())!;
+
+  void getUser() async {
+    _user =  await _userRepository.getUser();
     notifyListeners();
-    print(_user);
+    print('prov' + _user.firstName);
   }
 
   void getProductsList() async {

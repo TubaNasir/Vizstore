@@ -10,7 +10,7 @@ class WishlistItemJson {
 });
 
   static WishlistItemJson fromJson(Map<String, dynamic> json) => WishlistItemJson(
-    productId: json["productId"],
+    productId: json["productId"] as String? ?? '',
   );
 
   Map<String, dynamic> toJson() =>{

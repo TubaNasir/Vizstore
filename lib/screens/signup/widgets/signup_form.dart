@@ -13,7 +13,6 @@ import '../../widgets/custom_button.dart';
 import '../../widgets/suffix_icon.dart';
 import 'package:http/http.dart' as http;
 
-
 GoogleSignIn _googleSignIn = GoogleSignIn(
   // Optional clientId
   // clientId: '479882132969-9i9aqik3jfjd7qhci1nqf0bm2g71rm1u.apps.googleusercontent.com',
@@ -41,7 +40,6 @@ class _SignUpFormState extends State<SignUpForm> {
   GoogleSignInAccount? _currentUser;
   String _contactText = '';
   FirebaseAuth firebaseauth = FirebaseAuth.instance;
-
 
   @override
   Widget build(BuildContext context) {
@@ -100,33 +98,27 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
           CustomButton(
               text: "Continue",
-              pressed: ()  {
+              pressed: () async {
                 try {
-                  String? uid = context.read<SignupProvider>().signUp(controllerEmail.text, controllerPassword.text);
+                  User? user = await context
+                      .read<SignupProvider>()
+                      .signUp(controllerEmail.text, controllerPassword.text);
 
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => CompleteProfile(
-                          camera: camera,
-                          uid: uid
-                      ),
+                      builder: (context) =>
+                          CompleteProfile(camera: camera, user: user),
                     ),
                   );
-                }
-                catch (e){
+                } catch (e) {
                   print(e);
                 }
-
-              }
-              ),
+              }),
           SizedBox(height: 10),
           Text(
             'By continuing, you confirm that you agree \nwith our Terms and Conditions',
             textAlign: TextAlign.center,
-            style: Theme
-                .of(context)
-                .textTheme
-                .caption,
+            style: Theme.of(context).textTheme.caption,
           ),
           SizedBox(height: 30),
           Text(
@@ -137,9 +129,7 @@ class _SignUpFormState extends State<SignUpForm> {
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             SocialCard(
               icon: 'assets/icons/google-icon.svg',
-              onPressed: () {
-
-              },
+              onPressed: () {},
             ),
             SocialCard(
               icon: 'assets/icons/facebook-2.svg',

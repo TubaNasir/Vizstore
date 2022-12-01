@@ -29,9 +29,11 @@ class LoginProvider with ChangeNotifier {
     _errorMessage = false;
   }
 
-  void signIn(String email, String password){
-    _corerepository.signIn(email, password);
+  void signIn(String email, String password) async {
+    String? id = await _corerepository.signIn(email, password);
 
+    await _corerepository.setUser(id);
+    notifyListeners();
   }
 
 

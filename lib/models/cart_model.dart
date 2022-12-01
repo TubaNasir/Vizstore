@@ -12,8 +12,8 @@ class CartItemJson {
 });
 
   static CartItemJson fromJson(Map<String, dynamic> json) => CartItemJson(
-    productId: json["productId"],
-    stock: json["quantity"],
+    productId: json["productId"] as String? ?? '',
+    stock: json["quantity"] as int? ?? -1,
   );
 
   Map<String, dynamic> toJson() => {

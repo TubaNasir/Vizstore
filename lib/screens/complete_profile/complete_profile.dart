@@ -8,8 +8,9 @@ import '../widgets/form_field.dart';
 
 class CompleteProfile extends StatefulWidget {
   final CameraDescription camera;
-  final String? uid;
-  const CompleteProfile({required this.camera, super.key, required this.uid});
+  //final String? uid;
+  final User? user;
+  const CompleteProfile({required this.camera, super.key, required this.user});
 
   @override
   State<CompleteProfile> createState() => _CompleteProfileState(camera);
@@ -35,7 +36,7 @@ class _CompleteProfileState extends State<CompleteProfile> {
                   SizedBox(height: 40),
                   ProfileForm(
                     camera: camera,
-                    uid: widget.uid
+                    user: widget.user
                   ),
                   SizedBox(height: 20),
                 ],
