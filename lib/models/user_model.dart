@@ -38,7 +38,8 @@ class UserJson {
     String? contact,
     List<CartItemJson>? cart,
     List<WishlistItemJson>? wishList,
-  ) =>
+      String? email,
+      ) =>
       UserJson(
         id: id ?? this.id,
         firstName: firstName ?? this.firstName,

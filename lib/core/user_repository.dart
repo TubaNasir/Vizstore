@@ -8,12 +8,15 @@ class UserRepository{
   final db = FirebaseFirestore.instance;
   FirebaseAuth firebaseauth = FirebaseAuth.instance;
 
-  UserJson _user = UserJson.empty();
+  final UserJson _user = UserJson.empty();
 
   Future<void> setUser(String? id) async {
+    UserJson user = UserJson.empty();
     await db.collection("user").doc(id).get().then((event) {
-      _user = UserJson.fromJson(event.data() as Map<String, dynamic>);
+      user = UserJson.fromJson(event.data() as Map<String, dynamic>);
     }).catchError((error) => print("Failed to fetch user. Error : ${error}"));
+
+    _user.copyWith(user.id, user.firstName, user.lastName, user.contact, user.cart, user.wishlist, user.email);
 
     print("alal" + _user.firstName);
 
