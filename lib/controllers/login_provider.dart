@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../core/user_repository.dart';
 import '../models/user_model.dart';
-import '../repositories/user_repository.dart';
 
 class LoginProvider with ChangeNotifier {
   bool _passwordVisible = false;
@@ -10,7 +11,8 @@ class LoginProvider with ChangeNotifier {
   bool get passwordVisible => _passwordVisible;
   bool get errorMessage => _errorMessage;
 
-  final UserRepository _userRepository = UserRepository();
+  //final UserRepository _userRepository = UserRepository();
+  final UserRepository _corerepository = UserRepository();
 
   String UId = '';
 
@@ -26,6 +28,12 @@ class LoginProvider with ChangeNotifier {
   void setErrorMessage(){
     _errorMessage = false;
   }
+
+  void signIn(String email, String password){
+    _corerepository.signIn(email, password);
+
+  }
+
 
 
 }

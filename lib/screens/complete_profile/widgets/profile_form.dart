@@ -12,10 +12,10 @@ import '../../widgets/suffix_icon.dart';
 
 class ProfileForm extends StatefulWidget {
   final CameraDescription camera;
+  final String? uid;
 
-  const ProfileForm({required this.camera, super.key, required this.user});
+  const ProfileForm({required this.camera, super.key, this.uid});
 
-  final UserCredential user;
 
   @override
   State<ProfileForm> createState() => _ProfileFormState(camera);
@@ -80,17 +80,8 @@ class _ProfileFormState extends State<ProfileForm> {
         CustomButton(
             text: "Sign Up",
             pressed: () {
-              UserJson newuser = UserJson(
-                id: widget.user.user?.uid,
-                //email:  widget.user.user?.email,
-                firstName: controllerFname.text,
-                lastName: controllerLname.text,
-                //password:  widget.user.user?.,
-                contactNo: controllerContact.text,
-                cart: [],
-                wishlist: [],
-                );
-              context.read<SignupProvider>().addNewUser(newuser);
+
+              context.read<SignupProvider>().addNewUser(widget.uid, controllerFname.text, controllerLname.text, controllerContact.text);
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => Login(camera: camera),

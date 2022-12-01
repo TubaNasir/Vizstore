@@ -1,7 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/controllers/user_provider.dart';
+import 'package:flutterdemo/controllers/login_provider.dart';
+import 'package:flutterdemo/controllers/signup_provider.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
+import 'package:flutterdemo/core/user_repository.dart';
 import 'package:flutterdemo/models/store_model.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
 import 'package:flutterdemo/repositories/store_repository.dart';
@@ -23,6 +25,7 @@ Future<void> main() async {
   await Firebase.initializeApp();
   getIt.registerSingleton<StoreRepository>(StoreRepository(), instanceName: 'store');
   getIt.registerSingleton<ProductRepository>(ProductRepository(), instanceName: 'product');
+  getIt.registerSingleton<UserRepository>(UserRepository(), instanceName: 'user');
 
   // Obtain a list of the available cameras on the device.
   final cameras = await availableCameras();
@@ -34,8 +37,9 @@ Future<void> main() async {
       MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (_) => NavBar()),
-            ChangeNotifierProvider(create: (_) => UserProvider()),
-            ChangeNotifierProvider(create: (_) => HomeProvider(getIt.get(instanceName: 'store'), getIt.get(instanceName: 'product')))
+            ChangeNotifierProvider(create: (_) => LoginProvider()),
+            ChangeNotifierProvider(create: (_) => SignupProvider()),
+            ChangeNotifierProvider(create: (_) => HomeProvider(getIt.get(instanceName: 'store'), getIt.get(instanceName: 'product'), getIt.get(instanceName: 'user')))
           ],
     child: MyApp(camera: firstCamera),
     //create: (_) => NavBar(),

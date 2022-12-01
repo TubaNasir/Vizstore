@@ -5,7 +5,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/signup/widgets/social_card.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
+import '../../../controllers/signup_provider.dart';
 import '../../complete_profile/complete_profile.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/suffix_icon.dart';
@@ -98,18 +100,15 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
           CustomButton(
               text: "Continue",
-              pressed: () async {
+              pressed: ()  {
                 try {
-                  UserCredential userCred = await firebaseauth
-                      .createUserWithEmailAndPassword(
-                      email: controllerEmail.text,
-                      password: controllerPassword.text);
-                  print(userCred.user?.uid); //use this uid to create user object?
+                  String? uid = context.read<SignupProvider>().signUp(controllerEmail.text, controllerPassword.text);
+
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => CompleteProfile(
                           camera: camera,
-                          user: userCred
+                          uid: uid
                       ),
                     ),
                   );

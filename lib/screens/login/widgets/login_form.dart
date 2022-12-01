@@ -80,13 +80,14 @@ class _LoginFormState extends State<LoginForm> {
           SizedBox(height: 30),
           CustomButton(
               text: "Continue",
-              pressed: () async {
+              pressed: ()  {
                 try {
-                  UserCredential userCred = await firebaseauth
-                      .signInWithEmailAndPassword(email: controllerEmail.text,
-                      password: controllerPassword.text);
-                  print(
-                      userCred.user?.uid);
+                  context.read<LoginProvider>().signIn(controllerEmail.text, controllerPassword.text);
+                  // UserCredential userCred = await firebaseauth
+                  //     .signInWithEmailAndPassword(email: controllerEmail.text,
+                  //     password: controllerPassword.text);
+                  // String? user = firebaseauth.currentUser?.uid;
+
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) =>

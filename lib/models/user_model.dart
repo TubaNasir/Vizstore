@@ -2,37 +2,41 @@ import 'package:flutterdemo/models/wishlist_model.dart';
 import 'cart_model.dart';
 
 class UserJson {
-  String? id;
-  String firstName;
-  String lastName;
-  String contactNo;
-  List<CartItemJson> cart;
-  List<WishlistItemJson> wishlist;
+  final String? id;
+  final String firstName;
+  final String lastName;
+  final String contact;
+  final List<CartItemJson> cart;
+  final List<WishlistItemJson> wishlist;
 
-  UserJson({
+  const UserJson({
     required this.id,
     required this.firstName,
     required this.lastName,
-    required this.contactNo,
+    required this.contact,
     required this.cart,
     required this.wishlist,
   });
 
-  static UserJson fromJson(Map<String, dynamic> json, String id) {
-    return UserJson(id: id,
+   UserJson.empty() : id = '', firstName = '', lastName = '', contact = '', cart = [], wishlist = [];
+
+  static UserJson fromJson(Map<String, dynamic> json) {
+    return UserJson(
+      id: json["id"],
       firstName: json["firstName"],
       lastName: json["lastName"],
-      contactNo: json["contactNo"],
-      cart: json["cart"],
-      wishlist: json["wishlist"],
+      contact: json["contact"],
+      cart: List<CartItemJson>.from(json["cart"].map((x) => CartItemJson.fromJson(x))),
+      wishlist: List<WishlistItemJson>.from(json["wishlist"].map((x) => WishlistItemJson.fromJson(x))),
     );
   }
 
   Map<String, dynamic> toJson() =>
       {
+        "id": id,
         "firstName": firstName,
-        "LastName": lastName,
-        "contactNo": contactNo,
+        "lastName": lastName,
+        "contact": contact,
         "cart": List<dynamic>.from(cart.map((e) => e.toJson())),
         "wishlist": List<dynamic>.from(wishlist.map((e) => e.toJson())),
       };

@@ -8,13 +8,7 @@ import '../models/user_model.dart';
 class UserRepository {
   final db = FirebaseFirestore.instance;
 
-  addUser(UserJson newUser) async {
-    await db
-        .collection("user")
-        .doc(newUser.id)
-        .set(newUser.toJson())
-        .then((value) => print("User Added"))
-        .catchError((error) => print("Failed to add user: $error"));
+
 
    /* final cart = {"product": "", "stock": 0};
     await db
@@ -34,5 +28,5 @@ class UserRepository {
         .then((value) => print("Wishlist Added"))
         .catchError((error) => print("Failed to add wishlist: $error"));
 */
-  }
+
 }
