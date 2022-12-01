@@ -7,7 +7,7 @@ class UserJson {
   final String lastName;
   final String contact;
   final List<CartItemJson> cart;
-  final List<WishlistItemJson> wishlist;
+  final List<WishlistItemJson> wishList;
 
   const UserJson({
     required this.id,
@@ -15,10 +15,32 @@ class UserJson {
     required this.lastName,
     required this.contact,
     required this.cart,
-    required this.wishlist,
+    required this.wishList,
   });
 
-   UserJson.empty() : id = '', firstName = '', lastName = '', contact = '', cart = [], wishlist = [];
+  UserJson.empty()
+      : id = '',
+        firstName = '',
+        lastName = '',
+        contact = '',
+        cart = [],
+        wishList = [];
+
+  UserJson copyWith(
+    String? id,
+    String?  firstName,
+  String? lastName,
+      String? contact,
+      List<CartItemJson>? cart,
+      List<WishlistItemJson>? wishList,
+  ) => UserJson(
+    id: id ?? this.id,
+    firstName: firstName ?? this.firstName,
+    lastName: lastName ?? this.lastName,
+    contact: contact ?? this.contact,
+    cart: cart ?? this.cart,
+    wishList: wishList ?? this.wishList,
+  );
 
   static UserJson fromJson(Map<String, dynamic> json) {
     return UserJson(
@@ -26,20 +48,19 @@ class UserJson {
       firstName: json["firstName"],
       lastName: json["lastName"],
       contact: json["contact"],
-      cart: List<CartItemJson>.from(json["cart"].map((x) => CartItemJson.fromJson(x))),
-      wishlist: List<WishlistItemJson>.from(json["wishlist"].map((x) => WishlistItemJson.fromJson(x))),
+      cart: List<CartItemJson>.from(
+          json["cart"].map((x) => CartItemJson.fromJson(x))),
+      wishList: List<WishlistItemJson>.from(
+          json["wishlist"].map((x) => WishlistItemJson.fromJson(x))),
     );
   }
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "firstName": firstName,
         "lastName": lastName,
         "contact": contact,
         "cart": List<dynamic>.from(cart.map((e) => e.toJson())),
-        "wishlist": List<dynamic>.from(wishlist.map((e) => e.toJson())),
+        "wishlist": List<dynamic>.from(wishList.map((e) => e.toJson())),
       };
-
-
 }

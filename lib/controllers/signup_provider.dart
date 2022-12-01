@@ -16,7 +16,7 @@ class SignupProvider with ChangeNotifier{
       //password:  widget.user.user?.,
       contact: contact,
       cart: [],
-      wishlist: [],
+      wishList: []
     );
     await _coreRepository.addUser(newUser);
     print('done adding');

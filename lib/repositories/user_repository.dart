@@ -8,6 +8,16 @@ import '../models/user_model.dart';
 class UserRepository {
   final db = FirebaseFirestore.instance;
 
+  final UserJson user = UserJson.empty();
+
+  // updateUser (UserJson updatedUser) {
+  //   /// firebase update user
+  //   /// firebase get user
+  //   user.copyWith(
+  //
+  //   );
+  // }
+
 
 
    /* final cart = {"product": "", "stock": 0};
