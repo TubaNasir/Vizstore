@@ -13,7 +13,7 @@ import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'controllers/cart_provider.dart';
+import 'controllers/google_sign_in_provider.dart';
 import 'screens/login/login.dart';
 import 'screens/home/home.dart';
 
@@ -25,26 +25,32 @@ Future<void> main() async {
   // can be called before `runApp()`
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  getIt.registerSingleton<StoreRepository>(StoreRepository(), instanceName: 'store');
-  getIt.registerSingleton<ProductRepository>(ProductRepository(), instanceName: 'product');
-  getIt.registerSingleton<UserRepository>(UserRepository(), instanceName: 'user');
+  getIt.registerSingleton<StoreRepository>(StoreRepository(),
+      instanceName: 'store');
+  getIt.registerSingleton<ProductRepository>(ProductRepository(),
+      instanceName: 'product');
+  getIt.registerSingleton<UserRepository>(UserRepository(),
+      instanceName: 'user');
 
-  runApp(
-      MultiProvider(
-          providers: [
-            ChangeNotifierProvider(create: (_) => NavBar()),
-            ChangeNotifierProvider(create: (_) => LoginProvider()),
-            ChangeNotifierProvider(create: (_) => SignupProvider()),
-            ChangeNotifierProvider(create: (_) => HomeProvider(getIt.get(instanceName: 'store'), getIt.get(instanceName: 'product'), getIt.get(instanceName: 'user'))),
-            ChangeNotifierProvider(create: (_) => CartProvider(getIt.get(instanceName: 'store'), getIt.get(instanceName: 'product'), getIt.get(instanceName: 'user'))),
-          ],
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => NavBar()),
+      ChangeNotifierProvider(create: (_) => LoginProvider()),
+      ChangeNotifierProvider(create: (_) => SignupProvider()),
+      ChangeNotifierProvider(
+          create: (_) => HomeProvider(
+              getIt.get(instanceName: 'store'),
+              getIt.get(instanceName: 'product'),
+              getIt.get(instanceName: 'user'))),
+      ChangeNotifierProvider(create: (_) => GoogleSignInProvider()),
+
+    ],
     child: MyApp(),
     //create: (_) => NavBar(),
   ));
 }
 
 class MyApp extends StatelessWidget {
-
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
