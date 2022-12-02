@@ -1,6 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/screens/wishlist/widgets/wishlist_body.dart';
+import 'package:flutterdemo/screens/wishlist/widgets/wishlist_cards.dart';
 import '../widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/layout.dart';
@@ -27,7 +27,15 @@ class _WishlistState extends State<Wishlist> {
         body: Stack(
           children: [
             Layout(
-                widget: WishlistBody()),
+                widget: SingleChildScrollView(
+                  child: Column(
+                    children: const [
+                      SizedBox(height: 10,),
+                      WishlistCards(),
+                      SizedBox(height: 100,),
+                    ],
+                  ),
+                )),
             BottomNavBar(),
           ],
         ),

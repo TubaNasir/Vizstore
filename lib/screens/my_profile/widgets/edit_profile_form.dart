@@ -15,54 +15,69 @@ class EditProfileForm extends StatefulWidget {
 class _EditProfileFormState extends State<EditProfileForm> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: 20,),
-        CustomFormField(
-          labelText: "Email",
-          hintText: "your email",
-          icon: SuffixIcon(icon: Icons.email),
-          enabled: widget.enabled,
-        ),
-        SizedBox(height: 20,),
-        CustomFormField(
-          labelText: "First Name",
-          hintText: "your first name",
-          icon: SuffixIcon(icon: Icons.person),
-          enabled: widget.enabled,
-        ),
-        SizedBox(height: 20,),
-        CustomFormField(
-          labelText: "Last Name",
-          hintText: "your last name",
-          icon: SuffixIcon(icon: Icons.person),
-          enabled: widget.enabled,
-        ),
-        SizedBox(height: 20,),
-        CustomFormField(
-          labelText: "Contact Number",
-          hintText: "your contact number",
-          icon: SuffixIcon(icon: Icons.phone_android),
-          enabled: widget.enabled,
-        ),
-        SizedBox(height: 20,),
-        // if enabled=true ? button text = save changed : edit
-        widget.enabled == false ?
-        CustomButton(
-            text: "Edit",
-            pressed: () {
-              setState(() {
-                widget.enabled = true;
-              });
-              //state mgmt set enabled to tru; if enabled = true, button = save changes
-            }) :
-        CustomButton(
-            text: "Save",
-            pressed: () {
-              widget.enabled = false;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+      child: Column(
+        children: [
+          SizedBox(height: 20,),
+          TextFormField(
+            decoration: InputDecoration(
+              labelText: "Email",
+              hintText: "your email",
+              enabled: widget.enabled,
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              suffixIcon: SuffixIcon(icon: Icons.email), //SuffixIcon(icon: Icons.email)
+            ),
+          ),
+          SizedBox(height: 20,),
+          TextFormField(
+            decoration: InputDecoration(
+              labelText: "First Name",
+              hintText: "your first name",
+              enabled: widget.enabled,
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              suffixIcon: SuffixIcon(icon: Icons.person), //SuffixIcon(icon: Icons.email)
+            ),
+          ),
+          SizedBox(height: 20,),
+          TextFormField(
+            decoration: InputDecoration(
+              labelText: "Last Name",
+              hintText: "your last name",
+              enabled: widget.enabled,
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              suffixIcon: SuffixIcon(icon: Icons.person), //SuffixIcon(icon: Icons.email)
+            ),
+          ),
+          SizedBox(height: 20,),
+          TextFormField(
+            decoration: InputDecoration(
+              labelText: "Contact Number",
+              hintText: "your contact",
+              enabled: widget.enabled,
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              suffixIcon: SuffixIcon(icon: Icons.phone_android), //SuffixIcon(icon: Icons.email)
+            ),
+          ),
+          SizedBox(height: 20,),
+          // if enabled=true ? button text = save changed : edit
+          widget.enabled == false ?
+          CustomButton(
+              text: "Edit",
+              pressed: () {
+                setState(() {
+                  widget.enabled = true;
+                });
+                //state mgmt set enabled to tru; if enabled = true, button = save changes
+              }) :
+          CustomButton(
+              text: "Save",
+              pressed: () {
+                widget.enabled = false;
 
-            }),
-      ],
+              }),
+        ],
+      ),
     );
   }
 }
