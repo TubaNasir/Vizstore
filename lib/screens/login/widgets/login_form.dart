@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/screens/login/login.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controllers/login_provider.dart';
@@ -20,10 +21,9 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   bool enabled = true;
   //bool error = false;
-  final CameraDescription camera;
   FirebaseAuth firebaseauth = FirebaseAuth.instance;
 
-  _LoginFormState(this.camera);
+  _LoginFormState();
   TextEditingController controllerEmail = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
 
@@ -79,20 +79,19 @@ class _LoginFormState extends State<LoginForm> {
           SizedBox(height: 30),
           CustomButton(
               text: "Continue",
-              pressed: ()  {
+              pressed: ()  async {
                 try {
-                  context.read<LoginProvider>().signIn(controllerEmail.text, controllerPassword.text);
+                  await context.read<LoginProvider>().signIn(controllerEmail.text, controllerPassword.text);
                   // UserCredential userCred = await firebaseauth
                   //     .signInWithEmailAndPassword(email: controllerEmail.text,
                   //     password: controllerPassword.text);
                   // String? user = firebaseauth.currentUser?.uid;
 
+
                   Navigator.of(context).push(
-                    MaterialPageRoute(
+                     MaterialPageRoute(
                       builder: (context) =>
-                          Home(
-                            camera: camera,
-                          ),
+                          Home(),
                     ),
                   );
                 }

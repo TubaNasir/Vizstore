@@ -11,9 +11,11 @@ class LoginProvider with ChangeNotifier {
   UserJson _user = UserJson.empty();
 
 
+
   bool get passwordVisible => _passwordVisible;
   bool get errorMessage => _errorMessage;
   bool get isLoggedIn => _isLoggedIn;
+  UserJson get user => _user;
 
 
   //final UserRepository _userRepository = UserRepository();
@@ -34,7 +36,7 @@ class LoginProvider with ChangeNotifier {
     _errorMessage = false;
   }
 
-  void signIn(String email, String password) async {
+  Future<void> signIn(String email, String password) async {
     String? id = await _corerepository.signIn(email, password);
 
     await _corerepository.setUser(id);

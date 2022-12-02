@@ -18,7 +18,8 @@ import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
 
-  const Home({super.key});
+   Home({super.key});
+
 
   @override
   State<Home> createState() => _HomeState();
@@ -29,8 +30,9 @@ class _HomeState extends State<Home> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => {
           context.read<HomeProvider>().getProductsList(),
-    context.read<HomeProvider>().getUser()
-        });
+      context.read<HomeProvider>().getUser()
+
+    });
     // bool isLoggedIn = context.read<LoginProvider>().isLoggedIn;
     // if(isLoggedIn) {
     //   context.read<HomeProvider>().getUser();
@@ -42,7 +44,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-
 
     List<Product> products = context.watch<HomeProvider>().products;
     UserJson user = context.watch<HomeProvider>().user;
@@ -58,7 +59,6 @@ class _HomeState extends State<Home> {
               widget: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text(user.email.toString()),
                     SearchBar(),
                     const SizedBox(height: 20),
                     const Promotion(),

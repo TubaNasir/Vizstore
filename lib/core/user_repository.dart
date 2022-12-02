@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutterdemo/models/cart_model.dart';
 import "package:flutterdemo/models/store_model.dart";
+import 'package:flutterdemo/models/wishlist_model.dart';
 
 import '../models/user_model.dart';
 
@@ -31,7 +33,9 @@ class UserRepository {
 
   UserJson getUser() {
     print(_user.firstName);
-    return _user;
+    return UserJson(email: 'tuba@gmail.com', firstName: 'Tuba', lastName: 'Nasir', contact: '0232671361', cart: [CartItemJson(productId: "c1lxWoPXbvhfsUBOcOau", stock: 76), CartItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu", stock: 7)], wishlist: [WishlistItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu")]);
+
+    //return _user;
   }
 
   Future<String?> signIn(String email, String password) async {
@@ -39,9 +43,6 @@ class UserRepository {
       UserCredential userCred = await firebaseauth.signInWithEmailAndPassword(
           email: email, password: password);
 
-      //print(userCred.user?.uid);
-
-      //await setUser(userCred.user?.uid);
       return userCred.user?.uid;
       //getuser from uid
     } catch (e) {
