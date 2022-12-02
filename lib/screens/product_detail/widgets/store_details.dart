@@ -12,7 +12,7 @@ class StoreDetails extends StatefulWidget {
     required this.product,
   }) : super(key: key);
 
-  final Product product;
+  final ProductJson product;
 
   @override
   State<StoreDetails> createState() => _StoreDetailsState();

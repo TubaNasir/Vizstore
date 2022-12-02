@@ -6,10 +6,10 @@ import 'cart_card.dart';
 class ImageWidgetCart extends StatelessWidget {
   const ImageWidgetCart({
     Key? key,
-    required this.widget,
+    required this.image,
   }) : super(key: key);
 
-  final CartCard widget;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ImageWidgetCart extends StatelessWidget {
                 bottomLeft: Radius.circular(10.0),
               ),
             ),
-            child: Image.network(widget.product.image)),
+            child: Image.network(image)),
       ),
     );
   }

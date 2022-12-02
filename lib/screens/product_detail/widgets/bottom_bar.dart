@@ -8,7 +8,7 @@ import 'add_to_cart_button.dart';
 class BottomBar extends StatefulWidget {
   BottomBar({required this.product,Key? key}) : super(key: key);
 
-  Product product;
+  ProductJson product;
 
   @override
   State<BottomBar> createState() => _BottomBarState();

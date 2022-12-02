@@ -1,5 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/cart_provider.dart';
+import 'package:flutterdemo/models/cart_model.dart';
+import 'package:provider/provider.dart';
 import '../../../models/product_model.dart';
 import '../../product_detail/product_detail.dart';
 import 'cart_quantity.dart';
@@ -9,27 +12,31 @@ import 'image_widget_cart.dart';
 class CartCard extends StatefulWidget {
   const CartCard(
       {Key? key,
-      required this.product,
-      required this.cartList,
+      required this.cartItem,
       required this.onCartChanged})
       : super(key: key); //required this.actualProduct}) : super(key: key);
 
-  final List<Product> cartList;
-  final Product product;
+  final CartItemJson cartItem;
   final VoidCallback onCartChanged;
 
   //final Product actualProduct;
   @override
   // ignore: no_logic_in_create_state
-  State<CartCard> createState() => _CartCardState(cartList, onCartChanged);
+  State<CartCard> createState() => _CartCardState(onCartChanged);
 }
 
 class _CartCardState extends State<CartCard> {
-  final List<Product> cartList;
+
   final VoidCallback onCartChanged;
+  _CartCardState(this.onCartChanged);
 
-  _CartCardState(this.cartList, this.onCartChanged);
-
+@override
+void initState() {
+  // TODO: implement initState
+  super.initState();
+  WidgetsBinding.instance.addPostFrameCallback((_) =>
+      context.read<CartProvider>().getProduct(widget.cartItem.productId));
+}
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -50,7 +57,7 @@ class _CartCardState extends State<CartCard> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            ImageWidgetCart(widget: widget),
+            ImageWidgetCart(image: context.watch<CartProvider>().product.image),
             SizedBox(
               width: 20,
             ),
@@ -71,15 +78,14 @@ class _CartCardState extends State<CartCard> {
                             children: [
                               Flexible(
                                 child: Text(
-                                  widget.product.title,
+                                  context.watch<CartProvider>().product.title,
                                   style: Theme.of(context).textTheme.bodyMedium,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                               DeleteIcon(
-                                  cartList: cartList,
-                                  product: widget.product,
+                                  product: context.watch<CartProvider>().product,
                                   onCartChanged: onCartChanged),
                             ],
                           ),
@@ -97,15 +103,14 @@ class _CartCardState extends State<CartCard> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Rs. ${widget.product.price}",
+                                  "Rs. ${context.watch<CartProvider>().product.price}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium
                                       ?.copyWith(fontWeight: FontWeight.bold),
                                 ),
                                 CartQuantity(
-                                    cartList: cartList,
-                                    product: widget.product,
+                                    quantity: widget.cartItem.quantity,
                                     onCartChanged: onCartChanged),
                               ],
                             ),

@@ -10,7 +10,7 @@ import 'clipped_image.dart';
 class ProductBody extends StatelessWidget {
   ProductBody({required this.product,Key? key}) : super(key: key);
 
-  Product product;
+  ProductJson product;
   @override
   Widget build(BuildContext context) {
     return Column(

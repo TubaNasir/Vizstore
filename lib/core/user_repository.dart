@@ -31,11 +31,17 @@ class UserRepository {
         wishlist:user.wishlist,
         email:user.email);*/
 
-  UserJson getUser() {
-    print(_user.firstName);
-    return UserJson(email: 'tuba@gmail.com', firstName: 'Tuba', lastName: 'Nasir', contact: '0232671361', cart: [CartItemJson(productId: "c1lxWoPXbvhfsUBOcOau", stock: 76), CartItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu", stock: 7)], wishlist: [WishlistItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu")]);
+  Future<UserJson> getUser() async {
+     String? id = await firebaseauth.currentUser?.uid;
 
-    //return _user;
+     await db.collection("user").doc(id).get().then((event) {
+       _user = UserJson.fromJson(event.data() as Map<String, dynamic>) as UserJson;
+     }).catchError((error) => print("Failed to fetch user. Error : ${error}"));
+
+   // print(_user.firstName);
+   // return UserJson(email: 'tuba@gmail.com', firstName: 'Tuba', lastName: 'Nasir', contact: '0232671361', cart: [CartItemJson(productId: "c1lxWoPXbvhfsUBOcOau", quantity: 76), CartItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu", quantity: 7)], wishlist: [WishlistItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu")]);
+
+    return _user;
   }
 
   Future<String?> signIn(String email, String password) async {

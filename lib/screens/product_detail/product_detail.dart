@@ -8,7 +8,7 @@ import '../widgets/custom_app_bar2.dart';
 class ProductDetail extends StatelessWidget {
   const ProductDetail({required this.product, super.key});
 
-  final Product product;
+  final ProductJson product;
 
   @override
   Widget build(BuildContext context) {

@@ -10,7 +10,7 @@ class Order {
   final String status;
   final DateTime placedOn;
   final int total;
-  final List<Product> products;
+  final List<ProductJson> products;
 
   Order(
       {required this.id,
@@ -68,7 +68,7 @@ List<Order> demoOrders = [
     placedOn: DateTime.now(),
     total: 1000,
     products: [
-      Product(
+      ProductJson(
         id: "1",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
@@ -78,9 +78,9 @@ List<Order> demoOrders = [
         description: "This is a red shirt. Material is agdjd",
         storeId: "1",
         category: "Clothing",
-
+        sold: 1,
       ),
-      Product(
+      ProductJson(
         id: "2",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
@@ -90,7 +90,7 @@ List<Order> demoOrders = [
         description: "This is a red shirt. Material is agdjd",
         storeId: "1",
         category: "Clothing",
-
+        sold: 1,
       ),
     ],
   ),
@@ -104,7 +104,7 @@ List<Order> demoOrders = [
     placedOn: DateTime.now(),
     total: 1000,
     products: [
-      Product(
+      ProductJson(
         id: "1",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
@@ -114,9 +114,9 @@ List<Order> demoOrders = [
         description: "This is a red shirt. Material is agdjd",
         storeId: "1",
         category: "Clothing",
-
+        sold: 1,
       ),
-      Product(
+      ProductJson(
         id: "2",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
@@ -126,7 +126,7 @@ List<Order> demoOrders = [
         description: "This is a red shirt. Material is agdjd",
         storeId: "1",
         category: "Clothing",
-
+        sold: 1,
       ),
     ],
   ),
@@ -140,7 +140,7 @@ List<Order> demoOrders = [
     placedOn: DateTime.now(),
     total: 1000,
     products: [
-      Product(
+      ProductJson(
         id: "1",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
@@ -150,9 +150,9 @@ List<Order> demoOrders = [
         description: "This is a red shirt. Material is agdjd",
         storeId: "1",
         category: "Clothing",
-
+        sold: 1,
       ),
-      Product(
+      ProductJson(
         id: "2",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
@@ -162,7 +162,7 @@ List<Order> demoOrders = [
         description: "This is a red shirt. Material is agdjd",
         storeId: "1",
         category: "Clothing",
-
+        sold: 1,
       ),
     ],
   ),
@@ -176,7 +176,7 @@ List<Order> demoOrders = [
     placedOn: DateTime.now(),
     total: 1000,
     products: [
-      Product(
+      ProductJson(
         id: "1",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
@@ -186,9 +186,9 @@ List<Order> demoOrders = [
         description: "This is a red shirt. Material is agdjd",
         storeId: "1",
         category: "Clothing",
-
+        sold: 1,
       ),
-      Product(
+      ProductJson(
         id: "2",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
@@ -198,7 +198,7 @@ List<Order> demoOrders = [
         description: "This is a red shirt. Material is agdjd",
         storeId: "1",
         category: "Clothing",
-
+        sold: 1,
       ),
     ],
   ),
@@ -212,7 +212,7 @@ List<Order> demoOrders = [
     placedOn: DateTime.now(),
     total: 1000,
     products: [
-      Product(
+      ProductJson(
         id: "1",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
@@ -222,9 +222,9 @@ List<Order> demoOrders = [
         description: "This is a red shirt. Material is agdjd",
         storeId: "1",
         category: "Clothing",
-
+        sold: 1,
       ),
-      Product(
+      ProductJson(
         id: "2",
         image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
@@ -234,7 +234,7 @@ List<Order> demoOrders = [
         description: "This is a red shirt. Material is agdjd",
         storeId: "1",
         category: "Clothing",
-
+        sold: 1,
       ),
     ],
   )

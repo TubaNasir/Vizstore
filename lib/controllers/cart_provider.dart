@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/core/user_repository.dart';
@@ -8,31 +9,26 @@ import '../models/user_model.dart';
 import '../repositories/store_repository.dart';
 import 'package:get_it/get_it.dart';
 
-class HomeProvider with ChangeNotifier {
+class CartProvider with ChangeNotifier {
 
-  HomeProvider(this._storeRepository, this._productRepository,
+  CartProvider(this._storeRepository, this._productRepository,
       this._userRepository);
 
-  StoreRepository _storeRepository;
   ProductRepository _productRepository;
   UserRepository _userRepository;
+  StoreRepository _storeRepository;
 
   StoreJson _store = const StoreJson.empty();
+  ProductJson _product = const ProductJson.empty();
   UserJson _user = UserJson.empty();
   List<ProductJson> _products = [];
 
   StoreJson get store => _store;
+  ProductJson get product => _product;
 
   List<ProductJson> get products => _products;
 
   UserJson get user => _user;
-
-
-  void getStore(String id) async {
-    _store = await _storeRepository.getStoreInfo(id);
-    notifyListeners();
-    print(_store);
-  }
 
   void getUser() async {
     _user = await _userRepository.getUser();
@@ -40,6 +36,11 @@ class HomeProvider with ChangeNotifier {
     print('prov' + _user.firstName);
   }
 
+  void getProduct(String id) async {
+    _product = await _productRepository.getProductInfo(id);
+    notifyListeners();
+    print(_product);
+  }
 
   void getProductsList() async {
     print('in method');
@@ -47,6 +48,12 @@ class HomeProvider with ChangeNotifier {
     notifyListeners();
     print(products);
     //notifyListeners();
+  }
+
+  void getStore(String id) async {
+    _store = await _storeRepository.getStoreInfo(id);
+    notifyListeners();
+    print(_store);
   }
 
 }

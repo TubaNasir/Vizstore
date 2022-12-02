@@ -6,12 +6,11 @@ import '../../constants.dart';
 class CartQuantity extends StatefulWidget {
   const CartQuantity(
       {Key? key,
-      required this.cartList,
-      required this.product,
+      required this.quantity,
       required this.onCartChanged})
       : super(key: key);
-  final List<Product> cartList;
-  final Product product;
+
+  final int quantity;
   final VoidCallback onCartChanged;
 
   @override
@@ -32,10 +31,10 @@ class _CartQuantityState extends State<CartQuantity> {
               constraints: BoxConstraints(),
               onPressed: () {
                 setState(() {
-                  widget.product.stock--;
+                  //widget.product.stock--;
                   //widget.actualProduct.stock--;
-                  if (widget.product.stock < 1) {
-                    widget.cartList.remove(widget.product);
+                  if (widget.quantity < 1) {
+                    //widget.cartList.remove(widget.product);
                   }
                 });
                 widget.onCartChanged();
@@ -52,7 +51,7 @@ class _CartQuantityState extends State<CartQuantity> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Text(
-            "${widget.product.stock}",
+            "${widget.quantity.toString()}",
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
@@ -64,7 +63,7 @@ class _CartQuantityState extends State<CartQuantity> {
               constraints: BoxConstraints(),
               onPressed: () {
                 setState(() {
-                  widget.product.stock++;
+                  //widget.product.stock++;
                 });
                 widget.onCartChanged();
               },

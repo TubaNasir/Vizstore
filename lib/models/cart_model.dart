@@ -4,21 +4,21 @@ import 'package:flutterdemo/models/product_model.dart';
 
 class CartItemJson {
   String productId;
-  int stock;
+  int quantity;
 
   CartItemJson({
     required this.productId,
-    required this.stock
+    required this.quantity
 });
 
   static CartItemJson fromJson(Map<String, dynamic> json) => CartItemJson(
     productId: json["productId"] as String? ?? '',
-    stock: json["quantity"] as int? ?? -1,
+    quantity: json["quantity"] as int? ?? -1,
   );
 
   Map<String, dynamic> toJson() => {
     "product": productId,
-    "stock": stock,
+    "quantity": quantity,
   };
 
 

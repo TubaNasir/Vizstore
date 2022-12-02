@@ -6,7 +6,7 @@ import '../../../models/product_model.dart';
 class QuantityCounter extends StatefulWidget {
   QuantityCounter({required this.product, Key? key}) : super(key: key);
 
-  Product product;
+  ProductJson product;
   @override
   State<QuantityCounter> createState() => _QuantityCounterState();
 }
@@ -29,7 +29,7 @@ class _QuantityCounterState extends State<QuantityCounter> {
                       if (widget.product.stock == 0) {
                         return;
                       } else {
-                        widget.product.stock--;
+                        //widget.product.stock--;
                       }
                     });
                     setState(() {});
@@ -52,7 +52,7 @@ class _QuantityCounterState extends State<QuantityCounter> {
               IconButton(
                   onPressed: () {
                     setState(() {
-                      widget.product.stock++;
+                      //widget.product.stock++;
                     });
                     setState(() {});
                   },

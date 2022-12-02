@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
 
-    List<Product> products = context.watch<HomeProvider>().products;
+    List<ProductJson> products = context.watch<HomeProvider>().products;
     UserJson user = context.watch<HomeProvider>().user;
     print('home '+user.email.toString());
 

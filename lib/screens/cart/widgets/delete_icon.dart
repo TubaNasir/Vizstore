@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/cart_model.dart';
 import '../../../models/product_model.dart';
 
 class DeleteIcon extends StatefulWidget {
   const DeleteIcon(
       {Key? key,
-        required this.cartList,
         required this.product,
         required this.onCartChanged})
       : super(key: key);
 
-  final List<Product> cartList;
-  final Product product;
+  final ProductJson product;
   final VoidCallback onCartChanged;
 
   @override
@@ -26,7 +25,7 @@ class _DeleteIconState extends State<DeleteIcon> {
       constraints: BoxConstraints(),
       onPressed: () {
         setState(() {
-          widget.cartList.remove(widget.product);
+          //widget.cartList.remove(widget.product);
         });
         widget.onCartChanged();
       },
