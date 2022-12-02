@@ -37,12 +37,11 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         children: [
           TextFormField(
-            onChanged: (text){
+            onChanged: (text) {
               error = false;
-
             },
-            onTap: (){
-            //  context.read<LoginProvider>().changeErrorMessage();
+            onTap: () {
+              //  context.read<LoginProvider>().changeErrorMessage();
             },
             decoration: InputDecoration(
               labelText: "Email",
@@ -63,26 +62,37 @@ class _LoginFormState extends State<LoginForm> {
               enabled: enabled,
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: IconButton(
-                  icon: Icon(passwordVisible ? Icons.visibility : Icons.visibility_off),
+                icon: Icon(
+                    passwordVisible ? Icons.visibility : Icons.visibility_off),
                 onPressed: () {
                   context.read<LoginProvider>().changePasswordVisible();
-                },),
+                },
+              ),
             ),
             controller: controllerPassword,
             obscureText: !passwordVisible,
           ),
-          error ? Column(
-            children: [
-              SizedBox(height: 5),
-              Text('Incorrect email or password', style: TextStyle(color: Colors.red, fontSize: 15),),
-            ],
-          ) :SizedBox(height: 0,),
+          error
+              ? Column(
+                  children: [
+                    SizedBox(height: 5),
+                    Text(
+                      'Incorrect email or password',
+                      style: TextStyle(color: Colors.red, fontSize: 15),
+                    ),
+                  ],
+                )
+              : SizedBox(
+                  height: 0,
+                ),
           SizedBox(height: 30),
           CustomButton(
               text: "Continue",
-              pressed: ()  {
+              pressed: () {
                 try {
-                  context.read<LoginProvider>().signIn(controllerEmail.text, controllerPassword.text);
+                  context
+                      .read<LoginProvider>()
+                      .signIn(controllerEmail.text, controllerPassword.text);
                   // UserCredential userCred = await firebaseauth
                   //     .signInWithEmailAndPassword(email: controllerEmail.text,
                   //     password: controllerPassword.text);
@@ -90,14 +100,12 @@ class _LoginFormState extends State<LoginForm> {
 
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) =>
-                          Home(
-                            camera: camera,
-                          ),
+                      builder: (context) => Home(
+                        camera: camera,
+                      ),
                     ),
                   );
-                }
-                catch (e) {
+                } catch (e) {
                   setState(() {
                     context.read<LoginProvider>().changeErrorMessage();
                   });
@@ -106,7 +114,7 @@ class _LoginFormState extends State<LoginForm> {
 
                 //state mgmt set enabled to tru; if enabled = true, button = save changes
               }),
-          Text(
+          const Text(
             "or signup with",
             textAlign: TextAlign.center,
           ),
