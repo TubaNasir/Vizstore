@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/screens/login/login.dart';
+import 'package:flutterdemo/controllers/google_sign_in_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controllers/login_provider.dart';
@@ -79,17 +79,16 @@ class _LoginFormState extends State<LoginForm> {
           SizedBox(height: 30),
           CustomButton(
               text: "Continue",
-              pressed: ()  async {
+              pressed: ()  {
                 try {
-                  await context.read<LoginProvider>().signIn(controllerEmail.text, controllerPassword.text);
+                  context.read<LoginProvider>().signIn(controllerEmail.text, controllerPassword.text);
                   // UserCredential userCred = await firebaseauth
                   //     .signInWithEmailAndPassword(email: controllerEmail.text,
                   //     password: controllerPassword.text);
                   // String? user = firebaseauth.currentUser?.uid;
 
-
                   Navigator.of(context).push(
-                     MaterialPageRoute(
+                    MaterialPageRoute(
                       builder: (context) =>
                           Home(),
                     ),
@@ -114,7 +113,9 @@ class _LoginFormState extends State<LoginForm> {
             children: [
               SocialCard(
                 icon: 'assets/icons/google-icon.svg',
-                onPressed: () {},
+                onPressed: () {
+                  context.read<GoogleSignInProvider>().googleLogin();
+                },
               ),
               SocialCard(
                 icon: 'assets/icons/facebook-2.svg',
