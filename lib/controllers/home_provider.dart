@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/core/user_repository.dart';
 import 'package:flutterdemo/models/product_model.dart';
@@ -7,9 +8,10 @@ import '../models/user_model.dart';
 import '../repositories/store_repository.dart';
 import 'package:get_it/get_it.dart';
 
-class HomeProvider with ChangeNotifier{
+class HomeProvider with ChangeNotifier {
 
-  HomeProvider(this._storeRepository, this._productRepository, this._userRepository);
+  HomeProvider(this._storeRepository, this._productRepository,
+      this._userRepository);
 
   StoreRepository _storeRepository;
   ProductRepository _productRepository;
@@ -20,8 +22,11 @@ class HomeProvider with ChangeNotifier{
   List<Product> _products = [];
 
   StoreJson get store => _store;
+
   List<Product> get products => _products;
+
   UserJson get user => _user;
+
 
   void getStore(String id) async {
     _store = await _storeRepository.getStoreInfo(id);
@@ -29,12 +34,12 @@ class HomeProvider with ChangeNotifier{
     print(_store);
   }
 
-
   void getUser() async {
-    _user =  await _userRepository.getUser();
+    _user = await _userRepository.getUser();
     notifyListeners();
     print('prov' + _user.firstName);
   }
+
 
   void getProductsList() async {
     print('in method');
@@ -43,4 +48,7 @@ class HomeProvider with ChangeNotifier{
     print(products);
     //notifyListeners();
   }
+
+
+
 }

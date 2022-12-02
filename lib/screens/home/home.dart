@@ -1,6 +1,8 @@
 import 'package:camera/camera.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
+import 'package:flutterdemo/controllers/login_provider.dart';
 import 'package:flutterdemo/models/user_model.dart';
 import 'package:flutterdemo/screens/home/widgets/catgories.dart';
 import 'package:flutterdemo/screens/home/widgets/heading.dart';
@@ -27,12 +29,21 @@ class _HomeState extends State<Home> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => {
           context.read<HomeProvider>().getProductsList(),
-          context.read<HomeProvider>().getUser()
+    context.read<HomeProvider>().getUser()
         });
+    // bool isLoggedIn = context.read<LoginProvider>().isLoggedIn;
+    // if(isLoggedIn) {
+    //   context.read<HomeProvider>().getUser();
+    // }
+
+
   }
+
 
   @override
   Widget build(BuildContext context) {
+
+
     List<Product> products = context.watch<HomeProvider>().products;
     UserJson user = context.watch<HomeProvider>().user;
     print('home '+user.email.toString());
