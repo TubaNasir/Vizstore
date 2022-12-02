@@ -33,7 +33,18 @@ class UserRepository {
 
   UserJson getUser() {
     print(_user.firstName);
-    return UserJson(email: 'tuba@gmail.com', firstName: 'Tuba', lastName: 'Nasir', contact: '0232671361', cart: [CartItemJson(productId: "c1lxWoPXbvhfsUBOcOau", stock: 76), CartItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu", stock: 7)], wishlist: [WishlistItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu")]);
+    return UserJson(
+        email: 'tuba@gmail.com',
+        firstName: 'Tuba',
+        lastName: 'Nasir',
+        contact: '0232671361',
+        cart: [
+          CartItemJson(productId: "c1lxWoPXbvhfsUBOcOau", stock: 76),
+          CartItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu", stock: 7)
+        ],
+        wishlist: [
+          WishlistItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu")
+        ]);
 
     //return _user;
   }
@@ -70,5 +81,16 @@ class UserRepository {
         .set(newUser.toJson())
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
+  }
+
+  Future<bool> doesUserExist(String id) async {
+    bool exist = false;
+    await db
+        .collection("user")
+        .where("id", isEqualTo: id)
+        .get()
+        .then((value) => value.size > 0 ? exist = true : exist = false);
+
+    return exist;
   }
 }

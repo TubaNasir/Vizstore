@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/google_sign_in_provider.dart';
+import 'package:flutterdemo/screens/complete_profile/complete_profile.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controllers/login_provider.dart';
@@ -114,7 +115,25 @@ class _LoginFormState extends State<LoginForm> {
               SocialCard(
                 icon: 'assets/icons/google-icon.svg',
                 onPressed: () {
-                  context.read<GoogleSignInProvider>().googleLogin();
+                  User? user = context.read<GoogleSignInProvider>().googleLogin() as User?;
+
+                  bool exist = context.read<GoogleSignInProvider>().doesUserExist() as bool;
+                  if(!exist) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            CompleteProfile(user: user,),
+                      ),
+                    );
+                  }
+                  else{
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            Home(),
+                      ),
+                    );
+                  }
                 },
               ),
               SocialCard(
