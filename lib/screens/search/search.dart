@@ -8,16 +8,13 @@ import '../widgets/search_bar.dart';
 import '../widgets/staggered_products.dart';
 
 class Search extends StatefulWidget {
-  final CameraDescription camera;
-  const Search({required this.camera, super.key});
+  const Search({super.key});
 
   @override
-  State<Search> createState() => _SearchState(camera);
+  State<Search> createState() => _SearchState();
 }
 
 class _SearchState extends State<Search> {
-  final CameraDescription camera;
-  _SearchState(this.camera);
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +26,11 @@ class _SearchState extends State<Search> {
           widget: SingleChildScrollView(
             child: Column(
               children: [
-                SearchBar(camera: camera),
+                SearchBar(),
                 const SizedBox(height: 20),
                 (demoProducts.isNotEmpty)
                     ? StaggeredProductView(
                         demoList: demoProducts,
-                        camera: camera,
                       )
                     : const Text('No Products Found'),
               ],

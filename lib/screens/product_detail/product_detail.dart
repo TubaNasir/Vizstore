@@ -6,8 +6,7 @@ import '../../models/product_model.dart';
 import '../widgets/custom_app_bar2.dart';
 
 class ProductDetail extends StatelessWidget {
-  final CameraDescription camera;
-  const ProductDetail({required this.camera, required this.product, super.key});
+  const ProductDetail({required this.product, super.key});
 
   final Product product;
 
@@ -19,8 +18,8 @@ class ProductDetail extends StatelessWidget {
         body: Stack(
           clipBehavior: Clip.none,
           children: [
-            ProductBody(product: product, camera: camera),
-            BottomBar(product: product, camera: camera),
+            ProductBody(product: product),
+            BottomBar(product: product),
             const CustomAppBar2(),
           ],
         ),

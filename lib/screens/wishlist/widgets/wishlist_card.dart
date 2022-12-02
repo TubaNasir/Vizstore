@@ -13,13 +13,12 @@ class WishListCard extends StatelessWidget {
       required this.price,
       required this.icon,
       required this.storeName,
-      required this.camera})
+      })
       : super(key: key);
 
   final String productImage;
   final String title, price, storeName;
   final Widget icon;
-  final CameraDescription camera;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +27,7 @@ class WishListCard extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => ProductDetail(product: demoProducts[0],
-                    camera: camera,
-                  )));
+              builder: (context) => ProductDetail(product: demoProducts[0])));
         },
         style: ElevatedButton.styleFrom(
             elevation: 2,

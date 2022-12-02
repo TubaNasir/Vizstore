@@ -6,8 +6,7 @@ import '../../product_detail/product_detail.dart';
 import '../../widgets/product.dart';
 
 class PopularProducts extends StatelessWidget {
-  final CameraDescription camera;
-  const PopularProducts({required this.camera,super.key});
+  const PopularProducts({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class PopularProducts extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 15.0),
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetail(product: product, camera: camera)));
+                            Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetail(product: product)));
                           },
                           child: ProductCard(product: product)
                         ),

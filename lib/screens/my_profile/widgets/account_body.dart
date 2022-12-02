@@ -8,8 +8,7 @@ import '../../order/order.dart';
 import '../../edit_profile/edit_profile.dart';
 
 class AccountBody extends StatelessWidget {
-  const AccountBody({Key? key, required this.camera}) : super(key: key);
-  final CameraDescription camera;
+  const AccountBody({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +49,7 @@ class AccountBody extends StatelessWidget {
             press: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => Login(camera: camera,),
+                  builder: (context) => Login(),
                 ),
               );
             }

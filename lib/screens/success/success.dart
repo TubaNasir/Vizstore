@@ -10,19 +10,15 @@ import '../widgets/custom_button.dart';
 
 
 class Success extends StatefulWidget {
-  final CameraDescription camera;
-  const Success({required this.camera,super.key});
+  const Success({super.key});
 
   @override
-  State<Success> createState() => _SuccessState(camera);
+  State<Success> createState() => _SuccessState();
 }
 
 class _SuccessState extends State<Success> {
 
   final int _orderId = 13423;
-  final CameraDescription camera;
-  
-  _SuccessState(this.camera);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,7 +35,7 @@ class _SuccessState extends State<Success> {
               CustomButton(text: 'Go to homepage', pressed: () {
                 context.read<NavBar>().setPage(navBarPages[0]);
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => Home(camera: camera,)),
+                  MaterialPageRoute(builder: (context) => Home()),
                 );
               },
               ),

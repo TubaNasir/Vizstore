@@ -9,19 +9,17 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 
 class Login extends StatefulWidget {
-  final CameraDescription camera;
-  const Login({required this.camera, super.key});
+  const Login({ super.key});
 
   @override
-  State<Login> createState() => _LoginState(camera);
+  State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
-  final CameraDescription camera;
-  _LoginState(this.camera);
+  _LoginState();
 
 
   @override
@@ -38,13 +36,9 @@ class _LoginState extends State<Login> {
                   SizedBox(height: 50),
                   WelcomeMessage(),
                   SizedBox(height: 50),
-                  LoginForm(
-                    camera: camera,
-                  ),
+                  LoginForm(),
                   SizedBox(height: 20),
-                  LoginRedirection(
-                    camera: camera,
-                  ),
+                  LoginRedirection(),
                 ],
               ),
             ),

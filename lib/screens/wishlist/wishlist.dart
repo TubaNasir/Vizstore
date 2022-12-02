@@ -6,18 +6,15 @@ import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/layout.dart';
 
 class Wishlist extends StatefulWidget {
-  final CameraDescription camera;
-  const Wishlist({required this.camera,super.key});
+  const Wishlist({super.key});
 
   @override
-  State<Wishlist> createState() => _WishlistState(camera);
+  State<Wishlist> createState() => _WishlistState();
 }
 
 bool fav = true;
 
 class _WishlistState extends State<Wishlist> {
-  final CameraDescription camera;
-  _WishlistState(this.camera);
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +27,8 @@ class _WishlistState extends State<Wishlist> {
         body: Stack(
           children: [
             Layout(
-                widget: WishlistBody(camera: camera,)),
-            BottomNavBar(camera: camera,),
+                widget: WishlistBody()),
+            BottomNavBar(),
           ],
         ),
       ),

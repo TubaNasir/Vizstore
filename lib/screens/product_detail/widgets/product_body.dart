@@ -8,10 +8,9 @@ import '../../../models/product_model.dart';
 import 'clipped_image.dart';
 
 class ProductBody extends StatelessWidget {
-  ProductBody({required this.product, required this.camera, Key? key}) : super(key: key);
+  ProductBody({required this.product,Key? key}) : super(key: key);
 
   Product product;
-  CameraDescription camera;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,7 +31,7 @@ class ProductBody extends StatelessWidget {
                         children: [
                           TitleRow(product: product),
                           const SizedBox(height: 5),
-                          StoreDetails(camera: camera, product: product),
+                          StoreDetails(product: product),
                         ],
                       ),
                       const SizedBox(height: 10),

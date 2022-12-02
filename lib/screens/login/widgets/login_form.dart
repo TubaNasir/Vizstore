@@ -10,21 +10,19 @@ import '../../widgets/custom_button.dart';
 import '../../widgets/suffix_icon.dart';
 
 class LoginForm extends StatefulWidget {
-  final CameraDescription camera;
 
-  const LoginForm({required this.camera, super.key});
+  const LoginForm({super.key});
 
   @override
-  State<LoginForm> createState() => _LoginFormState(camera);
+  State<LoginForm> createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
   bool enabled = true;
   //bool error = false;
-  final CameraDescription camera;
   FirebaseAuth firebaseauth = FirebaseAuth.instance;
 
-  _LoginFormState(this.camera);
+  _LoginFormState();
   TextEditingController controllerEmail = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
 
@@ -91,9 +89,7 @@ class _LoginFormState extends State<LoginForm> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) =>
-                          Home(
-                            camera: camera,
-                          ),
+                          Home(),
                     ),
                   );
                 }

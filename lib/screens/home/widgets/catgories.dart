@@ -5,8 +5,7 @@ import '../../search/search.dart';
 import 'category_card.dart';
 
 class Categories extends StatelessWidget {
-  final CameraDescription camera;
-  const Categories({required this.camera, super.key});
+  const Categories({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,6 @@ class Categories extends StatelessWidget {
                       onPress: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => Search(
-                                  camera: camera,
                                 )));
                       },
                     ),

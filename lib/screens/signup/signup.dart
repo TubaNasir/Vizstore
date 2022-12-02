@@ -7,16 +7,13 @@ import 'package:flutterdemo/screens/signup/widgets/signup_redirection.dart';
 import '../widgets/form_field.dart';
 
 class SignUp extends StatefulWidget {
-  final CameraDescription camera;
-  const SignUp({required this.camera,super.key});
+  const SignUp({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState(camera);
+  State<SignUp> createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
-  final CameraDescription camera;
-  _SignUpState(this.camera);
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +29,9 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(height: 40),
                   RegisterMessage(),
                   SizedBox(height: 20),
-                  SignUpForm(camera: camera,),
+                  SignUpForm(),
                   SizedBox(height: 20),
-                  SignupRedirection(camera: camera),
+                  SignupRedirection(),
                   SizedBox(height: 20),
                 ],
               ),

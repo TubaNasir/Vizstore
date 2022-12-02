@@ -6,8 +6,7 @@ import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/staggered_products.dart';
 
 class StoreMain extends StatelessWidget {
-  const StoreMain({Key? key, required this.camera}) : super(key: key);
-  final CameraDescription camera;
+  const StoreMain({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,6 @@ class StoreMain extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 child: StaggeredProductView(
                   demoList: demoProducts,
-                  camera: camera,
                 )),
             const SizedBox(height: 100),
           ],

@@ -23,19 +23,15 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
 );
 
 class SignUpForm extends StatefulWidget {
-  final CameraDescription camera;
 
-  const SignUpForm({required this.camera, super.key});
+  const SignUpForm({super.key});
 
   @override
-  State<SignUpForm> createState() => _SignUpFormState(camera);
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
 class _SignUpFormState extends State<SignUpForm> {
   bool enabled = true;
-  final CameraDescription camera;
-
-  _SignUpFormState(this.camera);
 
   GoogleSignInAccount? _currentUser;
   String _contactText = '';
@@ -107,7 +103,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) =>
-                          CompleteProfile(camera: camera, user: user),
+                          CompleteProfile(user: user),
                     ),
                   );
                 } catch (e) {

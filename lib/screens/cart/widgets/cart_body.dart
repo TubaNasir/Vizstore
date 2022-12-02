@@ -8,9 +8,8 @@ import 'cart_card.dart';
 import 'total_card_cart.dart';
 
 class CartBody extends StatefulWidget {
-  CartBody({Key? key, required this.camera, required this.cartList}) : super(key: key);
+  CartBody({Key? key,required this.cartList}) : super(key: key);
   final List<Product> cartList;
-  final CameraDescription camera;
   @override
   State<CartBody> createState() => _CartBodyState();
 }
@@ -28,7 +27,6 @@ class _CartBodyState extends State<CartBody> {
             onCartChanged: () {
               setState(() {});
             },
-            camera: widget.camera,
           ))
               .toList(),
         ),
@@ -38,9 +36,7 @@ class _CartBodyState extends State<CartBody> {
           text: 'Checkout',
           pressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Checkout(
-                  camera: widget.camera,
-                )));
+                builder: (context) => Checkout()));
           },
         ),
         SizedBox(height: 100),

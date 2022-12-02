@@ -11,23 +11,19 @@ import '../../widgets/custom_button.dart';
 import '../../widgets/suffix_icon.dart';
 
 class ProfileForm extends StatefulWidget {
-  final CameraDescription camera;
  // final String? uid;
   final User? user;
 
-  const ProfileForm({required this.camera, super.key, required this.user});
+  const ProfileForm({super.key, required this.user});
 
 
   @override
-  State<ProfileForm> createState() => _ProfileFormState(camera);
+  State<ProfileForm> createState() => _ProfileFormState();
 }
 
 bool enabled = true;
 
 class _ProfileFormState extends State<ProfileForm> {
-  final CameraDescription camera;
-
-  _ProfileFormState(this.camera);
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +81,7 @@ class _ProfileFormState extends State<ProfileForm> {
               context.read<SignupProvider>().addNewUser(widget.user, controllerFname.text, controllerLname.text, controllerContact.text);
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => Login(camera: camera),
+                  builder: (context) => Login(),
                 ),
               );
             }),

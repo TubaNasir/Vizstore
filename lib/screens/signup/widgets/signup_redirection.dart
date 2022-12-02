@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import '../../login/login.dart';
 
 class SignupRedirection extends StatelessWidget {
-  final CameraDescription camera;
-  const SignupRedirection({required this.camera,super.key});
+  const SignupRedirection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +16,7 @@ class SignupRedirection extends StatelessWidget {
         InkWell(
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => Login(camera: camera,)),
+                MaterialPageRoute(builder: (context) => Login()),
               );
             },
             child: Text(" Login.", style: TextStyle(color: PrimaryColor))),

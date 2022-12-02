@@ -9,12 +9,10 @@ import '../../store/store_main.dart';
 class StoreDetails extends StatefulWidget {
   const StoreDetails({
     Key? key,
-    required this.camera,
     required this.product,
   }) : super(key: key);
 
   final Product product;
-  final CameraDescription camera;
 
   @override
   State<StoreDetails> createState() => _StoreDetailsState();
@@ -36,9 +34,7 @@ class _StoreDetailsState extends State<StoreDetails> {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => StoreMain(
-                camera: widget.camera,
-              ),
+              builder: (context) => StoreMain(),
             ),
           );
         },

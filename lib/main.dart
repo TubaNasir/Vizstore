@@ -26,12 +26,6 @@ Future<void> main() async {
   getIt.registerSingleton<StoreRepository>(StoreRepository(), instanceName: 'store');
   getIt.registerSingleton<ProductRepository>(ProductRepository(), instanceName: 'product');
   getIt.registerSingleton<UserRepository>(UserRepository(), instanceName: 'user');
-
-  // Obtain a list of the available cameras on the device.
-  final cameras = await availableCameras();
-
-  // Get a specific camera from the list of available cameras.
-  final firstCamera = cameras[1];
   
   runApp(
       MultiProvider(
@@ -41,15 +35,14 @@ Future<void> main() async {
             ChangeNotifierProvider(create: (_) => SignupProvider()),
             ChangeNotifierProvider(create: (_) => HomeProvider(getIt.get(instanceName: 'store'), getIt.get(instanceName: 'product'), getIt.get(instanceName: 'user')))
           ],
-    child: MyApp(camera: firstCamera),
+    child: MyApp(),
     //create: (_) => NavBar(),
   ));
 }
 
 class MyApp extends StatelessWidget {
-  final CameraDescription camera;
 
-  const MyApp({Key? key, required this.camera}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -58,7 +51,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: theme(),
-      home: Login(camera: camera,),
+      home: Login(),
     );
   }
 }

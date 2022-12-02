@@ -15,12 +15,11 @@ import '../widgets/staggered_products.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
-  final CameraDescription camera;
 
-  const Home({required this.camera, super.key});
+  const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState(this.camera);
+  State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
@@ -31,10 +30,6 @@ class _HomeState extends State<Home> {
           context.read<HomeProvider>().getUser()
         });
   }
-
-  final CameraDescription camera;
-
-  _HomeState(this.camera);
 
   @override
   Widget build(BuildContext context) {
@@ -53,26 +48,23 @@ class _HomeState extends State<Home> {
                 child: Column(
                   children: [
                     Text(user.email.toString()),
-                    SearchBar(camera: camera),
+                    SearchBar(),
                     const SizedBox(height: 20),
                     const Promotion(),
                     const SizedBox(height: 20),
                     const Heading(text: 'Categories'),
                     const SizedBox(height: 10),
-                    Categories(camera: camera),
+                    Categories(),
                     const SizedBox(height: 20),
                     const Heading(text: "Popular Products"),
                     const SizedBox(height: 10),
-                    PopularProducts(
-                      camera: camera,
-                    ),
+                    PopularProducts(),
                     const SizedBox(height: 20),
                     const Heading(text: "New Arrivals"),
                     const SizedBox(height: 10),
                     SingleChildScrollView(
                       child: StaggeredProductView(
                         demoList: products,
-                        camera: camera,
                       ),
                       physics: NeverScrollableScrollPhysics(),
                     ),
@@ -81,9 +73,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            BottomNavBar(
-              camera: camera,
-            ),
+            BottomNavBar(),
           ],
         ),
       ),

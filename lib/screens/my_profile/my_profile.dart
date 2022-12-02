@@ -6,18 +6,14 @@ import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/layout.dart';
 
 class MyProfile extends StatefulWidget {
-  final CameraDescription camera;
 
-  const MyProfile({required this.camera, super.key});
+  const MyProfile({super.key});
 
   @override
-  State<MyProfile> createState() => _MyProfileState(camera);
+  State<MyProfile> createState() => _MyProfileState();
 }
 
 class _MyProfileState extends State<MyProfile> {
-  final CameraDescription camera;
-
-  _MyProfileState(this.camera);
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +27,10 @@ class _MyProfileState extends State<MyProfile> {
         body: Stack(
           children: [
             Layout(
-              widget: AccountBody(camera: camera,),
+              widget: AccountBody(),
             ),
             //AccountBody(),
-            BottomNavBar(
-              camera: camera,
-            ),
+            BottomNavBar(),
           ],
         ),
       ),

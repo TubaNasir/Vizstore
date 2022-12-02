@@ -6,10 +6,9 @@ import '../product_detail/product_detail.dart';
 
 class StaggeredProductView extends StatelessWidget {
   final List<Product> demoList;
-  final CameraDescription camera;
 
   const StaggeredProductView(
-      {required this.camera, required this.demoList, super.key});
+      {required this.demoList, super.key});
 
   Widget _buildProducts(BuildContext context, int index) {
     Product product = demoList[index];
@@ -20,7 +19,6 @@ class StaggeredProductView extends StatelessWidget {
           context,
           MaterialPageRoute(
               builder: (_) => ProductDetail(
-                    camera: camera,
                 product: product,
                   )),
         );
