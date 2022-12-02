@@ -54,7 +54,10 @@ class _CameraScreenState extends State<CameraScreen> {
         leading: const BackButton(color: Colors.black,),
         title: Text(
           'Image Search',
-          style: Theme.of(context).textTheme.headlineSmall,textAlign: TextAlign.center,)),
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 22),
+          ),
+        ),
       // You must wait until the controller is initialized before displaying the
       // camera preview. Use a FutureBuilder to display a loading spinner until the
       // controller has finished initializing.
