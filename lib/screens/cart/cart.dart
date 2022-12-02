@@ -7,19 +7,15 @@ import '../widgets/layout.dart';
 import 'widgets/cart_body.dart';
 
 class Cart extends StatefulWidget {
-  final CameraDescription camera;
 
-  const Cart({required this.camera, super.key});
+  const Cart({super.key});
 
   @override
-  State<Cart> createState() => _CartState(camera);
+  State<Cart> createState() => _CartState();
 }
 
 class _CartState extends State<Cart> {
   late List<Product> cartList;
-  final CameraDescription camera;
-
-  _CartState(this.camera);
 
   @override
   void initState() {
@@ -73,10 +69,8 @@ class _CartState extends State<Cart> {
           //backgroundColor: Colors.grey.shade200,
           body: Stack(children: [
             Layout(
-                widget: CartBody(camera: camera, cartList: cartList,)),
-            BottomNavBar(
-              camera: camera,
-            )
+                widget: CartBody(cartList: cartList,)),
+            BottomNavBar()
           ])
       ),
     );

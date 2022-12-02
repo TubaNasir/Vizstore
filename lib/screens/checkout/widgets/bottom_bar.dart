@@ -7,10 +7,8 @@ import '../../success/success.dart';
 class CheckoutBottomBar extends StatelessWidget {
   const CheckoutBottomBar({
     Key? key,
-    required this.camera,
   }) : super(key: key);
 
-  final CameraDescription camera;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +67,7 @@ class CheckoutBottomBar extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => Success(camera: camera,),
+                      builder: (context) => Success(),
                     ),
                   );
                 },

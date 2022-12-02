@@ -7,10 +7,7 @@ import '../../cart/cart.dart';
 class AddToCartButton extends StatelessWidget {
   const AddToCartButton({
     Key? key,
-    required this.camera,
   }) : super(key: key);
-
-  final CameraDescription camera;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +21,7 @@ class AddToCartButton extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => Cart(camera: camera,),
+              builder: (context) => Cart(),
             ),
           );
         },

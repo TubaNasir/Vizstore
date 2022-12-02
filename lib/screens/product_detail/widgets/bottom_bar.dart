@@ -6,10 +6,9 @@ import '../../../models/product_model.dart';
 import 'add_to_cart_button.dart';
 
 class BottomBar extends StatefulWidget {
-  BottomBar({required this.product, required this.camera, Key? key}) : super(key: key);
+  BottomBar({required this.product,Key? key}) : super(key: key);
 
   Product product;
-  CameraDescription camera;
 
   @override
   State<BottomBar> createState() => _BottomBarState();
@@ -49,7 +48,7 @@ class _BottomBarState extends State<BottomBar> {
               ),
               child: QuantityCounter(product: widget.product),
             ),
-            AddToCartButton(camera: widget.camera),
+            AddToCartButton(),
           ],
         ),
       ),

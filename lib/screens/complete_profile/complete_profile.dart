@@ -7,18 +7,15 @@ import 'package:flutterdemo/screens/complete_profile/widgets/profile_form.dart';
 import '../widgets/form_field.dart';
 
 class CompleteProfile extends StatefulWidget {
-  final CameraDescription camera;
   //final String? uid;
   final User? user;
-  const CompleteProfile({required this.camera, super.key, required this.user});
+  const CompleteProfile({super.key, required this.user});
 
   @override
-  State<CompleteProfile> createState() => _CompleteProfileState(camera);
+  State<CompleteProfile> createState() => _CompleteProfileState();
 }
 
 class _CompleteProfileState extends State<CompleteProfile> {
-  final CameraDescription camera;
-  _CompleteProfileState(this.camera);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +32,6 @@ class _CompleteProfileState extends State<CompleteProfile> {
                   CompleteProfileMessage(),
                   SizedBox(height: 40),
                   ProfileForm(
-                    camera: camera,
                     user: widget.user
                   ),
                   SizedBox(height: 20),

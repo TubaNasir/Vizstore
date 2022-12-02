@@ -5,11 +5,10 @@ import 'package:provider/provider.dart';
 import '../bottom_nav_bar_provider.dart';
 
 class NavBarIcon extends StatefulWidget {
-  const NavBarIcon({Key? key, required this.icon, required this.selectedIcon, required this.camera, required this.onPress}) : super(key: key);
+  const NavBarIcon({Key? key, required this.icon, required this.selectedIcon,required this.onPress}) : super(key: key);
 
   final IconData icon;
   final String selectedIcon;
-  final CameraDescription camera;
   final VoidCallback onPress;
 
   @override

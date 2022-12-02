@@ -32,21 +32,21 @@ class UserJson {
         wishlist = [];
 
   UserJson copyWith(
-    String? id,
+  {String? id,
     String? firstName,
     String? lastName,
     String? contact,
     List<CartItemJson>? cart,
-    List<WishlistItemJson>? wishList,
-      String? email,
-      ) =>
+    List<WishlistItemJson>? wishlist,
+    String? email,}
+  ) =>
       UserJson(
         id: id ?? this.id,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         contact: contact ?? this.contact,
         cart: cart ?? this.cart,
-        wishlist: wishList ?? this.wishlist,
+        wishlist: wishlist ?? this.wishlist,
         email: email ?? this.email,
       );
 

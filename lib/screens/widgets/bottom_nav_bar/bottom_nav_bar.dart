@@ -13,8 +13,7 @@ import '../../wishlist/wishlist.dart';
 import 'bottom_nav_bar_provider.dart';
 
 class BottomNavBar extends StatelessWidget {
-  final CameraDescription camera;
-  const BottomNavBar({required this.camera, super.key});
+  const BottomNavBar({super.key});
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -34,9 +33,13 @@ class BottomNavBar extends StatelessWidget {
             Center(
               heightFactor: 0.6,
               child: FloatingActionButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    // Obtain a list of the available cameras on the device.
+                    final cameras = await availableCameras();
+                    // Get a specific camera from the list of available cameras.
+                    final firstCamera = cameras[0];
                     Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => CameraScreen(camera:camera))
+                        MaterialPageRoute(builder: (_) => CameraScreen(camera:firstCamera))
                     );
                   },
                   backgroundColor: PrimaryColor,
@@ -61,7 +64,7 @@ class BottomNavBar extends StatelessWidget {
                       context.read<NavBar>().setPage(navBarPages[0]);
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => Home(camera: camera),
+                          builder: (context) => Home(),
                         ),
                       );
                     },
@@ -78,7 +81,7 @@ class BottomNavBar extends StatelessWidget {
                       context.read<NavBar>().setPage(navBarPages[1]);
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => Cart(camera: camera,),
+                          builder: (context) => Cart(),
                         ),
                       );
                     },
@@ -96,7 +99,7 @@ class BottomNavBar extends StatelessWidget {
                       context.read<NavBar>().setPage(navBarPages[2]);
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => Wishlist(camera: camera,),
+                          builder: (context) => Wishlist(),
                         ),
                       );
                     },
@@ -113,7 +116,7 @@ class BottomNavBar extends StatelessWidget {
                       context.read<NavBar>().setPage(navBarPages[3]);
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => MyProfile(camera: camera,),
+                          builder: (context) => MyProfile(),
                         ),
                       );
                     },

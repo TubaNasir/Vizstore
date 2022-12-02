@@ -4,44 +4,47 @@ import "package:flutterdemo/models/store_model.dart";
 
 import '../models/user_model.dart';
 
-class UserRepository{
+class UserRepository {
   final db = FirebaseFirestore.instance;
   FirebaseAuth firebaseauth = FirebaseAuth.instance;
 
-  final UserJson _user = UserJson.empty();
+  UserJson _user = UserJson.empty();
 
   Future<void> setUser(String? id) async {
-    UserJson user = UserJson.empty();
+    UserJson newUser = UserJson.empty();
     await db.collection("user").doc(id).get().then((event) {
-      user = UserJson.fromJson(event.data() as Map<String, dynamic>);
+      newUser = UserJson.fromJson(event.data() as Map<String, dynamic>);
     }).catchError((error) => print("Failed to fetch user. Error : ${error}"));
 
-    _user.copyWith(user.id, user.firstName, user.lastName, user.contact, user.cart, user.wishlist, user.email);
-
+    _user = newUser;
     print("alal" + _user.firstName);
+  }
 
-}
+  /* _user.copyWith(
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        contact: user.contact,
+        cart:user.cart,
+        wishlist:user.wishlist,
+        email:user.email);*/
 
   UserJson getUser() {
-    print('repo '+_user.firstName);
+    print(_user.firstName);
     return _user;
   }
 
-
-
   Future<String?> signIn(String email, String password) async {
     try {
-      UserCredential userCred = await firebaseauth
-          .signInWithEmailAndPassword(email: email,
-          password: password);
+      UserCredential userCred = await firebaseauth.signInWithEmailAndPassword(
+          email: email, password: password);
 
       //print(userCred.user?.uid);
 
-     //await setUser(userCred.user?.uid);
+      //await setUser(userCred.user?.uid);
       return userCred.user?.uid;
       //getuser from uid
-    }
-    catch (e) {
+    } catch (e) {
       print(e); //add incorrect email or pass label if error
     }
   }
@@ -49,16 +52,12 @@ class UserRepository{
   Future<User?> signUp(String email, String password) async {
     try {
       UserCredential userCred = await firebaseauth
-          .createUserWithEmailAndPassword(
-          email: email,
-          password: password);
+          .createUserWithEmailAndPassword(email: email, password: password);
       //String? user = firebaseauth.currentUser?.uid;
-      print(
-          userCred.user?.uid);
+      print(userCred.user?.uid);
 
       return userCred.user;
-    }
-    catch (e) {
+    } catch (e) {
       print(e);
     }
   }
@@ -71,6 +70,4 @@ class UserRepository{
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
   }
-
-
 }

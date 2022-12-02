@@ -11,14 +11,12 @@ class CartCard extends StatefulWidget {
       {Key? key,
       required this.product,
       required this.cartList,
-      required this.onCartChanged, required this.camera})
+      required this.onCartChanged})
       : super(key: key); //required this.actualProduct}) : super(key: key);
 
   final List<Product> cartList;
   final Product product;
   final VoidCallback onCartChanged;
-  final CameraDescription camera;
-
 
   //final Product actualProduct;
   @override
@@ -40,7 +38,6 @@ class _CartCardState extends State<CartCard> {
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => ProductDetail(
-                camera: widget.camera,
                 product: demoProducts[0],
               )));
         },

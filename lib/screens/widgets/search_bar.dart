@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import '../camera/camera.dart';
 
 class SearchBar extends StatelessWidget {
-  final CameraDescription camera;
-  const SearchBar({
-    required this.camera, super.key
+  const SearchBar({super.key
   });
 
   @override
@@ -30,9 +28,13 @@ class SearchBar extends StatelessWidget {
               ),
           ),
           IconButton(
-            onPressed: () {
+            onPressed: () async {
+              // Obtain a list of the available cameras on the device.
+              final cameras = await availableCameras();
+              // Get a specific camera from the list of available cameras.
+              final firstCamera = cameras[0];
               Navigator.of(context).push(
-                MaterialPageRoute(builder:(context) => CameraScreen(camera: camera))
+                MaterialPageRoute(builder:(context) => CameraScreen(camera: firstCamera))
               );
             }, 
             icon: Icon(Icons.camera_alt,color: Colors.black,)

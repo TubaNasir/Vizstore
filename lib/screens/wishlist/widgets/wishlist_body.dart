@@ -6,10 +6,9 @@ import '../wishlist.dart';
 
 class WishlistBody extends StatelessWidget {
   const WishlistBody({
-    Key? key, required this.camera,
+    Key? key, 
   }) : super(key: key);
 
-  final CameraDescription camera;
 
 
   @override
@@ -31,7 +30,7 @@ class WishlistBody extends StatelessWidget {
                         color: (fav == true ? Colors.red : Colors.grey),
                         size: 25,
                       ),
-                      storeName: 'Store Name', camera: camera,
+                      storeName: 'Store Name',
                     ))
                 .toList(),
           ),

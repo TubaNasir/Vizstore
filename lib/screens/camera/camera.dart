@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutterdemo/screens/constants.dart';
 import '../search/search.dart';
 
 
@@ -50,7 +50,14 @@ class _CameraScreenState extends State<CameraScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Image Search')),
+      appBar: AppBar(
+        leading: const BackButton(color: Colors.black,),
+        title: Text(
+          'Image Search',
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 22),
+          ),
+        ),
       // You must wait until the controller is initialized before displaying the
       // camera preview. Use a FutureBuilder to display a loading spinner until the
       // controller has finished initializing.
@@ -91,7 +98,7 @@ class _CameraScreenState extends State<CameraScreen> {
               //     camera: camera,
               //   ),
               // ),
-              MaterialPageRoute(builder: (_) => Search(camera:camera))
+              MaterialPageRoute(builder: (_) => Search())
             );
           } catch (e) {
             // If an error occurs, log the error to the console.

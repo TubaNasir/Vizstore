@@ -8,16 +8,13 @@ import '../widgets/layout.dart';
 import 'widgets/checkout_form.dart';
 
 class Checkout extends StatefulWidget {
-  final CameraDescription camera;
-  const Checkout({required this.camera,super.key});
+  const Checkout({super.key});
 
   @override
-  State<Checkout> createState() => _CheckoutState(camera);
+  State<Checkout> createState() => _CheckoutState();
 }
 
 class _CheckoutState extends State<Checkout> {
-  final CameraDescription camera;
-  _CheckoutState(this.camera);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +41,7 @@ class _CheckoutState extends State<Checkout> {
                 )],
                 ),
               ),
-              CheckoutBottomBar(camera: camera),
+              CheckoutBottomBar(),
             ],
           ),
         ),
