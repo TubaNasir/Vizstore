@@ -1,12 +1,11 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/screens/my_profile/widgets/account_body.dart';
+import 'package:flutterdemo/screens/my_profile/widgets/menu_list.dart';
+import 'package:flutterdemo/screens/my_profile/widgets/profile_pic.dart';
 import '../widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/layout.dart';
 
 class MyProfile extends StatefulWidget {
-
   const MyProfile({super.key});
 
   @override
@@ -14,7 +13,6 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
-
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -27,7 +25,14 @@ class _MyProfileState extends State<MyProfile> {
         body: Stack(
           children: [
             Layout(
-              widget: AccountBody(),
+              widget: ListView(
+                children: [
+                  ProfilePic(),
+                  SizedBox(height: 20,),
+                  MenuList(),
+                  SizedBox(height: 100,)
+                ],
+              ),
             ),
             //AccountBody(),
             BottomNavBar(),

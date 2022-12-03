@@ -12,10 +12,7 @@ class EditProfile extends StatelessWidget {
       child: Scaffold(
         appBar: CustomAppBar(title: "My Profile", backButton: true,),
         body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-            child: EditProfileForm(enabled: false,),
-          ),
+          child: EditProfileForm(enabled: false,),
         ),
       ),
     );

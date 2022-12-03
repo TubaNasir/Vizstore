@@ -87,4 +87,15 @@ class UserRepository {
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
   }
+
+  Future<bool> doesUserExist(String id) async {
+    bool exist = false;
+    await db
+        .collection("user")
+        .where("id", isEqualTo: id)
+        .get()
+        .then((value) => value.size > 0 ? exist = true : exist = false);
+
+    return exist;
+  }
 }
