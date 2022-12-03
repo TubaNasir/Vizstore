@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/cart_provider.dart';
 import 'package:flutterdemo/models/user_model.dart';
 import 'package:flutterdemo/screens/cart/widgets/cart_card.dart';
 import 'package:flutterdemo/screens/cart/widgets/total_card_cart.dart';
@@ -20,58 +21,22 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
-  late List<ProductJson> cartList;
 
   @override
   void initState() {
-    cartList = [
-      ProductJson(
-          id: "1",
-          image:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
-          title: "Wireless Controller for PS4™ nsadfk akjdnaksj kjands",
-          price: 1000,
-          description:
-              "This is a red shirt. Material is agdjd dlfk skrn fjrndf erfr kenedf resjfnr",
-          storeId: "1",
-          category: "Clothing",
-          sold: 1,
-          stock: 1),
-      ProductJson(
-          id: "2",
-          image:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
-          title: "Wireless Controller for PS4™",
-          price: 1000,
-          description: "This is a red shirt. Material is agdjd",
-          storeId: "1",
-          category: "Clothing",
-          sold: 1,
-          stock: 1),
-      ProductJson(
-          id: "3",
-          image:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ_0CtulSwA_imJJ4nZXEIwu13VNszMaZUBaHgEXVQ&s",
-          title: "Wireless Controller for PS4™",
-          price: 1000,
-          description: "This is a red shirt. Material is agdjd",
-          storeId: "1",
-          category: "Clothing",
-          sold: 1,
-          stock: 1),
-    ];
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async => {
+      await context.read<CartProvider>().getUser(),
+      await context.read<CartProvider>().getProductsList(),
+      context.read<CartProvider>().setTotal()
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => {
-      context.read<HomeProvider>().getProductsList(),
-      context.read<HomeProvider>().getUser()
-    });
+  });
   }
 
   @override
   Widget build(BuildContext context) {
-
-    UserJson user = context.watch<HomeProvider>().user;
+    final user = context.watch<CartProvider>().user;
+    print(user.cart);
 
     return SafeArea(
       child: Scaffold(
@@ -87,10 +52,7 @@ class _CartState extends State<Cart> {
                     Column(
                       children: user.cart
                           .map((e) => CartCard(
-                        cartItem: e,
-                        onCartChanged: () {
-                          setState(() {});
-                        },
+                        cartItem: e
                       ))
                           .toList(),
                     ),

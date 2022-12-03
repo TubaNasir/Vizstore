@@ -3,14 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutterdemo/screens/product_detail/widgets/store_details.dart';
 import 'package:flutterdemo/screens/product_detail/widgets/title_row.dart';
+import 'package:provider/provider.dart';
 
+import '../../../controllers/product_details_provider.dart';
 import '../../../models/product_model.dart';
 import 'clipped_image.dart';
 
-class ProductBody extends StatelessWidget {
-  ProductBody({required this.product,Key? key}) : super(key: key);
+class ProductBody extends StatefulWidget {
+  ProductBody({required this.product, Key? key}) : super(key: key);
 
   ProductJson product;
+
+  @override
+  State<ProductBody> createState() => _ProductBodyState();
+}
+
+class _ProductBodyState extends State<ProductBody> {
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => context
+        .read<ProductDetailsProvider>()
+        .getStore(widget.product.storeId));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,7 +34,7 @@ class ProductBody extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                ClippedImage(product: product),
+                ClippedImage(product: widget.product),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Column(
@@ -29,9 +44,9 @@ class ProductBody extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          TitleRow(product: product),
+                          TitleRow(product: widget.product),
                           const SizedBox(height: 5),
-                          StoreDetails(product: product),
+                          StoreDetails(product: widget.product),
                         ],
                       ),
                       const SizedBox(height: 10),
@@ -43,16 +58,22 @@ class ProductBody extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12.0),
-                        child: Text(
-                          'Rs. ${product.price}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall
-                              ?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: TextColor1),
+                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.yellow,
+                            borderRadius:
+                                BorderRadius.only(topLeft: Radius.circular(80.0), bottomRight: Radius.circular(80.0)),
+                          ),
+                          child: Text(
+                            '   Rs. ${widget.product.price}   ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall
+                                ?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: TextColor1),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -64,8 +85,7 @@ class ProductBody extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Padding(
-                        padding:
-                        const EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Column(
                           children: [
                             Row(
@@ -74,10 +94,10 @@ class ProductBody extends StatelessWidget {
                                   'Description',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .titleMedium
+                                      .titleLarge
                                       ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: TextColor2),
+                                          fontWeight: FontWeight.bold,
+                                          color: TextColor2),
                                 ),
                               ],
                             ),
@@ -87,10 +107,9 @@ class ProductBody extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    product.description,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge,
+                                    widget.product.description,
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge,
                                   ),
                                 ),
                               ],

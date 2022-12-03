@@ -3,13 +3,24 @@
 import 'package:flutterdemo/models/product_model.dart';
 
 class CartItemJson {
-  String productId;
-  int quantity;
+  final String productId;
+  final int quantity;
 
-  CartItemJson({
+  const CartItemJson({
     required this.productId,
     required this.quantity
 });
+
+  const CartItemJson.empty() : productId = '', quantity = -1;
+
+  CartItemJson copyWith(
+      {String? productId,
+        int? quantity,}
+      ) =>
+      CartItemJson(
+        productId: productId ?? this.productId,
+        quantity: quantity ?? this.quantity,
+      );
 
   static CartItemJson fromJson(Map<String, dynamic> json) => CartItemJson(
     productId: json["productId"] as String? ?? '',
@@ -17,7 +28,7 @@ class CartItemJson {
   );
 
   Map<String, dynamic> toJson() => {
-    "product": productId,
+    "productId": productId,
     "quantity": quantity,
   };
 

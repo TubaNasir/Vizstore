@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
+import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:flutterdemo/models/product_model.dart';
 import 'package:provider/provider.dart';
 
@@ -39,7 +40,7 @@ class _StoreDetailsState extends State<StoreDetails> {
           );
         },
         child: Text(
-          context.watch<HomeProvider>().store.storeName,
+          context.watch<ProductDetailsProvider>().store.storeName,
           style: Theme.of(context)
               .textTheme
               .caption

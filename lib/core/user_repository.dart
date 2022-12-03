@@ -12,10 +12,19 @@ class UserRepository {
 
   UserJson _user = UserJson.empty();
 
+  Future<void> updateUser(UserJson user) async {
+    //print('quantity ${user.cart[0].quantity}');
+    //print('id ${user.id}');
+
+    await db.collection("user").doc(user.id).update(user.toJson()).then((event) {
+      print("user updated");
+    }).catchError((error) => print("Failed to fetch user. Error : ${error}"));
+  }
+
   Future<void> setUser(String? id) async {
     UserJson newUser = UserJson.empty();
     await db.collection("user").doc(id).get().then((event) {
-      newUser = UserJson.fromJson(event.data() as Map<String, dynamic>);
+      newUser = UserJson.fromJson(event.data() as Map<String, dynamic>, event.id);
     }).catchError((error) => print("Failed to fetch user. Error : ${error}"));
 
     _user = newUser;
@@ -33,10 +42,11 @@ class UserRepository {
 
   Future<UserJson> getUser() async {
      String? id = await firebaseauth.currentUser?.uid;
-
+//print("getuser ${_user.cart[0].quantity}");
      await db.collection("user").doc(id).get().then((event) {
-       _user = UserJson.fromJson(event.data() as Map<String, dynamic>) as UserJson;
-     }).catchError((error) => print("Failed to fetch user. Error : ${error}"));
+       _user = UserJson.fromJson(event.data() as Map<String, dynamic>, event.id);
+     }).catchError((error) => print("Failed to fetch user. Error : ${error}"));//
+//     print("getuser ${_user.cart[0].quantity}");
 
    // print(_user.firstName);
    // return UserJson(email: 'tuba@gmail.com', firstName: 'Tuba', lastName: 'Nasir', contact: '0232671361', cart: [CartItemJson(productId: "c1lxWoPXbvhfsUBOcOau", quantity: 76), CartItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu", quantity: 7)], wishlist: [WishlistItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu")]);

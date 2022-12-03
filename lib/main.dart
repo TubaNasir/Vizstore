@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/login_provider.dart';
+import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:flutterdemo/controllers/signup_provider.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
 import 'package:flutterdemo/core/user_repository.dart';
@@ -13,6 +14,7 @@ import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'controllers/cart_provider.dart';
 import 'controllers/google_sign_in_provider.dart';
 import 'screens/login/login.dart';
 import 'screens/home/home.dart';
@@ -41,6 +43,15 @@ Future<void> main() async {
           create: (_) => HomeProvider(
               getIt.get(instanceName: 'store'),
               getIt.get(instanceName: 'product'),
+              getIt.get(instanceName: 'user'))),
+      ChangeNotifierProvider(
+          create: (_) => CartProvider(
+              getIt.get(instanceName: 'store'),
+              getIt.get(instanceName: 'product'),
+              getIt.get(instanceName: 'user'))),
+      ChangeNotifierProvider(
+          create: (_) => ProductDetailsProvider(
+              getIt.get(instanceName: 'store'),
               getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(create: (_) => GoogleSignInProvider()),
 

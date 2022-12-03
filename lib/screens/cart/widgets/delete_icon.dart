@@ -6,12 +6,10 @@ import '../../../models/product_model.dart';
 class DeleteIcon extends StatefulWidget {
   const DeleteIcon(
       {Key? key,
-        required this.product,
-        required this.onCartChanged})
+        required this.product})
       : super(key: key);
 
   final ProductJson product;
-  final VoidCallback onCartChanged;
 
   @override
   State<DeleteIcon> createState() => _DeleteIconState();
@@ -27,7 +25,6 @@ class _DeleteIconState extends State<DeleteIcon> {
         setState(() {
           //widget.cartList.remove(widget.product);
         });
-        widget.onCartChanged();
       },
       icon: Icon(
         Icons.delete_outline,
