@@ -20,12 +20,14 @@ class HomeProvider with ChangeNotifier {
   StoreJson _store = const StoreJson.empty();
   UserJson _user = UserJson.empty();
   List<Product> _products = [];
+  List<Product> _categoryProducts  = [];
+
 
   StoreJson get store => _store;
-
   List<Product> get products => _products;
-
   UserJson get user => _user;
+  List<Product> get categoryProducts => _categoryProducts;
+
 
 
   void getStore(String id) async {
@@ -45,9 +47,11 @@ class HomeProvider with ChangeNotifier {
     print('in method');
     _products = await _productRepository.getProductList();
     notifyListeners();
-    print(products);
+    print(products[0].category);
     //notifyListeners();
   }
+
+
 
 
 

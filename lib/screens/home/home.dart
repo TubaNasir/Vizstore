@@ -17,9 +17,7 @@ import '../widgets/staggered_products.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
-
-   Home({super.key});
-
+  Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -30,24 +28,15 @@ class _HomeState extends State<Home> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => {
           context.read<HomeProvider>().getProductsList(),
-      context.read<HomeProvider>().getUser()
-
-    });
-    // bool isLoggedIn = context.read<LoginProvider>().isLoggedIn;
-    // if(isLoggedIn) {
-    //   context.read<HomeProvider>().getUser();
-    // }
-
-
+          context.read<HomeProvider>().getUser()
+        });
   }
-
 
   @override
   Widget build(BuildContext context) {
-
     List<Product> products = context.watch<HomeProvider>().products;
     UserJson user = context.watch<HomeProvider>().user;
-    print('home '+user.email.toString());
+    print('home ' + user.email.toString());
 
     return SafeArea(
       child: Scaffold(

@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/login_provider.dart';
+import 'package:flutterdemo/controllers/search_provider.dart';
 import 'package:flutterdemo/controllers/signup_provider.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
 import 'package:flutterdemo/core/user_repository.dart';
@@ -41,6 +42,8 @@ Future<void> main() async {
               getIt.get(instanceName: 'product'),
               getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(create: (_) => GoogleSignInProvider()),
+      ChangeNotifierProvider(create: (_) => SearchProvider( getIt.get(instanceName: 'product'),)),
+
 
     ],
     child: MyApp(),
