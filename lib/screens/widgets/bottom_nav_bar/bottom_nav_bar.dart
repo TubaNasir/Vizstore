@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter_glow/flutter_glow.dart';
+import 'package:flutterdemo/screens/camera/choice.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/widgets/bottom_nav_bar/widgets/my_custom_painter.dart';
@@ -34,12 +35,8 @@ class BottomNavBar extends StatelessWidget {
               heightFactor: 0.6,
               child: FloatingActionButton(
                   onPressed: () async {
-                    // Obtain a list of the available cameras on the device.
-                    final cameras = await availableCameras();
-                    // Get a specific camera from the list of available cameras.
-                    final firstCamera = cameras[0];
                     Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => CameraScreen(camera:firstCamera))
+                        MaterialPageRoute(builder: (_) => ChoiceScreen())
                     );
                   },
                   backgroundColor: PrimaryColor,

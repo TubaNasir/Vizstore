@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutterdemo/controllers/search_provider.dart';
+import 'package:flutterdemo/screens/camera/choice.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/search/search.dart';
@@ -63,7 +64,7 @@ class _SearchBarState extends State<SearchBar> {
               // Get a specific camera from the list of available cameras.
               final firstCamera = cameras[0];
               Navigator.of(context).push(
-                MaterialPageRoute(builder:(context) => CameraScreen(camera: firstCamera))
+                MaterialPageRoute(builder:(context) => ChoiceScreen())
               );
             },
             icon: Icon(Icons.camera_alt,color: Colors.black,)
