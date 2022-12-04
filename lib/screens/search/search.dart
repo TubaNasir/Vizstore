@@ -44,7 +44,7 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
-    List<Product> products = [];
+    List<ProductJson> products = [];
     if(widget.category != '') {
       print('in search no filter');
       products = context

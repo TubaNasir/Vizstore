@@ -19,14 +19,14 @@ class HomeProvider with ChangeNotifier {
 
   StoreJson _store = const StoreJson.empty();
   UserJson _user = UserJson.empty();
-  List<Product> _products = [];
-  List<Product> _categoryProducts  = [];
+  List<ProductJson> _products = [];
+  List<ProductJson> _categoryProducts  = [];
 
 
   StoreJson get store => _store;
-  List<Product> get products => _products;
+  List<ProductJson> get products => _products;
   UserJson get user => _user;
-  List<Product> get categoryProducts => _categoryProducts;
+  List<ProductJson> get categoryProducts => _categoryProducts;
 
 
 

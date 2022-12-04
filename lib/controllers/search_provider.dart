@@ -8,15 +8,15 @@ class SearchProvider with ChangeNotifier {
   ProductRepository _productRepository;
 
   String _searchText = '';
-  List<Product> _products = [];
-  List<Product> _categoryProducts = [];
-  List<Product> _filteredProducts = [];
+  List<ProductJson> _products = [];
+  List<ProductJson> _categoryProducts = [];
+  List<ProductJson> _filteredProducts = [];
 
-  List<Product> get products => _products;
+  List<ProductJson> get products => _products;
 
-  List<Product> get categoryProducts => _categoryProducts;
+  List<ProductJson> get categoryProducts => _categoryProducts;
 
-  List<Product> get filteredProducts => _filteredProducts;
+  List<ProductJson> get filteredProducts => _filteredProducts;
 
   String get searchText => _searchText;
 
