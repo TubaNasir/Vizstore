@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar2 extends StatelessWidget implements PreferredSizeWidget{
-  const CustomAppBar2({Key? key}) : super(key: key);
+  const CustomAppBar2({Key? key, required this.onPressed}) : super(key: key);
 
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,6 +16,7 @@ class CustomAppBar2 extends StatelessWidget implements PreferredSizeWidget{
         children: [
           InkWell(
             onTap: (){
+              onPressed;
               Navigator.pop(context);
             },
             child: Icon(

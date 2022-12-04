@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/cart_provider.dart';
+import 'package:flutterdemo/models/cart_model.dart';
+import 'package:provider/provider.dart';
 
-import '../../../models/product_model.dart';
 import '../../constants.dart';
 
 class CartQuantity extends StatefulWidget {
   const CartQuantity(
       {Key? key,
-      required this.cartList,
-      required this.product,
-      required this.onCartChanged})
+        required this.cartItem})
       : super(key: key);
-  final List<Product> cartList;
-  final Product product;
-  final VoidCallback onCartChanged;
+
+  final CartItemJson cartItem;
 
   @override
   State<CartQuantity> createState() => _CartQuantityState();
 }
 
 class _CartQuantityState extends State<CartQuantity> {
+
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) =>
+        context.read<CartProvider>().getUser());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,14 +38,7 @@ class _CartQuantityState extends State<CartQuantity> {
               padding: EdgeInsets.zero,
               constraints: BoxConstraints(),
               onPressed: () {
-                setState(() {
-                  widget.product.stock--;
-                  //widget.actualProduct.stock--;
-                  if (widget.product.stock < 1) {
-                    widget.cartList.remove(widget.product);
-                  }
-                });
-                widget.onCartChanged();
+                context.read<CartProvider>().decrementCartItem(widget.cartItem.productId, widget.cartItem.quantity);
               },
               icon: CircleAvatar(
                   radius: 20,
@@ -52,7 +52,7 @@ class _CartQuantityState extends State<CartQuantity> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Text(
-            "${widget.product.stock}",
+            "${widget.cartItem.quantity.toString()}",
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
@@ -63,10 +63,7 @@ class _CartQuantityState extends State<CartQuantity> {
               padding: EdgeInsets.zero,
               constraints: BoxConstraints(),
               onPressed: () {
-                setState(() {
-                  widget.product.stock++;
-                });
-                widget.onCartChanged();
+                context.read<CartProvider>().incrementCartItem(widget.cartItem.productId, widget.cartItem.quantity);
               },
               icon: CircleAvatar(
                   radius: 20,

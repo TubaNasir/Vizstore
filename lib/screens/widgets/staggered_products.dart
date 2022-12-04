@@ -5,13 +5,13 @@ import '../../models/product_model.dart';
 import '../product_detail/product_detail.dart';
 
 class StaggeredProductView extends StatelessWidget {
-  final List<Product> demoList;
+  final List<ProductJson> demoList;
 
   const StaggeredProductView(
       {required this.demoList, super.key});
 
   Widget _buildProducts(BuildContext context, int index) {
-    Product product = demoList[index];
+    ProductJson product = demoList[index];
 
     return GestureDetector(
       onTap: () {

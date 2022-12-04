@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutterdemo/controllers/cart_provider.dart';
+import 'package:provider/provider.dart';
 import '../../constants.dart';
 
-class TotalCardCart extends StatelessWidget {
+class TotalCardCart extends StatefulWidget {
   const TotalCardCart({super.key});
 
+  @override
+  State<TotalCardCart> createState() => _TotalCardCartState();
+}
+
+class _TotalCardCartState extends State<TotalCardCart> {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => {
+      context.read<CartProvider>().setTotal()
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -31,7 +45,7 @@ class TotalCardCart extends StatelessWidget {
                   textAlign: TextAlign.left,
                 ),
                 Text(
-                  'Rs 2700',
+                  ("Rs. ${context.watch<CartProvider>().total.toString()}"),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                 ),
               ],

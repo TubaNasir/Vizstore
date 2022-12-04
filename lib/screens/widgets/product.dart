@@ -11,7 +11,7 @@ class ProductCard extends StatelessWidget {
     required this.product,
   }) : super(key: key);
 
-  final Product product;
+  final ProductJson product;
 
   @override
   Widget build(BuildContext context) {

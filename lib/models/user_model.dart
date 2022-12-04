@@ -3,13 +3,13 @@ import 'cart_model.dart';
 
 class UserJson {
   String? id;
-  final String? email;
-  final String firstName;
-  final String lastName;
-  final String contact;
+  String? email;
+  String firstName;
+  String lastName;
+  String contact;
   String photoUrl;
-  final List<CartItemJson> cart;
-  final List<WishlistItemJson> wishlist;
+  List<CartItemJson> cart;
+  List<WishlistItemJson> wishlist;
 
   UserJson({
     this.id,
@@ -50,9 +50,9 @@ class UserJson {
         email: email ?? this.email,
       );
 
-  static UserJson fromJson(Map<String, dynamic> json) {
+  static UserJson fromJson(Map<String, dynamic> json, String id) {
     return UserJson(
-      //id: json["id"] as String? ?? '',
+      id: id as String? ?? '',
       email: json["email"] as String? ?? '',
       firstName: json["firstName"] as String? ?? '',
       lastName: json["lastName"] as String? ?? '',

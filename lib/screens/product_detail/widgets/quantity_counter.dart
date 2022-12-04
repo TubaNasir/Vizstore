@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:flutterdemo/screens/constants.dart';
+import 'package:provider/provider.dart';
 
 import '../../../models/product_model.dart';
 
 class QuantityCounter extends StatefulWidget {
   QuantityCounter({required this.product, Key? key}) : super(key: key);
 
-  Product product;
+  ProductJson product;
   @override
   State<QuantityCounter> createState() => _QuantityCounterState();
 }
 
 class _QuantityCounterState extends State<QuantityCounter> {
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,15 +28,7 @@ class _QuantityCounterState extends State<QuantityCounter> {
             children: [
               IconButton(
                   onPressed: () {
-                    setState(() {
-                      //widget.actualProduct.qty--;
-                      if (widget.product.stock == 0) {
-                        return;
-                      } else {
-                        widget.product.stock--;
-                      }
-                    });
-                    setState(() {});
+                    context.read<ProductDetailsProvider>().decrementQuantity();
                   },
                   icon: const CircleAvatar(
                       radius: 20,
@@ -43,7 +39,7 @@ class _QuantityCounterState extends State<QuantityCounter> {
                         size: 20,
                       ))),
               Text(
-                " ${"1"} ",
+                context.watch<ProductDetailsProvider>().quantity.toString(),
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge
@@ -51,10 +47,7 @@ class _QuantityCounterState extends State<QuantityCounter> {
               ),
               IconButton(
                   onPressed: () {
-                    setState(() {
-                      widget.product.stock++;
-                    });
-                    setState(() {});
+                    context.read<ProductDetailsProvider>().incrementQuantity();
                   },
                   icon: const CircleAvatar(
                       radius: 20,
