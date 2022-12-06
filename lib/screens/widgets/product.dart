@@ -1,17 +1,19 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
-
 import '../../models/product_model.dart';
-
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
     Key? key,
     required this.product,
+    required this.isFav,
+    required this.onPressed,
   }) : super(key: key);
 
   final ProductJson product;
+  final bool isFav;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +63,12 @@ class ProductCard extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                       color: TextColor1)
                           ),
-                          Icon(Icons.favorite,
-                          color: Colors.grey,),
+                          IconButton(
+                            padding: EdgeInsets.zero,
+                            constraints: BoxConstraints(),
+                            icon: const Icon(Icons.favorite),
+                            color: isFav ? Colors.red : Colors.grey,
+                            onPressed: onPressed),
                           // Container(
                           //   height: 28,
                           //   width: 28,

@@ -8,12 +8,12 @@ import 'package:flutterdemo/screens/home/widgets/catgories.dart';
 import 'package:flutterdemo/screens/home/widgets/heading.dart';
 import 'package:flutterdemo/screens/home/widgets/popular_products.dart';
 import 'package:flutterdemo/screens/home/widgets/promotion.dart';
+import 'package:flutterdemo/screens/home/widgets/staggered_product_view.dart';
 import '../../models/product_model.dart';
 import '../widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/layout.dart';
 import '../widgets/search_bar.dart';
-import '../widgets/staggered_products.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
@@ -30,8 +30,7 @@ class _HomeState extends State<Home> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => {
           context.read<HomeProvider>().getProductsList(),
-      context.read<HomeProvider>().getUser()
-
+          context.read<HomeProvider>().getUser()
     });
     // bool isLoggedIn = context.read<LoginProvider>().isLoggedIn;
     // if(isLoggedIn) {
@@ -75,7 +74,7 @@ class _HomeState extends State<Home> {
                     const SizedBox(height: 10),
                     SingleChildScrollView(
                       child: StaggeredProductView(
-                        demoList: products,
+                        products: products,
                       ),
                       physics: NeverScrollableScrollPhysics(),
                     ),

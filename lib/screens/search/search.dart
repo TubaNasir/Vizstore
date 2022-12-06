@@ -72,7 +72,7 @@ class _SearchState extends State<Search> {
                 const SizedBox(height: 20),
                 (products.isNotEmpty)
                     ? StaggeredProductView(
-                        demoList: products,
+                        products: products,
                       )
                     : const Text('No Products Found'),
               ],

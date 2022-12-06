@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/core/user_repository.dart';
 import 'package:flutterdemo/models/product_model.dart';
+import 'package:flutterdemo/models/wishlist_model.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
 import '../models/store_model.dart';
 import '../models/user_model.dart';
@@ -47,12 +48,37 @@ class HomeProvider with ChangeNotifier {
     print('in method');
     _products = await _productRepository.getProductList();
     notifyListeners();
-    print(products[0].category);
-    //notifyListeners();
+    //print(products[0].category);
   }
 
+  bool getIsFavourite(String productId) {
+    bool isFav = false;
+    isFav  = user.wishlist.any((element) => element.productId == productId);
+    print('issfav ${isFav}');
+    return isFav;
+  }
 
-
+  Future<void> updateWishlist(String productId) async {
+    List<WishlistItemJson> newWishlist = [];
+    var contain = user.wishlist.any((element) => element.productId == productId);
+    if (contain)
+    {
+      print('Already added to wishlist');
+    }
+    //value not exists
+    else
+    {
+      for (var item in user.wishlist){
+        newWishlist.add(item);
+      }
+      newWishlist.add(WishlistItemJson(productId: productId));
+    }
+      UserJson updatedUser = _user.copyWith(wishlist: newWishlist);
+      //print(updatedUser.cart[0].quantity);
+      await _userRepository.updateUser(updatedUser);
+      _user = await _userRepository.getUser();
+      notifyListeners();
+  }
 
 
 }

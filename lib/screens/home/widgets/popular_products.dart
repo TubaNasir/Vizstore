@@ -1,6 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../controllers/home_provider.dart';
 import '../../../models/product_model.dart';
 import '../../product_detail/product_detail.dart';
 import '../../widgets/product.dart';
@@ -24,7 +26,10 @@ class PopularProducts extends StatelessWidget {
                           onTap: () {
                             Navigator.push(context, MaterialPageRoute(builder: (_) => ProductDetail(product: product)));
                           },
-                          child: ProductCard(product: product)
+                          child: ProductCard(product: product,
+                              isFav: context.read<HomeProvider>().getIsFavourite(product.id),
+                              onPressed: () {},
+                          )
                         ),
                       ))
                   .toList(),
