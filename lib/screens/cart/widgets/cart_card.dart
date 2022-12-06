@@ -40,7 +40,7 @@ void initState()  {
   Widget build(BuildContext context) {
 
     ProductJson product = context.watch<CartProvider>().getProduct(widget.cartItem.productId);
-   // StoreJson store = context.watch<CartProvider>().getStore(widget.cartItem.productId);
+    StoreJson store = context.watch<CartProvider>().getStore(product.storeId);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 30.0),
@@ -94,7 +94,7 @@ void initState()  {
                           SizedBox(
                             height: 3,
                           ),
-                          Text('My store',
+                          Text(store.storeName,
                               style: Theme.of(context).textTheme.bodySmall),
                           SizedBox(
                             height: 5,

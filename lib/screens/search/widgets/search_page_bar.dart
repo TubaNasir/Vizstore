@@ -56,11 +56,11 @@ class _SearchPageBarState extends State<SearchPageBar> {
                 context.read<SearchProvider>().setSearchItem(text);
                 context.read<SearchProvider>().getFilteredProducts();
               },
-              // onChanged: (String text){
-              //   context.read<SearchProvider>().setSearchItem(text);
-              //   context.read<SearchProvider>().getFilteredProducts();
-              //
-              // },
+              onChanged: (String text){
+                context.read<SearchProvider>().setSearchItem(text);
+                context.read<SearchProvider>().getFilteredProducts();
+
+              },
 
             ),
           ),

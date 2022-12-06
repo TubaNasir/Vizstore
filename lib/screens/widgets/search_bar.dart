@@ -44,14 +44,15 @@ class _SearchBarState extends State<SearchBar> {
                     prefixIcon: Icon(Icons.search),
                     contentPadding: EdgeInsets.symmetric(horizontal: 90, vertical: 9)),
                onFieldSubmitted: (String text){
+                 context.read<SearchProvider>().setSearchItem(text);
+                 context.read<SearchProvider>().getFilteredProducts();
                   //context.read<SearchProvider>().setSearchItem(text);
                  Navigator.of(context).push(MaterialPageRoute(
                      builder: (context) => Search(
                      )));
                },
                 onChanged: (String text){
-                  context.read<SearchProvider>().setSearchItem(text);
-                  context.read<SearchProvider>().getFilteredProducts();
+
 
                 },
 

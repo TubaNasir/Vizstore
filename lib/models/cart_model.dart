@@ -11,7 +11,7 @@ class CartItemJson {
     required this.quantity
 });
 
-  const CartItemJson.empty() : productId = '', quantity = -1;
+  const CartItemJson.empty() : productId = '', quantity = 0;
 
   CartItemJson copyWith(
       {String? productId,

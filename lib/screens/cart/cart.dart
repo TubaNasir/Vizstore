@@ -28,6 +28,7 @@ class _CartState extends State<Cart> {
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
       await context.read<CartProvider>().getUser(),
       await context.read<CartProvider>().getProductsList(),
+      await context.read<CartProvider>().getStoresList(),
       context.read<CartProvider>().setTotal()
 
   });
