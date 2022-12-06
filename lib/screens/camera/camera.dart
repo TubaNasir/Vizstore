@@ -4,24 +4,24 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import '../search/search.dart';
+import 'package:http/http.dart' as http;
 
+import 'storage_services.dart';
 
 class CameraScreen extends StatefulWidget {
-  const CameraScreen({super.key, required this.camera});
+  CameraScreen({super.key, required this.camera});
 
   final CameraDescription camera;
+  Storage storage = Storage();
   @override
   // ignore: no_logic_in_create_state
-  State<CameraScreen> createState() => _CameraScreenState(camera);
+  State<CameraScreen> createState() => _CameraScreenState();
 }
 
 class _CameraScreenState extends State<CameraScreen> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
   
-  final CameraDescription camera;
-  
-  _CameraScreenState(this.camera);
 
   @override
   void initState() {
@@ -52,7 +52,7 @@ class _CameraScreenState extends State<CameraScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(color: Colors.black,),
-        title: Text(
+        title: const Text(
           'Image Search',
           textAlign: TextAlign.center,
           style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 22),
@@ -89,6 +89,7 @@ class _CameraScreenState extends State<CameraScreen> {
             if (!mounted) return;
 
             // If the picture was taken, display it on a new screen.
+            await widget.storage.uploadFile(image.name,image.path).then((value) => print("done"));
             await Navigator.of(context).push(
               // MaterialPageRoute(
               //   builder: (context) => DisplayPictureScreen(
@@ -112,6 +113,12 @@ class _CameraScreenState extends State<CameraScreen> {
     );
   }
 }
+
+// uploadImage(File file)(
+//   var request = http.MultipartRequest("POST",Uri.parse(""));
+  
+// )
+
 
 // A widget that displays the picture taken by the user.
 class DisplayPictureScreen extends StatelessWidget {
