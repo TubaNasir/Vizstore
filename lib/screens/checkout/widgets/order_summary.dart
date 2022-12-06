@@ -1,13 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/cart_provider.dart';
+import 'package:flutterdemo/controllers/checkout_provider.dart';
+import 'package:flutterdemo/models/cart_model.dart';
+import 'package:flutterdemo/models/product_model.dart';
+import 'package:flutterdemo/models/store_model.dart';
+import 'package:flutterdemo/models/user_model.dart';
+import 'package:flutterdemo/screens/checkout/widgets/order_summary_products.dart';
 import 'package:flutterdemo/screens/constants.dart';
+import 'package:provider/provider.dart';
 
-class OrderSummary extends StatelessWidget {
+class OrderSummary extends StatefulWidget {
   const OrderSummary({
     Key? key,
   }) : super(key: key);
 
+
+  @override
+  State<OrderSummary> createState() => _OrderSummaryState();
+}
+
+class _OrderSummaryState extends State<OrderSummary> {
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async =>
+    {
+      await context.read<CheckoutProvider>().getUser(),
+    //context.read<CheckoutProvider>().getProductsInfo()
+
+    });
+
+}
+
   @override
   Widget build(BuildContext context) {
+
+    //context.watch<CheckoutProvider>().cartStores;
+    //context.watch<CheckoutProvider>().getProductsInfo();
+    //List<StoreJson> cartStores = context.watch<CheckoutProvider>().getProductsInfo();
+    int total =  context.watch<CartProvider>().total;
+  // List<StoreJson> cartStores = context.watch<CheckoutProvider>().cartStores;
+
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
@@ -37,23 +71,18 @@ class OrderSummary extends StatelessWidget {
               const Divider(
                 color: SecondaryColor,
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Product1: ',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    Text(
-                      'Rs. 1500',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
+              Column(children: context.watch<CheckoutProvider>().getProductsInfo().map((e) =>
+              //unique stores.map
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(e.storeName, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),),
+                      OrderSummaryProducts(store: e,),
+                      SizedBox(height: 10,)
+                    ],
+                  )
+                  ).toList() ),
+              /*Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,7 +97,7 @@ class OrderSummary extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
+              ),*/
               const Divider(
                 color: SecondaryColor,
               ),
@@ -101,7 +130,7 @@ class OrderSummary extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Text(
-                      'Rs 2700',
+                      (total+100).toString(),
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium
@@ -110,7 +139,6 @@ class OrderSummary extends StatelessWidget {
                   ],
                 ),
               ),
-
             ],
           ),
         ),
@@ -118,3 +146,4 @@ class OrderSummary extends StatelessWidget {
     );
   }
 }
+

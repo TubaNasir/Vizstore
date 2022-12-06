@@ -1,8 +1,10 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/cart_provider.dart';
+import 'package:flutterdemo/controllers/checkout_provider.dart';
 import 'package:flutterdemo/controllers/login_provider.dart';
 import 'package:flutterdemo/controllers/product_details_provider.dart';
+import 'package:flutterdemo/controllers/profile_provider.dart';
 import 'package:flutterdemo/controllers/search_provider.dart';
 import 'package:flutterdemo/controllers/signup_provider.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
@@ -54,7 +56,11 @@ Future<void> main() async {
               getIt.get(instanceName: 'store'),
               getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(create: (_) => SearchProvider( getIt.get(instanceName: 'product'),)),
-
+      ChangeNotifierProvider(create: (_) => CheckoutProvider(
+        getIt.get(instanceName: 'user',),
+          getIt.get(instanceName: 'store'),
+          getIt.get(instanceName: 'product'))),
+      ChangeNotifierProvider(create: (_) => ProfileProvider()),
 
     ],
     child: MyApp(),
