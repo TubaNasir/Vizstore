@@ -4,6 +4,8 @@ import 'package:flutterdemo/core/user_repository.dart';
 import 'package:flutterdemo/models/cart_model.dart';
 import 'package:flutterdemo/models/product_model.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
+import 'package:flutterdemo/screens/constants.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../models/store_model.dart';
 import '../models/user_model.dart';
 import '../repositories/store_repository.dart';
@@ -47,6 +49,7 @@ class ProductDetailsProvider with ChangeNotifier {
     var contain = user.cart.any((element) => element.productId == productId);
     if (contain)
       {
+        showCartToast('Product is already in cart');
         print('Already added to cart');
       }
     //value not exists
@@ -59,6 +62,7 @@ class ProductDetailsProvider with ChangeNotifier {
         _quantity = 1;
         notifyListeners();
         await updateList(newCart);
+        showCartToast('Added to cart');
       }
   }
 
@@ -83,9 +87,18 @@ class ProductDetailsProvider with ChangeNotifier {
     print('prov' + _user.firstName);
   }
 
-  resetQuantity() {
+  void resetQuantity() {
     _quantity = 1;
     notifyListeners();
   }
 
+  void showCartToast(String text){
+    Fluttertoast.showToast(
+        msg: text,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        backgroundColor: SecondaryColor,
+        textColor: Colors.black
+    );
+  }
 }

@@ -15,7 +15,7 @@ class ImageWidget extends StatelessWidget {
     return SizedBox(
       width: 88,
       child: AspectRatio(
-        aspectRatio: 1.11,
+        aspectRatio: 1,
         child: Container(
           //width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,

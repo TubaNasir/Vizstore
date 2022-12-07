@@ -63,11 +63,18 @@ class ProductCard extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                       color: TextColor1)
                           ),
+                          isFav ?
+                          IconButton(
+                              padding: EdgeInsets.zero,
+                              constraints: BoxConstraints(),
+                              icon: const Icon(Icons.favorite),
+                              color: Colors.red,
+                              onPressed: onPressed) :
                           IconButton(
                             padding: EdgeInsets.zero,
                             constraints: BoxConstraints(),
-                            icon: const Icon(Icons.favorite),
-                            color: isFav ? Colors.red : Colors.grey,
+                            icon: const Icon(Icons.favorite_border_outlined),
+                            color: Colors.grey,
                             onPressed: onPressed),
                           // Container(
                           //   height: 28,

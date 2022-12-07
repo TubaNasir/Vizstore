@@ -6,6 +6,7 @@ import 'package:flutterdemo/controllers/login_provider.dart';
 import 'package:flutterdemo/models/user_model.dart';
 import 'package:flutterdemo/screens/home/widgets/catgories.dart';
 import 'package:flutterdemo/screens/home/widgets/heading.dart';
+import 'package:flutterdemo/screens/home/widgets/notification_icon.dart';
 import 'package:flutterdemo/screens/home/widgets/popular_products.dart';
 import 'package:flutterdemo/screens/home/widgets/promotion.dart';
 import 'package:flutterdemo/screens/home/widgets/staggered_product_view.dart';
@@ -58,7 +59,13 @@ class _HomeState extends State<Home> {
               widget: SingleChildScrollView(
                 child: Column(
                   children: [
-                    SearchBar(),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(child: SearchBar()),
+                        NotificationIcon(),
+                      ],
+                    ),
                     const SizedBox(height: 20),
                     const Promotion(),
                     const SizedBox(height: 20),

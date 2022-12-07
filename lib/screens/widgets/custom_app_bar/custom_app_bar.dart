@@ -18,7 +18,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => const Size.fromHeight(130);
+  Size get preferredSize => const Size.fromHeight(100);
 
 }
 
@@ -39,7 +39,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           child: Column(
             children: [
               Container(
-                  height: 100.0,
+                  height: 70.0,
                   decoration: const BoxDecoration(
                     borderRadius:
                         BorderRadius.only(bottomRight: Radius.circular(30.0)),
@@ -66,9 +66,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                           style: Theme.of(context).textTheme.headlineSmall,
                           textAlign: TextAlign.center,
                         ),
-                        (context.watch<NavBar>().page.toString() == 'home')
-                            ? NotificationsIcon(numOfitem: numOfitem)
-                            : SizedBox(width: 30),
+                        SizedBox(width: 30),
                       ],
                     ),
                   )),

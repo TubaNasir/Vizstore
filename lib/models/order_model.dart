@@ -8,7 +8,8 @@ class Order {
     required this.status,
     required this.date_created,
     required this.city,
-    required this.address
+    required this.address,
+    required this.total,
   });
 
   String userId;
@@ -18,24 +19,26 @@ class Order {
   DateTime date_created;
   String city;
   String address;
+  int total;
 
-  factory Order.fromJson(Map<String, dynamic> json) => Order(
+  factory Order.fromJson(Map<String, dynamic> json, String id) => Order(
     userId: json["userId"],
-    orderId: json["orderId"],
+    orderId: id,
     cart: List<CartItemJson>.from(json["cart"].map((x) => CartItemJson.fromJson(x))),
     status: json["status"],
     date_created: json["date_created"],
     city: json["city"],
     address: json["address"],
+    total: json["total"],
   );
 
   Map<String, dynamic> toJson() => {
     "userId": userId,
-    "orderId": orderId,
     "cart": List<dynamic>.from(cart.map((x) => x.toJson())),
     "status": status,
     "date_created": date_created,
     "city": city,
-    "address":address
+    "address":address,
+    "total": total
   };
 }
