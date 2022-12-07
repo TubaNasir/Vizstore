@@ -31,7 +31,8 @@ class _HomeState extends State<Home> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => {
           context.read<HomeProvider>().getProductsList(),
-          context.read<HomeProvider>().getUser()
+          context.read<HomeProvider>().getUser(),
+          context.read<HomeProvider>().sendNotifications()
     });
     // bool isLoggedIn = context.read<LoginProvider>().isLoggedIn;
     // if(isLoggedIn) {

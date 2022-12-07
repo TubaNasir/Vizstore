@@ -17,6 +17,7 @@ class SignupProvider with ChangeNotifier{
       contact: contact,
       cart: [],
       wishlist: [],
+      notifications: [],
       //photoUrl: user?.photoURL,
     );
     await _coreRepository.addUser(newUser);

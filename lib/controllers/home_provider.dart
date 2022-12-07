@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/core/user_repository.dart';
@@ -24,12 +25,13 @@ class HomeProvider with ChangeNotifier {
   UserJson _user = UserJson.empty();
   List<ProductJson> _products = [];
   List<ProductJson> _categoryProducts  = [];
-
+  int _notis = 0;
 
   StoreJson get store => _store;
   List<ProductJson> get products => _products;
   UserJson get user => _user;
   List<ProductJson> get categoryProducts => _categoryProducts;
+  int get notis => _notis;
 
 
 
@@ -43,6 +45,8 @@ class HomeProvider with ChangeNotifier {
     _user = await _userRepository.getUser();
     notifyListeners();
     print('prov' + _user.firstName);
+    print("notsi ${_user.notifications}");
+
   }
 
 
@@ -82,6 +86,26 @@ class HomeProvider with ChangeNotifier {
       notifyListeners();
   }
 
+  Future<void> sendNotifications() async{
+    _user = await _userRepository.sendNotifications();
+    notifyListeners();
+  }
 
+
+  int notifications(AsyncSnapshot<QuerySnapshot<Object?>> snapshot){
+    UserJson newUser = UserJson.empty();
+    int filteredList = 0;
+    snapshot.data?.docs
+        .forEach((DocumentSnapshot document) {
+      print("gg");
+      if (document.id == _user.id) {
+        newUser = UserJson.fromJson(
+            document.data() as Map<String, dynamic>, document.id);
+        filteredList = newUser.notifications.where((val) => val.read == false).length;
+
+      }
+    });
+    return filteredList;
+  }
 
 }
