@@ -56,11 +56,11 @@ class UserRepository {
               //print(change.doc.data()!['status']);
               if(change.doc.data()!['status'] == 'confirmed'){
                 newList.add(NotificationItemJson(
-                    orderId: change.doc.id, message: 'You order# ${change.doc.id} has been confirmed!'));
+                    orderId: change.doc.id, message: 'You order# ${change.doc.id} has been confirmed!', dateTime: DateTime.now()));
               }
               if(change.doc.data()!['status'] == 'cancelled'){
                 newList.add(NotificationItemJson(
-                    orderId: change.doc.id, message: 'You order# ${change.doc.id} has been cancelled.'));
+                    orderId: change.doc.id, message: 'You order# ${change.doc.id} has been cancelled.', dateTime: DateTime.now()));
               }
               UserJson updatedUser = _user.copyWith(notifications: newList);
               await updateUser(updatedUser);

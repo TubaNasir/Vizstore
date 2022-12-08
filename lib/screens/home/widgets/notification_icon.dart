@@ -21,8 +21,6 @@ class _NotificationIconState extends State<NotificationIcon> {
   @override
   Widget build(BuildContext context) {
 
-    int numOfitem = 0;
-
     return StreamBuilder<QuerySnapshot>(
         stream: _usersStream,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot)
@@ -52,7 +50,7 @@ class _NotificationIconState extends State<NotificationIcon> {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => Notifications()),
-                  );
+                  ).then((value) => context.read<HomeProvider>().markAsRead());
                 },
                 child: Container(
                   padding: EdgeInsets.all(4.0),

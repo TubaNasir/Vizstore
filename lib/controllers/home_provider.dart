@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/core/user_repository.dart';
+import 'package:flutterdemo/models/notification_model.dart';
 import 'package:flutterdemo/models/product_model.dart';
 import 'package:flutterdemo/models/wishlist_model.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
@@ -97,7 +98,7 @@ class HomeProvider with ChangeNotifier {
     int filteredList = 0;
     snapshot.data?.docs
         .forEach((DocumentSnapshot document) {
-      print("gg");
+      //print("gg");
       if (document.id == _user.id) {
         newUser = UserJson.fromJson(
             document.data() as Map<String, dynamic>, document.id);
@@ -106,6 +107,23 @@ class HomeProvider with ChangeNotifier {
       }
     });
     return filteredList;
+  }
+
+  void markAsRead() async{
+    List<NotificationItemJson> newList = [];
+    for (var item in _user.notifications){
+
+      NotificationItemJson i = item.copyWith(orderId: item.orderId ,message: item.message,dateTime: item.dateTime ,read: true);
+      newList.add(i);
+
+      UserJson updatedUser = _user.copyWith(notifications: newList);
+      //print(updatedUser.cart[0].quantity);
+      await _userRepository.updateUser(updatedUser);
+      notifyListeners();
+      _user = await _userRepository.getUser();
+      notifyListeners();
+
+    }
   }
 
 }
