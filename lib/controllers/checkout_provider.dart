@@ -53,14 +53,15 @@ class CheckoutProvider with ChangeNotifier {
         city: _city,
         address: _address)
     ).cast<OrderJson>().toList();
-
+print(orders);
     //print(orders.map((e) => e.cart.first.quantity));
-    orders.map((e) => placeOrder2(e));
+   // orders.map((e) async => await placeOrder2(e));
+    orders.forEach((element) async {await placeOrder2(element);});
 
     //return error;
   }
 
-  placeOrder2(OrderJson order) async {
+  Future<void> placeOrder2(OrderJson order) async {
     print('in place order 2');
     await _orderRepository.addOrder(order);
   }

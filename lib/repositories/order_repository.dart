@@ -13,7 +13,7 @@ class OrderRepository {
     return orders;
   }
 
-  addOrder(OrderJson newOrder) async {
+  Future<void> addOrder(OrderJson newOrder) async {
     print('before addorder');
     bool error = false;
     await db

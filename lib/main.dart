@@ -58,7 +58,8 @@ Future<void> main() async {
           create: (_) => ProductDetailsProvider(
               getIt.get(instanceName: 'store'),
               getIt.get(instanceName: 'user'))),
-      ChangeNotifierProvider(create: (_) => SearchProvider( getIt.get(instanceName: 'product'),)),
+      ChangeNotifierProvider(create: (_) => SearchProvider( getIt.get(instanceName: 'product'),
+        getIt.get(instanceName: 'user'),)),
       ChangeNotifierProvider(create: (_) => CheckoutProvider(
         getIt.get(instanceName: 'user',),
           getIt.get(instanceName: 'store'),
