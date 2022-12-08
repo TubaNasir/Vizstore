@@ -110,20 +110,23 @@ class HomeProvider with ChangeNotifier {
   }
 
   void markAsRead() async{
+    _user = await _userRepository.getUser();
+    notifyListeners();
     List<NotificationItemJson> newList = [];
+    print("sa ${_user.notifications.length}");
     for (var item in _user.notifications){
 
       NotificationItemJson i = item.copyWith(orderId: item.orderId ,message: item.message,dateTime: item.dateTime ,read: true);
       newList.add(i);
 
-      UserJson updatedUser = _user.copyWith(notifications: newList);
-      //print(updatedUser.cart[0].quantity);
-      await _userRepository.updateUser(updatedUser);
-      notifyListeners();
-      _user = await _userRepository.getUser();
-      notifyListeners();
-
     }
+    print("sa ${newList.length}");
+    UserJson updatedUser = _user.copyWith(notifications: newList);
+    //print(updatedUser.cart[0].quantity);
+    await _userRepository.updateUser(updatedUser);
+    notifyListeners();
+    _user = await _userRepository.getUser();
+    notifyListeners();
   }
 
 }
