@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../controllers/wishlist_provider.dart';
 
 class TitleWidgetWishlist extends StatelessWidget {
   const TitleWidgetWishlist({
     Key? key,
     required this.title,
-    required this.icon,
-    required this.price, required this.storeName,
+    required this.price,
+    required this.storeName,
+    required this.onPressed,
   }) : super(key: key);
 
   final String title, storeName;
-  final Widget icon;
-  final String price;
+  final int price;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.all(3.0),
+        padding: const EdgeInsets.all(5.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +37,12 @@ class TitleWidgetWishlist extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                icon
+                IconButton(
+                  icon: Icon(Icons.favorite, color: Colors.red, size: 25),
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(),
+                  onPressed: onPressed,
+                ),
               ],
             ),
             SizedBox(
@@ -44,8 +53,11 @@ class TitleWidgetWishlist extends StatelessWidget {
               height: 5,
             ),
             Text(
-              price,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              "Rs. ${price}",
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium
+                  ?.copyWith(fontWeight: FontWeight.bold),
             )
           ],
         ),

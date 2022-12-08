@@ -2,13 +2,11 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/search_provider.dart';
 import 'package:flutterdemo/screens/search/widgets/search_page_bar.dart';
+import 'package:flutterdemo/screens/search/widgets/staggered_product_view.dart';
 import 'package:provider/provider.dart';
-
 import '../../models/product_model.dart';
 import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/layout.dart';
-import '../widgets/search_bar.dart';
-import '../widgets/staggered_products.dart';
 
 class Search extends StatefulWidget {
   Search({super.key, this.category = '',});
@@ -72,7 +70,7 @@ class _SearchState extends State<Search> {
                 const SizedBox(height: 20),
                 (products.isNotEmpty)
                     ? StaggeredProductView(
-                        demoList: products,
+                        products: products,
                       )
                     : const Text('No Products Found'),
               ],

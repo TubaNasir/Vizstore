@@ -10,7 +10,7 @@ import 'cart_quantity.dart';
 import 'delete_icon.dart';
 import 'image_widget_cart.dart';
 
-class CartCard extends StatefulWidget {
+class CartCard extends StatelessWidget {
   const CartCard(
       {Key? key,
       required this.cartItem})
@@ -18,28 +18,10 @@ class CartCard extends StatefulWidget {
 
   final CartItemJson cartItem;
 
-  //final Product actualProduct;
-  @override
-  // ignore: no_logic_in_create_state
-  State<CartCard> createState() => _CartCardState();
-}
-
-class _CartCardState extends State<CartCard> {
-
-  _CartCardState();
-
-@override
-void initState()  {
-  // TODO: implement initState
-  super.initState();
-  //WidgetsBinding.instance.addPostFrameCallback((_) =>
-      //context.read<CartProvider>().setProduct(widget.cartItem.productId));
-      //context.read<CartProvider>().getUser();
-}
   @override
   Widget build(BuildContext context) {
 
-    ProductJson product = context.watch<CartProvider>().getProduct(widget.cartItem.productId);
+    ProductJson product = context.watch<CartProvider>().getProduct(cartItem.productId);
     StoreJson store = context.watch<CartProvider>().getStore(product.storeId);
 
     return Padding(
@@ -112,7 +94,7 @@ void initState()  {
                                       ?.copyWith(fontWeight: FontWeight.bold),
                                 ),
                                 CartQuantity(
-                                    cartItem: widget.cartItem),
+                                    cartItem: cartItem),
                               ],
                             ),
                           )

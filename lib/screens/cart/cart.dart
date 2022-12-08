@@ -13,7 +13,6 @@ import '../widgets/custom_button.dart';
 import '../widgets/layout.dart';
 
 class Cart extends StatefulWidget {
-
   const Cart({super.key});
 
   @override
@@ -21,23 +20,20 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
-      await context.read<CartProvider>().getUser(),
-      await context.read<CartProvider>().getProductsList(),
-      await context.read<CartProvider>().getStoresList(),
-      context.read<CartProvider>().setTotal()
-
-  });
+          await context.read<CartProvider>().getUser(),
+          await context.read<CartProvider>().getProductsList(),
+          await context.read<CartProvider>().getStoresList(),
+          context.read<CartProvider>().setTotal()
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     final user = context.watch<CartProvider>().user;
-    print(user.cart);
 
     return SafeArea(
       child: Scaffold(
@@ -48,32 +44,28 @@ class _CartState extends State<Cart> {
           //backgroundColor: Colors.grey.shade200,
           body: Stack(children: [
             Layout(
-                widget: SingleChildScrollView(
-                  child: Column(children: [
-                    Column(
-                      children: user.cart
-                          .map((e) => CartCard(
-                        cartItem: e
-                      ))
-                          .toList(),
-                    ),
-                    TotalCardCart(),
-                    SizedBox(height: 20),
-                    CustomButton(
-                      text: 'Checkout',
-                      pressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Checkout()));
-                      },
-                    ),
-                    SizedBox(height: 100),
-                  ]),
-                ),
-                ),
+              widget: SingleChildScrollView(
+                child: Column(
+                    children: [
+                  Column(
+                    children:
+                        user.cart.map((e) => CartCard(cartItem: e)).toList(),
+                  ),
+                  TotalCardCart(),
+                  SizedBox(height: 20),
+                  CustomButton(
+                    text: 'Checkout',
+                    pressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => Checkout()));
+                    },
+                  ),
+                  SizedBox(height: 100),
+                ]),
+              ),
+            ),
             BottomNavBar()
-          ])
-      ),
+          ])),
     );
   }
 }
-

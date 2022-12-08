@@ -20,19 +20,14 @@ class CartProvider with ChangeNotifier {
   StoreRepository _storeRepository;
 
   StoreJson _store = const StoreJson.empty();
-
-  ProductJson _product = const ProductJson.empty();
   UserJson _user = UserJson.empty();
   List<ProductJson> _products = [];
   List<StoreJson> _stores = [];
-  List<ProductJson> _cartProducts = [];
   int _total = -1;
 
   StoreJson get store => _store;
-  //ProductJson get product => _product;
   List<ProductJson> get products => _products;
   List<StoreJson> get stores => _stores;
-  //List<ProductJson> get cartProducts => _products;
   UserJson get user => _user;
   int get total => _total;
 
@@ -73,14 +68,12 @@ class CartProvider with ChangeNotifier {
 
 
   Future<void> getProductsList() async {
-    print('in method');
     _products = await _productRepository.getProductList();
     notifyListeners();
     print(products);
   }
 
   Future<void> getStoresList() async {
-    print('in method');
     _stores = await _storeRepository.getStoresList();
     notifyListeners();
     print(stores);

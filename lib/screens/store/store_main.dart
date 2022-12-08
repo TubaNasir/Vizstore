@@ -22,7 +22,7 @@ class StoreMain extends StatelessWidget {
             SingleChildScrollView(
                 physics: NeverScrollableScrollPhysics(),
                 child: StaggeredProductView(
-                  demoList: demoProducts,
+                  products: demoProducts,
                 )),
             const SizedBox(height: 100),
           ],

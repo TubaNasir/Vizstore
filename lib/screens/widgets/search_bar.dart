@@ -31,12 +31,12 @@ class _SearchBarState extends State<SearchBar> {
       decoration: BoxDecoration(
           color: SecondaryColor, borderRadius: BorderRadius.circular(20.0)),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(
             child:
               TextFormField(
                 initialValue: searchText,
-                //controller: controllerSearch,
                 decoration: const InputDecoration(
                     enabledBorder: InputBorder.none,
                     focusedBorder: InputBorder.none,
@@ -52,7 +52,6 @@ class _SearchBarState extends State<SearchBar> {
                      )));
                },
                 onChanged: (String text){
-
 
                 },
 
