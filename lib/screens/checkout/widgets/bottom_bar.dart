@@ -1,5 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/checkout_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants.dart';
 import '../../success/success.dart';
@@ -64,12 +66,16 @@ class CheckoutBottomBar extends StatelessWidget {
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
                 ),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => Success(),
-                    ),
-                  );
+                onPressed: () async {
+                 await context.read<CheckoutProvider>().placeOrder();
+
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Success(),
+                      ),
+                    );
+
+
                 },
                 child: Ink(
                   decoration: const BoxDecoration(

@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/core/user_repository.dart';
 import 'package:flutterdemo/models/cart_model.dart';
+import 'package:flutterdemo/models/order_model.dart';
 import 'package:flutterdemo/models/product_model.dart';
 import 'package:flutterdemo/models/store_model.dart';
 import 'package:flutterdemo/models/user_model.dart';
+import 'package:flutterdemo/repositories/order_repository.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
 import 'package:flutterdemo/repositories/store_repository.dart';
 
 class CheckoutProvider with ChangeNotifier {
   CheckoutProvider(
-      this._userRepository, this._storeRepository, this._productRepository);
+      this._userRepository, this._storeRepository, this._productRepository, this._orderRepository);
 
   UserRepository _userRepository;
   StoreRepository _storeRepository;
   ProductRepository _productRepository;
+  OrderRepository _orderRepository;
 
   UserJson _user = UserJson.empty();
   StoreJson _store = StoreJson.empty();
@@ -21,24 +24,58 @@ class CheckoutProvider with ChangeNotifier {
   List<ProductJson> _products = [];
   List<StoreJson> _stores = [];
   List<StoreJson> _cartStores = [];
+  String _address = '';
+  String _city = '';
 
   UserJson get user => _user;
-
   StoreJson get store => _store;
-
   List<ProductJson> get products => _products;
-
   List<StoreJson> get stores => _stores;
-
-  //List<StoreJson> get cartStores => _storeDistinct;
+  String get address => _address;
+  String get city => _city;
 
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
     notifyListeners();
   }
 
-  Future<void> placeOrder(
-      String name, String contact, String address, String city) async {}
+  Future<void> placeOrder() async {
+    print('in place order '+ _city +' '+_address);
+    DateTime date = DateTime.now();
+    List<StoreJson> distinctStores = getProductsInfo();
+    bool error = false;
+    //print(distinctStores.map((e) => e.storeName));
+    List<OrderJson> orders = distinctStores.map((e)  =>
+        OrderJson(
+        userId: _user.id,
+        cart: getProductsFromStore(e.id),
+        date_created: date,
+        city: _city,
+        address: _address)
+    ).cast<OrderJson>().toList();
+
+    //print(orders.map((e) => e.cart.first.quantity));
+    orders.map((e) => placeOrder2(e));
+
+    //return error;
+  }
+
+  placeOrder2(OrderJson order) async {
+    print('in place order 2');
+    await _orderRepository.addOrder(order);
+  }
+
+  void setAddress(String address){
+    _address = address;
+    //notifyListeners();
+    print('ad '+_address);
+  }
+
+  void setCity(String city){
+    _city = city;
+    //notifyListeners();
+    print('city '+_city);
+  }
 
   // Future<StoreJson> getStore(String id) async {
   //   _store = await _storeRepository.getStoreInfo(id);
@@ -113,6 +150,7 @@ class CheckoutProvider with ChangeNotifier {
 
     List<ProductJson> cartProductInfo = cartProducts.map((e) => getProduct(e.productId)).toList();
 
+    print('in get products from store');
     return cartProducts;
 
     // for (var product in cartProducts) {

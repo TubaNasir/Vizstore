@@ -10,6 +10,7 @@ import 'package:flutterdemo/controllers/signup_provider.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
 import 'package:flutterdemo/core/user_repository.dart';
 import 'package:flutterdemo/models/store_model.dart';
+import 'package:flutterdemo/repositories/order_repository.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
 import 'package:flutterdemo/repositories/store_repository.dart';
 import 'package:flutterdemo/screens/themes.dart';
@@ -34,6 +35,8 @@ Future<void> main() async {
       instanceName: 'product');
   getIt.registerSingleton<UserRepository>(UserRepository(),
       instanceName: 'user');
+  getIt.registerSingleton<OrderRepository>(OrderRepository(),
+      instanceName: 'order');
 
   runApp(MultiProvider(
     providers: [
@@ -59,7 +62,8 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (_) => CheckoutProvider(
         getIt.get(instanceName: 'user',),
           getIt.get(instanceName: 'store'),
-          getIt.get(instanceName: 'product'))),
+          getIt.get(instanceName: 'product'),
+          getIt.get(instanceName: 'order'))),
       ChangeNotifierProvider(create: (_) => ProfileProvider()),
 
     ],

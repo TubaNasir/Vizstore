@@ -18,6 +18,7 @@ class CheckoutForm extends StatefulWidget {
 
 class _CheckoutFormState extends State<CheckoutForm> {
   String dropdownvalue = 'Karachi';
+
   bool enabled = false;
 
   @override
@@ -26,6 +27,8 @@ class _CheckoutFormState extends State<CheckoutForm> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
       await context.read<CheckoutProvider>().getUser(),
+    context.read<CheckoutProvider>().setCity(dropdownvalue)
+
 
     });
   }
@@ -34,9 +37,9 @@ class _CheckoutFormState extends State<CheckoutForm> {
   Widget build(BuildContext context) {
     UserJson user = context.watch<CheckoutProvider>().user;
 
-    TextEditingController controllerName = TextEditingController(text: '${user.firstName} ${user.lastName}');
+    //TextEditingController controllerName = TextEditingController(text: '${user.firstName} ${user.lastName}');
     TextEditingController controllerAddress = TextEditingController();
-    TextEditingController controllerContact = TextEditingController(text: user.contact);
+    //TextEditingController controllerContact = TextEditingController(text: user.contact);
     return Padding(
       padding: const EdgeInsets.all(13.0),
       child: Column(children: [
@@ -44,12 +47,12 @@ class _CheckoutFormState extends State<CheckoutForm> {
         TextFormField(
           decoration: InputDecoration(
             labelText: "Name",
-            //hintText: '${user.firstName} ${user.lastName}',
+            hintText: '${user.firstName} ${user.lastName}',
             enabled: enabled,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             suffixIcon: SuffixIcon(icon: Icons.person),
           ),
-          controller: controllerName,
+          //controller: controllerName,
         ),
         SizedBox(
           height: 20,
@@ -57,12 +60,12 @@ class _CheckoutFormState extends State<CheckoutForm> {
         TextFormField(
           decoration: InputDecoration(
             labelText: "Contact Number",
-            //hintText: user.contact,
+            hintText: user.contact,
             enabled: enabled,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             suffixIcon: SuffixIcon(icon: Icons.phone_android),
           ),
-          controller: controllerContact,
+          //controller: controllerContact,
         ),
         SizedBox(height: 20),
         TextFormField(
@@ -73,6 +76,9 @@ class _CheckoutFormState extends State<CheckoutForm> {
             floatingLabelBehavior: FloatingLabelBehavior.always,
             suffixIcon: SuffixIcon(icon: Icons.location_on),
           ),
+          onChanged: (String text){
+            context.read<CheckoutProvider>().setAddress(controllerAddress.text);
+          },
           controller: controllerAddress,
         ),
         SizedBox(height: 20),
@@ -110,6 +116,7 @@ class _CheckoutFormState extends State<CheckoutForm> {
                 onChanged: (String? newValue) {
                   setState(() {
                     dropdownvalue = newValue!;
+                    context.read<CheckoutProvider>().setCity(dropdownvalue);
                   });
                 },
               ),
