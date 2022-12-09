@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/cart_provider.dart';
 import 'package:flutterdemo/controllers/checkout_provider.dart';
 import 'package:flutterdemo/controllers/login_provider.dart';
+import 'package:flutterdemo/controllers/notifications_provider.dart';
 import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:flutterdemo/controllers/profile_provider.dart';
 import 'package:flutterdemo/controllers/search_provider.dart';
@@ -58,15 +59,25 @@ Future<void> main() async {
           create: (_) => ProductDetailsProvider(
               getIt.get(instanceName: 'store'),
               getIt.get(instanceName: 'user'))),
-      ChangeNotifierProvider(create: (_) => SearchProvider( getIt.get(instanceName: 'product'),
-        getIt.get(instanceName: 'user'),)),
-      ChangeNotifierProvider(create: (_) => CheckoutProvider(
-        getIt.get(instanceName: 'user',),
-          getIt.get(instanceName: 'store'),
-          getIt.get(instanceName: 'product'),
-          getIt.get(instanceName: 'order'))),
+      ChangeNotifierProvider(
+          create: (_) => SearchProvider(
+                getIt.get(instanceName: 'product'),
+                getIt.get(instanceName: 'user'),
+              )),
+      ChangeNotifierProvider(
+          create: (_) => CheckoutProvider(
+              getIt.get(
+                instanceName: 'user',
+              ),
+              getIt.get(instanceName: 'store'),
+              getIt.get(instanceName: 'product'),
+              getIt.get(instanceName: 'order'))),
       ChangeNotifierProvider(create: (_) => ProfileProvider()),
-
+      ChangeNotifierProvider(
+          create: (_) => NotificationsProvider(
+                getIt.get(instanceName: 'user'),
+                getIt.get(instanceName: 'store'),
+              )),
     ],
     child: MyApp(),
     //create: (_) => NavBar(),

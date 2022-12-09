@@ -15,6 +15,7 @@ class OrderSummary extends StatefulWidget {
   }) : super(key: key);
 
 
+
   @override
   State<OrderSummary> createState() => _OrderSummaryState();
 }
@@ -28,6 +29,7 @@ class _OrderSummaryState extends State<OrderSummary> {
     {
       await context.read<CheckoutProvider>().getUser(),
     //context.read<CheckoutProvider>().getProductsInfo()
+      context.read<CheckoutProvider>().setTotal()
 
     });
 
@@ -39,8 +41,9 @@ class _OrderSummaryState extends State<OrderSummary> {
     //context.watch<CheckoutProvider>().cartStores;
     //context.watch<CheckoutProvider>().getProductsInfo();
     //List<StoreJson> cartStores = context.watch<CheckoutProvider>().getProductsInfo();
-    int total =  context.watch<CartProvider>().total;
   // List<StoreJson> cartStores = context.watch<CheckoutProvider>().cartStores;
+    //int total =  context.watch<CheckoutProvider>().getTotal();
+
 
     return Card(
       shape: RoundedRectangleBorder(
@@ -82,26 +85,10 @@ class _OrderSummaryState extends State<OrderSummary> {
                     ],
                   )
                   ).toList() ),
-              /*Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Product2: ',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    Text(
-                      'Rs. 1200',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
-                ),
-              ),*/
               const Divider(
                 color: SecondaryColor,
               ),
-              Padding(
+             /* Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,7 +106,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                     ),
                   ],
                 ),
-              ),
+              ),*/
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Row(
@@ -127,10 +114,10 @@ class _OrderSummaryState extends State<OrderSummary> {
                   children: [
                     Text(
                       'Total:',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      (total+100).toString(),
+                        context.watch<CheckoutProvider>().total.toString(),
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium

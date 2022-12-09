@@ -27,7 +27,7 @@ class UserJson {
 
   UserJson.empty()
       : email = '',
-        firstName = 'h',
+        firstName = '',
         lastName = '',
         contact = '',
         photoUrl = '',

@@ -77,7 +77,7 @@ class _CheckoutFormState extends State<CheckoutForm> {
             suffixIcon: SuffixIcon(icon: Icons.location_on),
           ),
           onChanged: (String text){
-            context.read<CheckoutProvider>().setAddress(controllerAddress.text);
+            context.read<CheckoutProvider>().setAddress(text);
           },
           controller: controllerAddress,
         ),

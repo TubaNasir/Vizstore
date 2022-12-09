@@ -36,24 +36,44 @@ class _OrderSummaryProductsState extends State<OrderSummaryProducts> {
         context.read<CheckoutProvider>().getProductsFromStore(widget.store.id);
 
     return Column(
-        children: cartProducts.map((element) => Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      // context.read<CheckoutProvider>().getProduct(e.productId),
-                      '${context.read<CheckoutProvider>().getProduct(element.productId).title}   ${element.quantity}',
-                      style: Theme.of(context).textTheme.bodyMedium,
+      children: [
+        Column(
+            children: cartProducts.map((element) => Padding(
+                    padding: const EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          // context.read<CheckoutProvider>().getProduct(e.productId),
+                          '${context.read<CheckoutProvider>().getProduct(element.productId).title}   ${element.quantity}',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        Text('Rs. ${(context.read<CheckoutProvider>().getProduct(element.productId).price*element.quantity).toString()}',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      ],
                     ),
-                    Text(
-                      (context.read<CheckoutProvider>().getProduct(element.productId).price*element.quantity).toString(),
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
-                ),
+                  ),
+                )
+                .toList()),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 0.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Delivery fee:',
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
-            )
-            .toList());
+              Text('Rs. ${widget.store.deliveryCharges}',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }

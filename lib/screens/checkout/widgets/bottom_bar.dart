@@ -6,14 +6,31 @@ import 'package:provider/provider.dart';
 import '../../constants.dart';
 import '../../success/success.dart';
 
-class CheckoutBottomBar extends StatelessWidget {
+class CheckoutBottomBar extends StatefulWidget {
   const CheckoutBottomBar({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<CheckoutBottomBar> createState() => _CheckoutBottomBarState();
+}
+
+class _CheckoutBottomBarState extends State<CheckoutBottomBar> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async =>
+    {
+      //context.read<CheckoutProvider>().setTotal()
+
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+   // int total =  context.watch<CheckoutProvider>().getTotal();
+
     return Positioned(
       right: -8.0,
       //left: -8.0,
@@ -52,7 +69,7 @@ class CheckoutBottomBar extends StatelessWidget {
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(color: TextColor1),
                   ),
-                  Text('Rs. 1200',
+                  Text( context.watch<CheckoutProvider>().total.toString(),
                     textAlign: TextAlign.left,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
@@ -67,14 +84,24 @@ class CheckoutBottomBar extends StatelessWidget {
                   backgroundColor: Colors.white,
                 ),
                 onPressed: () async {
-                 await context.read<CheckoutProvider>().placeOrder();
-
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => Success(),
-                      ),
-                    );
-
+                 String error = await context.read<CheckoutProvider>().placeOrder();
+                 if(error == 'Please enter a valid address'){
+                   // AlertDialog(
+                   //   title: Text(error!),
+                   //   actions: [
+                   //     TextButton(onPressed: (){
+                   //       Navigator.of(context).pop();
+                   //     }, child: Text('Ok'))
+                   //   ],
+                   // );
+                 }
+                 else {
+                   Navigator.of(context).push(
+                     MaterialPageRoute(
+                       builder: (context) => Success(),
+                     ),
+                   );
+                 }
 
                 },
                 child: Ink(

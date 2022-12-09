@@ -26,6 +26,7 @@ class _CheckoutState extends State<Checkout> {
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
       await context.read<CheckoutProvider>().getProductsList(),
       await context.read<CheckoutProvider>().getStoresList(),
+      context.read<CheckoutProvider>().setTotal()
       //await context.read<CheckoutProvider>().getCartStores(),
       //await context.read<CheckoutProvider>().getUser(),
 
