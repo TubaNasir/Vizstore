@@ -50,10 +50,10 @@ class SearchProvider with ChangeNotifier {
   void getFilteredProducts() {
     _filteredProducts = products
         .where((element) =>
-            element.title.toLowerCase().contains(searchText.toLowerCase()) ||
+            element.title.toLowerCase().contains(_searchText.toLowerCase()) ||
             element.description
                 .toLowerCase()
-                .contains(searchText.toLowerCase()))
+                .contains(_searchText.toLowerCase()))
         .toList();
     notifyListeners();
   }
