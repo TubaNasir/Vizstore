@@ -22,6 +22,30 @@ class ProductJson {
     required this.sold,
   });
 
+  ProductJson copyWith(
+      {String? id,
+        String? image,
+        String? title,
+        String? description,
+        int? price,
+        String? storeId,
+        String? category,
+        int? sold,
+        int? stock
+        }
+      ) =>
+      ProductJson(
+        id: id ?? this.id,
+        image: image ?? this.image,
+        title: title ?? this.title,
+        description: description ?? this.description,
+        price: price ?? this.price,
+        storeId: storeId ?? this.storeId,
+        stock: stock ?? this.stock,
+        sold: sold ?? this.sold,
+        category: category ?? this.category,
+      );
+
   const ProductJson.empty()
       : id = '',
         image = 'h',

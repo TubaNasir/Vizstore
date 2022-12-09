@@ -29,17 +29,11 @@ class CheckoutProvider with ChangeNotifier {
   int _total = 0;
 
   int get total => _total;
-
   UserJson get user => _user;
-
   StoreJson get store => _store;
-
   List<ProductJson> get products => _products;
-
   List<StoreJson> get stores => _stores;
-
   String get address => _address;
-
   String get city => _city;
 
   Future<void> getUser() async {
@@ -83,6 +77,12 @@ class CheckoutProvider with ChangeNotifier {
   Future<void> placeOrder2(OrderJson order) async {
     print('in place order 2');
     await _orderRepository.addOrder(order);
+    for (var e in order.cart) {
+      updateProduct(getProduct(e.productId), e.quantity);
+    }
+
+    updateUser(_user);
+
   }
 
   void setTotal()  {
@@ -121,19 +121,6 @@ class CheckoutProvider with ChangeNotifier {
     //notifyListeners();
     print('city ' + _city);
   }
-
-  // Future<StoreJson> getStore(String id) async {
-  //   _store = await _storeRepository.getStoreInfo(id);
-  //   notifyListeners();
-  //   print(_store);
-  //   return _store;
-  // }
-  //
-  // Future<ProductJson> getProduct(String id) async {
-  //   _product = await _productRepository.getProductInfo(id);
-  //   notifyListeners();
-  //   return _product;
-  // }
 
   List<StoreJson> getProductsInfo() {
     List<StoreJson> _storeDistinct = [];
@@ -203,41 +190,18 @@ class CheckoutProvider with ChangeNotifier {
 
     print('in get products from store');
     return cartProducts;
+   }
 
-    // for (var product in cartProducts) {
-    //   print("prod,, ${product.id}");
-    //   if (store.id == product.storeId) {
-    //     products.add(product);
-    //   }
-    // }
-    // return products;
+   updateProduct(ProductJson product, int quantity) async {
+    ProductJson  newProduct = product.copyWith(sold: product.sold+quantity, stock: product.stock-quantity);
+     await _productRepository.updateProduct(newProduct);
+   }
+
+   updateUser(UserJson user) async {
+     List<CartItemJson> emptyCart = [];
+     UserJson updatedUser = user.copyWith(cart: emptyCart);
+
+     await _userRepository.updateUser(updatedUser);
+   }
+
   }
-
-  Future<void> getCartStores() async {
-    await getUser();
-    print('is being called' + user.cart.length.toString());
-
-    _cartStores = _stores;
-
-    //List _storeDistinct = _cartStores
-
-    // for (var item in user.cart) {
-    //   print('ch prv ' + item.quantity.toString());
-    // if (!_cartStores.contains(getStore(getProduct(item.productId).storeId)))
-    // {
-    // _cartStores.add(getStore(getProduct(item.productId).storeId));
-    // }
-    //
-    // }
-
-    // user.cart.map((element) => {
-    //       if (!_cartStores.contains(getStore(getProduct(element.productId).id)))
-    //         {
-    //           _cartStores.add(getStore(getProduct(element.productId).id))
-    //         }
-    //     }
-    //     );
-    notifyListeners();
-    //return _cartStores;
-  }
-}
