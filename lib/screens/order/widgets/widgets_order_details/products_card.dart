@@ -1,12 +1,18 @@
+import 'package:flutterdemo/controllers/my_orders_provider.dart';
+import 'package:flutterdemo/models/order_model.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../order_model.dart';
 import 'horizontal_product_card.dart';
 
 class ProductsCard extends StatefulWidget {
-  const ProductsCard({Key? key, required this.order}) : super(key: key);
+  const ProductsCard({
+    Key? key, required this.order
+  }) : super(key: key);
 
-  final Order order;
+  final OrderJson order;
+
 
   @override
   State<ProductsCard> createState() => _ProductsCardState();
@@ -15,6 +21,8 @@ class ProductsCard extends StatefulWidget {
 class _ProductsCardState extends State<ProductsCard> {
   @override
   Widget build(BuildContext context) {
+    //OrderJson order = context.watch<MyOrdersProvider>().clickedOrder;
+
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Card(
@@ -54,16 +62,25 @@ class _ProductsCardState extends State<ProductsCard> {
                       shrinkWrap: true,
                       //physics: NeverScrollableScrollPhysics(),
                       scrollDirection: Axis.vertical,
-                      itemCount: widget.order.products.length,
+                      itemCount: widget.order.cart.length,
                       itemBuilder: (context, index) => HorizontalProductCard(
-                        productImage: widget.order.products[index].image,
-                        cardTitle: widget.order.products[index].title,
-                        cardSubtitle: "Rs. ${widget.order.products[index].price}",
+                        productImage: context
+                            .read<MyOrdersProvider>()
+                            .getProduct(widget.order.cart[index].productId)
+                            .image,
+                        cardTitle: context
+                            .read<MyOrdersProvider>()
+                            .getProduct(widget.order.cart[index].productId)
+                            .title,
+                        cardSubtitle:
+                            "Rs. ${context.read<MyOrdersProvider>().getProduct(widget.order.cart[index].productId).price}",
                         icon: CircleAvatar(
                           radius: 15,
                           backgroundColor: PrimaryColor,
-                          child:
-                              Text(widget.order.products[index].stock.toString(),style: TextStyle(color: Colors.black),),
+                          child: Text(
+                            widget.order.cart[index].quantity.toString(),
+                            style: TextStyle(color: Colors.black),
+                          ),
                         ),
                       ),
                     ),

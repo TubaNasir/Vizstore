@@ -60,14 +60,14 @@ class ProductJson {
   factory ProductJson.fromJson(Map<String, dynamic> json, String id) =>
       ProductJson(
         id: id,
-        title: json["title"],
-        description: json["description"],
-        image: json["image"],
-        price: json["price"],
-        category: json["category"],
-        stock: json["stock"],
-        sold: json["sold"],
-        storeId: json["storeId"],
+        title: json["title"] as String? ?? '',
+        description: json["description"] as String? ?? '',
+        image: json["image"] as String? ?? '',
+        price: json["price"] as int? ?? 0,
+        category: json["category"] as String? ?? '',
+        stock: json["stock"] as int? ?? 0,
+        sold: json["sold"] as int? ?? 0,
+        storeId: json["storeId"] as String? ?? '',
       );
 
   Map<String, dynamic> toJson() => {

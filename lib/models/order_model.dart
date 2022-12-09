@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'cart_model.dart';
 
 class OrderJson {
@@ -19,14 +21,17 @@ class OrderJson {
   String city;
   String address;
 
+  OrderJson.empty() : userId = '', cart = [], status = '', date_created = DateTime.now(), city = '', address = '' ;
+
   factory OrderJson.fromJson(Map<String, dynamic> json, String id) => OrderJson(
-    userId: json["userId"],
-    id: id,
+    userId: json["userId"] as String? ?? '',
+    id: id ?? '',
     cart: List<CartItemJson>.from(json["cart"].map((x) => CartItemJson.fromJson(x))),
-    status: json["status"],
-    date_created: json["date_created"],
-    city: json["city"],
-    address: json["address"],
+    status: json["status"] as String? ?? '',
+    date_created: (json["date_created"] as Timestamp).toDate(),
+    //date_created: Timestamp.fromDate(json["date_created"]),
+    city: json["city"] as String? ?? '',
+    address: json["address"]  as String? ?? '',
   );
 
   Map<String, dynamic> toJson() => {
@@ -37,4 +42,8 @@ class OrderJson {
     "city": city,
     "address": address
   };
+  
+  DateTime fromJson(Timestamp timestamp) {
+    return timestamp.toDate();
+  }
 }

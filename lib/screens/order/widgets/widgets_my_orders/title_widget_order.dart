@@ -33,7 +33,7 @@ class TitleWidgetOrder extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Text(status, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: status == 'Confirmed' ? Colors.green : status == 'Cancelled' ? Colors.red : Color(0xFF424242)),
+                Text(status, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: status == 'confirmed' ? Colors.green : status == 'cancelled' ? Colors.red : Color(0xFF424242)),
                 ),
               ],
             ),

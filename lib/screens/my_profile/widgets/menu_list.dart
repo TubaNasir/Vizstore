@@ -3,7 +3,7 @@ import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutterdemo/screens/edit_profile/edit_profile.dart';
 import 'package:flutterdemo/screens/login/login.dart';
 import 'package:flutterdemo/screens/my_profile/widgets/profile_menu.dart';
-import 'package:flutterdemo/screens/order/order.dart';
+import 'package:flutterdemo/screens/order/my_orders.dart';
 
 class MenuList extends StatelessWidget {
   const MenuList({Key? key}) : super(key: key);

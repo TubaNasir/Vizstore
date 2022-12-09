@@ -8,10 +8,19 @@ class OrderRepository {
     List<OrderJson> orders = [];
     await db.collection("order").get().then((event) {
       orders = event.docs.map((e) => OrderJson.fromJson(e.data(), e.id)).toList();
-    }).catchError((error) => print("Failed to fetch products. Error : ${error}"));
+    }).catchError((error) => print("Failed to fetch orders. Error : ${error}"));
 
     return orders;
   }
+
+  // Future<List<OrderJson>> getUserOrderList(String id) async {
+  //   OrderJson orders = OrderJson.empty();
+  //   await db.collection("order").doc(id).get().then((event) {
+  //     orders = OrderJson.fromJson(event.data() as Map<String, dynamic>, event.id);
+  //   }).catchError((error) => print("Failed to fetch orders. Error : ${error}"));
+  //
+  //   return orders;
+  // }
 
   Future<void> addOrder(OrderJson newOrder) async {
     print('before addorder');

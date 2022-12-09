@@ -9,7 +9,7 @@ class ProductRepository{
     await db.collection("product").get().then((event) {
       products = event.docs.map((e) => ProductJson.fromJson(e.data(), e.id)).toList();
     }).catchError((error) => print("Failed to fetch products. Error : ${error}"));
-    ;
+
     return products;
   }
 

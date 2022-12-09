@@ -1,23 +1,30 @@
+import 'package:flutterdemo/controllers/my_orders_provider.dart';
+import 'package:flutterdemo/models/order_model.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../order_model.dart';
 
 class DetailsCard extends StatefulWidget {
   const DetailsCard({
-    Key? key,
-    required this.order,
+    Key? key, required this.order
   }) : super(key: key);
 
-  final Order order;
+  final OrderJson order;
+
+
 
   @override
   State<DetailsCard> createState() => _DetailsCardState();
 }
 
 class _DetailsCardState extends State<DetailsCard> {
+
   @override
   Widget build(BuildContext context) {
+    //OrderJson order = context.watch<MyOrdersProvider>().clickedOrder;
+
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Card(
@@ -49,23 +56,7 @@ class _DetailsCardState extends State<DetailsCard> {
                 const Divider(
                   color: SecondaryColor,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'PlacedBy: ',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      Text(
-                        widget.order.name,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
+                /*Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,12 +66,12 @@ class _DetailsCardState extends State<DetailsCard> {
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       Text(
-                        '${widget.order.contact}',
+                        '${order.contact}',
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
                   ),
-                ),
+                ),*/
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Row(
@@ -109,9 +100,9 @@ class _DetailsCardState extends State<DetailsCard> {
                       Text(
                         widget.order.status,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: widget.order.status == 'Confirmed'
+                            color: widget.order.status == 'confirmed'
                                 ? Colors.green
-                                : widget.order.status == 'Cancelled'
+                                : widget.order.status == 'cancelled'
                                     ? Colors.red
                                     : Colors.grey),
                       ),
