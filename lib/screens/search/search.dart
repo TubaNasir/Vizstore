@@ -26,36 +26,14 @@ class _SearchState extends State<Search> {
     WidgetsBinding.instance.addPostFrameCallback((_) async =>
     {
       await context.read<SearchProvider>().getProductsList(),
-      if(widget.category != '') {
-        print('init search '+ widget.category),
-      context.read<SearchProvider>().getCategoryProducts(widget.category)
-    }
-      else
-        {
-          print('init search no catg'),
-          context.read<SearchProvider>().getFilteredProducts()
-        }
-
+      context.read<SearchProvider>().getCategoryProducts(widget.category),
     });
 
   }
 
   @override
   Widget build(BuildContext context) {
-    List<ProductJson> products = [];
-    if(widget.category != '') {
-      print('in search no filter');
-      products = context
-          .watch<SearchProvider>()
-          .categoryProducts;
-    }
-    else {
-      print('in search no catg');
-      products = context
-          .watch<SearchProvider>()
-          .filteredProducts;
-    }
-
+    List<ProductJson> products = context.watch<SearchProvider>().changedProducts;
 
     return SafeArea(
       child: Scaffold(

@@ -12,7 +12,6 @@ import '../../widgets/custom_button.dart';
 import '../../widgets/suffix_icon.dart';
 
 class LoginForm extends StatefulWidget {
-
   const LoginForm({super.key});
 
   @override
@@ -21,12 +20,16 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   bool enabled = true;
+
   //bool error = false;
   FirebaseAuth firebaseauth = FirebaseAuth.instance;
 
   _LoginFormState();
+
   TextEditingController controllerEmail = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,16 +37,10 @@ class _LoginFormState extends State<LoginForm> {
     bool error = context.watch<LoginProvider>().errorMessage;
 
     return Form(
+      key: _formKey,
       child: Column(
         children: [
           TextFormField(
-            onChanged: (text){
-              error = false;
-
-            },
-            onTap: (){
-            //  context.read<LoginProvider>().changeErrorMessage();
-            },
             decoration: InputDecoration(
               labelText: "Email",
               hintText: "Enter your email",
@@ -52,6 +49,15 @@ class _LoginFormState extends State<LoginForm> {
               suffixIcon: SuffixIcon(icon: Icons.email),
             ),
             controller: controllerEmail,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your email';
+              }
+              if (error) {
+                return 'Incorrect email or password';
+              }
+              return null;
+            },
           ),
           SizedBox(
             height: 20,
@@ -63,46 +69,40 @@ class _LoginFormState extends State<LoginForm> {
               enabled: enabled,
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: IconButton(
-                  icon: Icon(passwordVisible ? Icons.visibility : Icons.visibility_off),
+                icon: Icon(
+                    passwordVisible ? Icons.visibility : Icons.visibility_off),
                 onPressed: () {
                   context.read<LoginProvider>().changePasswordVisible();
-                },),
+                },
+              ),
             ),
             controller: controllerPassword,
             obscureText: !passwordVisible,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your password';
+              }
+              if (error) {
+                return 'Incorrect email or password';
+              }
+              return null;
+            },
           ),
-          error ? Column(
-            children: [
-              SizedBox(height: 5),
-              Text('Incorrect email or password', style: TextStyle(color: Colors.red, fontSize: 15),),
-            ],
-          ) :SizedBox(height: 0,),
           SizedBox(height: 30),
           CustomButton(
               text: "Continue",
-              pressed: ()  {
-                try {
-                  context.read<LoginProvider>().signIn(controllerEmail.text, controllerPassword.text);
-                  // UserCredential userCred = await firebaseauth
-                  //     .signInWithEmailAndPassword(email: controllerEmail.text,
-                  //     password: controllerPassword.text);
-                  // String? user = firebaseauth.currentUser?.uid;
+              pressed: () {
+                context
+                    .read<LoginProvider>()
+                    .signIn(controllerEmail.text, controllerPassword.text);
 
+                if (_formKey.currentState!.validate()) {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) =>
-                          Home(),
+                      builder: (context) => Home(),
                     ),
                   );
                 }
-                catch (e) {
-                  setState(() {
-                    context.read<LoginProvider>().changeErrorMessage();
-                  });
-                  print(e); //add incorrect email or pass label if error
-                }
-
-                //state mgmt set enabled to tru; if enabled = true, button = save changes
               }),
           Text(
             "or signup with",
@@ -115,22 +115,25 @@ class _LoginFormState extends State<LoginForm> {
               SocialCard(
                 icon: 'assets/icons/google-icon.svg',
                 onPressed: () {
-                  User? user = context.read<GoogleSignInProvider>().googleLogin() as User?;
+                  User? user = context
+                      .read<GoogleSignInProvider>()
+                      .googleLogin() as User?;
 
-                  bool exist = context.read<GoogleSignInProvider>().doesUserExist() as bool;
-                  if(!exist) {
+                  bool exist = context
+                      .read<GoogleSignInProvider>()
+                      .doesUserExist() as bool;
+                  if (!exist) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) =>
-                            CompleteProfile(user: user,),
+                        builder: (context) => CompleteProfile(
+                          user: user,
+                        ),
                       ),
                     );
-                  }
-                  else{
+                  } else {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) =>
-                            Home(),
+                        builder: (context) => Home(),
                       ),
                     );
                   }

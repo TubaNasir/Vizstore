@@ -4,7 +4,6 @@ import 'package:flutterdemo/models/user_model.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:provider/provider.dart';
 
-import '../../widgets/form_field.dart';
 import '../../widgets/suffix_icon.dart';
 
 class CheckoutForm extends StatefulWidget {

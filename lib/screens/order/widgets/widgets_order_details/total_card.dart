@@ -5,7 +5,6 @@ import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../order_model.dart';
 
 class TotalCard extends StatelessWidget {
   const TotalCard({Key? key,}) : super(key: key);

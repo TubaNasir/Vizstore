@@ -15,6 +15,7 @@ class SearchProvider with ChangeNotifier {
   List<ProductJson> _products = [];
   List<ProductJson> _categoryProducts = [];
   List<ProductJson> _filteredProducts = [];
+  List<ProductJson> _changedProducts = [];
   UserJson _user = UserJson.empty();
 
   List<ProductJson> get products => _products;
@@ -22,6 +23,7 @@ class SearchProvider with ChangeNotifier {
   List<ProductJson> get categoryProducts => _categoryProducts;
 
   List<ProductJson> get filteredProducts => _filteredProducts;
+  List<ProductJson> get changedProducts => _changedProducts;
 
   String get searchText => _searchText;
 
@@ -44,6 +46,8 @@ class SearchProvider with ChangeNotifier {
     print('ctg' + category);
     _categoryProducts =
         products.where((element) => element.category == category).toList();
+
+    _changedProducts = _categoryProducts;
     notifyListeners();
   }
 
@@ -55,6 +59,7 @@ class SearchProvider with ChangeNotifier {
                 .toLowerCase()
                 .contains(_searchText.toLowerCase()))
         .toList();
+    _changedProducts = _filteredProducts;
     notifyListeners();
   }
 

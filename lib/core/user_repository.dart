@@ -37,7 +37,7 @@ class UserRepository {
     print("alal" + _user.firstName);
   }
 
-  Future<UserJson> sendNotifications() async{
+  Future<UserJson> sendNotifications() async {
     db
         .collection("order")
         .where("userId", isEqualTo: _user.id)
@@ -52,21 +52,25 @@ class UserRepository {
               List<NotificationItemJson> newList = [];
               for (var notification in _user.notifications) {
                 newList.add(notification);
-              };
-              //print(change.doc.data()!['status']);
-              if(change.doc.data()!['status'] == 'confirmed'){
-                newList.add(NotificationItemJson(
-                    orderId: change.doc.id, message: 'You order# ${change.doc.id} has been confirmed!', dateTime: DateTime.now()));
               }
-              if(change.doc.data()!['status'] == 'cancelled'){
+              ;
+              //print(change.doc.data()!['status']);
+              if (change.doc.data()!['status'] == 'confirmed') {
                 newList.add(NotificationItemJson(
-                    orderId: change.doc.id, message: 'You order# ${change.doc.id} has been cancelled.', dateTime: DateTime.now()));
+                    orderId: change.doc.id,
+                    message: 'You order# ${change.doc.id} has been confirmed!',
+                    dateTime: DateTime.now()));
+              }
+              if (change.doc.data()!['status'] == 'cancelled') {
+                newList.add(NotificationItemJson(
+                    orderId: change.doc.id,
+                    message: 'You order# ${change.doc.id} has been cancelled.',
+                    dateTime: DateTime.now()));
               }
               UserJson updatedUser = _user.copyWith(notifications: newList);
               await updateUser(updatedUser);
               _user = await getUser();
             }
-
         }
       }
     });
@@ -98,15 +102,36 @@ class UserRepository {
   }
 
   Future<String?> signIn(String email, String password) async {
+    String errorMessage = '';
+    User? user;
+
     try {
       UserCredential userCred = await firebaseauth.signInWithEmailAndPassword(
           email: email, password: password);
 
-      return userCred.user?.uid;
+      user = userCred.user;
       //getuser from uid
     } catch (e) {
-      print(e); //add incorrect email or pass label if error
+
+      /*switch (e) {
+        case "ERROR_INVALID_EMAIL":
+          errorMessage = "Your email address appears to be malformed.";
+          break;
+        case "ERROR_WRONG_PASSWORD":
+          errorMessage = "Your password is incorrect.";
+          break;
+        case "ERROR_USER_NOT_FOUND":
+          errorMessage = "User with this email doesn't exist.";
+          break;
+        default:
+          errorMessage = "An undefined Error happened.";
+      }*/
     }
+    // if (errorMessage != null) {
+    //   return Future.error(errorMessage);
+    // }
+
+    return user?.uid;
   }
 
   Future<User?> signUp(String email, String password) async {

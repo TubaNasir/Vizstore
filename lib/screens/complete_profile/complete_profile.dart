@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/complete_profile/widgets/complete_profile_message.dart';
 import 'package:flutterdemo/screens/complete_profile/widgets/profile_form.dart';
 
-import '../widgets/form_field.dart';
 
 class CompleteProfile extends StatefulWidget {
   //final String? uid;
@@ -16,6 +15,7 @@ class CompleteProfile extends StatefulWidget {
 }
 
 class _CompleteProfileState extends State<CompleteProfile> {
+
 
   @override
   Widget build(BuildContext context) {

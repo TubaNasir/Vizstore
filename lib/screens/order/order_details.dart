@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 
 import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/layout.dart';
-import 'order_model.dart';
 
 class OrderDetails extends StatefulWidget {
   const OrderDetails({Key? key, required this.order}) : super(key: key);

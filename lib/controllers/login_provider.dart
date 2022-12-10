@@ -10,13 +10,13 @@ class LoginProvider with ChangeNotifier {
   bool _isLoggedIn = false;
   UserJson _user = UserJson.empty();
 
-
-
   bool get passwordVisible => _passwordVisible;
-  bool get errorMessage => _errorMessage;
-  bool get isLoggedIn => _isLoggedIn;
-  UserJson get user => _user;
 
+  bool get errorMessage => _errorMessage;
+
+  bool get isLoggedIn => _isLoggedIn;
+
+  UserJson get user => _user;
 
   //final UserRepository _userRepository = UserRepository();
   final UserRepository _corerepository = UserRepository();
@@ -32,12 +32,23 @@ class LoginProvider with ChangeNotifier {
     _errorMessage = !_errorMessage;
     notifyListeners();
   }
-  void setErrorMessage(){
-    _errorMessage = false;
+
+  void setErrorMessage() {
+    _errorMessage = true;
+    print('err true');
+    notifyListeners();
   }
 
   Future<void> signIn(String email, String password) async {
     String? id = await _corerepository.signIn(email, password);
+
+    // if (id == 'Your email address appears to be malformed.' ||
+    //     id == 'Your password is incorrect.' ||
+    //     id == "User with this email doesn't exist." ||
+    //     id == "An undefined Error happened.") {
+    //   _errorMessage = id;
+    //
+    // }
 
     await _corerepository.setUser(id);
     //_isLoggedIn = true;
@@ -45,7 +56,7 @@ class LoginProvider with ChangeNotifier {
     notifyListeners();
   }
 
- /* void getLoggedIn(){
+/* void getLoggedIn(){
     FirebaseAuth.instance
         .authStateChanges()
         .listen((User? user) {
@@ -58,13 +69,10 @@ class LoginProvider with ChangeNotifier {
     });
   }*/
 
-  /*void getUser() async {
+/*void getUser() async {
     _user = await _corerepository.getUser();
     notifyListeners();
     print('prov' + _user.firstName);
   }*/
-
-
-
 
 }

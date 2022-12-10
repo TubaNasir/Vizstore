@@ -8,6 +8,7 @@ import '../models/user_model.dart';
 class SignupProvider with ChangeNotifier{
   final UserRepository _coreRepository = UserRepository();
 
+
   void addNewUser(User? user, String firstName,String lastName,String contact,) async {
     UserJson newUser = UserJson(
       id: user?.uid,
@@ -25,6 +26,7 @@ class SignupProvider with ChangeNotifier{
   }
 
   Future<User?> signUp(String email, String password) async {
+
     User? user  = await _coreRepository.signUp(email, password) as User?;
     return user;
   }
