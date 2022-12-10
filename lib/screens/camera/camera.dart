@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -6,6 +7,7 @@ import 'package:flutterdemo/screens/constants.dart';
 import '../search/search.dart';
 import 'package:http/http.dart' as http;
 
+import 'check.dart';
 import 'storage_services.dart';
 
 class CameraScreen extends StatefulWidget {
@@ -45,8 +47,26 @@ class _CameraScreenState extends State<CameraScreen> {
     _controller.dispose();
     super.dispose();
   }
-
-
+  Future<http.Response> uploadImage(File file, String link) async {
+    String filename = file.path.split('/').last;
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse(link),
+    );
+    Map<String, String> headers = {"Content-type": "multipart/form-data"};
+    request.files.add(
+      http.MultipartFile(
+        'image',
+        file.readAsBytes().asStream(),
+        file.lengthSync(),
+        filename: filename,
+      ),
+    );
+    request.headers.addAll(headers);
+    var res = await request.send();
+    var response = await http.Response.fromStream(res);
+    return response;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +109,12 @@ class _CameraScreenState extends State<CameraScreen> {
             if (!mounted) return;
 
             // If the picture was taken, display it on a new screen.
-            await widget.storage.uploadFile(image.name,image.path).then((value) => print("done"));
+            //await widget.storage.uploadFile(image.name,image.path).then((value) => print("done"));
+            //final res = await uploadImage(File(image.path),"https://9fce-111-88-37-179.ngrok.io/upload");
+            final response = await http.get(Uri.parse("https://3de5-111-88-37-179.ngrok.io/upload"));
+            var encodeFirst = json.encode(response.body);
+
+            final decoded = json.decode(encodeFirst);
             await Navigator.of(context).push(
               // MaterialPageRoute(
               //   builder: (context) => DisplayPictureScreen(
@@ -99,7 +124,7 @@ class _CameraScreenState extends State<CameraScreen> {
               //     camera: camera,
               //   ),
               // ),
-              MaterialPageRoute(builder: (_) => Search())
+              MaterialPageRoute(builder: (_) => Check(greeting : decoded))
             );
           } catch (e) {
             // If an error occurs, log the error to the console.

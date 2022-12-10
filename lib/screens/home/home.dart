@@ -34,12 +34,6 @@ class _HomeState extends State<Home> {
           context.read<HomeProvider>().getUser(),
           context.read<HomeProvider>().sendNotifications()
     });
-    // bool isLoggedIn = context.read<LoginProvider>().isLoggedIn;
-    // if(isLoggedIn) {
-    //   context.read<HomeProvider>().getUser();
-    // }
-
-
   }
 
 

@@ -32,9 +32,6 @@ class OrderRepository {
         .catchError((error) => print('error is '+error) );
 
     print('after addorder');
-
-
-
    // return error;
   }
 
