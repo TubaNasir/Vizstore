@@ -1,3 +1,4 @@
+import 'package:flutterdemo/models/notification_model.dart';
 import 'package:flutterdemo/models/wishlist_model.dart';
 import 'cart_model.dart';
 
@@ -10,6 +11,7 @@ class UserJson {
   String photoUrl;
   List<CartItemJson> cart;
   List<WishlistItemJson> wishlist;
+  List<NotificationItemJson> notifications;
 
   UserJson({
     this.id,
@@ -20,16 +22,18 @@ class UserJson {
     this.photoUrl = 'https://img.icons8.com/bubbles/50/000000/user.png',
     required this.cart,
     required this.wishlist,
+    required this.notifications,
   });
 
   UserJson.empty()
       : email = '',
-        firstName = 'h',
+        firstName = '',
         lastName = '',
         contact = '',
         photoUrl = '',
         cart = [],
-        wishlist = [];
+        wishlist = [],
+        notifications = [];
 
   UserJson copyWith(
   {String? id,
@@ -38,7 +42,8 @@ class UserJson {
     String? contact,
     List<CartItemJson>? cart,
     List<WishlistItemJson>? wishlist,
-    String? email,}
+    String? email,
+    List<NotificationItemJson>? notifications,}
   ) =>
       UserJson(
         id: id ?? this.id,
@@ -48,6 +53,7 @@ class UserJson {
         cart: cart ?? this.cart,
         wishlist: wishlist ?? this.wishlist,
         email: email ?? this.email,
+        notifications: notifications ?? this.notifications,
       );
 
   static UserJson fromJson(Map<String, dynamic> json, String id) {
@@ -62,6 +68,8 @@ class UserJson {
           json["cart"].map((x) => CartItemJson.fromJson(x))),
       wishlist: List<WishlistItemJson>.from(
           json["wishlist"].map((x) => WishlistItemJson.fromJson(x))),
+      notifications: List<NotificationItemJson>.from(
+          json["notifications"].map((x) => NotificationItemJson.fromJson(x))),
     );
   }
 
@@ -74,5 +82,6 @@ class UserJson {
         "photoUrl": photoUrl,
         "cart": List<dynamic>.from(cart.map((e) => e.toJson())),
         "wishlist": List<dynamic>.from(wishlist.map((e) => e.toJson())),
-      };
+        "notifications": List<dynamic>.from(notifications.map((e) => e.toJson())),
+  };
 }

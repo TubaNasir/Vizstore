@@ -1,15 +1,21 @@
+import 'package:flutterdemo/controllers/checkout_provider.dart';
+import 'package:flutterdemo/controllers/my_orders_provider.dart';
+import 'package:flutterdemo/models/order_model.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../order_model.dart';
 
 class TotalCard extends StatelessWidget {
-  const TotalCard({Key? key, required this.order}) : super(key: key);
+  const TotalCard({Key? key,}) : super(key: key);
 
-  final Order order;
+
 
   @override
   Widget build(BuildContext context) {
+    int total = context.watch<CheckoutProvider>().total;
+
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Card(
@@ -38,7 +44,7 @@ class TotalCard extends StatelessWidget {
                       textAlign: TextAlign.left,
                     ),
                     Text(
-                      'Rs. ${order.total}',
+                      'Rs. $total',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ],

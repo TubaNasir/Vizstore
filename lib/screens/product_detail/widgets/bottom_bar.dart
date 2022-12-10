@@ -53,7 +53,7 @@ class BottomBar extends StatelessWidget {
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
                 ),
-                onPressed: () {
+                onPressed: product.stock == 0 ? null : () {
                   context.read<ProductDetailsProvider>().addToCart(product.id);
                   // Navigator.of(context).push(
                   //   MaterialPageRoute(

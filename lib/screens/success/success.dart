@@ -28,7 +28,7 @@ class _SuccessState extends State<Success> {
           child: Column(
             children: [
               Lottie.asset('assets/animations/order_success.json', repeat: false),
-              Text('Thank you for placing \nyour order!\nYour order ID is ${_orderId}.\nWe will let you know once your \norder has been confirmed.',
+              Text('Thank you for placing \nyour order!\nWe will let you know once your \norder has been confirmed.',
               style: Theme.of(context).textTheme.titleSmall,
               textAlign: TextAlign.center,),
               SizedBox(height: 5),

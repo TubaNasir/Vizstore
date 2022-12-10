@@ -9,7 +9,7 @@ class ProductRepository{
     await db.collection("product").get().then((event) {
       products = event.docs.map((e) => ProductJson.fromJson(e.data(), e.id)).toList();
     }).catchError((error) => print("Failed to fetch products. Error : ${error}"));
-    ;
+
     return products;
   }
 
@@ -23,5 +23,11 @@ class ProductRepository{
 
     print('prod repo product ${product}');
     return product;
+  }
+
+  Future<void> updateProduct(ProductJson product) async {
+    await db.collection("product").doc(product.id).update(product.toJson()).then((event) {
+      print("product updated");
+    }).catchError((error) => print("Failed to update product. Error : ${error}"));
   }
 }

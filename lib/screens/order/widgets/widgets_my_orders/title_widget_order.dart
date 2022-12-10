@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class TitleWidgetWishlist extends StatelessWidget {
-  const TitleWidgetWishlist({
+class TitleWidgetOrder extends StatelessWidget {
+  const TitleWidgetOrder({
     Key? key,
     required this.title,
-    required this.icon,
-    required this.price, required this.storeName,
+    required this.status,
+    required this.placedOn,
   }) : super(key: key);
 
-  final String title, storeName;
-  final Widget icon;
-  final String price;
+  final String title;
+  final String status;
+  final String placedOn;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class TitleWidgetWishlist extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisSize: MainAxisSize.max,
+              //mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Flexible(
@@ -33,19 +33,16 @@ class TitleWidgetWishlist extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                icon
+                Text(status, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: status == 'confirmed' ? Colors.green : status == 'cancelled' ? Colors.red : Color(0xFF424242)),
+                ),
               ],
             ),
-            SizedBox(
-              height: 3,
-            ),
-            Text(storeName, style: Theme.of(context).textTheme.bodySmall),
             SizedBox(
               height: 5,
             ),
             Text(
-              price,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              placedOn,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
             )
           ],
         ),

@@ -47,6 +47,18 @@ class _ProductBodyState extends State<ProductBody> {
                           TitleRow(product: widget.product),
                           const SizedBox(height: 5),
                           StoreDetails(product: widget.product),
+                          widget.product.stock == 0
+                              ? Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                                child: Text(
+                                    'Out of stock',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(color: Colors.red),
+                                  ),
+                              )
+                              : Text('')
                         ],
                       ),
                       const SizedBox(height: 10),
@@ -62,8 +74,9 @@ class _ProductBodyState extends State<ProductBody> {
                         child: Container(
                           decoration: const BoxDecoration(
                             color: Colors.yellow,
-                            borderRadius:
-                                BorderRadius.only(topLeft: Radius.circular(80.0), bottomRight: Radius.circular(80.0)),
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(80.0),
+                                bottomRight: Radius.circular(80.0)),
                           ),
                           child: Text(
                             '   Rs. ${widget.product.price}   ',

@@ -5,13 +5,13 @@ import '../../models/product_model.dart';
 import '../product_detail/product_detail.dart';
 
 class StaggeredProductView extends StatelessWidget {
-  final List<ProductJson> demoList;
+  final List<ProductJson> products;
 
   const StaggeredProductView(
-      {required this.demoList, super.key});
+      {required this.products, super.key});
 
   Widget _buildProducts(BuildContext context, int index) {
-    ProductJson product = demoList[index];
+    ProductJson product = products[index];
 
     return GestureDetector(
       onTap: () {
@@ -23,7 +23,10 @@ class StaggeredProductView extends StatelessWidget {
                   )),
         );
       },
-      child: ProductCard(product: product),
+      child: ProductCard(product: product,
+          isFav: false,
+          onPressed: () {},
+      ),
     );
   }
 
@@ -39,7 +42,7 @@ class StaggeredProductView extends StatelessWidget {
         crossAxisCount: 2,
         childAspectRatio: 0.75,
       ),
-      itemCount: demoList.length,
+      itemCount: products.length,
       itemBuilder: (context, index) {
         return Transform.translate(
           offset: Offset(0.0, index.isOdd ? 50 : 0.0),

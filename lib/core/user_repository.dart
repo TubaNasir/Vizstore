@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterdemo/models/cart_model.dart';
+import 'package:flutterdemo/models/notification_model.dart';
 import "package:flutterdemo/models/store_model.dart";
 import 'package:flutterdemo/models/wishlist_model.dart';
 
@@ -16,7 +17,11 @@ class UserRepository {
     //print('quantity ${user.cart[0].quantity}');
     //print('id ${user.id}');
 
-    await db.collection("user").doc(user.id).update(user.toJson()).then((event) {
+    await db
+        .collection("user")
+        .doc(user.id)
+        .update(user.toJson())
+        .then((event) {
       print("user updated");
     }).catchError((error) => print("Failed to fetch user. Error : ${error}"));
   }
@@ -24,11 +29,48 @@ class UserRepository {
   Future<void> setUser(String? id) async {
     UserJson newUser = UserJson.empty();
     await db.collection("user").doc(id).get().then((event) {
-      newUser = UserJson.fromJson(event.data() as Map<String, dynamic>, event.id);
+      newUser =
+          UserJson.fromJson(event.data() as Map<String, dynamic>, event.id);
     }).catchError((error) => print("Failed to fetch user. Error : ${error}"));
 
     _user = newUser;
     print("alal" + _user.firstName);
+  }
+
+  Future<UserJson> sendNotifications() async{
+    db
+        .collection("order")
+        .where("userId", isEqualTo: _user.id)
+        .snapshots()
+        .listen((event) async {
+      for (var change in event.docChanges) {
+        switch (change.type) {
+          case DocumentChangeType.modified:
+            {
+              print(_user.notifications.length);
+              print("Modified City: ${change.doc.data()}");
+              List<NotificationItemJson> newList = [];
+              for (var notification in _user.notifications) {
+                newList.add(notification);
+              };
+              //print(change.doc.data()!['status']);
+              if(change.doc.data()!['status'] == 'Confirmed'){
+                newList.add(NotificationItemJson(
+                    orderId: change.doc.id, message: 'You order# ${change.doc.id} has been confirmed!', dateTime: DateTime.now()));
+              }
+              if(change.doc.data()!['status'] == 'Cancelled'){
+                newList.add(NotificationItemJson(
+                    orderId: change.doc.id, message: 'You order# ${change.doc.id} has been cancelled.', dateTime: DateTime.now()));
+              }
+              UserJson updatedUser = _user.copyWith(notifications: newList);
+              await updateUser(updatedUser);
+              _user = await getUser();
+            }
+
+        }
+      }
+    });
+    return _user;
   }
 
   /* _user.copyWith(
@@ -41,15 +83,16 @@ class UserRepository {
         email:user.email);*/
 
   Future<UserJson> getUser() async {
-     String? id = await firebaseauth.currentUser?.uid;
+    String? id = await firebaseauth.currentUser?.uid;
 //print("getuser ${_user.cart[0].quantity}");
-     await db.collection("user").doc(id).get().then((event) {
-       _user = UserJson.fromJson(event.data() as Map<String, dynamic>, event.id);
-     }).catchError((error) => print("Failed to fetch user. Error : ${error}"));//
+    await db.collection("user").doc(id).get().then((event) {
+      _user = UserJson.fromJson(event.data() as Map<String, dynamic>, event.id);
+    }).catchError(
+        (error) => print("Failed to fetch user. Error : ${error}")); //
 //     print("getuser ${_user.cart[0].quantity}");
 
-   // print(_user.firstName);
-   // return UserJson(email: 'tuba@gmail.com', firstName: 'Tuba', lastName: 'Nasir', contact: '0232671361', cart: [CartItemJson(productId: "c1lxWoPXbvhfsUBOcOau", quantity: 76), CartItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu", quantity: 7)], wishlist: [WishlistItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu")]);
+    // print(_user.firstName);
+    // return UserJson(email: 'tuba@gmail.com', firstName: 'Tuba', lastName: 'Nasir', contact: '0232671361', cart: [CartItemJson(productId: "c1lxWoPXbvhfsUBOcOau", quantity: 76), CartItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu", quantity: 7)], wishlist: [WishlistItemJson(productId: "hQLbmZ4oIDUgx1xEWXEu")]);
 
     return _user;
   }

@@ -1,27 +1,25 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/screens/wishlist/widgets/title_widget_wishlist.dart';
+import 'package:flutterdemo/controllers/wishlist_provider.dart';
+import 'package:flutterdemo/models/store_model.dart';
+import 'package:flutterdemo/models/wishlist_model.dart';
+import 'package:flutterdemo/screens/wishlist/widgets/wishlist_card_details.dart';
+import 'package:provider/provider.dart';
 import '../../product_detail/product_detail.dart';
 import '../../widgets/image_widget.dart';
 import '../../../models/product_model.dart';
 
 class WishListCard extends StatelessWidget {
-  const WishListCard(
-      {Key? key,
-      required this.productImage,
-      required this.title,
-      required this.price,
-      required this.icon,
-      required this.storeName,
-      })
-      : super(key: key);
+  const WishListCard({Key? key, required this.wishlistItem}) : super(key: key);
 
-  final String productImage;
-  final String title, price, storeName;
-  final Widget icon;
+  final WishlistItemJson wishlistItem;
 
   @override
   Widget build(BuildContext context) {
+    ProductJson product =
+        context.watch<WishlistProvider>().getProduct(wishlistItem.productId);
+    StoreJson store =
+        context.watch<WishlistProvider>().getStore(product.storeId);
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 30.0),
       child: ElevatedButton(
@@ -38,12 +36,18 @@ class WishListCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            ImageWidget(productImage: productImage),
+            ImageWidget(productImage: product.image),
             const SizedBox(
               width: 20,
             ),
             TitleWidgetWishlist(
-                title: title, icon: icon, price: price, storeName: storeName),
+              title: product.title,
+              price: product.price,
+              storeName: store.storeName,
+              onPressed: () =>
+                  context.read<WishlistProvider>().updateWishlist(product.id),
+
+            ),
           ],
         ),
       ),
