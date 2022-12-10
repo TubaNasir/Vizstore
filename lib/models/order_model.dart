@@ -7,7 +7,7 @@ class OrderJson {
     this.id,
     required this.userId,
     required this.cart,
-    this.status = 'Placed',
+    this.status = 'placed',
     required this.date_created,
     required this.city,
     required this.address
