@@ -38,18 +38,32 @@ class _OrderSummaryProductsState extends State<OrderSummaryProducts> {
     return Column(
       children: [
         Column(
-            children: cartProducts.map((element) => Padding(
+            children: cartProducts
+                .map(
+                  (element) => Padding(
                     padding: const EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 0.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          // context.read<CheckoutProvider>().getProduct(e.productId),
-                          '${context.read<CheckoutProvider>().getProduct(element.productId).title}   ${element.quantity}',
-                          style: Theme.of(context).textTheme.titleMedium,
+                        Expanded(
+                          child: Text(
+                            // context.read<CheckoutProvider>().getProduct(e.productId),
+                            context
+                                .read<CheckoutProvider>()
+                                .getProduct(element.productId)
+                                .title,
+                            style: Theme.of(context).textTheme.titleSmall,
+                            maxLines: 5,
+                          ),
                         ),
-                        Text('Rs. ${(context.read<CheckoutProvider>().getProduct(element.productId).price*element.quantity).toString()}',
-                          style: Theme.of(context).textTheme.titleMedium,
+                        Text(
+                          '\t\t${element.quantity}\t\t\t\t',
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                        Text(
+                          'Rs. ${(context.read<CheckoutProvider>().getProduct(element.productId).price * element.quantity).toString()}',
+                          style: Theme.of(context).textTheme.titleSmall,
                         ),
                       ],
                     ),
@@ -66,10 +80,7 @@ class _OrderSummaryProductsState extends State<OrderSummaryProducts> {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               Text('Rs. ${widget.store.deliveryCharges}',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-              ),
+                  style: Theme.of(context).textTheme.bodyMedium),
             ],
           ),
         ),

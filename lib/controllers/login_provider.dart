@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/screens/constants.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../core/user_repository.dart';
 import '../models/user_model.dart';
@@ -39,21 +41,34 @@ class LoginProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> signIn(String email, String password) async {
-    String? id = await _corerepository.signIn(email, password);
+  Future<bool> signIn(String email, String password) async {
+    dynamic result = await _corerepository.signIn(email, password);
 
-    // if (id == 'Your email address appears to be malformed.' ||
-    //     id == 'Your password is incorrect.' ||
-    //     id == "User with this email doesn't exist." ||
-    //     id == "An undefined Error happened.") {
-    //   _errorMessage = id;
-    //
-    // }
+    if(result is String){
+      print('id is '+result);
+      await _corerepository.setUser(result);
+      notifyListeners();
+      return true;
+    }
+    else if(result is FirebaseAuthException){
+      print('sparta '+result.message.toString());
+      showErrorToast('Incorrect Email or Password');
+      return false;
+      // _errorMessage = true;
+      //notifyListeners();
+    }
+    return false;
 
-    await _corerepository.setUser(id);
-    //_isLoggedIn = true;
-    //getUser();
-    notifyListeners();
+  }
+
+  void showErrorToast(String text){
+    Fluttertoast.showToast(
+        msg: text,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.TOP,
+        backgroundColor: Colors.yellow,
+        textColor: Colors.black
+    );
   }
 
 /* void getLoggedIn(){

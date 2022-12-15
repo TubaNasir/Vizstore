@@ -34,10 +34,12 @@ class Categories extends StatelessWidget {
                   .map(
                     (cat) => CategoryCard(
                       category: cat,
-                      onPress: () {
+                      onPress: () async {
+                         List<ProductJson> list = await context.read<HomeProvider>().getCategoryProducts(cat["text"]);
+
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => Search(
-                              category: cat["text"],
+                              allProducts: list,
                                 )));
                       },
                     ),
