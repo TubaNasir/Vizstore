@@ -7,7 +7,6 @@ import 'package:flutterdemo/screens/constants.dart';
 import '../search/search.dart';
 import 'package:http/http.dart' as http;
 
-import 'check.dart';
 import 'storage_services.dart';
 
 class CameraScreen extends StatefulWidget {
@@ -115,17 +114,17 @@ class _CameraScreenState extends State<CameraScreen> {
             var encodeFirst = json.encode(response.body);
 
             final decoded = json.decode(encodeFirst);
-            await Navigator.of(context).push(
-              // MaterialPageRoute(
-              //   builder: (context) => DisplayPictureScreen(
-              //     // Pass the automatically generated path to
-              //     // the DisplayPictureScreen widget.
-              //     imagePath: image.path,
-              //     camera: camera,
-              //   ),
-              // ),
-              MaterialPageRoute(builder: (_) => Check(greeting : decoded))
-            );
+            // await Navigator.of(context).push(
+            //   // MaterialPageRoute(
+            //   //   builder: (context) => DisplayPictureScreen(
+            //   //     // Pass the automatically generated path to
+            //   //     // the DisplayPictureScreen widget.
+            //   //     imagePath: image.path,
+            //   //     camera: camera,
+            //   //   ),
+            //   // ),
+            //   MaterialPageRoute(builder: (_) => Check(greeting : decoded))
+            // );
           } catch (e) {
             // If an error occurs, log the error to the console.
             print(e);
