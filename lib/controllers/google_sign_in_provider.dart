@@ -33,9 +33,8 @@ class GoogleSignInProvider with ChangeNotifier {
 
   }
 
-  Future<bool> doesUserExist(){
-    Future<bool> exist = _userRepository.doesUserExist(user.id);
-
+  Future<bool> doesUserExist() async {
+    bool exist = await _userRepository.doesUserExist(user.id);
     return exist;
   }
 

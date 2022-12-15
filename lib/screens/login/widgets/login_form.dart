@@ -113,9 +113,14 @@ class _LoginFormState extends State<LoginForm> {
                       .read<GoogleSignInProvider>()
                       .googleLogin();
 
+                  if(!mounted) return;
+
                   bool exist = await context
                       .read<GoogleSignInProvider>()
                       .doesUserExist();
+
+                  if(!mounted) return;
+
                   if (!exist) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
