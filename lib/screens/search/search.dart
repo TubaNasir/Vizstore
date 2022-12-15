@@ -9,7 +9,7 @@ import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/layout.dart';
 
 class Search extends StatefulWidget {
-  Search({super.key, this.category = '',});
+  Search({super.key, this.category = '', });
 
   String category;
 

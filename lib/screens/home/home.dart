@@ -29,8 +29,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => {
-          context.read<HomeProvider>().getProductsList(),
+    WidgetsBinding.instance.addPostFrameCallback((_) async => {
+          await context.read<HomeProvider>().getProductsList(),
           context.read<HomeProvider>().getUser(),
           context.read<HomeProvider>().sendNotifications()
     });

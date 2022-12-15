@@ -114,14 +114,14 @@ class _LoginFormState extends State<LoginForm> {
             children: [
               SocialCard(
                 icon: 'assets/icons/google-icon.svg',
-                onPressed: () {
-                  User? user = context
+                onPressed: () async {
+                  User? user = await context
                       .read<GoogleSignInProvider>()
-                      .googleLogin() as User?;
+                      .googleLogin();
 
-                  bool exist = context
+                  bool exist = await context
                       .read<GoogleSignInProvider>()
-                      .doesUserExist() as bool;
+                      .doesUserExist();
                   if (!exist) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
