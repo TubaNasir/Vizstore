@@ -22,8 +22,40 @@ class CameraScreen extends StatefulWidget {
 class _CameraScreenState extends State<CameraScreen> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
+  File? _selectedImage;
   
+  Future<List<dynamic>> getSimilarImages(File file, String link) async {
+    ///MultiPart request
+    String filename = file.path.split('/').last;
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse(link),
+    );
+    Map<String, String> headers = {"Content-type": "multipart/form-data"};
+    request.files.add(
+      http.MultipartFile(
+        'image',
+        file.readAsBytes().asStream(),
+        file.lengthSync(),
+        filename: filename,
+      ),
+    );
+    request.headers.addAll(headers);
+    print("request: " + request.toString());
+    http.StreamedResponse response = await request.send();
+    //var responseBytes = await response.stream.toBytes();
+    //var responseString = utf8.decode(responseBytes);
+    var test1 = await http.Response.fromStream(response);
+    final result = jsonDecode(test1.body) as Map<String, dynamic>;
+    print(result);
+    print(result['SimilarImages']);
 
+    print('\n\n');
+    print('RESPONSE WITH HTTP');
+    print(response.toString());
+    print('\n\n');
+    return result['SimilarImages'];
+  }
   @override
   void initState() {
     super.initState();
@@ -105,15 +137,19 @@ class _CameraScreenState extends State<CameraScreen> {
             // where it was saved.
             final image = await _controller.takePicture();
             //await GallerySaver.saveImage(image.path);
+
+            if (image != null) {
+              _selectedImage = File(image.path);
+            }
+            setState(() {});
+            List s = await getSimilarImages(
+              File(_selectedImage!.path), "https://5265-111-88-32-81.ngrok.io/similar_image_search"
+            );
+            print(s);
             if (!mounted) return;
 
             // If the picture was taken, display it on a new screen.
             //await widget.storage.uploadFile(image.name,image.path).then((value) => print("done"));
-            //final res = await uploadImage(File(image.path),"https://9fce-111-88-37-179.ngrok.io/upload");
-            final response = await http.get(Uri.parse("https://3de5-111-88-37-179.ngrok.io/upload"));
-            var encodeFirst = json.encode(response.body);
-
-            final decoded = json.decode(encodeFirst);
             // await Navigator.of(context).push(
             //   // MaterialPageRoute(
             //   //   builder: (context) => DisplayPictureScreen(
