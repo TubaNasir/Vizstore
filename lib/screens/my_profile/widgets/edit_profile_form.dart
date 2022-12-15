@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/edit_profile_provider.dart';
 import 'package:flutterdemo/models/user_model.dart';
+import 'package:flutterdemo/screens/constants.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/suffix_icon.dart';
@@ -41,6 +42,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
             height: 20,
           ),
           TextFormField(
+            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: Color(0xFF595959)),
             controller: emailController,
             decoration: InputDecoration(
               labelText: "Email",
@@ -55,6 +57,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
             height: 20,
           ),
           TextFormField(
+            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: Color(0xFF595959)),
             controller: firstNameController,
             decoration: InputDecoration(
               labelText: "First Name",
@@ -69,6 +72,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
             height: 20,
           ),
           TextFormField(
+            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: Color(0xFF595959)),
             controller: lastNameController,
             decoration: InputDecoration(
               labelText: "Last Name",
@@ -83,6 +87,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
             height: 20,
           ),
           TextFormField(
+            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: Color(0xFF595959)),
             controller: contactController,
             decoration: InputDecoration(
               labelText: "Contact Number",

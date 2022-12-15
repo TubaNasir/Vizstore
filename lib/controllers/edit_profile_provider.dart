@@ -19,7 +19,7 @@ class EditProfileProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> editProfile(String? firstName, String? lastName, String? contact) async {
+  Future<void> editProfile(String firstName, String lastName, String contact) async {
 
     UserJson updatedUser = _user.copyWith(firstName: firstName, lastName: lastName, contact: contact);
     await _userRepository.updateUser(updatedUser);
