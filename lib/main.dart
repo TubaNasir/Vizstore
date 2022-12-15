@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/camera_provider.dart';
 import 'package:flutterdemo/controllers/cart_provider.dart';
 import 'package:flutterdemo/controllers/checkout_provider.dart';
 import 'package:flutterdemo/controllers/edit_profile_provider.dart';
@@ -89,13 +90,16 @@ Future<void> main() async {
               getIt.get(instanceName: 'product'))),
       ChangeNotifierProvider(
           create: (_) => WishlistProvider(
-            getIt.get(instanceName: 'store'),
-            getIt.get(instanceName: 'product'),
-            getIt.get(instanceName: 'user'),
-          )),
-      ChangeNotifierProvider(create: (_) => EditProfileProvider(getIt.get(instanceName: 'user'),
+                getIt.get(instanceName: 'store'),
+                getIt.get(instanceName: 'product'),
+                getIt.get(instanceName: 'user'),
+              )),
+      ChangeNotifierProvider(
+          create: (_) => EditProfileProvider(
+                getIt.get(instanceName: 'user'),
+              )),
+      ChangeNotifierProvider(create: (_) => CameraProvider(getIt.get(instanceName: 'product'),
       )),
-      ChangeNotifierProvider(create: (_) => CameraProvider())
     ],
     child: MyApp(),
     //create: (_) => NavBar(),

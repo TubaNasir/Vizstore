@@ -19,12 +19,9 @@ class SearchProvider with ChangeNotifier {
   UserJson _user = UserJson.empty();
 
   List<ProductJson> get products => _products;
-
   List<ProductJson> get categoryProducts => _categoryProducts;
-
   List<ProductJson> get filteredProducts => _filteredProducts;
   List<ProductJson> get changedProducts => _changedProducts;
-
   String get searchText => _searchText;
 
   void getUser() async {

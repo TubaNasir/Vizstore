@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/camera_provider.dart';
+import 'package:flutterdemo/models/product_model.dart';
 import 'package:flutterdemo/screens/camera/camera.dart';
 import 'package:flutterdemo/screens/camera/storage_services.dart';
 import 'package:flutterdemo/screens/constants.dart';
+import 'package:flutterdemo/screens/search/search.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -24,8 +26,16 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
   File? _selectedImage;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async => {
+      await context.read<CameraProvider>().getProductsList(),
+    });
+  }
 
+  @override
+  Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
@@ -51,10 +61,17 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                       _selectedImage = File(image.path);
                     }
                     setState(() {});
+                if (!mounted) return;
                   //await storage.uploadFile(image.filename,image.path).then((value) => print("done"));
-                  List similarImagesList= await context.read<CameraProvider>().getSimilarImages(
-                    File(_selectedImage!.path), "https://eecd-111-88-35-38.ngrok.io/similar_image_search");
+                  List similarImagesList = await context.read<CameraProvider>().getSimilarImages(
+                    File(_selectedImage!.path), "https://5265-111-88-32-81.ngrok.io/similar_image_search");
                     print(similarImagesList);
+                List<ProductJson> list = context.read<CameraProvider>().setSimilarProducts(similarImagesList);
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Search(
+                      allProducts: list,
+                    )));
+
                 },
               ),
               const Text("or"),
