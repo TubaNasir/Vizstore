@@ -3,11 +3,13 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/camera_provider.dart';
+import 'package:flutterdemo/models/product_model.dart';
 import 'package:flutterdemo/screens/constants.dart';
+import 'package:provider/provider.dart';
 import '../search/search.dart';
 import 'package:http/http.dart' as http;
 
-import 'check.dart';
 import 'storage_services.dart';
 
 class CameraScreen extends StatefulWidget {
@@ -23,11 +25,14 @@ class CameraScreen extends StatefulWidget {
 class _CameraScreenState extends State<CameraScreen> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
-  
+  File? _selectedImage;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async => {
+      await context.read<CameraProvider>().getProductsList(),
+    });
     // To display the current output from the Camera,
     // create a CameraController.
     _controller = CameraController(
@@ -47,26 +52,7 @@ class _CameraScreenState extends State<CameraScreen> {
     _controller.dispose();
     super.dispose();
   }
-  Future<http.Response> uploadImage(File file, String link) async {
-    String filename = file.path.split('/').last;
-    var request = http.MultipartRequest(
-      'POST',
-      Uri.parse(link),
-    );
-    Map<String, String> headers = {"Content-type": "multipart/form-data"};
-    request.files.add(
-      http.MultipartFile(
-        'image',
-        file.readAsBytes().asStream(),
-        file.lengthSync(),
-        filename: filename,
-      ),
-    );
-    request.headers.addAll(headers);
-    var res = await request.send();
-    var response = await http.Response.fromStream(res);
-    return response;
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,26 +92,37 @@ class _CameraScreenState extends State<CameraScreen> {
             // where it was saved.
             final image = await _controller.takePicture();
             //await GallerySaver.saveImage(image.path);
+
+            if (image != null) {
+              _selectedImage = File(image.path);
+            }
+            setState(() {});
             if (!mounted) return;
+            List similarImagesList = await context.read<CameraProvider>().getSimilarImages(
+              File(_selectedImage!.path), "https://5265-111-88-32-81.ngrok.io/similar_image_search"
+            );
+            print(similarImagesList);
+            if (!mounted) return;
+
+            List<ProductJson> list = context.read<CameraProvider>().setSimilarProducts(similarImagesList);
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => Search(
+                  allProducts: list,
+                )));
 
             // If the picture was taken, display it on a new screen.
             //await widget.storage.uploadFile(image.name,image.path).then((value) => print("done"));
-            //final res = await uploadImage(File(image.path),"https://9fce-111-88-37-179.ngrok.io/upload");
-            final response = await http.get(Uri.parse("https://3de5-111-88-37-179.ngrok.io/upload"));
-            var encodeFirst = json.encode(response.body);
-
-            final decoded = json.decode(encodeFirst);
-            await Navigator.of(context).push(
-              // MaterialPageRoute(
-              //   builder: (context) => DisplayPictureScreen(
-              //     // Pass the automatically generated path to
-              //     // the DisplayPictureScreen widget.
-              //     imagePath: image.path,
-              //     camera: camera,
-              //   ),
-              // ),
-              MaterialPageRoute(builder: (_) => Check(greeting : decoded))
-            );
+            // await Navigator.of(context).push(
+            //   // MaterialPageRoute(
+            //   //   builder: (context) => DisplayPictureScreen(
+            //   //     // Pass the automatically generated path to
+            //   //     // the DisplayPictureScreen widget.
+            //   //     imagePath: image.path,
+            //   //     camera: camera,
+            //   //   ),
+            //   // ),
+            //   MaterialPageRoute(builder: (_) => Check(greeting : decoded))
+            // );
           } catch (e) {
             // If an error occurs, log the error to the console.
             print(e);

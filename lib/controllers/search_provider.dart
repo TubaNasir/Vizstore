@@ -19,12 +19,9 @@ class SearchProvider with ChangeNotifier {
   UserJson _user = UserJson.empty();
 
   List<ProductJson> get products => _products;
-
   List<ProductJson> get categoryProducts => _categoryProducts;
-
   List<ProductJson> get filteredProducts => _filteredProducts;
   List<ProductJson> get changedProducts => _changedProducts;
-
   String get searchText => _searchText;
 
   void getUser() async {
@@ -41,14 +38,30 @@ class SearchProvider with ChangeNotifier {
     //notifyListeners();
   }
 
-  void getCategoryProducts(String category) async {
-    //await getProductsList();
-    print('ctg' + category);
-    _categoryProducts =
-        products.where((element) => element.category == category).toList();
-
-    _changedProducts = _categoryProducts;
+  void setProducts(List<ProductJson> list){
+    _changedProducts = list;
     notifyListeners();
+  }
+
+  void getProds(List<String> ids){
+
+    List<ProductJson> list = [];
+    for (var element in ids) {
+      list.add(getProduct(element));
+    }
+
+    _changedProducts = list;
+  }
+
+  ProductJson getProduct(String id) {
+    ProductJson product = ProductJson.empty();
+    for (var product in _products) {
+      print("prod,, ${product.id}");
+      if(id == product.id){
+        return product;
+      }
+    }
+    return product;
   }
 
   void getFilteredProducts() {

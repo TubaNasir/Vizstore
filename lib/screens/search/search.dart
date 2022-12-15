@@ -9,31 +9,31 @@ import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/layout.dart';
 
 class Search extends StatefulWidget {
-  Search({super.key, this.category = '', });
+  Search({super.key, required this.allProducts, this.searchText = ''});
 
-  String category;
+  List<ProductJson> allProducts = [];
+  String searchText;
 
   @override
   State<Search> createState() => _SearchState();
 }
 
 class _SearchState extends State<Search> {
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async =>
-    {
-      await context.read<SearchProvider>().getProductsList(),
-      context.read<SearchProvider>().getCategoryProducts(widget.category),
-    });
-
+    WidgetsBinding.instance.addPostFrameCallback((_) async => {
+          await context.read<SearchProvider>().getProductsList(),
+          context.read<SearchProvider>().setProducts(widget.allProducts),
+          context.read<SearchProvider>().setSearchItem(widget.searchText)
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-    List<ProductJson> products = context.watch<SearchProvider>().changedProducts;
+    List<ProductJson> products =
+        context.watch<SearchProvider>().changedProducts;
 
     return SafeArea(
       child: Scaffold(
@@ -44,7 +44,7 @@ class _SearchState extends State<Search> {
             child: Column(
               children: [
                 //SearchPageBar(text: widget.text,),
-                SearchPageBar(),
+                SearchPageBar(searchText: widget.searchText,),
                 const SizedBox(height: 20),
                 (products.isNotEmpty)
                     ? StaggeredProductView(
@@ -59,5 +59,3 @@ class _SearchState extends State<Search> {
     );
   }
 }
-
-

@@ -12,7 +12,7 @@ class EditProfile extends StatelessWidget {
       child: Scaffold(
         appBar: CustomAppBar(title: "My Profile", backButton: true,),
         body: SingleChildScrollView(
-          child: EditProfileForm(enabled: false,),
+          child: EditProfileForm(),
         ),
       ),
     );

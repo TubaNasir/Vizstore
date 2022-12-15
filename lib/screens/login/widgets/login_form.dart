@@ -34,7 +34,6 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     bool passwordVisible = context.watch<LoginProvider>().passwordVisible;
-    bool error = context.watch<LoginProvider>().errorMessage;
 
     return Form(
       key: _formKey,
@@ -53,9 +52,6 @@ class _LoginFormState extends State<LoginForm> {
               if (value == null || value.isEmpty) {
                 return 'Please enter your email';
               }
-              if (error) {
-                return 'Incorrect email or password';
-              }
               return null;
             },
           ),
@@ -69,7 +65,7 @@ class _LoginFormState extends State<LoginForm> {
               enabled: enabled,
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: IconButton(
-                icon: Icon(
+                icon: Icon( //visibility_off
                     passwordVisible ? Icons.visibility : Icons.visibility_off),
                 onPressed: () {
                   context.read<LoginProvider>().changePasswordVisible();
@@ -82,27 +78,25 @@ class _LoginFormState extends State<LoginForm> {
               if (value == null || value.isEmpty) {
                 return 'Please enter your password';
               }
-              if (error) {
-                return 'Incorrect email or password';
-              }
               return null;
             },
           ),
           SizedBox(height: 30),
           CustomButton(
               text: "Continue",
-              pressed: () {
-                context
+              pressed: () async {
+                 Future<bool> login = context
                     .read<LoginProvider>()
                     .signIn(controllerEmail.text, controllerPassword.text);
 
-                if (_formKey.currentState!.validate()) {
+                if (await login == true) { //_formKey.currentState!.validate() &&
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => Home(),
                     ),
                   );
                 }
+
               }),
           Text(
             "or signup with",

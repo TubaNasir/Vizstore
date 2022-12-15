@@ -84,8 +84,8 @@ class _CheckoutBottomBarState extends State<CheckoutBottomBar> {
                   backgroundColor: Colors.white,
                 ),
                 onPressed: () async {
-                 String error = await context.read<CheckoutProvider>().placeOrder();
-                 if(error == 'Please enter a valid address'){
+                 //String error = await context.read<CheckoutProvider>().placeOrder();
+                 //if(error == 'Please enter a valid address'){
                    // AlertDialog(
                    //   title: Text(error!),
                    //   actions: [
@@ -94,14 +94,16 @@ class _CheckoutBottomBarState extends State<CheckoutBottomBar> {
                    //     }, child: Text('Ok'))
                    //   ],
                    // );
-                 }
-                 else {
+                 //}
+                  Form.of(context)?.validate();
+                // if (this._formKey.currentState!.validate()) {
                    Navigator.of(context).push(
                      MaterialPageRoute(
                        builder: (context) => Success(),
                      ),
                    );
-                 }
+                // }
+
 
                 },
                 child: Ink(

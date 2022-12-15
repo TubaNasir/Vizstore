@@ -24,7 +24,9 @@ class HomeProvider with ChangeNotifier {
   UserJson _user = UserJson.empty();
   List<ProductJson> _products = [];
   List<ProductJson> _categoryProducts  = [];
+  List<ProductJson> _filteredProducts = [];
   int _notis = 0;
+  String _searchText = '';
 
   StoreJson get store => _store;
   List<ProductJson> get products => _products;
@@ -123,6 +125,36 @@ class HomeProvider with ChangeNotifier {
     await _userRepository.updateUser(updatedUser);
     notifyListeners();
     _user = await _userRepository.getUser();
+    notifyListeners();
+  }
+
+  Future<List<ProductJson>> getCategoryProducts(String category) async {
+    //await getProductsList();
+    print('ctg' + category);
+    _categoryProducts =
+        products.where((element) => element.category == category).toList();
+
+    return _categoryProducts;
+    //_changedProducts = _categoryProducts;
+    //notifyListeners();
+  }
+
+  List<ProductJson> getFilteredProducts() {
+    _filteredProducts = products
+        .where((element) =>
+    element.title.toLowerCase().contains(_searchText.toLowerCase()) ||
+        element.description
+            .toLowerCase()
+            .contains(_searchText.toLowerCase()))
+        .toList();
+
+    return _filteredProducts;
+    //_changedProducts = _filteredProducts;
+    //notifyListeners();
+  }
+
+  void setSearchItem(String text) {
+    _searchText = text;
     notifyListeners();
   }
 

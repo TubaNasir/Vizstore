@@ -32,6 +32,8 @@ class _CheckoutFormState extends State<CheckoutForm> {
     });
   }
 
+  //final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     UserJson user = context.watch<CheckoutProvider>().user;
@@ -79,6 +81,12 @@ class _CheckoutFormState extends State<CheckoutForm> {
             context.read<CheckoutProvider>().setAddress(text);
           },
           controller: controllerAddress,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter shipping address';
+            }
+            return null;
+          },
         ),
         SizedBox(height: 20),
         Stack(children: [

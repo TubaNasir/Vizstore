@@ -30,6 +30,8 @@ class _CheckoutState extends State<Checkout> {
     });
   }
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
 
@@ -37,28 +39,31 @@ class _CheckoutState extends State<Checkout> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(title: 'Checkout', backButton: true),
-        body: Stack(
-            children:[
-              Layout(
-                widget:
-              Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        CheckoutForm(),
-                        OrderSummary(),
-                        SizedBox(height: 100),
-                      ],
+        body: Form(
+          key: _formKey,
+          child: Stack(
+              children:[
+                Layout(
+                  widget:
+                Column(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          CheckoutForm(key: _formKey,),
+                          OrderSummary(),
+                          SizedBox(height: 100),
+                        ],
+                      ),
                     ),
+                  )],
                   ),
-                )],
                 ),
-              ),
-              CheckoutBottomBar(),
-            ],
-          ),
+                CheckoutBottomBar(),
+              ],
+            ),
+        ),
         ),
 
     );
