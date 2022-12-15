@@ -132,7 +132,7 @@ class UserRepository {
 
   }
 
-  Future<User?> signUp(String email, String password) async {
+  Future signUp(String email, String password) async {
     try {
       UserCredential userCred = await firebaseauth
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -142,6 +142,7 @@ class UserRepository {
       return userCred.user;
     } catch (e) {
       print(e);
+      return e;
     }
   }
 
