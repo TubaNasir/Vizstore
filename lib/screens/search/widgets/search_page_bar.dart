@@ -8,8 +8,9 @@ import 'package:flutterdemo/screens/search/search.dart';
 import 'package:provider/provider.dart';
 
 class SearchPageBar extends StatefulWidget {
-  SearchPageBar({super.key,});
+  SearchPageBar({super.key, required this.searchText});
 
+  String searchText = '';
 
   @override
   State<SearchPageBar> createState() => _SearchPageBarState();
@@ -30,7 +31,7 @@ class _SearchPageBarState extends State<SearchPageBar> {
   @override
   Widget build(BuildContext context) {
     String searchText = context
-        .read<SearchProvider>()
+        .watch<SearchProvider>()
         .searchText;
    // TextEditingController controllerSearch = TextEditingController(text: widget.text);
 
@@ -44,7 +45,7 @@ class _SearchPageBarState extends State<SearchPageBar> {
           Expanded(
             child:
             TextFormField(
-              initialValue: searchText,
+              initialValue: widget.searchText,
              // controller: controllerSearch,
               decoration: const InputDecoration(
                   enabledBorder: InputBorder.none,

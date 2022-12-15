@@ -101,7 +101,7 @@ class UserRepository {
     return _user;
   }
 
-  Future<String?> signIn(String email, String password) async {
+  Future signIn(String email, String password) async {
     String errorMessage = '';
     User? user;
 
@@ -110,9 +110,11 @@ class UserRepository {
           email: email, password: password);
 
       user = userCred.user;
+      return user?.uid;
       //getuser from uid
     } catch (e) {
-
+      print('error '+e.toString());
+      return e;
       /*switch (e) {
         case "ERROR_INVALID_EMAIL":
           errorMessage = "Your email address appears to be malformed.";
@@ -127,11 +129,7 @@ class UserRepository {
           errorMessage = "An undefined Error happened.";
       }*/
     }
-    // if (errorMessage != null) {
-    //   return Future.error(errorMessage);
-    // }
 
-    return user?.uid;
   }
 
   Future<User?> signUp(String email, String password) async {

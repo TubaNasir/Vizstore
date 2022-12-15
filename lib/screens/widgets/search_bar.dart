@@ -1,5 +1,7 @@
 import 'package:camera/camera.dart';
+import 'package:flutterdemo/controllers/home_provider.dart';
 import 'package:flutterdemo/controllers/search_provider.dart';
+import 'package:flutterdemo/models/product_model.dart';
 import 'package:flutterdemo/screens/camera/choice.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
@@ -20,11 +22,6 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    String searchText = context
-        .read<SearchProvider>()
-        .searchText;
-
-   // TextEditingController controllerSearch = TextEditingController(text: searchText);
 
     return Container(
       height: 50,
@@ -36,7 +33,6 @@ class _SearchBarState extends State<SearchBar> {
           Expanded(
             child:
               TextFormField(
-                //initialValue: searchText,
                 decoration: const InputDecoration(
                     enabledBorder: InputBorder.none,
                     focusedBorder: InputBorder.none,
@@ -45,12 +41,14 @@ class _SearchBarState extends State<SearchBar> {
                     contentPadding: EdgeInsets.symmetric(horizontal: 90, vertical: 9)),
                onFieldSubmitted: (String text){
                   if(text != '') {
-                    context.read<SearchProvider>().setSearchItem(text);
-                    context.read<SearchProvider>().getFilteredProducts();
+                    context.read<HomeProvider>().setSearchItem(text);
+                    List<ProductJson> list = context.read<HomeProvider>().getFilteredProducts();
 
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) =>
                             Search(
+                              allProducts: list,
+                              searchText: text,
                             )));
                   }
                },

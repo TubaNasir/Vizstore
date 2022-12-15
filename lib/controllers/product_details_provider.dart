@@ -97,7 +97,7 @@ class ProductDetailsProvider with ChangeNotifier {
         msg: text,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.TOP,
-        backgroundColor: SecondaryColor,
+        backgroundColor: Colors.yellow,
         textColor: Colors.black
     );
   }
