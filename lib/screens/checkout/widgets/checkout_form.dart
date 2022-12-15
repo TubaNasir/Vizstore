@@ -32,6 +32,7 @@ class _CheckoutFormState extends State<CheckoutForm> {
     });
   }
 
+  //final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

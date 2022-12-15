@@ -3,7 +3,9 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/camera_provider.dart';
 import 'package:flutterdemo/screens/constants.dart';
+import 'package:provider/provider.dart';
 import '../search/search.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,39 +25,7 @@ class _CameraScreenState extends State<CameraScreen> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
   File? _selectedImage;
-  
-  Future<List<dynamic>> getSimilarImages(File file, String link) async {
-    ///MultiPart request
-    String filename = file.path.split('/').last;
-    var request = http.MultipartRequest(
-      'POST',
-      Uri.parse(link),
-    );
-    Map<String, String> headers = {"Content-type": "multipart/form-data"};
-    request.files.add(
-      http.MultipartFile(
-        'image',
-        file.readAsBytes().asStream(),
-        file.lengthSync(),
-        filename: filename,
-      ),
-    );
-    request.headers.addAll(headers);
-    print("request: " + request.toString());
-    http.StreamedResponse response = await request.send();
-    //var responseBytes = await response.stream.toBytes();
-    //var responseString = utf8.decode(responseBytes);
-    var test1 = await http.Response.fromStream(response);
-    final result = jsonDecode(test1.body) as Map<String, dynamic>;
-    print(result);
-    print(result['SimilarImages']);
 
-    print('\n\n');
-    print('RESPONSE WITH HTTP');
-    print(response.toString());
-    print('\n\n');
-    return result['SimilarImages'];
-  }
   @override
   void initState() {
     super.initState();
@@ -78,26 +48,7 @@ class _CameraScreenState extends State<CameraScreen> {
     _controller.dispose();
     super.dispose();
   }
-  Future<http.Response> uploadImage(File file, String link) async {
-    String filename = file.path.split('/').last;
-    var request = http.MultipartRequest(
-      'POST',
-      Uri.parse(link),
-    );
-    Map<String, String> headers = {"Content-type": "multipart/form-data"};
-    request.files.add(
-      http.MultipartFile(
-        'image',
-        file.readAsBytes().asStream(),
-        file.lengthSync(),
-        filename: filename,
-      ),
-    );
-    request.headers.addAll(headers);
-    var res = await request.send();
-    var response = await http.Response.fromStream(res);
-    return response;
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,10 +93,10 @@ class _CameraScreenState extends State<CameraScreen> {
               _selectedImage = File(image.path);
             }
             setState(() {});
-            List s = await getSimilarImages(
+            List similarImagesList = await context.read<CameraProvider>().getSimilarImages(
               File(_selectedImage!.path), "https://5265-111-88-32-81.ngrok.io/similar_image_search"
             );
-            print(s);
+            print(similarImagesList);
             if (!mounted) return;
 
             // If the picture was taken, display it on a new screen.

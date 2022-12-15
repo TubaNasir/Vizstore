@@ -1,13 +1,13 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/camera_provider.dart';
 import 'package:flutterdemo/screens/camera/camera.dart';
 import 'package:flutterdemo/screens/camera/storage_services.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 import '../widgets/custom_button.dart';
 
@@ -23,41 +23,10 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
 
   File? _selectedImage;
 
-  Future<List<dynamic>> getSimilarImages(File file, String link) async {
-    ///MultiPart request
-    String filename = file.path.split('/').last;
-    var request = http.MultipartRequest(
-      'POST',
-      Uri.parse(link),
-    );
-    Map<String, String> headers = {"Content-type": "multipart/form-data"};
-    request.files.add(
-      http.MultipartFile(
-        'image',
-        file.readAsBytes().asStream(),
-        file.lengthSync(),
-        filename: filename,
-      ),
-    );
-    request.headers.addAll(headers);
-    print("request: " + request.toString());
-    http.StreamedResponse response = await request.send();
-    //var responseBytes = await response.stream.toBytes();
-    //var responseString = utf8.decode(responseBytes);
-    var test1 = await http.Response.fromStream(response);
-  final result = jsonDecode(test1.body) as Map<String, dynamic>;
-  print(result);
-  print(result['SimilarImages']);
-
-    print('\n\n');
-    print('RESPONSE WITH HTTP');
-    print(response.toString());
-    print('\n\n');
-    return result['SimilarImages'];
-  }
-
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(color: Colors.black,),
@@ -83,7 +52,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     }
                     setState(() {});
                   //await storage.uploadFile(image.filename,image.path).then((value) => print("done"));
-                  List s = await getSimilarImages(
+                  List s = await context.read<CameraProvider>().getSimilarImages(
                     File(_selectedImage!.path), "https://5265-111-88-32-81.ngrok.io/similar_image_search");
                     print(s);
                 },

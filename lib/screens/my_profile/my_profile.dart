@@ -27,7 +27,7 @@ class _MyProfileState extends State<MyProfile> {
             Layout(
               widget: ListView(
                 children: [
-                  ProfilePic(),
+                  //ProfilePic(),
                   SizedBox(height: 20,),
                   MenuList(),
                   SizedBox(height: 100,)
