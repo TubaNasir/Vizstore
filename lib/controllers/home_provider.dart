@@ -6,8 +6,6 @@ import 'package:flutterdemo/models/notification_model.dart';
 import 'package:flutterdemo/models/product_model.dart';
 import 'package:flutterdemo/models/wishlist_model.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
-import 'package:flutterdemo/screens/constants.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import '../models/store_model.dart';
 import '../models/user_model.dart';
 import '../repositories/store_repository.dart';
@@ -52,8 +50,7 @@ class HomeProvider with ChangeNotifier {
 
   }
 
-
-  void getProductsList() async {
+  Future<void> getProductsList() async {
     print('in method');
     _products = await _productRepository.getProductList();
     notifyListeners();
