@@ -52,9 +52,9 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     }
                     setState(() {});
                   //await storage.uploadFile(image.filename,image.path).then((value) => print("done"));
-                  List s = await context.read<CameraProvider>().getSimilarImages(
-                    File(_selectedImage!.path), "https://5265-111-88-32-81.ngrok.io/similar_image_search");
-                    print(s);
+                  List similarImagesList= await context.read<CameraProvider>().getSimilarImages(
+                    File(_selectedImage!.path), "https://eecd-111-88-35-38.ngrok.io/similar_image_search");
+                    print(similarImagesList);
                 },
               ),
               const Text("or"),

@@ -23,6 +23,7 @@ import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'controllers/camera_provider.dart';
 import 'controllers/google_sign_in_provider.dart';
 import 'screens/login/login.dart';
 
@@ -93,7 +94,8 @@ Future<void> main() async {
             getIt.get(instanceName: 'user'),
           )),
       ChangeNotifierProvider(create: (_) => EditProfileProvider(getIt.get(instanceName: 'user'),
-      ))
+      )),
+      ChangeNotifierProvider(create: (_) => CameraProvider())
     ],
     child: MyApp(),
     //create: (_) => NavBar(),
