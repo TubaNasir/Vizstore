@@ -19,15 +19,19 @@ class ImageWidgetCart extends StatelessWidget {
         aspectRatio: 1,
         child: Container(
           //width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-              color: SecondaryColor,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10.0),
-                bottomLeft: Radius.circular(10.0),
-              ),
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            color: SecondaryColor,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10.0),
+              bottomLeft: Radius.circular(10.0),
             ),
-            child: Image.network(image)),
+          ),
+          child: Image.network(image, errorBuilder:
+              (BuildContext context, Object exception, StackTrace? stackTrace) {
+            return const CircularProgressIndicator();
+          }),
+        ),
       ),
     );
   }
