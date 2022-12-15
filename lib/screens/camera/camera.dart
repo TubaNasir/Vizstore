@@ -99,7 +99,7 @@ class _CameraScreenState extends State<CameraScreen> {
             setState(() {});
             if (!mounted) return;
             List similarImagesList = await context.read<CameraProvider>().getSimilarImages(
-              File(_selectedImage!.path), "https://eecd-111-88-35-38.ngrok.io/similar_image_search"
+              File(_selectedImage!.path), "https://5d10-111-88-35-38.ngrok.io/similar_image_search"
             );
             print(similarImagesList);
             if (!mounted) return;

@@ -64,7 +64,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                 if (!mounted) return;
                   //await storage.uploadFile(image.filename,image.path).then((value) => print("done"));
                   List similarImagesList = await context.read<CameraProvider>().getSimilarImages(
-                    File(_selectedImage!.path), "https://5265-111-88-32-81.ngrok.io/similar_image_search");
+                    File(_selectedImage!.path), "https://5d10-111-88-35-38.ngrok.io/similar_image_search");
                     print(similarImagesList);
                 List<ProductJson> list = context.read<CameraProvider>().setSimilarProducts(similarImagesList);
                 Navigator.of(context).push(MaterialPageRoute(
