@@ -29,7 +29,7 @@ class _PopularProductsState extends State<PopularProducts> {
               scrollDirection: Axis.horizontal,
               children: popularProducts
                   .map((product) => Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
+                        padding: const EdgeInsets.only(left: 6.0),
                         child: GestureDetector(
                             onTap: () {
                               Navigator.push(
