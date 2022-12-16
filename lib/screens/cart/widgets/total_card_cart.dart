@@ -11,50 +11,82 @@ class TotalCardCart extends StatefulWidget {
 }
 
 class _TotalCardCartState extends State<TotalCardCart> {
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => {
-      context.read<CartProvider>().setTotal()
-    });
-  }
   @override
   Widget build(BuildContext context) {
-    return Card(
-    shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20)),
-    elevation: 2,
-    child: Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: SecondaryColor,
-        ),
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Total: ',
-                  style: Theme.of(context).textTheme.titleMedium,
-                  textAlign: TextAlign.left,
+    bool isFetching = context.watch<CartProvider>().isFetching;
+
+    return isFetching
+        ? Container()
+        : Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            elevation: 2,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: SecondaryColor,
                 ),
-                Text(
-                  ("Rs. ${context.watch<CartProvider>().total.toString()}"),
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'SubTotal: ',
+                          style: Theme.of(context).textTheme.titleSmall,
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          ("Rs. ${context.watch<CartProvider>().subTotal.toString()}"),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Delivery: ',
+                          style: Theme.of(context).textTheme.titleSmall,
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          ("Rs. ${context.watch<CartProvider>().delivery.toString()}"),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Divider(color: Colors.black12, height: 1),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Total: ',
+                          style: Theme.of(context).textTheme.titleMedium,
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          ("Rs. ${context.watch<CartProvider>().total.toString()}"),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ));
+              ),
+            ));
   }
 }
-
-

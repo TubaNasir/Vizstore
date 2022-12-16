@@ -5,10 +5,10 @@ import '../constants.dart';
 class ImageWidget extends StatelessWidget {
   const ImageWidget({
     Key? key,
-    required this.productImage,
+    required this.image,
   }) : super(key: key);
 
-  final String productImage;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,10 @@ class ImageWidget extends StatelessWidget {
                 bottomLeft: Radius.circular(10.0),
               ),
             ),
-            child: Image.network(productImage)),
+            child: Image.network(image, errorBuilder:
+                (BuildContext context, Object exception, StackTrace? stackTrace) {
+              return const CircularProgressIndicator();
+            }),),
       ),
     );
   }

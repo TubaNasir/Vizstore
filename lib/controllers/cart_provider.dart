@@ -23,13 +23,19 @@ class CartProvider with ChangeNotifier {
   UserJson _user = UserJson.empty();
   List<ProductJson> _products = [];
   List<StoreJson> _stores = [];
+  int _subTotal = -1;
+  int _delivery = -1;
   int _total = -1;
+  bool _isFetching = true;
 
   StoreJson get store => _store;
   List<ProductJson> get products => _products;
   List<StoreJson> get stores => _stores;
   UserJson get user => _user;
+  int get subTotal => _subTotal;
   int get total => _total;
+  int get delivery => _delivery;
+  bool get isFetching => _isFetching;
 
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
@@ -44,7 +50,7 @@ class CartProvider with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  ProductJson getProduct(String id) {
+  ProductJson getProductInfo(String id) {
     ProductJson product = ProductJson.empty();
       for (var product in _products) {
         print("prod,, ${product.id}");
@@ -66,6 +72,16 @@ class CartProvider with ChangeNotifier {
     return store;
   }
 
+  bool cartInfoFetched() {
+    return true;
+  }
+
+  // List<ProductJson> getCartProductList(){
+  //   print('all prods ${_products}' );
+  //
+  //   List<ProductJson> products = _user.cart.map((e) => getProductInfo(e.productId)).cast<ProductJson>().toList();
+  //   return products;
+  // }
 
   Future<void> getProductsList() async {
     _products = await _productRepository.getProductList();
@@ -160,22 +176,54 @@ class CartProvider with ChangeNotifier {
     //print(_user.cart[0].quantity);
   }
 
-  void setTotal() {
-    int total = 0;
+  void setTotalDeliveryCharges() {
+    List<ProductJson> cartProducts = _user.cart
+        .map((e) => getProductInfo(e.productId))
+        .cast<ProductJson>()
+        .toList();
+
+    List<StoreJson> productStores =
+    cartProducts.map((e) => getStore(e.storeId)).cast<StoreJson>().toList();
+
+    List<StoreJson> storeDistinct = [];
+    storeDistinct = productStores.toSet().toList();
+
+    int delivery = 0;
+
+    for (var store in storeDistinct) {
+      delivery = store.deliveryCharges + delivery;
+      print(delivery);
+    }
+    _delivery = delivery;
+    notifyListeners();
+
+  }
+
+  void setSubTotal() {
+    int subTotal = 0;
     print(_user.cart.length);
     print(_products.length);
     for (var item in _user.cart) {
-      print("item ,, ${item.productId}");
       for (var product in _products) {
-        print("item ,, ${item.productId}");
-        print("prod,, ${product.id}");
         if(item.productId == product.id){
-           total = total + (item.quantity * product.price);
-          print(total);
+           subTotal = subTotal + (item.quantity * product.price);
+          print(subTotal);
         }
       }
     }
-    _total = total;
+    _subTotal = subTotal;
+    notifyListeners();
+  }
+
+  void setTotal() {
+    setSubTotal();
+    notifyListeners();
+    setTotalDeliveryCharges();
+    notifyListeners();
+    print('intotal');
+    _total = _delivery + _subTotal;
+    notifyListeners();
+    _isFetching = false;
     notifyListeners();
   }
 
