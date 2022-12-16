@@ -42,7 +42,6 @@ class CartProvider with ChangeNotifier {
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
     notifyListeners();
-    //print('cart quantity ${_user.cart[0].quantity}');
   }
 
   Future<void> setIsFetching() async {
