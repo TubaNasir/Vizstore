@@ -29,18 +29,15 @@ class ProductCard extends StatelessWidget {
           width: 140,
           child: Column(
             children: [
-              AspectRatio(
-                aspectRatio: 1.70,
-                child: Container(
-                    height: MediaQuery.of(context).size.height,
-                    decoration: const BoxDecoration(
-                      color: SecondaryColor,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10.0),
-                          topRight: Radius.circular(10.0)),
-                    ),
-                    child: Image.network(product.image)
-                ),
+              Container(
+                  height: 100,
+                  decoration: const BoxDecoration(
+                    color: SecondaryColor,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10.0),
+                        topRight: Radius.circular(10.0)),
+                  ),
+                  child: Image.network(product.image)
               ),
               Padding(
                 padding: const EdgeInsets.all(6.0),
