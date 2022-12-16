@@ -27,13 +27,15 @@ class _CartState extends State<Cart> {
           await context.read<CartProvider>().getUser(),
           await context.read<CartProvider>().getProductsList(),
           await context.read<CartProvider>().getStoresList(),
+          context.read<CartProvider>().setCartLength(),
           context.read<CartProvider>().setTotal()
         });
   }
 
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<CartProvider>().user;
+    UserJson user = context.watch<CartProvider>().user;
+    bool isFetching = context.watch<CartProvider>().isFetching;
 
     return SafeArea(
       child: Scaffold(
@@ -44,25 +46,29 @@ class _CartState extends State<Cart> {
           //backgroundColor: Colors.grey.shade200,
           body: Stack(children: [
             Layout(
-              widget: SingleChildScrollView(
-                child: Column(
-                    children: [
-                  Column(
-                    children:
-                        user.cart.map((e) => CartCard(cartItem: e)).toList(),
-                  ),
-                  TotalCardCart(),
-                  SizedBox(height: 20),
-                  CustomButton(
-                    text: 'Checkout',
-                    pressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Checkout()));
-                    },
-                  ),
-                  SizedBox(height: 100),
-                ]),
-              ),
+              widget: context.watch<CartProvider>().isCartEmpty
+                  ? Text('Cart is empty')
+                  : SingleChildScrollView(
+                      child: Column(children: [
+                        Column(
+                          children: user.cart
+                              .map((e) => CartCard(cartItem: e))
+                              .toList(),
+                        ),
+                        isFetching ? Container() : TotalCardCart(),
+                        SizedBox(height: 20),
+                        isFetching
+                            ? Container()
+                            : CustomButton(
+                                text: 'Checkout',
+                                pressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => Checkout()));
+                                },
+                              ),
+                        SizedBox(height: 100),
+                      ]),
+                    ),
             ),
             BottomNavBar()
           ])),

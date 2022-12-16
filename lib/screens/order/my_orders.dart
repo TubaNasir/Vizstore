@@ -33,7 +33,6 @@ class _MyOrdersState extends State<MyOrders> {
   @override
   Widget build(BuildContext context) {
     List<OrderJson> orderList = context.watch<MyOrdersProvider>().getMyOrders();
-    print(orderList);
 
     return SafeArea(
       child: Scaffold(

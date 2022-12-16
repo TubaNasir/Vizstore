@@ -21,13 +21,18 @@ class WishlistProvider with ChangeNotifier {
   UserJson _user = UserJson.empty();
   List<ProductJson> _products = [];
   List<StoreJson> _stores = [];
-  int _total = -1;
+  List<ProductJson> _wishlistProducts = [];
+  bool _isFetching = true;
+  bool _isWishlistEmpty = false;
+
 
   StoreJson get store => _store;
   List<ProductJson> get products => _products;
   List<StoreJson> get stores => _stores;
   UserJson get user => _user;
-  int get total => _total;
+  List<ProductJson> get wishlistProducts => _wishlistProducts;
+  bool get isFetching => _isFetching;
+  bool get isWishlistEmpty => _isWishlistEmpty;
 
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
@@ -35,7 +40,7 @@ class WishlistProvider with ChangeNotifier {
     //print('cart quantity ${_user.cart[0].quantity}');
   }
 
-  ProductJson getProduct(String id) {
+  ProductJson getProductInfo(String id) {
     ProductJson product = ProductJson.empty();
     for (var product in _products) {
       if (id == product.id) {
@@ -68,6 +73,18 @@ class WishlistProvider with ChangeNotifier {
     //notifyListeners();
   }
 
+  void setWishlistLength() {
+    _isWishlistEmpty = user.cart.isEmpty;
+    notifyListeners();
+  }
+  // void getWishlistProductList(){
+  //   List<ProductJson> products = _user.wishlist.map((e) => getProductInfo(e.productId)).cast<ProductJson>().toList();
+  //   _wishlistProducts = products;
+  //   notifyListeners();
+  //   _isFetching = false;
+  //   notifyListeners();
+  // }
+
   Future<void> updateWishlist(String productId) async {
     List<WishlistItemJson> newWishlist = [];
     for (var item in user.wishlist) {
@@ -83,11 +100,17 @@ class WishlistProvider with ChangeNotifier {
     await _userRepository.updateUser(updatedUser);
     _user = await _userRepository.getUser();
     notifyListeners();
+    //getWishlistProductList();
   }
 
   bool getIsFavourite(String productId) {
     bool isFav = false;
     isFav = user.wishlist.any((element) => element.productId == productId);
     return isFav;
+  }
+
+  void setStatus() {
+    _isFetching = false;
+    notifyListeners();
   }
 }

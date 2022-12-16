@@ -15,13 +15,14 @@ import '../widgets/custom_button.dart';
 
 class ChoiceScreen extends StatefulWidget {
   ChoiceScreen({super.key});
+  Storage storage = Storage();
+
 
   @override
   State<ChoiceScreen> createState() => _ChoiceScreenState();
 }
 
 class _ChoiceScreenState extends State<ChoiceScreen> {
-  Storage storage = Storage();
 
   File? _selectedImage;
 
@@ -67,9 +68,11 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     File(_selectedImage!.path), "https://5d10-111-88-35-38.ngrok.io/similar_image_search");
                     print(similarImagesList);
                 List<ProductJson> list = context.read<CameraProvider>().setSimilarProducts(similarImagesList);
-                Navigator.of(context).push(MaterialPageRoute(
+
+                await Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => Search(
                       allProducts: list,
+                      imagePath: _selectedImage!.path,
                     )));
 
                 },

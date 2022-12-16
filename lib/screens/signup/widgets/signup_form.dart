@@ -28,13 +28,18 @@ class _SignUpFormState extends State<SignUpForm> {
   String _contactText = '';
   FirebaseAuth firebaseauth = FirebaseAuth.instance;
 
+  TextEditingController controllerEmail = TextEditingController();
+  TextEditingController controllerPassword = TextEditingController();
+  TextEditingController controllerRePassword = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controllerEmail = TextEditingController();
-    TextEditingController controllerPassword = TextEditingController();
-    TextEditingController controllerRePassword = TextEditingController();
+
+    bool passwordVisible = context.watch<SignupProvider>().passwordVisible;
+    bool rePasswordVisible = context.watch<SignupProvider>().rePasswordVisible;
+
 
     return Form(
       key: _formKey,
@@ -70,7 +75,13 @@ class _SignUpFormState extends State<SignUpForm> {
                 hintText: "Enter your password",
                 enabled: enabled,
                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                suffixIcon: SuffixIcon(icon: Icons.person),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                      passwordVisible ? Icons.visibility : Icons.visibility_off),
+                  onPressed: () {
+                    context.read<SignupProvider>().changePasswordVisible();
+                  },
+                ),
               ),
               controller: controllerPassword,
               validator: (value) {
@@ -79,7 +90,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 }
                 return null;
               },
-              obscureText: true,
+              obscureText: !passwordVisible,
+
             ),
             SizedBox(
               height: 20,
@@ -90,7 +102,13 @@ class _SignUpFormState extends State<SignUpForm> {
                 hintText: "Re-enter password",
                 enabled: enabled,
                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                suffixIcon: SuffixIcon(icon: Icons.person),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                      rePasswordVisible ? Icons.visibility : Icons.visibility_off),
+                  onPressed: () {
+                    context.read<SignupProvider>().changeRePasswordVisible();
+                  },
+                ),
               ),
               controller: controllerRePassword,
               validator: (value) {
@@ -102,10 +120,10 @@ class _SignUpFormState extends State<SignUpForm> {
                 }
                 return null;
               },
-              obscureText: true,
+              obscureText: !rePasswordVisible,
             ),
             SizedBox(
-              height: 30,
+              height: 25,
             ),
             CustomButton(
                 text: "Continue",
@@ -117,12 +135,14 @@ class _SignUpFormState extends State<SignUpForm> {
                           .signUp(
                           controllerEmail.text, controllerPassword.text);
 
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              CompleteProfile(user: user),
-                        ),
-                      );
+                      if(user != null){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                CompleteProfile(user: user),
+                          ),
+                        );
+                      }
                     } catch (e) {
                       print(e);
                     }
@@ -134,12 +154,12 @@ class _SignUpFormState extends State<SignUpForm> {
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.caption,
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 20),
             Text(
               "or signin with",
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 25),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               SocialCard(
                 icon: 'assets/icons/google-icon.svg',

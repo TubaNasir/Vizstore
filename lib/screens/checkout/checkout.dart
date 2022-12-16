@@ -51,7 +51,7 @@ class _CheckoutState extends State<Checkout> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          CheckoutForm(key: _formKey,),
+                          CheckoutForm(),
                           OrderSummary(),
                           SizedBox(height: 100),
                         ],
@@ -60,7 +60,7 @@ class _CheckoutState extends State<Checkout> {
                   )],
                   ),
                 ),
-                CheckoutBottomBar(),
+                CheckoutBottomBar(Globalkey: _formKey),
               ],
             ),
         ),

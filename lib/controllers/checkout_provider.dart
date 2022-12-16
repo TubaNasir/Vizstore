@@ -8,6 +8,7 @@ import 'package:flutterdemo/models/user_model.dart';
 import 'package:flutterdemo/repositories/order_repository.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
 import 'package:flutterdemo/repositories/store_repository.dart';
+import 'package:flutterdemo/screens/cart/cart.dart';
 
 class CheckoutProvider with ChangeNotifier {
   CheckoutProvider(this._userRepository, this._storeRepository,
@@ -23,7 +24,7 @@ class CheckoutProvider with ChangeNotifier {
   ProductJson _product = ProductJson.empty();
   List<ProductJson> _products = [];
   List<StoreJson> _stores = [];
-  List<StoreJson> _cartStores = [];
+  List<CartItemJson> _storeProducts = [];
   String _address = '';
   String _city = '';
   int _total = 0;
@@ -33,6 +34,7 @@ class CheckoutProvider with ChangeNotifier {
   StoreJson get store => _store;
   List<ProductJson> get products => _products;
   List<StoreJson> get stores => _stores;
+  List<CartItemJson> get storeProducts => _storeProducts;
   String get address => _address;
   String get city => _city;
 
@@ -52,16 +54,32 @@ class CheckoutProvider with ChangeNotifier {
       List<StoreJson> distinctStores = getProductsInfo();
       bool error = false;
       //print(distinctStores.map((e) => e.storeName));
-      List<OrderJson> orders = distinctStores
-          .map((e) =>
-          OrderJson(
-              userId: _user.id,
-              cart: getProductsFromStore(e.id),
-              date_created: date,
-              city: _city,
-              address: _address))
-          .cast<OrderJson>()
-          .toList();
+      List<OrderJson> orders = [];
+      // List<OrderJson> orders = distinctStores
+      //     .map((e) =>
+      //     OrderJson(
+      //         userId: _user.id,
+      //         cart: getProductsFromStore(e.id),
+      //         date_created: date,
+      //         city: _city,
+      //         address: _address,
+      //     total: 0))
+      //     .cast<OrderJson>()
+      //     .toList();
+
+      for(var element in distinctStores){
+        int total = setSubtotalWithDelivery(element);
+        orders.add(
+            OrderJson(
+                userId: _user.id,
+                cart: getProductsFromStore(element.id),
+                date_created: date,
+                city: _city,
+                address: _address,
+                total: total)
+        );
+      }
+
       print(orders);
       //print(orders.map((e) => e.cart.first.quantity));
       // orders.map((e) async => await placeOrder2(e));
@@ -189,8 +207,24 @@ class CheckoutProvider with ChangeNotifier {
         cartProducts.map((e) => getProduct(e.productId)).toList();
 
     print('in get products from store');
+
+
+   // _storeProducts = cartProducts;
+   // notifyListeners();
     return cartProducts;
    }
+
+   int setSubtotalWithDelivery(StoreJson store){
+    List<CartItemJson> cartProducts = getProductsFromStore(store.id);
+    int subtotal = 0;
+    for (var element in cartProducts) {
+      subtotal += (getProduct(element.productId).price * element.quantity);
+    }
+    subtotal += store.deliveryCharges;
+
+    return subtotal;
+  }
+
 
    updateProduct(ProductJson product, int quantity) async {
     ProductJson  newProduct = product.copyWith(sold: product.sold+quantity, stock: product.stock-quantity);

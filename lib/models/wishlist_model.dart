@@ -1,7 +1,3 @@
-
-
-import 'package:flutterdemo/models/product_model.dart';
-
 class WishlistItemJson {
   final String productId;
 

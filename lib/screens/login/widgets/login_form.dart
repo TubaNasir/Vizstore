@@ -65,7 +65,7 @@ class _LoginFormState extends State<LoginForm> {
               enabled: enabled,
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: IconButton(
-                icon: Icon( //visibility_off
+                icon: Icon(
                     passwordVisible ? Icons.visibility : Icons.visibility_off),
                 onPressed: () {
                   context.read<LoginProvider>().changePasswordVisible();
@@ -121,7 +121,7 @@ class _LoginFormState extends State<LoginForm> {
 
                   if(!mounted) return;
 
-                  if (!exist) {
+                  if (exist == false) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => CompleteProfile(

@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/models/product_model.dart';
+import 'package:flutterdemo/models/user_model.dart';
 import 'package:flutterdemo/screens/wishlist/widgets/wishlist_card.dart';
 import 'package:provider/provider.dart';
 import '../../controllers/wishlist_provider.dart';
@@ -16,20 +17,21 @@ class Wishlist extends StatefulWidget {
 }
 
 class _WishlistState extends State<Wishlist> {
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
-      await context.read<WishlistProvider>().getUser(),
-      await context.read<WishlistProvider>().getProductsList(),
-      await context.read<WishlistProvider>().getStoresList()
-    });
+          await context.read<WishlistProvider>().getUser(),
+          await context.read<WishlistProvider>().getProductsList(),
+          await context.read<WishlistProvider>().getStoresList(),
+          context.read<WishlistProvider>().setWishlistLength(),
+          context.read<WishlistProvider>().setStatus(),
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<WishlistProvider>().user;
+        UserJson user = context.watch<WishlistProvider>().user;
 
     return SafeArea(
       child: Scaffold(
@@ -40,21 +42,24 @@ class _WishlistState extends State<Wishlist> {
         body: Stack(
           children: [
             Layout(
-                widget: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Column(
-                        children:
-                          user.wishlist
-                              .map((e) => WishListCard(
-                            wishlistItem: e,
-                          ))
-                              .toList(),
-                      ),
-                      SizedBox(height: 100,),
-                    ],
-                  ),
-                )),
+                widget: context.watch<WishlistProvider>().isWishlistEmpty
+                    ? Text('Wishlist is empty')
+                    : SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Column(
+                              children: user.wishlist
+                                  .map((e) => WishListCard(
+                                        wishlistItem: e,
+                                      ))
+                                  .toList(),
+                            ),
+                            SizedBox(
+                              height: 100,
+                            ),
+                          ],
+                        ),
+                      )),
             BottomNavBar(),
           ],
         ),
@@ -62,8 +67,3 @@ class _WishlistState extends State<Wishlist> {
     );
   }
 }
-
-
-
-
-
