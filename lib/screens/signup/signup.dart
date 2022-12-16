@@ -25,13 +25,13 @@ class _SignUpState extends State<SignUp> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(height: 40),
+                  SizedBox(height: 30),
                   RegisterMessage(),
-                  SizedBox(height: 20),
+                  SizedBox(height: 10),
                   SignUpForm(),
-                  SizedBox(height: 20),
+                  SizedBox(height: 15),
                   SignupRedirection(),
-                  SizedBox(height: 20),
+                  SizedBox(height: 15),
                 ],
               ),
             ),

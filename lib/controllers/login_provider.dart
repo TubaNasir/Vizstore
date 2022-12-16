@@ -13,11 +13,8 @@ class LoginProvider with ChangeNotifier {
   UserJson _user = UserJson.empty();
 
   bool get passwordVisible => _passwordVisible;
-
   bool get errorMessage => _errorMessage;
-
   bool get isLoggedIn => _isLoggedIn;
-
   UserJson get user => _user;
 
   //final UserRepository _userRepository = UserRepository();

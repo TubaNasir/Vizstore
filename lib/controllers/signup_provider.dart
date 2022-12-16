@@ -10,6 +10,21 @@ import '../models/user_model.dart';
 class SignupProvider with ChangeNotifier{
   final UserRepository _coreRepository = UserRepository();
 
+  bool _passwordVisible = false;
+  bool _rePasswordVisible = false;
+
+  bool get passwordVisible => _passwordVisible;
+  bool get rePasswordVisible => _rePasswordVisible;
+
+  void changePasswordVisible() {
+    _passwordVisible = !_passwordVisible;
+    notifyListeners();
+  }
+
+  void changeRePasswordVisible() {
+    _rePasswordVisible = !_rePasswordVisible;
+    notifyListeners();
+  }
 
   void addNewUser(User? user, String firstName,String lastName,String contact,) async {
     UserJson newUser = UserJson(
@@ -34,7 +49,7 @@ class SignupProvider with ChangeNotifier{
       return result;
     }
     else if(result is FirebaseAuthException){
-      showErrorToast('User Already Exists');
+      showErrorToast('This email address is already in use');
     }
     return null;
 
