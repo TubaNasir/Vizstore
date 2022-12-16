@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
 import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:flutterdemo/models/product_model.dart';
+import 'package:flutterdemo/models/store_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../store/store_main.dart';
@@ -29,13 +30,15 @@ class _StoreDetailsState extends State<StoreDetails> {
   }
 
   Widget build(BuildContext context) {
+    StoreJson store = context.read<HomeProvider>().store;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: InkWell(
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => StoreMain(),
+              builder: (context) => StoreMain(store: store,),
             ),
           );
         },

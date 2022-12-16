@@ -12,6 +12,7 @@ import 'package:flutterdemo/controllers/profile_provider.dart';
 import 'package:flutterdemo/controllers/search_provider.dart';
 import 'package:flutterdemo/controllers/signup_provider.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
+import 'package:flutterdemo/controllers/store_provider.dart';
 import 'package:flutterdemo/controllers/wishlist_provider.dart';
 import 'package:flutterdemo/core/user_repository.dart';
 import 'package:flutterdemo/models/store_model.dart';
@@ -100,6 +101,7 @@ Future<void> main() async {
               )),
       ChangeNotifierProvider(create: (_) => CameraProvider(getIt.get(instanceName: 'product'),
       )),
+      ChangeNotifierProvider(create: (_) => StoreProvider(getIt.get(instanceName: 'product'),)),
     ],
     child: MyApp(),
     //create: (_) => NavBar(),
