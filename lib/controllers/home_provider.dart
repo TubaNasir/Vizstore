@@ -25,6 +25,7 @@ class HomeProvider with ChangeNotifier {
   List<ProductJson> _products = [];
   List<ProductJson> _categoryProducts  = [];
   List<ProductJson> _filteredProducts = [];
+  List<ProductJson> _popularProducts = [];
   int _notis = 0;
   String _searchText = '';
 
@@ -32,6 +33,7 @@ class HomeProvider with ChangeNotifier {
   List<ProductJson> get products => _products;
   UserJson get user => _user;
   List<ProductJson> get categoryProducts => _categoryProducts;
+  List<ProductJson> get popularProducts => _popularProducts;
   int get notis => _notis;
 
 
@@ -157,5 +159,21 @@ class HomeProvider with ChangeNotifier {
     _searchText = text;
     notifyListeners();
   }
+
+  Future<void> getPopularProducts() async {
+
+    if (products.isNotEmpty) {
+      products.sort((b, a) => a.sold.compareTo(b.sold));
+    }
+
+    List<ProductJson> list = [];
+    for (var i = 0; i < 6; i++) {
+      list.add(products[i]);
+    }
+
+    _popularProducts = list;
+    notifyListeners();
+  }
+
 
 }

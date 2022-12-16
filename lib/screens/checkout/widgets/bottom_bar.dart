@@ -8,8 +8,10 @@ import '../../success/success.dart';
 
 class CheckoutBottomBar extends StatefulWidget {
   const CheckoutBottomBar({
-    Key? key,
+    Key? key, this.Globalkey,
   }) : super(key: key);
+
+  final Globalkey;
 
   @override
   State<CheckoutBottomBar> createState() => _CheckoutBottomBarState();
@@ -84,7 +86,6 @@ class _CheckoutBottomBarState extends State<CheckoutBottomBar> {
                   backgroundColor: Colors.white,
                 ),
                 onPressed: () async {
-                 //String error = await context.read<CheckoutProvider>().placeOrder();
                  //if(error == 'Please enter a valid address'){
                    // AlertDialog(
                    //   title: Text(error!),
@@ -95,14 +96,16 @@ class _CheckoutBottomBarState extends State<CheckoutBottomBar> {
                    //   ],
                    // );
                  //}
-                  Form.of(context)?.validate();
-                // if (this._formKey.currentState!.validate()) {
+                  //Form.of(context)?.validate();
+                 if (widget.Globalkey.currentState!.validate()) {
+                   String error = await context.read<CheckoutProvider>().placeOrder();
+
                    Navigator.of(context).push(
                      MaterialPageRoute(
                        builder: (context) => Success(),
                      ),
                    );
-                // }
+                 }
 
 
                 },
