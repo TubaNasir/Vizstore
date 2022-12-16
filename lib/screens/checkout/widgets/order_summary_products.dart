@@ -62,7 +62,7 @@ class _OrderSummaryProductsState extends State<OrderSummaryProducts> {
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         Text(
-                          'Rs. ${(context.read<CheckoutProvider>().getProduct(element.productId).price * element.quantity).toString()}',
+                          'Rs. ${(context.read<CheckoutProvider>().getProduct(element.productId).price * element.quantity)}',
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                       ],
@@ -80,6 +80,20 @@ class _OrderSummaryProductsState extends State<OrderSummaryProducts> {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               Text('Rs. ${widget.store.deliveryCharges}',
+                  style: Theme.of(context).textTheme.bodyMedium),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 0.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Subtotal:',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              Text('Rs. ${context.read<CheckoutProvider>().setSubtotalWithDelivery(widget.store)}',
                   style: Theme.of(context).textTheme.bodyMedium),
             ],
           ),

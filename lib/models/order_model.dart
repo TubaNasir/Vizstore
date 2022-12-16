@@ -10,7 +10,8 @@ class OrderJson {
     this.status = 'Placed',
     required this.date_created,
     required this.city,
-    required this.address
+    required this.address,
+    required this.total
   });
 
   String? id;
@@ -20,9 +21,9 @@ class OrderJson {
   DateTime date_created;
   String city;
   String address;
-  //double total;
+  int total;
 
-  OrderJson.empty() : userId = '', cart = [], status = '', date_created = DateTime.now(), city = '', address = '' ;
+  OrderJson.empty() : userId = '', cart = [], status = '', date_created = DateTime.now(), city = '', address = '', total = 0 ;
 
   factory OrderJson.fromJson(Map<String, dynamic> json, String id) => OrderJson(
     userId: json["userId"] as String? ?? '',
@@ -33,6 +34,7 @@ class OrderJson {
     //date_created: Timestamp.fromDate(json["date_created"]),
     city: json["city"] as String? ?? '',
     address: json["address"]  as String? ?? '',
+    total: json["total"] as int? ?? 0
   );
 
   Map<String, dynamic> toJson() => {
@@ -41,7 +43,8 @@ class OrderJson {
     "status": status,
     "date_created": date_created,
     "city": city,
-    "address": address
+    "address": address,
+    "total": total
   };
   
   DateTime fromJson(Timestamp timestamp) {
