@@ -8,7 +8,7 @@ import '../../models/product_model.dart';
 import '../widgets/custom_app_bar2.dart';
 
 class ProductDetail extends StatefulWidget {
-  const ProductDetail({required this.product, super.key});
+  const ProductDetail({required this.product, super.key,});
 
   final ProductJson product;
 
@@ -18,15 +18,18 @@ class ProductDetail extends StatefulWidget {
 
 class _ProductDetailState extends State<ProductDetail> {
 
+  @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => {
-      context.read<ProductDetailsProvider>().getUser()
+      context.read<ProductDetailsProvider>().getUser(),
+      context.read<ProductDetailsProvider>().getIsFavourite(widget.product.id)
     });
   }
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,

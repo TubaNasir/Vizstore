@@ -36,7 +36,8 @@ class _PopularProductsState extends State<PopularProducts> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (_) =>
-                                          ProductDetail(product: product)));
+                                          ProductDetail(product: product,
+                                            )));
                             },
                             child: ProductCard(
                               product: product,
