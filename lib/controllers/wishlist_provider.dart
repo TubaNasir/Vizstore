@@ -74,7 +74,7 @@ class WishlistProvider with ChangeNotifier {
   }
 
   void setWishlistLength() {
-    _isWishlistEmpty = user.cart.isEmpty;
+    _isWishlistEmpty = user.wishlist.isEmpty;
     notifyListeners();
   }
   // void getWishlistProductList(){
@@ -99,6 +99,8 @@ class WishlistProvider with ChangeNotifier {
     UserJson updatedUser = _user.copyWith(wishlist: newWishlist);
     await _userRepository.updateUser(updatedUser);
     _user = await _userRepository.getUser();
+    notifyListeners();
+    setWishlistLength();
     notifyListeners();
     //getWishlistProductList();
   }

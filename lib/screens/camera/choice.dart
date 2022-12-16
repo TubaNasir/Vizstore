@@ -42,7 +42,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
       appBar: AppBar(
         leading: const BackButton(color: Colors.black,),
         title: const Text(
-          'Image Search',
+          'AI Visual Search',
           textAlign: TextAlign.center,
           style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 22),
           ),
@@ -51,8 +51,17 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.upload_file_rounded,size: 60,color: PrimaryColor,),
-              SizedBox(height: 30,),
+              Container(height:150,child: Image.asset("assets/images/image_scan.png",fit: BoxFit.cover,)),
+              SizedBox(height: 20,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  "Upload or click an image to find similar products in our app using AI.", 
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),
+                ),
+              ),
+              SizedBox(height: 20,),
               CustomButton(
                 text: 'Upload Image',
                 pressed: () async{
