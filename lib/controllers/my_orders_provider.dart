@@ -15,37 +15,47 @@ class MyOrdersProvider with ChangeNotifier {
   ProductRepository _productRepository;
 
   List<OrderJson> _orders = [];
+  List<OrderJson> _myOrders = [];
   List<ProductJson> _products = [];
   UserJson _user = UserJson.empty();
   OrderJson _clickedOrder = OrderJson.empty();
+  bool _isOrdersEmpty = false;
   bool _isFetching = true;
 
   List<OrderJson> get orders => _orders;
+  List<OrderJson> get myOrders => _myOrders;
   UserJson get user => _user;
   List<ProductJson> get products => _products;
   OrderJson get clickedOrder => _clickedOrder;
   bool get isFetching => _isFetching;
-
+  bool get isOrderEmpty => _isOrdersEmpty;
 
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
     notifyListeners();
   }
 
-  List<OrderJson> getMyOrders() {
+  Future<void> getMyOrders() async {
     List<OrderJson> allOrders = [];
     allOrders = _orders.where((element) => element.userId == _user.id).toList();
-    _isFetching = false;
+    _myOrders = allOrders;
     notifyListeners();
-    return allOrders;
     //notifyListeners();
+  }
+
+  Future<void> setIsFetching() async {
+    _isFetching = true;
+    notifyListeners();
   }
 
   Future<void> getOrderList() async {
     print('in method');
     _orders = await _orderRepository.getOrderList();
     notifyListeners();
+    _isFetching = false;
+    notifyListeners();
     print(orders);
+
     //notifyListeners();
   }
 
@@ -57,10 +67,9 @@ class MyOrdersProvider with ChangeNotifier {
     //notifyListeners();
   }
 
-  ProductJson getProduct(String id) {
+  ProductJson getProductInfo(String id) {
     ProductJson product = ProductJson.empty();
     for (var product in _products) {
-      print("prod,, ${product.id}");
       if (id == product.id) {
         return product;
       }

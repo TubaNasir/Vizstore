@@ -65,14 +65,14 @@ class _ProductsCardState extends State<ProductsCard> {
                       itemBuilder: (context, index) => HorizontalProductCard(
                         productImage: context
                             .read<MyOrdersProvider>()
-                            .getProduct(widget.order.cart[index].productId)
+                            .getProductInfo(widget.order.cart[index].productId)
                             .image,
                         cardTitle: context
                             .read<MyOrdersProvider>()
-                            .getProduct(widget.order.cart[index].productId)
+                            .getProductInfo(widget.order.cart[index].productId)
                             .title,
                         cardSubtitle:
-                            "Rs. ${context.read<MyOrdersProvider>().getProduct(widget.order.cart[index].productId).price}",
+                            "Rs. ${context.read<MyOrdersProvider>().getProductInfo(widget.order.cart[index].productId).price}",
                         icon: CircleAvatar(
                           radius: 15,
                           backgroundColor: PrimaryColor,

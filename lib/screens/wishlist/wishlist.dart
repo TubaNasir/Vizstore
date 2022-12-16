@@ -21,12 +21,13 @@ class _WishlistState extends State<Wishlist> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
+          context.read<WishlistProvider>().setIsFetching(),
           await context.read<WishlistProvider>().getUser(),
+          await context.read<WishlistProvider>().setWishlistLength(),
           await context.read<WishlistProvider>().getProductsList(),
           await context.read<WishlistProvider>().getStoresList(),
-          context.read<WishlistProvider>().setWishlistLength(),
-          context.read<WishlistProvider>().setStatus(),
-        });
+          context.read<WishlistProvider>().setIsFetchingFalse(),
+    });
   }
 
   @override

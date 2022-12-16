@@ -34,11 +34,14 @@ class TitleWidgetOrder extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  color: status == 'Confirmed' ? Colors.lightGreen[300] : status == 'Cancelled' ? Colors.red[400] : Colors.yellow[300],
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
+                    color: status == 'Confirmed' ? Colors.lightGreen[300] : status == 'Cancelled' ? Colors.red[400] : Colors.yellow[300],
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                   ),
-                  child:  Text(status, style: Theme.of(context).textTheme.bodyMedium),
+                  child:  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text(status, style: Theme.of(context).textTheme.bodyMedium),
+                  ),
                 ),
               ],
             ),

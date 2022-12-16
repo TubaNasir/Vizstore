@@ -73,8 +73,8 @@ class WishlistProvider with ChangeNotifier {
     //notifyListeners();
   }
 
-  void setWishlistLength() {
-    _isWishlistEmpty = user.cart.isEmpty;
+  Future<void> setWishlistLength() async{
+    _isWishlistEmpty = user.wishlist.isEmpty;
     notifyListeners();
   }
   // void getWishlistProductList(){
@@ -100,6 +100,8 @@ class WishlistProvider with ChangeNotifier {
     await _userRepository.updateUser(updatedUser);
     _user = await _userRepository.getUser();
     notifyListeners();
+    setWishlistLength();
+    notifyListeners();
     //getWishlistProductList();
   }
 
@@ -109,7 +111,12 @@ class WishlistProvider with ChangeNotifier {
     return isFav;
   }
 
-  void setStatus() {
+  void setIsFetching() {
+    _isFetching = true;
+    notifyListeners();
+  }
+
+  void setIsFetchingFalse() {
     _isFetching = false;
     notifyListeners();
   }

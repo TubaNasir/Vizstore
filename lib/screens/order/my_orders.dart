@@ -22,17 +22,18 @@ class _MyOrdersState extends State<MyOrders> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
-      context.read<MyOrdersProvider>().getUser(),
+      await context.read<MyOrdersProvider>().setIsFetching(),
+      await context.read<MyOrdersProvider>().getUser(),
       await context.read<MyOrdersProvider>().getProductsList(),
       await context.read<MyOrdersProvider>().getOrderList(),
-      //context.read<MyOrdersProvider>().getMyOrders(),
-
+      await context.read<MyOrdersProvider>().getMyOrders(),
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    List<OrderJson> orderList = context.watch<MyOrdersProvider>().getMyOrders();
+    List<OrderJson> orderList = context.read<MyOrdersProvider>().myOrders;
+    print("isfetching ${context.watch<MyOrdersProvider>().isFetching}");
 
     return SafeArea(
       child: Scaffold(
@@ -41,17 +42,15 @@ class _MyOrdersState extends State<MyOrders> {
           backButton: true,
         ),
         body: Layout(
-          widget: ListView(
+          widget: context.watch<MyOrdersProvider>().isOrderEmpty
+              ? Text('Cart is empty'):
+              ListView(
               children: orderList
                   .map((e) => OrderCard(
-                productImage: context.read<MyOrdersProvider>().getProduct(e.cart.first.productId).image,
+                productImage: context.read<MyOrdersProvider>().getProductInfo(e.cart.first.productId).image,
                 title: "Order ID: ${e.id}",
-                placedOn: e.date_created.toString().split(' ')[0],
+                placedOn: "Placed on: ${e.date_created.toString().split(' ')[0]}",
                 status: e.status,
-                icon: Icon(
-                  Icons.chevron_right,
-                  color: PrimaryColor,
-                ),
                 press: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
