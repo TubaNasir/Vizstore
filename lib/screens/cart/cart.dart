@@ -24,18 +24,22 @@ class _CartState extends State<Cart> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
+          await context.read<CartProvider>().setIsFetching(),
           await context.read<CartProvider>().getUser(),
+          await context.read<CartProvider>().setCartLength(),
           await context.read<CartProvider>().getProductsList(),
           await context.read<CartProvider>().getStoresList(),
-          context.read<CartProvider>().setCartLength(),
-          context.read<CartProvider>().setTotal()
-        });
+          context.read<CartProvider>().setTotal(),
+
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     UserJson user = context.watch<CartProvider>().user;
     bool isFetching = context.watch<CartProvider>().isFetching;
+    print('cart ${context.watch<CartProvider>().isCartEmpty}');
+    print('isftchvjf ${context.watch<CartProvider>().isFetching}');
 
     return SafeArea(
       child: Scaffold(

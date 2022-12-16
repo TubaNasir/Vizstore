@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/my_orders_provider.dart';
+import 'package:provider/provider.dart';
 import '../../../widgets/image_widget.dart';
 import 'title_widget_order.dart';
 
@@ -11,9 +13,27 @@ class OrderCard extends StatelessWidget {
   final VoidCallback press;
   @override
   Widget build(BuildContext context) {
+
+    bool isFetching = context.watch<MyOrdersProvider>().isFetching;
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 30.0),
-      child: ElevatedButton(
+      child:
+      isFetching
+          ? SizedBox(
+        height: 88.0,
+        width: double.infinity,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              elevation: 2,
+              padding: EdgeInsets.zero,
+              backgroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15))),
+          onPressed: () {},
+          child: Center(child: CircularProgressIndicator()),
+        ),
+      ) : ElevatedButton(
         onPressed: press,
         style: ElevatedButton.styleFrom(
             elevation: 2,

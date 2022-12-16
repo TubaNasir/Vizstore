@@ -45,6 +45,12 @@ class CartProvider with ChangeNotifier {
     //print('cart quantity ${_user.cart[0].quantity}');
   }
 
+  Future<void> setIsFetching() async {
+    _isFetching = true;
+    notifyListeners();
+  }
+
+
   // Future<void> getProduct(String id) async {
   //   ProductJson product = await _productRepository.getProductInfo(id);
   //   //notifyListeners();
@@ -95,7 +101,7 @@ class CartProvider with ChangeNotifier {
     //notifyListeners();
   }
 
-  void setCartLength() {
+  Future<void> setCartLength() async{
     _isCartEmpty = user.cart.isEmpty;
     notifyListeners();
   }
@@ -152,6 +158,8 @@ class CartProvider with ChangeNotifier {
 
     await updateList(newCart);
     setTotal();
+    setCartLength();
+    notifyListeners();
     //print(_user.cart[0].quantity);
   }
 

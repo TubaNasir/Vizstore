@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/cart_provider.dart';
 import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:flutterdemo/screens/cart/cart.dart';
 import 'package:flutterdemo/screens/constants.dart';
@@ -55,6 +56,7 @@ class BottomBar extends StatelessWidget {
                 ),
                 onPressed: product.stock == 0 ? null : () {
                   context.read<ProductDetailsProvider>().addToCart(product.id);
+                  //context.read<CartProvider>().setCartLength();
                   // Navigator.of(context).push(
                   //   MaterialPageRoute(
                   //     builder: (context) => Cart(),
