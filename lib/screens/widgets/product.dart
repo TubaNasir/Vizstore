@@ -18,7 +18,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(right:8.0,left:8.0,bottom: 45.0),
       child: Container(
        // height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
@@ -29,15 +29,18 @@ class ProductCard extends StatelessWidget {
           width: 140,
           child: Column(
             children: [
-              Container(
-                  height: 100,
-                  decoration: const BoxDecoration(
-                    color: SecondaryColor,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10.0),
-                        topRight: Radius.circular(10.0)),
-                  ),
-                  child: Image.network(product.image)
+              AspectRatio(
+                aspectRatio: 1.4,
+                child: Container(
+                    height: 100,
+                    decoration: const BoxDecoration(
+                      color: SecondaryColor,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10.0),
+                          topRight: Radius.circular(10.0)),
+                    ),
+                    child: Image.network(product.image)
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(6.0),
