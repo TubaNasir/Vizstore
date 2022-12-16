@@ -20,6 +20,7 @@ class OrderJson {
   DateTime date_created;
   String city;
   String address;
+  //double total;
 
   OrderJson.empty() : userId = '', cart = [], status = '', date_created = DateTime.now(), city = '', address = '' ;
 

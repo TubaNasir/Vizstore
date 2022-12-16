@@ -121,7 +121,7 @@ class _LoginFormState extends State<LoginForm> {
 
                   if(!mounted) return;
 
-                  if (!exist) {
+                  if (exist == false) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => CompleteProfile(
