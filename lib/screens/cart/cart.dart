@@ -33,7 +33,8 @@ class _CartState extends State<Cart> {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<CartProvider>().user;
+    UserJson user = context.watch<CartProvider>().user;
+    bool isFetching = context.watch<CartProvider>().isFetching;
 
     return SafeArea(
       child: Scaffold(
@@ -45,21 +46,22 @@ class _CartState extends State<Cart> {
           body: Stack(children: [
             Layout(
               widget: SingleChildScrollView(
-                child: Column(
-                    children: [
+                child: Column(children: [
                   Column(
                     children:
                         user.cart.map((e) => CartCard(cartItem: e)).toList(),
                   ),
-                  TotalCardCart(),
+                  isFetching ? Container() : TotalCardCart(),
                   SizedBox(height: 20),
-                  CustomButton(
-                    text: 'Checkout',
-                    pressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Checkout()));
-                    },
-                  ),
+                  isFetching
+                      ? Container()
+                      : CustomButton(
+                          text: 'Checkout',
+                          pressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Checkout()));
+                          },
+                        ),
                   SizedBox(height: 100),
                 ]),
               ),

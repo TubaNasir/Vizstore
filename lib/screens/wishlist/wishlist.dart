@@ -23,13 +23,15 @@ class _WishlistState extends State<Wishlist> {
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
       await context.read<WishlistProvider>().getUser(),
       await context.read<WishlistProvider>().getProductsList(),
-      await context.read<WishlistProvider>().getStoresList()
+      await context.read<WishlistProvider>().getStoresList(),
+      context.read<WishlistProvider>().getWishlistProductList()
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<WishlistProvider>().user;
+
+    List<ProductJson> products = context.watch<WishlistProvider>().wishlistProducts;
 
     return SafeArea(
       child: Scaffold(
@@ -45,9 +47,9 @@ class _WishlistState extends State<Wishlist> {
                     children: [
                       Column(
                         children:
-                          user.wishlist
+                          products
                               .map((e) => WishListCard(
-                            wishlistItem: e,
+                            product: e,
                           ))
                               .toList(),
                       ),

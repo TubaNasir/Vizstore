@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../../controllers/wishlist_provider.dart';
 
 class TitleWidgetWishlist extends StatelessWidget {
   const TitleWidgetWishlist({
@@ -38,7 +35,7 @@ class TitleWidgetWishlist extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.favorite, color: Colors.red, size: 25),
+                  icon: Icon(Icons.favorite, color: Colors.red, size: 20),
                   padding: EdgeInsets.zero,
                   constraints: BoxConstraints(),
                   onPressed: onPressed,
