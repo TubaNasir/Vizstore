@@ -26,6 +26,7 @@ class CartProvider with ChangeNotifier {
   int _subTotal = -1;
   int _delivery = -1;
   int _total = -1;
+  bool _isCartEmpty = false;
   bool _isFetching = true;
 
   StoreJson get store => _store;
@@ -36,6 +37,7 @@ class CartProvider with ChangeNotifier {
   int get total => _total;
   int get delivery => _delivery;
   bool get isFetching => _isFetching;
+  bool get isCartEmpty => _isCartEmpty;
 
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
@@ -72,9 +74,6 @@ class CartProvider with ChangeNotifier {
     return store;
   }
 
-  bool cartInfoFetched() {
-    return true;
-  }
 
   // List<ProductJson> getCartProductList(){
   //   print('all prods ${_products}' );
@@ -94,6 +93,11 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
     print(stores);
     //notifyListeners();
+  }
+
+  void setCartLength() {
+    _isCartEmpty = user.cart.isEmpty;
+    notifyListeners();
   }
 
   // Future<void> getCartProductsJson() async{

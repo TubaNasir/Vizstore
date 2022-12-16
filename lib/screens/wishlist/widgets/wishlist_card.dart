@@ -9,9 +9,9 @@ import '../../widgets/image_widget.dart';
 import '../../../models/product_model.dart';
 
 class WishListCard extends StatefulWidget {
-  const WishListCard({Key? key, required this.product}) : super(key: key);
+  const WishListCard({Key? key, required this.wishlistItem}) : super(key: key);
 
-  final ProductJson product;
+  final WishlistItemJson wishlistItem;
 
   @override
   State<WishListCard> createState() => _WishListCardState();
@@ -20,9 +20,11 @@ class WishListCard extends StatefulWidget {
 class _WishListCardState extends State<WishListCard> {
   @override
   Widget build(BuildContext context) {
-    //ProductJson product = context.watch<WishlistProvider>().getProductInfo(widget.wishlistItem.productId);
+
+    ProductJson product = context.watch<WishlistProvider>().getProductInfo(widget.wishlistItem.productId);
+
     StoreJson store =
-        context.watch<WishlistProvider>().getStore(widget.product.storeId);
+        context.watch<WishlistProvider>().getStore(product.storeId);
     bool isFetching = context.watch<WishlistProvider>().isFetching;
 
     return Padding(
@@ -57,17 +59,17 @@ class _WishListCardState extends State<WishListCard> {
               child: Row(
                 //mainAxisAlignment: MainAxisAlignment.s,
                 children: [
-                  ImageWidget(image: widget.product.image),
+                  ImageWidget(image: product.image),
                   const SizedBox(
                     width: 20,
                   ),
                   TitleWidgetWishlist(
-                    title: widget.product.title,
-                    price: widget.product.price,
+                    title: product.title,
+                    price: product.price,
                     storeName: store.storeName,
                     onPressed: () => context
                         .read<WishlistProvider>()
-                        .updateWishlist(widget.product.id),
+                        .updateWishlist(product.id),
                   ),
                 ],
               ),

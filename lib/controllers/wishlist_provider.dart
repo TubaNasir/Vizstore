@@ -23,6 +23,8 @@ class WishlistProvider with ChangeNotifier {
   List<StoreJson> _stores = [];
   List<ProductJson> _wishlistProducts = [];
   bool _isFetching = true;
+  bool _isWishlistEmpty = false;
+
 
   StoreJson get store => _store;
   List<ProductJson> get products => _products;
@@ -30,6 +32,7 @@ class WishlistProvider with ChangeNotifier {
   UserJson get user => _user;
   List<ProductJson> get wishlistProducts => _wishlistProducts;
   bool get isFetching => _isFetching;
+  bool get isWishlistEmpty => _isWishlistEmpty;
 
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
@@ -70,13 +73,17 @@ class WishlistProvider with ChangeNotifier {
     //notifyListeners();
   }
 
-  void getWishlistProductList(){
-    List<ProductJson> products = _user.wishlist.map((e) => getProductInfo(e.productId)).cast<ProductJson>().toList();
-    _wishlistProducts = products;
-    notifyListeners();
-    _isFetching = false;
+  void setWishlistLength() {
+    _isWishlistEmpty = user.cart.isEmpty;
     notifyListeners();
   }
+  // void getWishlistProductList(){
+  //   List<ProductJson> products = _user.wishlist.map((e) => getProductInfo(e.productId)).cast<ProductJson>().toList();
+  //   _wishlistProducts = products;
+  //   notifyListeners();
+  //   _isFetching = false;
+  //   notifyListeners();
+  // }
 
   Future<void> updateWishlist(String productId) async {
     List<WishlistItemJson> newWishlist = [];
@@ -93,12 +100,17 @@ class WishlistProvider with ChangeNotifier {
     await _userRepository.updateUser(updatedUser);
     _user = await _userRepository.getUser();
     notifyListeners();
-    getWishlistProductList();
+    //getWishlistProductList();
   }
 
   bool getIsFavourite(String productId) {
     bool isFav = false;
     isFav = user.wishlist.any((element) => element.productId == productId);
     return isFav;
+  }
+
+  void setStatus() {
+    _isFetching = false;
+    notifyListeners();
   }
 }
