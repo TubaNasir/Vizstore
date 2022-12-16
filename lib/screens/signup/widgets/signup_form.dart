@@ -117,12 +117,14 @@ class _SignUpFormState extends State<SignUpForm> {
                           .signUp(
                           controllerEmail.text, controllerPassword.text);
 
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              CompleteProfile(user: user),
-                        ),
-                      );
+                      if(user != null){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                CompleteProfile(user: user),
+                          ),
+                        );
+                      }
                     } catch (e) {
                       print(e);
                     }

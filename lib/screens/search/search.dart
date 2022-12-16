@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/search_provider.dart';
@@ -9,10 +11,11 @@ import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/layout.dart';
 
 class Search extends StatefulWidget {
-  Search({super.key, required this.allProducts, this.searchText = ''});
+  Search({super.key, required this.allProducts, this.searchText = '', this.imagePath = ''});
 
   List<ProductJson> allProducts = [];
   String searchText;
+  String imagePath;
 
   @override
   State<Search> createState() => _SearchState();
@@ -43,9 +46,16 @@ class _SearchState extends State<Search> {
           widget: SingleChildScrollView(
             child: Column(
               children: [
-                //SearchPageBar(text: widget.text,),
                 SearchPageBar(searchText: widget.searchText,),
                 const SizedBox(height: 20),
+                SizedBox(
+                  height: 150,
+                  width: 150,
+                  child: Image.file(File(widget.imagePath)), //ADD BOUNDARY
+                ),
+                const SizedBox(height: 20),
+                Text('Related Products', style: Theme.of(context).textTheme.titleMedium,),
+                const SizedBox(height: 8),
                 (products.isNotEmpty)
                     ? StaggeredProductView(
                         products: products,

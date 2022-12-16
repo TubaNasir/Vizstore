@@ -66,7 +66,7 @@ class LoginProvider with ChangeNotifier {
         msg: text,
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.TOP,
-        backgroundColor: Colors.yellow,
+        backgroundColor: SecondaryColor,
         textColor: Colors.black
     );
   }
