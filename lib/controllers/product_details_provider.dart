@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/core/user_repository.dart';
 import 'package:flutterdemo/models/cart_model.dart';
 import 'package:flutterdemo/models/product_model.dart';
+import 'package:flutterdemo/models/wishlist_model.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -22,6 +23,7 @@ class ProductDetailsProvider with ChangeNotifier {
   StoreJson _store = const StoreJson.empty();
   UserJson _user = UserJson.empty();
   int _quantity = 1;
+  bool _isFav = false;
   List<ProductJson> _products = [];
 
   StoreJson get store => _store;
@@ -31,6 +33,7 @@ class ProductDetailsProvider with ChangeNotifier {
   UserJson get user => _user;
 
   int get quantity => _quantity;
+  bool get isFav => _isFav;
 
   void incrementQuantity(){
     _quantity = _quantity + 1;
@@ -101,4 +104,34 @@ class ProductDetailsProvider with ChangeNotifier {
         textColor: Colors.black
     );
   }
+
+  Future<void> updateWishlist(String productId) async {
+    List<WishlistItemJson> newWishlist = [];
+    var contain = _user.wishlist.any((element) => element.productId == productId);
+    if (contain)
+    {
+      print('already in wishlist');
+    }
+    //value not exists
+    else
+    {
+      for (var item in _user.wishlist){
+        newWishlist.add(item);
+      }
+      newWishlist.add(WishlistItemJson(productId: productId));
+    }
+    UserJson updatedUser = _user.copyWith(wishlist: newWishlist);
+    //print(updatedUser.cart[0].quantity);
+    await _userRepository.updateUser(updatedUser);
+    _user = await _userRepository.getUser();
+    notifyListeners();
+  }
+
+  void getIsFavourite(String productId) {
+    _isFav = _user.wishlist.any((element) => element.productId == productId);
+    print('issfav ${isFav}');
+    notifyListeners();
+    //return isFav;
+  }
+
 }
