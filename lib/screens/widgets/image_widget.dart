@@ -13,7 +13,7 @@ class ImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 88,
+      width: 80,
       child: AspectRatio(
         aspectRatio: 1,
         child: Container(
@@ -26,7 +26,7 @@ class ImageWidget extends StatelessWidget {
                 bottomLeft: Radius.circular(10.0),
               ),
             ),
-            child: Image.network(image, errorBuilder:
+            child: Image.network(image,fit: BoxFit.scaleDown, errorBuilder:
                 (BuildContext context, Object exception, StackTrace? stackTrace) {
               return const CircularProgressIndicator();
             }),),
