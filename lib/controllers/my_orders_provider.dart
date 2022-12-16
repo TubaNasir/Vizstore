@@ -18,11 +18,13 @@ class MyOrdersProvider with ChangeNotifier {
   List<ProductJson> _products = [];
   UserJson _user = UserJson.empty();
   OrderJson _clickedOrder = OrderJson.empty();
+  bool _isFetching = true;
 
   List<OrderJson> get orders => _orders;
   UserJson get user => _user;
   List<ProductJson> get products => _products;
   OrderJson get clickedOrder => _clickedOrder;
+  bool get isFetching => _isFetching;
 
 
   Future<void> getUser() async {
@@ -33,7 +35,8 @@ class MyOrdersProvider with ChangeNotifier {
   List<OrderJson> getMyOrders() {
     List<OrderJson> allOrders = [];
     allOrders = _orders.where((element) => element.userId == _user.id).toList();
-
+    _isFetching = false;
+    notifyListeners();
     return allOrders;
     //notifyListeners();
   }

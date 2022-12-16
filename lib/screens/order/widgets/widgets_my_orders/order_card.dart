@@ -24,7 +24,7 @@ class OrderCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            ImageWidget(image: productImage),
+            //ImageWidget(image: productImage),
             const SizedBox(
               width: 20,
             ),
