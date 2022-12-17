@@ -141,14 +141,6 @@ class _LoginFormState extends State<LoginForm> {
                   }
                 },
               ),
-              SocialCard(
-                icon: 'assets/icons/facebook-2.svg',
-                onPressed: () {},
-              ),
-              SocialCard(
-                icon: 'assets/icons/twitter.svg',
-                onPressed: () {},
-              ),
             ],
           ),
           SizedBox(height: 20)

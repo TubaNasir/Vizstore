@@ -171,14 +171,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 icon: 'assets/icons/google-icon.svg',
                 onPressed: () {},
               ),
-              SocialCard(
-                icon: 'assets/icons/facebook-2.svg',
-                onPressed: () {},
-              ),
-              SocialCard(
-                icon: 'assets/icons/twitter.svg',
-                onPressed: () {},
-              ),
+
             ]),
           ],
         ),
