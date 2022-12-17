@@ -31,7 +31,7 @@ class _HomeState extends State<Home> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
           await context.read<HomeProvider>().getProductsList(),
-          context.read<HomeProvider>().getUser(),
+          await context.read<HomeProvider>().getUser(),
           context.read<HomeProvider>().sendNotifications(),
           await context.read<HomeProvider>().getPopularProducts()
     });

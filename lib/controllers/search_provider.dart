@@ -24,7 +24,7 @@ class SearchProvider with ChangeNotifier {
   List<ProductJson> get changedProducts => _changedProducts;
   String get searchText => _searchText;
 
-  void getUser() async {
+  Future<void> getUser() async {
     _user = await _userRepository.getUser();
     notifyListeners();
     print('prov' + _user.firstName);

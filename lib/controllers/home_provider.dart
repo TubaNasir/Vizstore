@@ -44,7 +44,7 @@ class HomeProvider with ChangeNotifier {
     print(_store);
   }
 
-  void getUser() async {
+  Future<void> getUser() async {
     _user = await _userRepository.getUser();
     notifyListeners();
     print('prov' + _user.firstName);

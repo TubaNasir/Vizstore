@@ -27,6 +27,7 @@ class _SearchState extends State<Search> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
+          await context.read<SearchProvider>().getUser(),
           await context.read<SearchProvider>().getProductsList(),
           context.read<SearchProvider>().setProducts(widget.allProducts),
           context.read<SearchProvider>().setSearchItem(widget.searchText)
