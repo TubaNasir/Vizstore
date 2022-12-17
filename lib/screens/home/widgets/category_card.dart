@@ -26,14 +26,11 @@ class CategoryCard extends StatelessWidget {
               Container(
                 height: 50,
                 width: 50,
-                decoration: BoxDecoration(
-                  color: PrimaryLightColor,
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SvgPicture.asset(category["icon"]),
-                ),
+                // decoration: BoxDecoration(
+                //   color: PrimaryLightColor,
+                //   borderRadius: BorderRadius.circular(10.0),
+                // ),
+                child: SvgPicture.asset(category["icon"]),
               ),
               const SizedBox(height: 5),
               Text(category["text"]),
