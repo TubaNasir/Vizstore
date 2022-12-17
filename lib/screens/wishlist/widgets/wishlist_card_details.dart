@@ -42,11 +42,11 @@ class TitleWidgetWishlist extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 3,
             ),
             Text(storeName, style: Theme.of(context).textTheme.bodySmall),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text(

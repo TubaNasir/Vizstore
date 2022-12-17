@@ -20,35 +20,34 @@ class WishListCard extends StatefulWidget {
 class _WishListCardState extends State<WishListCard> {
   @override
   Widget build(BuildContext context) {
-
-    ProductJson product = context.watch<WishlistProvider>().getProductInfo(widget.wishlistItem.productId);
-
+    ProductJson product = context
+        .watch<WishlistProvider>()
+        .getProductInfo(widget.wishlistItem.productId);
     StoreJson store =
-        context.watch<WishlistProvider>().getStore(product.storeId);
+        context.watch<WishlistProvider>().getStoreInfo(product.storeId);
     bool isFetching = context.watch<WishlistProvider>().isFetching;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 30.0),
       child: isFetching
           ? SizedBox(
-        height: 88.0,
-        width: double.infinity,
-            child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-              elevation: 2,
-              padding: EdgeInsets.zero,
-              backgroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15))),
+              height: 88.0,
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    elevation: 2,
+                    padding: EdgeInsets.zero,
+                    backgroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15))),
                 onPressed: () {},
                 child: Center(child: CircularProgressIndicator()),
               ),
-          )
+            )
           : ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        ProductDetail(product: demoProducts[0])));
+                    builder: (context) => ProductDetail(product: product)));
               },
               style: ElevatedButton.styleFrom(
                   elevation: 2,

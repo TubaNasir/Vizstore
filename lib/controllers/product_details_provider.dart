@@ -11,8 +11,8 @@ import '../repositories/store_repository.dart';
 class ProductDetailsProvider with ChangeNotifier {
   ProductDetailsProvider(this._storeRepository, this._userRepository);
 
-  StoreRepository _storeRepository;
-  UserRepository _userRepository;
+  final StoreRepository _storeRepository;
+  final UserRepository _userRepository;
 
   StoreJson _store = const StoreJson.empty();
   UserJson _user = UserJson.empty();
