@@ -24,7 +24,7 @@ class CompleteProfileProvider with ChangeNotifier {
       //photoUrl: user?.photoURL,
     );
     await _coreRepository.addUser(newUser);
-    showSignedUpToast('Successfully signed up! Please login to continue.');
+    showSignedUpToast('Successfully signed up! Please login to continue');
     print('done adding');
   }
 

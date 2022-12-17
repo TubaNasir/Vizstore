@@ -52,6 +52,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (_) => LoginProvider()),
       ChangeNotifierProvider(create: (_) => SignupProvider(getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(create: (_) => CompleteProfileProvider(getIt.get(instanceName: 'user'))),
+      ChangeNotifierProvider(create: (_) => ProfileProvider(getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(
           create: (_) => HomeProvider(
               getIt.get(instanceName: 'store'),
@@ -79,7 +80,6 @@ Future<void> main() async {
               getIt.get(instanceName: 'store'),
               getIt.get(instanceName: 'product'),
               getIt.get(instanceName: 'order'))),
-      ChangeNotifierProvider(create: (_) => ProfileProvider()),
       ChangeNotifierProvider(
           create: (_) => NotificationsProvider(
                 getIt.get(instanceName: 'user'),

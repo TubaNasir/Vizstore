@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/core/user_repository.dart';
 import 'package:flutterdemo/models/user_model.dart';
+import 'package:flutterdemo/screens/constants.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class EditProfileProvider with ChangeNotifier {
 
@@ -23,6 +25,7 @@ class EditProfileProvider with ChangeNotifier {
 
     UserJson updatedUser = _user.copyWith(firstName: firstName, lastName: lastName, contact: contact);
     await _userRepository.updateUser(updatedUser);
+    showEditedToast('Profile has been edited');
 
     await getUser();
   }
@@ -30,5 +33,15 @@ class EditProfileProvider with ChangeNotifier {
   void setEnabled(bool set){
     _enabled = set;
     notifyListeners();
+  }
+
+  void showEditedToast(String text){
+    Fluttertoast.showToast(
+        msg: text,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.TOP,
+        backgroundColor: SecondaryColor,
+        textColor: Colors.black
+    );
   }
 }

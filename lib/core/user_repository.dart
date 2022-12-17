@@ -165,4 +165,8 @@ class UserRepository {
 
     return exist;
   }
+
+  Future<void> signOut() async {
+    await firebaseauth.signOut();
+  }
 }
