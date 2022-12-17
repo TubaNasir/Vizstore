@@ -47,23 +47,10 @@ class _TitleRowState extends State<TitleRow> {
                   topLeft: Radius.circular(15.0),
                   bottomLeft: Radius.circular(15.0)),
             ),
-            child: isFav
-                ? InkWell(
-              onTap: (){
-                context.read<ProductDetailsProvider>().updateWishlist(widget.product.id);
-              },
-                  child: Center(
-                      child: Icon(
-                        Icons.favorite,
-                        size: 30,
-                        color: Colors.red,
-                      ),
-                    ),
-                )
-                : InkWell(
-              onTap: (){
-                context.read<ProductDetailsProvider>().updateWishlist(widget.product.id);
-              },
+            child: InkWell(
+              // onTap: (){
+              //   context.read<ProductDetailsProvider>().updateWishlist(widget.product.id);
+              // },
                   child: Center(
                       child: Icon(
                         Icons.favorite_border_rounded,
