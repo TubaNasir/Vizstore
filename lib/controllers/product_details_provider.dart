@@ -138,6 +138,20 @@ class ProductDetailsProvider with ChangeNotifier {
     return isFav;
   }
 
+  void showOutOfStock(){
+    showOutOfStockToast('Product out of stock');
+  }
+
+  void showOutOfStockToast(String text){
+    Fluttertoast.showToast(
+        msg: text,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.TOP,
+        backgroundColor: SecondaryColor,
+        textColor: Colors.black
+    );
+  }
+
   // Future<void> updateWishlist(String productId) async {
   //   List<WishlistItemJson> newWishlist = [];
   //   var contain = _user.wishlist.any((element) => element.productId == productId);

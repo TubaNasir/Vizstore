@@ -2,17 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/checkout_provider.dart';
 import 'package:flutterdemo/models/user_model.dart';
 import 'package:flutterdemo/screens/constants.dart';
+import 'package:flutterdemo/screens/widgets/suffix_icon.dart';
 import 'package:provider/provider.dart';
-
-import '../../widgets/suffix_icon.dart';
 
 class CheckoutForm extends StatefulWidget {
   const CheckoutForm({Key? key}) : super(key: key);
 
-
   @override
   State<CheckoutForm> createState() => _CheckoutFormState();
-
 }
 
 class _CheckoutFormState extends State<CheckoutForm> {
@@ -25,22 +22,16 @@ class _CheckoutFormState extends State<CheckoutForm> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
-      await context.read<CheckoutProvider>().getUser(),
-    context.read<CheckoutProvider>().setCity(dropdownvalue)
-
-
-    });
+          await context.read<CheckoutProvider>().getUser(),
+          context.read<CheckoutProvider>().setCity(dropdownvalue)
+        });
   }
-
-  //final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     UserJson user = context.watch<CheckoutProvider>().user;
-
-    //TextEditingController controllerName = TextEditingController(text: '${user.firstName} ${user.lastName}');
     TextEditingController controllerAddress = TextEditingController();
-    //TextEditingController controllerContact = TextEditingController(text: user.contact);
+
     return Padding(
       padding: const EdgeInsets.all(13.0),
       child: Column(children: [
@@ -53,7 +44,6 @@ class _CheckoutFormState extends State<CheckoutForm> {
             floatingLabelBehavior: FloatingLabelBehavior.always,
             suffixIcon: SuffixIcon(icon: Icons.person),
           ),
-          //controller: controllerName,
         ),
         SizedBox(
           height: 20,
@@ -66,7 +56,6 @@ class _CheckoutFormState extends State<CheckoutForm> {
             floatingLabelBehavior: FloatingLabelBehavior.always,
             suffixIcon: SuffixIcon(icon: Icons.phone_android),
           ),
-          //controller: controllerContact,
         ),
         SizedBox(height: 20),
         TextFormField(
@@ -77,7 +66,7 @@ class _CheckoutFormState extends State<CheckoutForm> {
             floatingLabelBehavior: FloatingLabelBehavior.always,
             suffixIcon: SuffixIcon(icon: Icons.location_on),
           ),
-          onChanged: (String text){
+          onChanged: (String text) {
             context.read<CheckoutProvider>().setAddress(text);
           },
           controller: controllerAddress,
@@ -101,8 +90,8 @@ class _CheckoutFormState extends State<CheckoutForm> {
             height: 64,
             padding: const EdgeInsets.only(left: 40.0, right: 20.0),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(28.0),
-                ),
+              borderRadius: BorderRadius.circular(28.0),
+            ),
             child: DropdownButtonHideUnderline(
               child: DropdownButton(
                 iconDisabledColor: Colors.white,
@@ -117,7 +106,10 @@ class _CheckoutFormState extends State<CheckoutForm> {
                 items: items.map((String items) {
                   return DropdownMenuItem(
                     value: items,
-                    child: Text(items, style: TextStyle(color: SecondaryDarkColor),),
+                    child: Text(
+                      items,
+                      style: TextStyle(color: SecondaryDarkColor),
+                    ),
                   );
                 }).toList(),
                 onChanged: (String? newValue) {
