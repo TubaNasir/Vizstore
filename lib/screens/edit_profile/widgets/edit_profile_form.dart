@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/edit_profile_provider.dart';
 import 'package:flutterdemo/models/user_model.dart';
 import 'package:flutterdemo/screens/constants.dart';
+import 'package:flutterdemo/screens/widgets/custom_button.dart';
+import 'package:flutterdemo/screens/widgets/suffix_icon.dart';
 import 'package:provider/provider.dart';
-import '../../widgets/custom_button.dart';
-import '../../widgets/suffix_icon.dart';
 
 class EditProfileForm extends StatefulWidget {
   EditProfileForm({Key? key}) : super(key: key);
@@ -18,7 +18,8 @@ class _EditProfileFormState extends State<EditProfileForm> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<EditProfileProvider>().getUser();
+    WidgetsBinding.instance.addPostFrameCallback(
+        (_) async => {context.read<EditProfileProvider>().getUser()});
   }
 
   @override
@@ -48,63 +49,62 @@ class _EditProfileFormState extends State<EditProfileForm> {
               labelText: "Email",
               enabled: false,
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              suffixIcon:
-                  SuffixIcon(icon: Icons.email), //SuffixIcon(icon: Icons.email)
+              suffixIcon: SuffixIcon(icon: Icons.email),
             ),
           ),
           SizedBox(
             height: 20,
           ),
           TextFormField(
-            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: SecondaryDarkColor),
+            style: enabled == false
+                ? TextStyle(color: Color(0xFF9E9E9E))
+                : TextStyle(color: SecondaryDarkColor),
             controller: firstNameController,
             decoration: InputDecoration(
               labelText: "First Name",
               enabled: enabled,
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              suffixIcon: SuffixIcon(
-                  icon: Icons.person), //SuffixIcon(icon: Icons.email)
+              suffixIcon: SuffixIcon(icon: Icons.person),
             ),
           ),
           SizedBox(
             height: 20,
           ),
           TextFormField(
-            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: SecondaryDarkColor),
+            style: enabled == false
+                ? TextStyle(color: Color(0xFF9E9E9E))
+                : TextStyle(color: SecondaryDarkColor),
             controller: lastNameController,
             decoration: InputDecoration(
               labelText: "Last Name",
               enabled: enabled,
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              suffixIcon: SuffixIcon(
-                  icon: Icons.person), //SuffixIcon(icon: Icons.email)
+              suffixIcon: SuffixIcon(icon: Icons.person),
             ),
           ),
           SizedBox(
             height: 20,
           ),
           TextFormField(
-            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: SecondaryDarkColor),
+            style: enabled == false
+                ? TextStyle(color: Color(0xFF9E9E9E))
+                : TextStyle(color: SecondaryDarkColor),
             controller: contactController,
             decoration: InputDecoration(
               labelText: "Contact Number",
               enabled: enabled,
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              suffixIcon: SuffixIcon(
-                  icon: Icons.phone_android), //SuffixIcon(icon: Icons.email)
+              suffixIcon: SuffixIcon(icon: Icons.phone_android),
             ),
           ),
           SizedBox(
             height: 20,
           ),
-          // if enabled=true ? button text = save changed : edit
           enabled == false
               ? CustomButton(
                   text: "Edit",
                   pressed: () {
                     context.read<EditProfileProvider>().setEnabled(true);
-
-                    //state mgmt set enabled to tru; if enabled = true, button = save changes
                   })
               : CustomButton(
                   text: "Save",

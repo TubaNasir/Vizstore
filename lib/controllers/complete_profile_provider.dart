@@ -21,11 +21,10 @@ class CompleteProfileProvider with ChangeNotifier {
       cart: [],
       wishlist: [],
       notifications: [],
-      //photoUrl: user?.photoURL,
     );
+
     await _coreRepository.addUser(newUser);
     showSignedUpToast('Successfully signed up! Please login to continue');
-    print('done adding');
   }
 
   void showSignedUpToast(String text){

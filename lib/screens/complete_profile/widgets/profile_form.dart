@@ -1,31 +1,23 @@
-import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/complete_profile_provider.dart';
 import 'package:flutterdemo/screens/home/home.dart';
+import 'package:flutterdemo/screens/login/login.dart';
+import 'package:flutterdemo/screens/widgets/custom_button.dart';
+import 'package:flutterdemo/screens/widgets/suffix_icon.dart';
 import 'package:provider/provider.dart';
 
-import '../../../controllers/login_provider.dart';
-import '../../../controllers/signup_provider.dart';
-import '../../../models/user_model.dart';
-import '../../login/login.dart';
-import '../../widgets/custom_button.dart';
-import '../../widgets/suffix_icon.dart';
-
 class ProfileForm extends StatefulWidget {
- // final String? uid;
-  final User? user;
-
   const ProfileForm({super.key, required this.user});
 
+  final User? user;
 
   @override
   State<ProfileForm> createState() => _ProfileFormState();
 }
 
-bool enabled = true;
-
 class _ProfileFormState extends State<ProfileForm> {
+  bool enabled = true;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -91,8 +83,7 @@ class _ProfileFormState extends State<ProfileForm> {
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter your contact number';
-              }
-              else if (!RegExp(r"^\+?0[0-9]{10}$").hasMatch(value)){
+              } else if (!RegExp(r"^\+?0[0-9]{10}$").hasMatch(value)) {
                 return 'Please enter a valid contact';
               }
               return null;
@@ -106,23 +97,25 @@ class _ProfileFormState extends State<ProfileForm> {
               pressed: () {
                 if (_formKey.currentState!.validate()) {
                   context.read<CompleteProfileProvider>().addNewUser(
-                      widget.user, controllerFname.text, controllerLname.text,
+                      widget.user,
+                      controllerFname.text,
+                      controllerLname.text,
                       controllerContact.text);
-                  if (widget.user!.providerData[0].providerId.toLowerCase().contains('google')){
+                  if (widget.user!.providerData[0].providerId
+                      .toLowerCase()
+                      .contains('google')) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => Home(),
                       ),
                     );
-                  }
-                  else{
+                  } else {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => Login(),
                       ),
                     );
                   }
-
                 }
               }),
         ],
