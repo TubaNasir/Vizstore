@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/core/user_repository.dart';
 import 'package:flutterdemo/models/cart_model.dart';
@@ -52,6 +53,7 @@ class ProductDetailsProvider with ChangeNotifier {
         showCartToast('Product is already in cart');
         print('Already added to cart');
       }
+    //value not exists
     else
       {
         for (var item in user.cart){
@@ -112,6 +114,7 @@ class ProductDetailsProvider with ChangeNotifier {
       }
       print('already in wishlist');
     }
+    //value not exists
     else
     {
       for (var item in _user.wishlist){
@@ -120,6 +123,7 @@ class ProductDetailsProvider with ChangeNotifier {
       newWishlist.add(WishlistItemJson(productId: productId));
     }
     UserJson updatedUser = _user.copyWith(wishlist: newWishlist);
+    //print(updatedUser.cart[0].quantity);
     await _userRepository.updateUser(updatedUser);
     _user = await _userRepository.getUser();
     notifyListeners();
@@ -128,7 +132,51 @@ class ProductDetailsProvider with ChangeNotifier {
   bool getIsFavourite(String productId) {
     bool isFav = false;
     isFav = _user.wishlist.any((element) => element.productId == productId);
+    print('issfav ${isFav}');
     return isFav;
   }
+
+  void showOutOfStock(){
+    showOutOfStockToast('Product out of stock');
+  }
+
+  void showOutOfStockToast(String text){
+    Fluttertoast.showToast(
+        msg: text,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.TOP,
+        backgroundColor: SecondaryColor,
+        textColor: Colors.black
+    );
+  }
+
+  // Future<void> updateWishlist(String productId) async {
+  //   List<WishlistItemJson> newWishlist = [];
+  //   var contain = _user.wishlist.any((element) => element.productId == productId);
+  //   if (contain)
+  //   {
+  //     print('already in wishlist');
+  //   }
+  //   //value not exists
+  //   else
+  //   {
+  //     for (var item in _user.wishlist){
+  //       newWishlist.add(item);
+  //     }
+  //     newWishlist.add(WishlistItemJson(productId: productId));
+  //   }
+  //   UserJson updatedUser = _user.copyWith(wishlist: newWishlist);
+  //   //print(updatedUser.cart[0].quantity);
+  //   await _userRepository.updateUser(updatedUser);
+  //   _user = await _userRepository.getUser();
+  //   notifyListeners();
+  // }
+  //
+  // void getIsFavourite(String productId) {
+  //   _isFav = _user.wishlist.any((element) => element.productId == productId);
+  //   print('issfav ${isFav}');
+  //   notifyListeners();
+  //   //return isFav;
+  // }
 
 }

@@ -8,7 +8,6 @@ import 'package:flutterdemo/models/user_model.dart';
 import 'package:flutterdemo/repositories/order_repository.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
 import 'package:flutterdemo/repositories/store_repository.dart';
-import 'package:flutterdemo/screens/cart/cart.dart';
 
 class CheckoutProvider with ChangeNotifier {
   CheckoutProvider(this._userRepository, this._storeRepository,
@@ -21,7 +20,6 @@ class CheckoutProvider with ChangeNotifier {
 
   UserJson _user = UserJson.empty();
   StoreJson _store = StoreJson.empty();
-  ProductJson _product = ProductJson.empty();
   List<ProductJson> _products = [];
   List<StoreJson> _stores = [];
   List<CartItemJson> _storeProducts = [];
@@ -30,12 +28,19 @@ class CheckoutProvider with ChangeNotifier {
   int _total = 0;
 
   int get total => _total;
+
   UserJson get user => _user;
+
   StoreJson get store => _store;
+
   List<ProductJson> get products => _products;
+
   List<StoreJson> get stores => _stores;
+
   List<CartItemJson> get storeProducts => _storeProducts;
+
   String get address => _address;
+
   String get city => _city;
 
   Future<void> getUser() async {
@@ -43,78 +48,42 @@ class CheckoutProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<String> placeOrder() async {
-    print('in place order ' + _city + ' ' + _address);
-    if(_address == '') {
-      print('Please enter a valid address');
-      return 'Please enter a valid address';
+  Future<void> placeOrder() async {
+    DateTime date = DateTime.now();
+    List<StoreJson> distinctStores = getProductsInfo();
+    List<OrderJson> orders = [];
+
+    for (var element in distinctStores) {
+      int total = setSubtotalWithDelivery(element);
+      orders.add(OrderJson(
+          userId: _user.id,
+          cart: getProductsFromStore(element.id),
+          date_created: date,
+          city: _city,
+          address: _address,
+          total: total));
     }
-    else {
-      DateTime date = DateTime.now();
-      List<StoreJson> distinctStores = getProductsInfo();
-      bool error = false;
-      //print(distinctStores.map((e) => e.storeName));
-      List<OrderJson> orders = [];
-      // List<OrderJson> orders = distinctStores
-      //     .map((e) =>
-      //     OrderJson(
-      //         userId: _user.id,
-      //         cart: getProductsFromStore(e.id),
-      //         date_created: date,
-      //         city: _city,
-      //         address: _address,
-      //     total: 0))
-      //     .cast<OrderJson>()
-      //     .toList();
 
-      for(var element in distinctStores){
-        int total = setSubtotalWithDelivery(element);
-        orders.add(
-            OrderJson(
-                userId: _user.id,
-                cart: getProductsFromStore(element.id),
-                date_created: date,
-                city: _city,
-                address: _address,
-                total: total)
-        );
-      }
-
-      print(orders);
-      //print(orders.map((e) => e.cart.first.quantity));
-      // orders.map((e) async => await placeOrder2(e));
-      orders.forEach((element) async {
-        await placeOrder2(element);
-      });
-    }
-    return '';
-
-    //return error;
+    orders.forEach((element) async {
+      await placeOrder2(element);
+    });
   }
 
   Future<void> placeOrder2(OrderJson order) async {
-    print('in place order 2');
     await _orderRepository.addOrder(order);
     for (var e in order.cart) {
       updateProduct(getProduct(e.productId), e.quantity);
     }
 
     updateUser(_user);
-
   }
 
-  void setTotal()  {
+  void setTotal() {
     int total = 0;
-    print(_user.cart.length);
-    print(_products.length);
     for (var item in _user.cart) {
-      print("item ,, ${item.productId}");
       for (var product in _products) {
-        print("item ,, ${item.productId}");
-        print("prod,, ${product.id}");
         if (item.productId == product.id) {
           total = total + (item.quantity * product.price);
-          print(total);
         }
       }
     }
@@ -130,14 +99,10 @@ class CheckoutProvider with ChangeNotifier {
 
   void setAddress(String address) {
     _address = address;
-    //notifyListeners();
-    print('ad ' + _address);
   }
 
   void setCity(String city) {
     _city = city;
-    //notifyListeners();
-    print('city ' + _city);
   }
 
   List<StoreJson> getProductsInfo() {
@@ -153,31 +118,22 @@ class CheckoutProvider with ChangeNotifier {
 
     _storeDistinct = productStores.toSet().toList();
 
-    //notifyListeners();
     return _storeDistinct;
   }
 
-
   Future<void> getProductsList() async {
-    print('in method');
     _products = await _productRepository.getProductList();
     notifyListeners();
-    print(products);
-    //notifyListeners();
   }
 
   Future<void> getStoresList() async {
-    print('in method');
     _stores = await _storeRepository.getStoresList();
     notifyListeners();
-    print(stores);
-    //notifyListeners();
   }
 
   ProductJson getProduct(String id) {
     ProductJson product = ProductJson.empty();
     for (var product in _products) {
-      print("prod,, ${product.id}");
       if (id == product.id) {
         return product;
       }
@@ -188,7 +144,6 @@ class CheckoutProvider with ChangeNotifier {
   StoreJson getStore(String id) {
     StoreJson store = StoreJson.empty();
     for (var store in _stores) {
-      print("store,, ${store.id}");
       if (id == store.id) {
         return store;
       }
@@ -203,18 +158,10 @@ class CheckoutProvider with ChangeNotifier {
         .where((element) => getProduct(element.productId).storeId == id)
         .toList();
 
-    List<ProductJson> cartProductInfo =
-        cartProducts.map((e) => getProduct(e.productId)).toList();
-
-    print('in get products from store');
-
-
-   // _storeProducts = cartProducts;
-   // notifyListeners();
     return cartProducts;
-   }
+  }
 
-   int setSubtotalWithDelivery(StoreJson store){
+  int setSubtotalWithDelivery(StoreJson store) {
     List<CartItemJson> cartProducts = getProductsFromStore(store.id);
     int subtotal = 0;
     for (var element in cartProducts) {
@@ -225,17 +172,16 @@ class CheckoutProvider with ChangeNotifier {
     return subtotal;
   }
 
-
-   updateProduct(ProductJson product, int quantity) async {
-    ProductJson  newProduct = product.copyWith(sold: product.sold+quantity, stock: product.stock-quantity);
-     await _productRepository.updateProduct(newProduct);
-   }
-
-   updateUser(UserJson user) async {
-     List<CartItemJson> emptyCart = [];
-     UserJson updatedUser = user.copyWith(cart: emptyCart);
-
-     await _userRepository.updateUser(updatedUser);
-   }
-
+  updateProduct(ProductJson product, int quantity) async {
+    ProductJson newProduct = product.copyWith(
+        sold: product.sold + quantity, stock: product.stock - quantity);
+    await _productRepository.updateProduct(newProduct);
   }
+
+  updateUser(UserJson user) async {
+    List<CartItemJson> emptyCart = [];
+    UserJson updatedUser = user.copyWith(cart: emptyCart);
+
+    await _userRepository.updateUser(updatedUser);
+  }
+}
