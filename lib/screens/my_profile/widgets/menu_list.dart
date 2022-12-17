@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/controllers/profile_provider.dart';
+import 'package:flutterdemo/controllers/my_profile_provider.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutterdemo/screens/edit_profile/edit_profile.dart';
 import 'package:flutterdemo/screens/login/login.dart';
@@ -44,7 +44,6 @@ class MenuList extends StatelessWidget {
           icon: Icon(Icons.logout, color: PrimaryColor),
           text: "Log Out",
           iconRight: Icon(Icons.chevron_right, color: PrimaryColor),
-          //HAVE TO IMPLEMENT TOGGLE FUNCTIONALITY LATER
           press: () {
             showDialog(
                 context: context,
@@ -58,7 +57,7 @@ class MenuList extends StatelessWidget {
                             Expanded(
                               child: CustomButton(
                                 pressed: () => {
-                                  context.read<ProfileProvider>().logout(),
+                                  context.read<MyProfileProvider>().logout(),
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) => Login(),

@@ -1,14 +1,12 @@
-import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/login_provider.dart';
 import 'package:flutterdemo/screens/complete_profile/complete_profile.dart';
+import 'package:flutterdemo/screens/home/home.dart';
+import 'package:flutterdemo/screens/signup/widgets/social_card.dart';
+import 'package:flutterdemo/screens/widgets/custom_button.dart';
+import 'package:flutterdemo/screens/widgets/suffix_icon.dart';
 import 'package:provider/provider.dart';
-
-import '../../../controllers/login_provider.dart';
-import '../../home/home.dart';
-import '../../signup/widgets/social_card.dart';
-import '../../widgets/custom_button.dart';
-import '../../widgets/suffix_icon.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -18,9 +16,6 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  bool enabled = true;
-
-  //bool error = false;
   FirebaseAuth firebaseauth = FirebaseAuth.instance;
 
   _LoginFormState();
@@ -32,6 +27,7 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    bool enabled = true;
     bool passwordVisible = context.watch<LoginProvider>().passwordVisible;
 
     return Form(
@@ -84,12 +80,13 @@ class _LoginFormState extends State<LoginForm> {
           CustomButton(
               text: "Continue",
               pressed: () async {
-                if (_formKey.currentState!.validate()){
+                if (_formKey.currentState!.validate()) {
                   Future<bool> login = context
                       .read<LoginProvider>()
                       .signIn(controllerEmail.text, controllerPassword.text);
 
-                  if (await login == true) { //
+                  if (await login == true) {
+                    //
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => Home(),
@@ -97,8 +94,6 @@ class _LoginFormState extends State<LoginForm> {
                     );
                   }
                 }
-
-
               }),
           Text(
             "or signup with",
@@ -111,11 +106,10 @@ class _LoginFormState extends State<LoginForm> {
               SocialCard(
                 icon: 'assets/icons/google-icon.svg',
                 onPressed: () async {
-                  UserCredential? user = await context
-                      .read<LoginProvider>()
-                      .googleLogin();
+                  UserCredential? user =
+                      await context.read<LoginProvider>().googleLogin();
 
-                  if(user!.additionalUserInfo!.isNewUser){
+                  if (user!.additionalUserInfo!.isNewUser) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => CompleteProfile(
@@ -123,8 +117,7 @@ class _LoginFormState extends State<LoginForm> {
                         ),
                       ),
                     );
-                  }
-                  else{
+                  } else {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => Home(),

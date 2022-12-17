@@ -9,7 +9,7 @@ import 'package:flutterdemo/controllers/login_provider.dart';
 import 'package:flutterdemo/controllers/my_orders_provider.dart';
 import 'package:flutterdemo/controllers/notifications_provider.dart';
 import 'package:flutterdemo/controllers/product_details_provider.dart';
-import 'package:flutterdemo/controllers/profile_provider.dart';
+import 'package:flutterdemo/controllers/my_profile_provider.dart';
 import 'package:flutterdemo/controllers/search_provider.dart';
 import 'package:flutterdemo/controllers/signup_provider.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
@@ -49,10 +49,10 @@ Future<void> main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => NavBar()),
-      ChangeNotifierProvider(create: (_) => LoginProvider()),
+      ChangeNotifierProvider(create: (_) => LoginProvider(getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(create: (_) => SignupProvider(getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(create: (_) => CompleteProfileProvider(getIt.get(instanceName: 'user'))),
-      ChangeNotifierProvider(create: (_) => ProfileProvider(getIt.get(instanceName: 'user'))),
+      ChangeNotifierProvider(create: (_) => MyProfileProvider(getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(
           create: (_) => HomeProvider(
               getIt.get(instanceName: 'product'),

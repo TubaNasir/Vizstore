@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/repositories/user_repository.dart';
 import 'package:flutterdemo/models/user_json.dart';
 
-class ProfileProvider with ChangeNotifier{
+class MyProfileProvider with ChangeNotifier {
 
-  ProfileProvider(this._userRepository);
+  MyProfileProvider(this._userRepository);
 
   UserRepository _userRepository;
 
