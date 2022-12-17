@@ -1,16 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/core/user_repository.dart';
 import 'package:flutterdemo/models/cart_model.dart';
 import 'package:flutterdemo/models/product_model.dart';
 import 'package:flutterdemo/models/wishlist_model.dart';
-import 'package:flutterdemo/repositories/product_repository.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../models/store_model.dart';
 import '../models/user_model.dart';
 import '../repositories/store_repository.dart';
-import 'package:get_it/get_it.dart';
 
 class ProductDetailsProvider with ChangeNotifier {
 
@@ -55,7 +52,6 @@ class ProductDetailsProvider with ChangeNotifier {
         showCartToast('Product is already in cart');
         print('Already added to cart');
       }
-    //value not exists
     else
       {
         for (var item in user.cart){
@@ -116,7 +112,6 @@ class ProductDetailsProvider with ChangeNotifier {
       }
       print('already in wishlist');
     }
-    //value not exists
     else
     {
       for (var item in _user.wishlist){
@@ -125,7 +120,6 @@ class ProductDetailsProvider with ChangeNotifier {
       newWishlist.add(WishlistItemJson(productId: productId));
     }
     UserJson updatedUser = _user.copyWith(wishlist: newWishlist);
-    //print(updatedUser.cart[0].quantity);
     await _userRepository.updateUser(updatedUser);
     _user = await _userRepository.getUser();
     notifyListeners();
@@ -134,37 +128,7 @@ class ProductDetailsProvider with ChangeNotifier {
   bool getIsFavourite(String productId) {
     bool isFav = false;
     isFav = _user.wishlist.any((element) => element.productId == productId);
-    print('issfav ${isFav}');
     return isFav;
   }
-
-  // Future<void> updateWishlist(String productId) async {
-  //   List<WishlistItemJson> newWishlist = [];
-  //   var contain = _user.wishlist.any((element) => element.productId == productId);
-  //   if (contain)
-  //   {
-  //     print('already in wishlist');
-  //   }
-  //   //value not exists
-  //   else
-  //   {
-  //     for (var item in _user.wishlist){
-  //       newWishlist.add(item);
-  //     }
-  //     newWishlist.add(WishlistItemJson(productId: productId));
-  //   }
-  //   UserJson updatedUser = _user.copyWith(wishlist: newWishlist);
-  //   //print(updatedUser.cart[0].quantity);
-  //   await _userRepository.updateUser(updatedUser);
-  //   _user = await _userRepository.getUser();
-  //   notifyListeners();
-  // }
-  //
-  // void getIsFavourite(String productId) {
-  //   _isFav = _user.wishlist.any((element) => element.productId == productId);
-  //   print('issfav ${isFav}');
-  //   notifyListeners();
-  //   //return isFav;
-  // }
 
 }

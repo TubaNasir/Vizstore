@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:provider/provider.dart';
-
 import '../../../models/product_model.dart';
 
 class TitleRow extends StatefulWidget {
@@ -48,9 +47,6 @@ class _TitleRowState extends State<TitleRow> {
                   bottomLeft: Radius.circular(15.0)),
             ),
             child: InkWell(
-              // onTap: (){
-              //   context.read<ProductDetailsProvider>().updateWishlist(widget.product.id);
-              // },
                   child: Center(
                       child:
                       context.read<ProductDetailsProvider>().getIsFavourite(widget.product.id) ?
