@@ -19,7 +19,7 @@ class MyOrdersProvider with ChangeNotifier {
   List<ProductJson> _products = [];
   UserJson _user = UserJson.empty();
   OrderJson _clickedOrder = OrderJson.empty();
-  bool _isOrdersEmpty = false;
+  bool _isOrderEmpty = false;
   bool _isFetching = true;
 
   List<OrderJson> get orders => _orders;
@@ -28,10 +28,15 @@ class MyOrdersProvider with ChangeNotifier {
   List<ProductJson> get products => _products;
   OrderJson get clickedOrder => _clickedOrder;
   bool get isFetching => _isFetching;
-  bool get isOrderEmpty => _isOrdersEmpty;
+  bool get isOrderEmpty => _isOrderEmpty;
 
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
+    notifyListeners();
+  }
+
+  Future<void> setOrderLength() async{
+    _isOrderEmpty = _myOrders.isEmpty;
     notifyListeners();
   }
 

@@ -93,7 +93,11 @@ class SearchProvider with ChangeNotifier {
     var contain = _user.wishlist.any((element) => element.productId == productId);
     if (contain)
     {
-      print('Already added to wishlist');
+      for (var item in _user.wishlist){
+        if(item.productId != productId){
+          newWishlist.add(item);
+        }
+      }
     }
     //value not exists
     else

@@ -55,13 +55,13 @@ class UserRepository {
               }
               ;
               //print(change.doc.data()!['status']);
-              if (change.doc.data()!['status'] == 'confirmed') {
+              if (change.doc.data()!['status'] == 'Confirmed') {
                 newList.add(NotificationItemJson(
                     orderId: change.doc.id,
                     message: 'You order# ${change.doc.id} has been confirmed!',
                     dateTime: DateTime.now()));
               }
-              if (change.doc.data()!['status'] == 'cancelled') {
+              if (change.doc.data()!['status'] == 'Cancelled') {
                 newList.add(NotificationItemJson(
                     orderId: change.doc.id,
                     message: 'You order# ${change.doc.id} has been cancelled.',
