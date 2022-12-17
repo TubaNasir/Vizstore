@@ -42,7 +42,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
             height: 20,
           ),
           TextFormField(
-            style: TextStyle(color: Color(0xFF9E9E9E)),
+            style: TextStyle(color: SecondaryDarkColor),
             controller: emailController,
             decoration: InputDecoration(
               labelText: "Email",
@@ -56,7 +56,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
             height: 20,
           ),
           TextFormField(
-            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: Color(0xFF595959)),
+            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: SecondaryDarkColor),
             controller: firstNameController,
             decoration: InputDecoration(
               labelText: "First Name",
@@ -70,7 +70,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
             height: 20,
           ),
           TextFormField(
-            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: Color(0xFF595959)),
+            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: SecondaryDarkColor),
             controller: lastNameController,
             decoration: InputDecoration(
               labelText: "Last Name",
@@ -84,7 +84,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
             height: 20,
           ),
           TextFormField(
-            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: Color(0xFF595959)),
+            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: SecondaryDarkColor),
             controller: contactController,
             decoration: InputDecoration(
               labelText: "Contact Number",

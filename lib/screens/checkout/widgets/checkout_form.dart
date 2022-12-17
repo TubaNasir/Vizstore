@@ -112,12 +112,12 @@ class _CheckoutFormState extends State<CheckoutForm> {
                 value: dropdownvalue,
                 icon: const Icon(
                   Icons.keyboard_arrow_down,
-                  color: Color(0xFF595959),
+                  color: SecondaryDarkColor,
                 ),
                 items: items.map((String items) {
                   return DropdownMenuItem(
                     value: items,
-                    child: Text(items, style: TextStyle(color: Color(0xFF595959)),),
+                    child: Text(items, style: TextStyle(color: SecondaryDarkColor),),
                   );
                 }).toList(),
                 onChanged: (String? newValue) {
