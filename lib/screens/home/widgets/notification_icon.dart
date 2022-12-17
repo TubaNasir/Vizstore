@@ -68,7 +68,7 @@ class _NotificationIconState extends State<NotificationIcon> {
                   top: -3,
                   right: 0,
                   child: Container(
-                    height: 16,
+                    height: 24,
                     width: 16,
                     decoration: const BoxDecoration(
                       color: Colors.red,
