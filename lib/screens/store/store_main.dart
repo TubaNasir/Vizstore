@@ -49,7 +49,6 @@ class _StoreMainState extends State<StoreMain> {
                   child: StaggeredProductView(
                     products: demoProducts,
                   )),
-              const SizedBox(height: 50),
             ],
           ),
         ),
