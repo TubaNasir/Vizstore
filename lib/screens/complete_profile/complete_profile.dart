@@ -1,12 +1,9 @@
-import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/complete_profile/widgets/complete_profile_message.dart';
 import 'package:flutterdemo/screens/complete_profile/widgets/profile_form.dart';
 
-
 class CompleteProfile extends StatefulWidget {
-  //final String? uid;
   final User? user;
   const CompleteProfile({super.key, required this.user});
 
@@ -15,7 +12,6 @@ class CompleteProfile extends StatefulWidget {
 }
 
 class _CompleteProfileState extends State<CompleteProfile> {
-
 
   @override
   Widget build(BuildContext context) {
