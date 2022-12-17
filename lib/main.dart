@@ -28,6 +28,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'controllers/camera_provider.dart';
 import 'controllers/google_sign_in_provider.dart';
 import 'screens/login/login.dart';
+import 'screens/widgets/splash_screen.dart';
 
 final getIt = GetIt.instance;
 
@@ -118,7 +119,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: theme(),
-      home: Login(),
+      // home: Login(),
+      home: const SplashScreen(),
     );
   }
 }
