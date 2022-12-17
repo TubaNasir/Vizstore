@@ -40,7 +40,7 @@ class Categories extends StatelessWidget {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => Search(
                               allProducts: list,
-                                )));
+                                ))).then((value) => context.read<HomeProvider>().getUser());
                       },
                     ),
                   )

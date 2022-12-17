@@ -37,7 +37,7 @@ class _PopularProductsState extends State<PopularProducts> {
                                   MaterialPageRoute(
                                       builder: (_) =>
                                           ProductDetail(product: product,
-                                            )));
+                                            ))).then((value) => context.read<HomeProvider>().getUser());
                             },
                             child: ProductCard(
                               product: product,

@@ -12,6 +12,7 @@ class SearchProvider with ChangeNotifier {
   UserRepository _userRepository;
 
   String _searchText = '';
+  bool _isFetching = true;
   List<ProductJson> _products = [];
   List<ProductJson> _categoryProducts = [];
   List<ProductJson> _filteredProducts = [];
@@ -22,6 +23,7 @@ class SearchProvider with ChangeNotifier {
   List<ProductJson> get categoryProducts => _categoryProducts;
   List<ProductJson> get filteredProducts => _filteredProducts;
   List<ProductJson> get changedProducts => _changedProducts;
+  bool get isFetching => _isFetching;
   String get searchText => _searchText;
 
   Future<void> getUser() async {
@@ -39,8 +41,11 @@ class SearchProvider with ChangeNotifier {
   }
 
   void setProducts(List<ProductJson> list){
+    print('in set prods');
     _changedProducts = list;
     notifyListeners();
+    _isFetching = false;
+
   }
 
   void getProds(List<String> ids){
