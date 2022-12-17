@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/camera_provider.dart';
 import 'package:flutterdemo/controllers/cart_provider.dart';
 import 'package:flutterdemo/controllers/checkout_provider.dart';
+import 'package:flutterdemo/controllers/complete_profile_provider.dart';
 import 'package:flutterdemo/controllers/edit_profile_provider.dart';
 import 'package:flutterdemo/controllers/login_provider.dart';
 import 'package:flutterdemo/controllers/my_orders_provider.dart';
@@ -48,7 +49,8 @@ Future<void> main() async {
     providers: [
       ChangeNotifierProvider(create: (_) => NavBar()),
       ChangeNotifierProvider(create: (_) => LoginProvider()),
-      ChangeNotifierProvider(create: (_) => SignupProvider()),
+      ChangeNotifierProvider(create: (_) => SignupProvider(getIt.get(instanceName: 'user'))),
+      ChangeNotifierProvider(create: (_) => CompleteProfileProvider(getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(
           create: (_) => HomeProvider(
               getIt.get(instanceName: 'store'),

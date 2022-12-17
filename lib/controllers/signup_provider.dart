@@ -9,10 +9,13 @@ import '../core/user_repository.dart';
 import '../models/user_model.dart';
 
 class SignupProvider with ChangeNotifier{
+
+  SignupProvider(this._coreRepository);
+
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   GoogleSignInAccount? _userGoogle;
 
-  final UserRepository _coreRepository = UserRepository();
+  UserRepository _coreRepository;
 
   bool _passwordVisible = false;
   bool _rePasswordVisible = false;
@@ -29,22 +32,6 @@ class SignupProvider with ChangeNotifier{
   void changeRePasswordVisible() {
     _rePasswordVisible = !_rePasswordVisible;
     notifyListeners();
-  }
-
-  void addNewUser(User? user, String firstName,String lastName,String contact,) async {
-    UserJson newUser = UserJson(
-      id: user?.uid,
-      email: user?.email,
-      firstName: firstName,
-      lastName: lastName,
-      contact: contact,
-      cart: [],
-      wishlist: [],
-      notifications: [],
-      //photoUrl: user?.photoURL,
-    );
-    await _coreRepository.addUser(newUser);
-    print('done adding');
   }
 
   Future<User?> signUp(String email, String password) async {
@@ -69,6 +56,8 @@ class SignupProvider with ChangeNotifier{
         textColor: Colors.black
     );
   }
+
+
 
   Future<UserCredential?> googleLogin() async {
     final googleUser = await _googleSignIn.signIn();

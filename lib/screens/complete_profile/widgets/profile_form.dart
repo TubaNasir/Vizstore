@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/complete_profile_provider.dart';
 import 'package:flutterdemo/screens/home/home.dart';
 import 'package:provider/provider.dart';
 
@@ -104,7 +105,7 @@ class _ProfileFormState extends State<ProfileForm> {
               text: "Sign Up",
               pressed: () {
                 if (_formKey.currentState!.validate()) {
-                  context.read<SignupProvider>().addNewUser(
+                  context.read<CompleteProfileProvider>().addNewUser(
                       widget.user, controllerFname.text, controllerLname.text,
                       controllerContact.text);
                   if (widget.user!.providerData[0].providerId.toLowerCase().contains('google')){
