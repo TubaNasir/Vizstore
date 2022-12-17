@@ -14,8 +14,9 @@ class GoogleSignInProvider with ChangeNotifier {
 
   GoogleSignInAccount get user => _user!;
 
-  Future<User?> googleLogin() async {
+  Future<UserCredential?> googleLogin() async {
     final googleUser = await _googleSignIn.signIn();
+    print("googleUser ${googleUser}");
     if(googleUser == null) return null;
     _user = googleUser;
 
@@ -29,12 +30,14 @@ class GoogleSignInProvider with ChangeNotifier {
     UserCredential userCred = await FirebaseAuth.instance.signInWithCredential(credential);
     notifyListeners();
 
-    return userCred.user;
+    return userCred;
 
   }
 
   Future<bool> doesUserExist() async {
+    print("user id ${user.id}");
     bool exist = await _userRepository.doesUserExist(user.id);
+    print("exist ${exist}");
     return exist;
   }
 

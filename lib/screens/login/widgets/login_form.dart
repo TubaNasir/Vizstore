@@ -112,33 +112,39 @@ class _LoginFormState extends State<LoginForm> {
               SocialCard(
                 icon: 'assets/icons/google-icon.svg',
                 onPressed: () async {
-                  User? user = await context
+                  UserCredential? user = await context
                       .read<GoogleSignInProvider>()
                       .googleLogin();
 
-                  if(!mounted) return;
-
-                  bool exist = await context
-                      .read<GoogleSignInProvider>()
-                      .doesUserExist();
-
-                  if(!mounted) return;
-
-                  if (exist == false) {
+                  if(user!.additionalUserInfo!.isNewUser){
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => CompleteProfile(
-                          user: user,
+                          user: user.user,
                         ),
                       ),
                     );
-                  } else {
+                  }
+                  else{
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => Home(),
                       ),
                     );
                   }
+                  //if(!mounted) return;
+
+                  // bool exist = await context
+                  //     .read<GoogleSignInProvider>()
+                  //     .doesUserExist();
+                  //
+                  // //if(!mounted) return;
+                  //
+                  // if (exist == false) {
+                  //
+                  // } else {
+                  //
+                  // }
                 },
               ),
               SocialCard(
