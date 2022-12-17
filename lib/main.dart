@@ -55,7 +55,6 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (_) => ProfileProvider(getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(
           create: (_) => HomeProvider(
-              getIt.get(instanceName: 'store'),
               getIt.get(instanceName: 'product'),
               getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(

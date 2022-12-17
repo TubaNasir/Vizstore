@@ -14,6 +14,14 @@ const TextColor2 = Color(0xFF757575);
 
 const navBarPages = ['home', 'cart', 'wishlist', 'my_profile'];
 
+List<Map<String, dynamic>> categories = [
+  {"icon": "assets/icons/clothes.svg", "text": "Clothes"},
+  {"icon": "assets/icons/electronics.svg", "text": "Electronics"},
+  {"icon": "assets/icons/groceries.svg", "text": "Lifestyle"},
+  {"icon": "assets/icons/beauty.svg", "text": "Furniture"},
+  {"icon": "assets/icons/sports.svg", "text": "Sports"},
+];
+
 final items = [
   "Islamabad",
   "Ahmed Nager",

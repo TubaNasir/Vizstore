@@ -26,7 +26,7 @@ class _StoreDetailsState extends State<StoreDetails> {
   void initState(){
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) =>
-    context.read<HomeProvider>().getStore(widget.product.storeId));
+    context.read<ProductDetailsProvider>().getStore(widget.product.storeId));
   }
 
   Widget build(BuildContext context) {

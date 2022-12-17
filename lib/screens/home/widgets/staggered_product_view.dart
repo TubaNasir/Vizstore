@@ -1,11 +1,8 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
-import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutterdemo/screens/product_detail/product_detail.dart';
 import 'package:flutterdemo/screens/widgets/product.dart';
 import 'package:provider/provider.dart';
-
 import '../../../models/product_model.dart';
 
 class StaggeredProductView extends StatelessWidget {

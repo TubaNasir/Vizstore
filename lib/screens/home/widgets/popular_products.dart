@@ -1,7 +1,5 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../controllers/home_provider.dart';
 import '../../../models/product_model.dart';
 import '../../product_detail/product_detail.dart';

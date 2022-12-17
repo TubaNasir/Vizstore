@@ -1,16 +1,11 @@
-import 'package:camera/camera.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
-import 'package:flutterdemo/controllers/login_provider.dart';
-import 'package:flutterdemo/models/user_model.dart';
 import 'package:flutterdemo/screens/home/widgets/catgories.dart';
 import 'package:flutterdemo/screens/home/widgets/heading.dart';
 import 'package:flutterdemo/screens/home/widgets/notification_icon.dart';
 import 'package:flutterdemo/screens/home/widgets/popular_products.dart';
 import 'package:flutterdemo/screens/home/widgets/promotion.dart';
 import 'package:flutterdemo/screens/home/widgets/staggered_product_view.dart';
-import '../../models/product_model.dart';
 import '../widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/layout.dart';
@@ -18,9 +13,7 @@ import '../widgets/search_bar.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
-
-   Home({super.key});
-
+  Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -33,19 +26,13 @@ class _HomeState extends State<Home> {
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
           await context.read<HomeProvider>().getProductsList(),
           await context.read<HomeProvider>().getUser(),
+          await context.read<HomeProvider>().getPopularProducts(),
           context.read<HomeProvider>().sendNotifications(),
-          await context.read<HomeProvider>().getPopularProducts()
-    });
+        });
   }
-
 
   @override
   Widget build(BuildContext context) {
-
-    List<ProductJson> products = context.watch<HomeProvider>().products;
-    UserJson user = context.watch<HomeProvider>().user;
-    print('home '+user.email.toString());
-
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -78,7 +65,7 @@ class _HomeState extends State<Home> {
                     const SizedBox(height: 10),
                     SingleChildScrollView(
                       child: StaggeredProductView(
-                        products: products,
+                        products: context.watch<HomeProvider>().products,
                       ),
                       physics: NeverScrollableScrollPhysics(),
                     ),

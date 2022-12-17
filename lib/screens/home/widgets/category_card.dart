@@ -1,4 +1,3 @@
-import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -9,7 +8,7 @@ class CategoryCard extends StatelessWidget {
     required this.onPress,
   }) : super(key: key);
 
-  VoidCallback onPress;
+  final VoidCallback onPress;
   final Map<String, dynamic> category;
 
   @override
@@ -26,10 +25,6 @@ class CategoryCard extends StatelessWidget {
               Container(
                 height: 50,
                 width: 50,
-                // decoration: BoxDecoration(
-                //   color: PrimaryLightColor,
-                //   borderRadius: BorderRadius.circular(10.0),
-                // ),
                 child: SvgPicture.asset(category["icon"]),
               ),
               const SizedBox(height: 5),
