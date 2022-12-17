@@ -1,18 +1,14 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/checkout_provider.dart';
-import 'package:flutterdemo/models/cart_model.dart';
 import 'package:flutterdemo/screens/checkout/widgets/bottom_bar.dart';
+import 'package:flutterdemo/screens/checkout/widgets/checkout_form.dart';
 import 'package:flutterdemo/screens/checkout/widgets/order_summary.dart';
+import 'package:flutterdemo/screens/widgets/custom_app_bar/custom_app_bar.dart';
+import 'package:flutterdemo/screens/widgets/layout.dart';
 import 'package:provider/provider.dart';
-
-import '../widgets/custom_app_bar/custom_app_bar.dart';
-import '../widgets/layout.dart';
-import 'widgets/checkout_form.dart';
 
 class Checkout extends StatefulWidget {
   const Checkout({super.key, });
-
 
   @override
   State<Checkout> createState() => _CheckoutState();
