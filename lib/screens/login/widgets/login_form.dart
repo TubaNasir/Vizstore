@@ -1,7 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/controllers/google_sign_in_provider.dart';
 import 'package:flutterdemo/screens/complete_profile/complete_profile.dart';
 import 'package:provider/provider.dart';
 
@@ -113,7 +112,7 @@ class _LoginFormState extends State<LoginForm> {
                 icon: 'assets/icons/google-icon.svg',
                 onPressed: () async {
                   UserCredential? user = await context
-                      .read<GoogleSignInProvider>()
+                      .read<LoginProvider>()
                       .googleLogin();
 
                   if(user!.additionalUserInfo!.isNewUser){
@@ -132,19 +131,6 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                     );
                   }
-                  //if(!mounted) return;
-
-                  // bool exist = await context
-                  //     .read<GoogleSignInProvider>()
-                  //     .doesUserExist();
-                  //
-                  // //if(!mounted) return;
-                  //
-                  // if (exist == false) {
-                  //
-                  // } else {
-                  //
-                  // }
                 },
               ),
             ],

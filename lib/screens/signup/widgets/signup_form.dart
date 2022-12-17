@@ -3,6 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/screens/home/home.dart';
 import 'package:flutterdemo/screens/signup/widgets/social_card.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
@@ -169,7 +170,28 @@ class _SignUpFormState extends State<SignUpForm> {
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               SocialCard(
                 icon: 'assets/icons/google-icon.svg',
-                onPressed: () {},
+                onPressed: () async {
+                  UserCredential? user = await context
+                      .read<SignupProvider>()
+                      .googleLogin();
+
+                  if(user!.additionalUserInfo!.isNewUser){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => CompleteProfile(
+                          user: user.user,
+                        ),
+                      ),
+                    );
+                  }
+                  else{
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Home(),
+                      ),
+                    );
+                  }
+                },
               ),
 
             ]),

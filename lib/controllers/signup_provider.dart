@@ -3,11 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../core/user_repository.dart';
 import '../models/user_model.dart';
 
 class SignupProvider with ChangeNotifier{
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  GoogleSignInAccount? _userGoogle;
+
   final UserRepository _coreRepository = UserRepository();
 
   bool _passwordVisible = false;
@@ -15,6 +19,7 @@ class SignupProvider with ChangeNotifier{
 
   bool get passwordVisible => _passwordVisible;
   bool get rePasswordVisible => _rePasswordVisible;
+  GoogleSignInAccount get userGoogle => _userGoogle!;
 
   void changePasswordVisible() {
     _passwordVisible = !_passwordVisible;
@@ -65,5 +70,24 @@ class SignupProvider with ChangeNotifier{
     );
   }
 
+  Future<UserCredential?> googleLogin() async {
+    final googleUser = await _googleSignIn.signIn();
+    print("googleUser ${googleUser}");
+    if(googleUser == null) return null;
+    _userGoogle = googleUser;
+
+    final googleAuth = await googleUser.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken
+    );
+
+    UserCredential userCred = await FirebaseAuth.instance.signInWithCredential(credential);
+    notifyListeners();
+
+    return userCred;
+
+  }
 
 }

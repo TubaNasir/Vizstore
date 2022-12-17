@@ -2,11 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../core/user_repository.dart';
 import '../models/user_model.dart';
 
 class LoginProvider with ChangeNotifier {
+
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  GoogleSignInAccount? _userGoogle;
+
   bool _passwordVisible = false;
   bool _errorMessage = false;
   bool _isLoggedIn = false;
@@ -16,6 +21,8 @@ class LoginProvider with ChangeNotifier {
   bool get errorMessage => _errorMessage;
   bool get isLoggedIn => _isLoggedIn;
   UserJson get user => _user;
+  GoogleSignInAccount get userGoogle => _userGoogle!;
+
 
   //final UserRepository _userRepository = UserRepository();
   final UserRepository _corerepository = UserRepository();
@@ -55,7 +62,6 @@ class LoginProvider with ChangeNotifier {
       //notifyListeners();
     }
     return false;
-
   }
 
   void showErrorToast(String text){
@@ -68,23 +74,25 @@ class LoginProvider with ChangeNotifier {
     );
   }
 
-/* void getLoggedIn(){
-    FirebaseAuth.instance
-        .authStateChanges()
-        .listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print('User is currently signed in!');
-        getUser();
-      }
-    });
-  }*/
+  Future<UserCredential?> googleLogin() async {
+    final googleUser = await _googleSignIn.signIn();
+    print("googleUser ${googleUser}");
+    if(googleUser == null) return null;
+    _userGoogle = googleUser;
 
-/*void getUser() async {
-    _user = await _corerepository.getUser();
+    final googleAuth = await googleUser.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken
+    );
+
+    UserCredential userCred = await FirebaseAuth.instance.signInWithCredential(credential);
     notifyListeners();
-    print('prov' + _user.firstName);
-  }*/
+
+    return userCred;
+
+  }
+
 
 }
