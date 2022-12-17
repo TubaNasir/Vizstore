@@ -1,4 +1,3 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/cart_provider.dart';
 import 'package:flutterdemo/models/cart_model.dart';
