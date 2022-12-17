@@ -27,6 +27,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
@@ -73,7 +74,7 @@ class _HomeState extends State<Home> {
                     const SizedBox(height: 10),
                     PopularProducts(),
                     const SizedBox(height: 20),
-                    const Heading(text: "New Arrivals"),
+                    const Heading(text: "All Products"),
                     const SizedBox(height: 10),
                     SingleChildScrollView(
                       child: StaggeredProductView(

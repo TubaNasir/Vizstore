@@ -25,7 +25,7 @@ class StaggeredProductView extends StatelessWidget {
               builder: (_) => ProductDetail(
                 product: product,
               )),
-        );
+        ).then((value) => context.read<HomeProvider>().getUser());
       },
       child: ProductCard(product: product,
           isFav: context.read<HomeProvider>().getIsFavourite(product.id),

@@ -21,10 +21,9 @@ class _ProductDetailState extends State<ProductDetail> {
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_) => {
-    //   context.read<ProductDetailsProvider>().getUser(),
-    //   context.read<ProductDetailsProvider>().getIsFavourite(widget.product.id)
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((_) => {
+      context.read<ProductDetailsProvider>().getUser(),
+    });
   }
 
   @override

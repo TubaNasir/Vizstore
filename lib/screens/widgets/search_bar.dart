@@ -49,7 +49,7 @@ class _SearchBarState extends State<SearchBar> {
                             Search(
                               allProducts: list,
                               searchText: text,
-                            )));
+                            ))).then((value) => context.read<HomeProvider>().getUser());
                   }
                },
                 onChanged: (String text){

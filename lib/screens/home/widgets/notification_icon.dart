@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/models/user_model.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutterdemo/screens/notifications/notifications.dart';
 import 'package:provider/provider.dart';

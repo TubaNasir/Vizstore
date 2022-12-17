@@ -47,7 +47,6 @@ class _CartState extends State<Cart> {
             title: "Cart",
             backButton: false,
           ),
-          //backgroundColor: Colors.grey.shade200,
           body: Stack(children: [
             Layout(
               widget: context.watch<CartProvider>().isCartEmpty

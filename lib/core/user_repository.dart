@@ -14,8 +14,6 @@ class UserRepository {
   UserJson _user = UserJson.empty();
 
   Future<void> updateUser(UserJson user) async {
-    //print('quantity ${user.cart[0].quantity}');
-    //print('id ${user.id}');
 
     await db
         .collection("user")

@@ -36,6 +36,8 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
+    bool isFetching = context.watch<SearchProvider>().isFetching;
+    print('isf ${isFetching}');
     List<ProductJson> products =
         context.watch<SearchProvider>().changedProducts;
 
@@ -69,7 +71,7 @@ class _SearchState extends State<Search> {
                 )
                 :
                 (products.isNotEmpty)
-                    ? StaggeredProductView(
+                    ? isFetching ? Center(child: CircularProgressIndicator()) : StaggeredProductView(
                         products: products,
                       )
                     : const Text('No Products Found'),
