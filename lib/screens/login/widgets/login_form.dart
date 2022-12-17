@@ -85,17 +85,20 @@ class _LoginFormState extends State<LoginForm> {
           CustomButton(
               text: "Continue",
               pressed: () async {
-                 Future<bool> login = context
-                    .read<LoginProvider>()
-                    .signIn(controllerEmail.text, controllerPassword.text);
+                if (_formKey.currentState!.validate()){
+                  Future<bool> login = context
+                      .read<LoginProvider>()
+                      .signIn(controllerEmail.text, controllerPassword.text);
 
-                if (await login == true) { //_formKey.currentState!.validate() &&
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => Home(),
-                    ),
-                  );
+                  if (await login == true) { //
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Home(),
+                      ),
+                    );
+                  }
                 }
+
 
               }),
           Text(

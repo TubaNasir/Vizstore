@@ -8,6 +8,7 @@ import '../../models/product_model.dart';
 import '../widgets/custom_app_bar/custom_app_bar.dart';
 import '../widgets/staggered_products.dart';
 
+
 class StoreMain extends StatefulWidget {
   StoreMain({Key? key, required this.store}) : super(key: key);
 
@@ -46,7 +47,7 @@ class _StoreMainState extends State<StoreMain> {
               SingleChildScrollView(
                   physics: NeverScrollableScrollPhysics(),
                   child: StaggeredProductView(
-                    products: storeProducts,
+                    products: demoProducts,
                   )),
               const SizedBox(height: 50),
             ],
