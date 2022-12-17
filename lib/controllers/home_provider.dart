@@ -71,6 +71,10 @@ class HomeProvider with ChangeNotifier {
     var contain = _user.wishlist.any((element) => element.productId == productId);
     if (contain)
     {
+      for (var item in _user.wishlist){
+        newWishlist.add(item);
+        //if ()
+      }
       print('already in wishlist');
     }
     //value not exists

@@ -1,7 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/controllers/google_sign_in_provider.dart';
 import 'package:flutterdemo/screens/complete_profile/complete_profile.dart';
 import 'package:provider/provider.dart';
 
@@ -112,27 +111,20 @@ class _LoginFormState extends State<LoginForm> {
               SocialCard(
                 icon: 'assets/icons/google-icon.svg',
                 onPressed: () async {
-                  User? user = await context
-                      .read<GoogleSignInProvider>()
+                  UserCredential? user = await context
+                      .read<LoginProvider>()
                       .googleLogin();
 
-                  if(!mounted) return;
-
-                  bool exist = await context
-                      .read<GoogleSignInProvider>()
-                      .doesUserExist();
-
-                  if(!mounted) return;
-
-                  if (exist == false) {
+                  if(user!.additionalUserInfo!.isNewUser){
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => CompleteProfile(
-                          user: user,
+                          user: user.user,
                         ),
                       ),
                     );
-                  } else {
+                  }
+                  else{
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => Home(),
@@ -140,14 +132,6 @@ class _LoginFormState extends State<LoginForm> {
                     );
                   }
                 },
-              ),
-              SocialCard(
-                icon: 'assets/icons/facebook-2.svg',
-                onPressed: () {},
-              ),
-              SocialCard(
-                icon: 'assets/icons/twitter.svg',
-                onPressed: () {},
               ),
             ],
           ),

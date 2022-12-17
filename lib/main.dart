@@ -26,7 +26,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'controllers/camera_provider.dart';
-import 'controllers/google_sign_in_provider.dart';
 import 'screens/login/login.dart';
 import 'screens/widgets/splash_screen.dart';
 
@@ -56,7 +55,6 @@ Future<void> main() async {
               getIt.get(instanceName: 'store'),
               getIt.get(instanceName: 'product'),
               getIt.get(instanceName: 'user'))),
-      ChangeNotifierProvider(create: (_) => GoogleSignInProvider()),
       ChangeNotifierProvider(
           create: (_) => CartProvider(
               getIt.get(instanceName: 'store'),

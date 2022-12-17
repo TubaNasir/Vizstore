@@ -105,33 +105,33 @@ class ProductDetailsProvider with ChangeNotifier {
     );
   }
 
-  Future<void> updateWishlist(String productId) async {
-    List<WishlistItemJson> newWishlist = [];
-    var contain = _user.wishlist.any((element) => element.productId == productId);
-    if (contain)
-    {
-      print('already in wishlist');
-    }
-    //value not exists
-    else
-    {
-      for (var item in _user.wishlist){
-        newWishlist.add(item);
-      }
-      newWishlist.add(WishlistItemJson(productId: productId));
-    }
-    UserJson updatedUser = _user.copyWith(wishlist: newWishlist);
-    //print(updatedUser.cart[0].quantity);
-    await _userRepository.updateUser(updatedUser);
-    _user = await _userRepository.getUser();
-    notifyListeners();
-  }
-
-  void getIsFavourite(String productId) {
-    _isFav = _user.wishlist.any((element) => element.productId == productId);
-    print('issfav ${isFav}');
-    notifyListeners();
-    //return isFav;
-  }
+  // Future<void> updateWishlist(String productId) async {
+  //   List<WishlistItemJson> newWishlist = [];
+  //   var contain = _user.wishlist.any((element) => element.productId == productId);
+  //   if (contain)
+  //   {
+  //     print('already in wishlist');
+  //   }
+  //   //value not exists
+  //   else
+  //   {
+  //     for (var item in _user.wishlist){
+  //       newWishlist.add(item);
+  //     }
+  //     newWishlist.add(WishlistItemJson(productId: productId));
+  //   }
+  //   UserJson updatedUser = _user.copyWith(wishlist: newWishlist);
+  //   //print(updatedUser.cart[0].quantity);
+  //   await _userRepository.updateUser(updatedUser);
+  //   _user = await _userRepository.getUser();
+  //   notifyListeners();
+  // }
+  //
+  // void getIsFavourite(String productId) {
+  //   _isFav = _user.wishlist.any((element) => element.productId == productId);
+  //   print('issfav ${isFav}');
+  //   notifyListeners();
+  //   //return isFav;
+  // }
 
 }

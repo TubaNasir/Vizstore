@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/screens/home/home.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controllers/login_provider.dart';
@@ -106,11 +107,21 @@ class _ProfileFormState extends State<ProfileForm> {
                   context.read<SignupProvider>().addNewUser(
                       widget.user, controllerFname.text, controllerLname.text,
                       controllerContact.text);
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => Login(),
-                    ),
-                  );
+                  if (widget.user!.providerData[0].providerId.toLowerCase().contains('google')){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Home(),
+                      ),
+                    );
+                  }
+                  else{
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Login(),
+                      ),
+                    );
+                  }
+
                 }
               }),
         ],
