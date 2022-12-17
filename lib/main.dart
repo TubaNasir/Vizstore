@@ -49,7 +49,7 @@ Future<void> main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => NavBar()),
-      ChangeNotifierProvider(create: (_) => LoginProvider()),
+      ChangeNotifierProvider(create: (_) => LoginProvider(getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(create: (_) => SignupProvider(getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(create: (_) => CompleteProfileProvider(getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(create: (_) => ProfileProvider(getIt.get(instanceName: 'user'))),

@@ -1,12 +1,7 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/login/widgets/login_form.dart';
 import 'package:flutterdemo/screens/login/widgets/login_redirection.dart';
 import 'package:flutterdemo/screens/login/widgets/welcome_message.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
-
-
 
 class Login extends StatefulWidget {
   const Login({ super.key});
@@ -16,11 +11,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final _formKey = GlobalKey<FormState>();
-  String? email;
-  String? password;
   _LoginState();
-
 
   @override
   Widget build(BuildContext context) {

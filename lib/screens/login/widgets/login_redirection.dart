@@ -1,8 +1,6 @@
-import 'package:camera/camera.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
-
-import '../../signup/signup.dart';
+import 'package:flutterdemo/screens/signup/signup.dart';
 
 class LoginRedirection extends StatelessWidget {
   const LoginRedirection({super.key});
