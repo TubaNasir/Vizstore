@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:provider/provider.dart';
-import '../../../models/product_model.dart';
+import '../../../models/product_json.dart';
 
 class TitleRow extends StatefulWidget {
   const TitleRow({

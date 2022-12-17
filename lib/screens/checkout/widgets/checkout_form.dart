@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/checkout_provider.dart';
-import 'package:flutterdemo/models/user_model.dart';
+import 'package:flutterdemo/models/user_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutterdemo/screens/widgets/suffix_icon.dart';
 import 'package:provider/provider.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/checkout_provider.dart';
-import 'package:flutterdemo/models/cart_model.dart';
-import 'package:flutterdemo/models/store_model.dart';
+import 'package:flutterdemo/models/cart_json.dart';
+import 'package:flutterdemo/models/store_json.dart';
 import 'package:provider/provider.dart';
 
 class OrderSummaryProducts extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
 import 'package:flutterdemo/controllers/search_provider.dart';
-import 'package:flutterdemo/models/product_model.dart';
+import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/screens/camera/choice.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';

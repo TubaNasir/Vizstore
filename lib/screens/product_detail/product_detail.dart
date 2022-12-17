@@ -3,7 +3,7 @@ import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:flutterdemo/screens/product_detail/widgets/bottom_bar.dart';
 import 'package:flutterdemo/screens/product_detail/widgets/product_body.dart';
 import 'package:provider/provider.dart';
-import '../../models/product_model.dart';
+import '../../models/product_json.dart';
 import '../widgets/custom_app_bar2.dart';
 
 class ProductDetail extends StatefulWidget {

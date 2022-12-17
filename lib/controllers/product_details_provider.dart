@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/core/user_repository.dart';
-import 'package:flutterdemo/models/cart_model.dart';
-import 'package:flutterdemo/models/wishlist_model.dart';
+import 'package:flutterdemo/repositories/user_repository.dart';
+import 'package:flutterdemo/models/cart_json.dart';
+import 'package:flutterdemo/models/wishlist_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../models/store_model.dart';
-import '../models/user_model.dart';
+import '../models/store_json.dart';
+import '../models/user_json.dart';
 import '../repositories/store_repository.dart';
 
 class ProductDetailsProvider with ChangeNotifier {

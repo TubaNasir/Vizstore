@@ -1,6 +1,6 @@
-import 'package:flutterdemo/models/notification_model.dart';
-import 'package:flutterdemo/models/wishlist_model.dart';
-import 'cart_model.dart';
+import 'package:flutterdemo/models/notification_json.dart';
+import 'package:flutterdemo/models/wishlist_json.dart';
+import 'cart_json.dart';
 
 class UserJson {
   String? id;

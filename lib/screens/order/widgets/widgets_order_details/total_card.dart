@@ -1,6 +1,6 @@
 import 'package:flutterdemo/controllers/checkout_provider.dart';
 import 'package:flutterdemo/controllers/my_orders_provider.dart';
-import 'package:flutterdemo/models/order_model.dart';
+import 'package:flutterdemo/models/order_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

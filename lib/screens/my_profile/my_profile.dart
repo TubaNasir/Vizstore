@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/my_profile/widgets/menu_list.dart';
 import 'package:flutterdemo/screens/my_profile/widgets/profile_pic.dart';
 import '../widgets/bottom_nav_bar/bottom_nav_bar.dart';
-import '../widgets/custom_app_bar/custom_app_bar.dart';
+import '../widgets/custom_app_bar.dart';
 import '../widgets/layout.dart';
 
 class MyProfile extends StatefulWidget {

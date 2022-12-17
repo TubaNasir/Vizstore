@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/camera_provider.dart';
-import 'package:flutterdemo/models/product_model.dart';
+import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/screens/camera/camera.dart';
 import 'package:flutterdemo/screens/camera/storage_services.dart';
 import 'package:flutterdemo/screens/search/search.dart';

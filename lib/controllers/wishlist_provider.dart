@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/core/user_repository.dart';
-import 'package:flutterdemo/models/wishlist_model.dart';
-import 'package:flutterdemo/models/product_model.dart';
+import 'package:flutterdemo/repositories/user_repository.dart';
+import 'package:flutterdemo/models/wishlist_json.dart';
+import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
-import '../models/store_model.dart';
-import '../models/user_model.dart';
+import '../models/store_json.dart';
+import '../models/user_json.dart';
 import '../repositories/store_repository.dart';
 
 class WishlistProvider with ChangeNotifier {

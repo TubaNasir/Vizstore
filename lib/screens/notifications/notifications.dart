@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/notifications_provider.dart';
-import 'package:flutterdemo/models/notification_model.dart';
+import 'package:flutterdemo/models/notification_json.dart';
 import 'package:provider/provider.dart';
-import '../widgets/custom_app_bar/custom_app_bar.dart';
+import '../widgets/custom_app_bar.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({Key? key}) : super(key: key);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/core/user_repository.dart';
-import 'package:flutterdemo/models/product_model.dart';
-import 'package:flutterdemo/models/user_model.dart';
-import 'package:flutterdemo/models/wishlist_model.dart';
+import 'package:flutterdemo/repositories/user_repository.dart';
+import 'package:flutterdemo/models/product_json.dart';
+import 'package:flutterdemo/models/user_json.dart';
+import 'package:flutterdemo/models/wishlist_json.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
 
 class SearchProvider with ChangeNotifier {

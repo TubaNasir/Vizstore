@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/models/user_model.dart';
+import 'package:flutterdemo/models/user_json.dart';
 import 'package:flutterdemo/screens/wishlist/widgets/wishlist_card.dart';
 import 'package:provider/provider.dart';
 import '../../controllers/wishlist_provider.dart';
 import '../widgets/bottom_nav_bar/bottom_nav_bar.dart';
-import '../widgets/custom_app_bar/custom_app_bar.dart';
+import '../widgets/custom_app_bar.dart';
 import '../widgets/layout.dart';
 
 class Wishlist extends StatefulWidget {
@@ -13,7 +13,6 @@ class Wishlist extends StatefulWidget {
   @override
   State<Wishlist> createState() => _WishlistState();
 }
-
 class _WishlistState extends State<Wishlist> {
   @override
   void initState() {

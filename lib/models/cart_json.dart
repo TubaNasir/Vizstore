@@ -1,6 +1,6 @@
 
 
-import 'package:flutterdemo/models/product_model.dart';
+import 'package:flutterdemo/models/product_json.dart';
 
 class CartItemJson {
   final String productId;

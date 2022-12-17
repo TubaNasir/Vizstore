@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/core/user_repository.dart';
-import 'package:flutterdemo/models/notification_model.dart';
-import 'package:flutterdemo/models/product_model.dart';
-import 'package:flutterdemo/models/wishlist_model.dart';
+import 'package:flutterdemo/repositories/user_repository.dart';
+import 'package:flutterdemo/models/notification_json.dart';
+import 'package:flutterdemo/models/product_json.dart';
+import 'package:flutterdemo/models/wishlist_json.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
-import '../models/store_model.dart';
-import '../models/user_model.dart';
+import '../models/store_json.dart';
+import '../models/user_json.dart';
 
 class HomeProvider with ChangeNotifier {
   HomeProvider(this._productRepository, this._userRepository);

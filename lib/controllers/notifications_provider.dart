@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/core/user_repository.dart';
-import 'package:flutterdemo/models/notification_model.dart';
-import '../models/user_model.dart';
+import 'package:flutterdemo/repositories/user_repository.dart';
+import 'package:flutterdemo/models/notification_json.dart';
+import '../models/user_json.dart';
 
 class NotificationsProvider with ChangeNotifier {
   NotificationsProvider(this._userRepository);

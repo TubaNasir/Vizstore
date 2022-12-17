@@ -3,7 +3,7 @@ import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutterdemo/screens/product_detail/widgets/quantity_counter.dart';
 import 'package:provider/provider.dart';
-import '../../../models/product_model.dart';
+import '../../../models/product_json.dart';
 
 class BottomBar extends StatelessWidget {
   BottomBar({required this.product, Key? key}) : super(key: key);

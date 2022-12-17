@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/my_orders_provider.dart';
-import 'package:flutterdemo/models/order_model.dart';
+import 'package:flutterdemo/models/order_json.dart';
 import 'package:flutterdemo/screens/order/widgets/widgets_order_details/details_card.dart';
 import 'package:flutterdemo/screens/order/widgets/widgets_order_details/products_card.dart';
 import 'package:flutterdemo/screens/order/widgets/widgets_order_details/total_card.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/custom_app_bar/custom_app_bar.dart';
+import '../widgets/custom_app_bar.dart';
 import '../widgets/layout.dart';
 
 class OrderDetails extends StatefulWidget {

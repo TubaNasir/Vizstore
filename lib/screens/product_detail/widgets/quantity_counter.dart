@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:provider/provider.dart';
-import '../../../models/product_model.dart';
+import '../../../models/product_json.dart';
 
 class QuantityCounter extends StatefulWidget {
   QuantityCounter({required this.product, Key? key}) : super(key: key);
