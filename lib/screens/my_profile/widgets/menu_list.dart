@@ -44,7 +44,6 @@ class MenuList extends StatelessWidget {
           icon: Icon(Icons.logout, color: PrimaryColor),
           text: "Log Out",
           iconRight: Icon(Icons.chevron_right, color: PrimaryColor),
-          //HAVE TO IMPLEMENT TOGGLE FUNCTIONALITY LATER
           press: () {
             showDialog(
                 context: context,
