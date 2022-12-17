@@ -5,6 +5,7 @@ import 'package:flutterdemo/screens/edit_profile/edit_profile.dart';
 import 'package:flutterdemo/screens/login/login.dart';
 import 'package:flutterdemo/screens/my_profile/widgets/profile_menu.dart';
 import 'package:flutterdemo/screens/order/my_orders.dart';
+import 'package:flutterdemo/screens/widgets/bottom_nav_bar/bottom_nav_bar_provider.dart';
 import 'package:flutterdemo/screens/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 
@@ -63,6 +64,7 @@ class MenuList extends StatelessWidget {
                                       builder: (context) => Login(),
                                     ),
                                   ),
+                                  context.read<NavBar>().setPage('home'),
                                 },
                                 text: 'Yes',
                               ),
