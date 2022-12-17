@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'cart_model.dart';
+import 'cart_json.dart';
 
 class OrderJson {
   OrderJson({

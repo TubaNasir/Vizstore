@@ -1,4 +1,4 @@
-import 'package:flutterdemo/models/product_model.dart';
+import 'package:flutterdemo/models/product_json.dart';
 
 class NotificationItemJson {
   final String orderId;

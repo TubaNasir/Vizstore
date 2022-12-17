@@ -1,10 +1,6 @@
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/screens/widgets/custom_app_bar/widgets/notifications_icon.dart';
-import 'package:provider/provider.dart';
-
-import '../../notifications/notification_model.dart';
-import '../bottom_nav_bar/bottom_nav_bar_provider.dart';
+import '../notifications/notification_model.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({Key? key, required this.title, required this.backButton})
@@ -19,7 +15,6 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
   // TODO: implement preferredSize
   Size get preferredSize => const Size.fromHeight(100);
-
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
@@ -92,5 +87,4 @@ class _CustomAppBarState extends State<CustomAppBar> {
       ],
     );
   }
-
 }

@@ -1,12 +1,10 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/models/product_model.dart';
-import 'package:flutterdemo/models/user_model.dart';
+import 'package:flutterdemo/models/user_json.dart';
 import 'package:flutterdemo/screens/wishlist/widgets/wishlist_card.dart';
 import 'package:provider/provider.dart';
 import '../../controllers/wishlist_provider.dart';
 import '../widgets/bottom_nav_bar/bottom_nav_bar.dart';
-import '../widgets/custom_app_bar/custom_app_bar.dart';
+import '../widgets/custom_app_bar.dart';
 import '../widgets/layout.dart';
 
 class Wishlist extends StatefulWidget {
@@ -15,24 +13,23 @@ class Wishlist extends StatefulWidget {
   @override
   State<Wishlist> createState() => _WishlistState();
 }
-
 class _WishlistState extends State<Wishlist> {
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
-          context.read<WishlistProvider>().setIsFetching(),
+          context.read<WishlistProvider>().setIsFetchingTrue(),
           await context.read<WishlistProvider>().getUser(),
           await context.read<WishlistProvider>().setWishlistLength(),
           await context.read<WishlistProvider>().getProductsList(),
           await context.read<WishlistProvider>().getStoresList(),
           context.read<WishlistProvider>().setIsFetchingFalse(),
-    });
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-        UserJson user = context.watch<WishlistProvider>().user;
+    UserJson user = context.watch<WishlistProvider>().user;
 
     return SafeArea(
       child: Scaffold(
@@ -44,7 +41,7 @@ class _WishlistState extends State<Wishlist> {
           children: [
             Layout(
                 widget: context.watch<WishlistProvider>().isWishlistEmpty
-                    ? Text('Wishlist is empty')
+                    ? const Text('Wishlist is empty')
                     : SingleChildScrollView(
                         child: Column(
                           children: [
@@ -55,7 +52,7 @@ class _WishlistState extends State<Wishlist> {
                                       ))
                                   .toList(),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 100,
                             ),
                           ],

@@ -5,8 +5,7 @@ import 'package:flutterdemo/controllers/search_provider.dart';
 import 'package:flutterdemo/screens/product_detail/product_detail.dart';
 import 'package:flutterdemo/screens/widgets/product.dart';
 import 'package:provider/provider.dart';
-
-import '../../../models/product_model.dart';
+import '../../../models/product_json.dart';
 
 class StaggeredProductView extends StatelessWidget {
   final List<ProductJson> products;
@@ -16,7 +15,6 @@ class StaggeredProductView extends StatelessWidget {
 
   Widget _buildProducts(BuildContext context, int index) {
     ProductJson product = products[index];
-
     return GestureDetector(
       onTap: () {
         Navigator.push(

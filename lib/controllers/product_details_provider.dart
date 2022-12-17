@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/core/user_repository.dart';
-import 'package:flutterdemo/models/cart_model.dart';
-import 'package:flutterdemo/models/wishlist_model.dart';
+import 'package:flutterdemo/repositories/user_repository.dart';
+import 'package:flutterdemo/models/cart_json.dart';
+import 'package:flutterdemo/models/wishlist_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../models/store_model.dart';
-import '../models/user_model.dart';
+import '../models/store_json.dart';
+import '../models/user_json.dart';
 import '../repositories/store_repository.dart';
 
 class ProductDetailsProvider with ChangeNotifier {
   ProductDetailsProvider(this._storeRepository, this._userRepository);
 
-  StoreRepository _storeRepository;
-  UserRepository _userRepository;
+  final StoreRepository _storeRepository;
+  final UserRepository _userRepository;
 
   StoreJson _store = const StoreJson.empty();
   UserJson _user = UserJson.empty();

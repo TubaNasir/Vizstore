@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/edit_profile/widgets/edit_profile_form.dart';
-import 'package:flutterdemo/screens/widgets/custom_app_bar/custom_app_bar.dart';
+import 'package:flutterdemo/screens/widgets/custom_app_bar.dart';
 
 class EditProfile extends StatelessWidget {
   const EditProfile({Key? key}) : super(key: key);

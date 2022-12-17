@@ -1,11 +1,9 @@
-import 'package:camera/camera.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-
 import '../home/home.dart';
-import '../widgets/bottom_nav_bar/bottom_nav_bar_provider.dart';
+import '../../controllers/bottom_nav_bar_provider.dart';
 import '../widgets/custom_button.dart';
 
 
@@ -18,7 +16,6 @@ class Success extends StatefulWidget {
 
 class _SuccessState extends State<Success> {
 
-  final int _orderId = 13423;
   @override
   Widget build(BuildContext context) {
     return Container(

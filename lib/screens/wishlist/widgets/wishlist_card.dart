@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/wishlist_provider.dart';
-import 'package:flutterdemo/models/store_model.dart';
-import 'package:flutterdemo/models/wishlist_model.dart';
+import 'package:flutterdemo/models/store_json.dart';
+import 'package:flutterdemo/models/wishlist_json.dart';
 import 'package:flutterdemo/screens/wishlist/widgets/wishlist_card_details.dart';
 import 'package:provider/provider.dart';
 import '../../product_detail/product_detail.dart';
 import '../../widgets/image_widget.dart';
-import '../../../models/product_model.dart';
+import '../../../models/product_json.dart';
 
 class WishListCard extends StatefulWidget {
   const WishListCard({Key? key, required this.wishlistItem}) : super(key: key);
@@ -20,35 +20,34 @@ class WishListCard extends StatefulWidget {
 class _WishListCardState extends State<WishListCard> {
   @override
   Widget build(BuildContext context) {
-
-    ProductJson product = context.watch<WishlistProvider>().getProductInfo(widget.wishlistItem.productId);
-
+    ProductJson product = context
+        .watch<WishlistProvider>()
+        .getProductInfo(widget.wishlistItem.productId);
     StoreJson store =
-        context.watch<WishlistProvider>().getStore(product.storeId);
+        context.watch<WishlistProvider>().getStoreInfo(product.storeId);
     bool isFetching = context.watch<WishlistProvider>().isFetching;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 30.0),
       child: isFetching
           ? SizedBox(
-        height: 88.0,
-        width: double.infinity,
-            child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-              elevation: 2,
-              padding: EdgeInsets.zero,
-              backgroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15))),
+              height: 88.0,
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    elevation: 2,
+                    padding: EdgeInsets.zero,
+                    backgroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15))),
                 onPressed: () {},
                 child: Center(child: CircularProgressIndicator()),
               ),
-          )
+            )
           : ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        ProductDetail(product: demoProducts[0])));
+                    builder: (context) => ProductDetail(product: product)));
               },
               style: ElevatedButton.styleFrom(
                   elevation: 2,

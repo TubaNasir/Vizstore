@@ -1,17 +1,14 @@
-import 'package:camera/camera.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:flutterdemo/screens/camera/choice.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/widgets/bottom_nav_bar/widgets/my_custom_painter.dart';
 import 'package:provider/provider.dart';
-
-import '../../camera/camera.dart';
 import '../../cart/cart.dart';
 import '../../home/home.dart';
 import '../../my_profile/my_profile.dart';
 import '../../wishlist/wishlist.dart';
-import 'bottom_nav_bar_provider.dart';
+import '../../../controllers/bottom_nav_bar_provider.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key});

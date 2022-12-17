@@ -1,13 +1,10 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/store_provider.dart';
-import 'package:flutterdemo/models/store_model.dart';
+import 'package:flutterdemo/models/store_json.dart';
 import 'package:provider/provider.dart';
-
-import '../../models/product_model.dart';
-import '../widgets/custom_app_bar/custom_app_bar.dart';
-import '../widgets/staggered_products.dart';
-
+import '../../models/product_json.dart';
+import '../store/widgets/staggered_product_view.dart';
+import '../widgets/custom_app_bar.dart';
 
 class StoreMain extends StatefulWidget {
   StoreMain({Key? key, required this.store}) : super(key: key);
@@ -47,7 +44,7 @@ class _StoreMainState extends State<StoreMain> {
               SingleChildScrollView(
                   physics: NeverScrollableScrollPhysics(),
                   child: StaggeredProductView(
-                    products: demoProducts,
+                    products: storeProducts,
                   )),
             ],
           ),

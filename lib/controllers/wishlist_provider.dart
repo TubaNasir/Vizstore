@@ -1,23 +1,21 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/core/user_repository.dart';
-import 'package:flutterdemo/models/wishlist_model.dart';
-import 'package:flutterdemo/models/product_model.dart';
+import 'package:flutterdemo/repositories/user_repository.dart';
+import 'package:flutterdemo/models/wishlist_json.dart';
+import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
-import '../models/store_model.dart';
-import '../models/user_model.dart';
+import '../models/store_json.dart';
+import '../models/user_json.dart';
 import '../repositories/store_repository.dart';
-import 'package:get_it/get_it.dart';
 
 class WishlistProvider with ChangeNotifier {
   WishlistProvider(
       this._storeRepository, this._productRepository, this._userRepository);
 
-  ProductRepository _productRepository;
-  UserRepository _userRepository;
-  StoreRepository _storeRepository;
+  final ProductRepository _productRepository;
+  final UserRepository _userRepository;
+  final StoreRepository _storeRepository;
 
-  final StoreJson _store = const StoreJson.empty();
   UserJson _user = UserJson.empty();
   List<ProductJson> _products = [];
   List<StoreJson> _stores = [];
@@ -26,9 +24,6 @@ class WishlistProvider with ChangeNotifier {
   bool _isWishlistEmpty = false;
 
 
-  StoreJson get store => _store;
-  List<ProductJson> get products => _products;
-  List<StoreJson> get stores => _stores;
   UserJson get user => _user;
   List<ProductJson> get wishlistProducts => _wishlistProducts;
   bool get isFetching => _isFetching;
@@ -37,7 +32,6 @@ class WishlistProvider with ChangeNotifier {
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
     notifyListeners();
-    //print('cart quantity ${_user.cart[0].quantity}');
   }
 
   ProductJson getProductInfo(String id) {
@@ -50,7 +44,7 @@ class WishlistProvider with ChangeNotifier {
     return product;
   }
 
-  StoreJson getStore(String id) {
+  StoreJson getStoreInfo(String id) {
     StoreJson store = StoreJson.empty();
     for (var store in _stores) {
       if (id == store.id) {
@@ -63,35 +57,22 @@ class WishlistProvider with ChangeNotifier {
   Future<void> getProductsList() async {
     _products = await _productRepository.getProductList();
     notifyListeners();
-    print(products);
   }
 
   Future<void> getStoresList() async {
     _stores = await _storeRepository.getStoresList();
     notifyListeners();
-    print(stores);
-    //notifyListeners();
   }
 
   Future<void> setWishlistLength() async{
     _isWishlistEmpty = user.wishlist.isEmpty;
     notifyListeners();
   }
-  // void getWishlistProductList(){
-  //   List<ProductJson> products = _user.wishlist.map((e) => getProductInfo(e.productId)).cast<ProductJson>().toList();
-  //   _wishlistProducts = products;
-  //   notifyListeners();
-  //   _isFetching = false;
-  //   notifyListeners();
-  // }
 
   Future<void> updateWishlist(String productId) async {
     List<WishlistItemJson> newWishlist = [];
     for (var item in user.wishlist) {
-      if(item.productId == productId){
-        print('skip this');
-      }
-      else{
+      if(item.productId != productId){
         newWishlist.add(item);
       }
     }
@@ -102,7 +83,6 @@ class WishlistProvider with ChangeNotifier {
     notifyListeners();
     setWishlistLength();
     notifyListeners();
-    //getWishlistProductList();
   }
 
   bool getIsFavourite(String productId) {
@@ -111,7 +91,7 @@ class WishlistProvider with ChangeNotifier {
     return isFav;
   }
 
-  void setIsFetching() {
+  void setIsFetchingTrue() {
     _isFetching = true;
     notifyListeners();
   }

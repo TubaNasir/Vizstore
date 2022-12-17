@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/core/user_repository.dart';
-import 'package:flutterdemo/models/user_model.dart';
+import 'package:flutterdemo/repositories/user_repository.dart';
+import 'package:flutterdemo/models/user_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 

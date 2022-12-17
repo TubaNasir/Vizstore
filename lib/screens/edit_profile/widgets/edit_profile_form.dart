@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/edit_profile_provider.dart';
-import 'package:flutterdemo/models/user_model.dart';
+import 'package:flutterdemo/models/user_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutterdemo/screens/widgets/custom_button.dart';
 import 'package:flutterdemo/screens/widgets/suffix_icon.dart';
