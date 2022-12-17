@@ -71,7 +71,6 @@ class ProductDetailsProvider with ChangeNotifier {
 
   Future<void> updateList(List<CartItemJson> newCart) async {
     UserJson updatedUser = _user.copyWith(cart: newCart);
-    //print(updatedUser.cart[0].quantity);
     await _userRepository.updateUser(updatedUser);
     notifyListeners();
     _user = await _userRepository.getUser();
@@ -103,6 +102,40 @@ class ProductDetailsProvider with ChangeNotifier {
         backgroundColor: SecondaryColor,
         textColor: Colors.black
     );
+  }
+
+  Future<void> updateWishlist(String productId) async {
+    List<WishlistItemJson> newWishlist = [];
+    var contain = _user.wishlist.any((element) => element.productId == productId);
+    if (contain)
+    {
+      for (var item in _user.wishlist){
+        if(item.productId != productId){
+          newWishlist.add(item);
+        }
+      }
+      print('already in wishlist');
+    }
+    //value not exists
+    else
+    {
+      for (var item in _user.wishlist){
+        newWishlist.add(item);
+      }
+      newWishlist.add(WishlistItemJson(productId: productId));
+    }
+    UserJson updatedUser = _user.copyWith(wishlist: newWishlist);
+    //print(updatedUser.cart[0].quantity);
+    await _userRepository.updateUser(updatedUser);
+    _user = await _userRepository.getUser();
+    notifyListeners();
+  }
+
+  bool getIsFavourite(String productId) {
+    bool isFav = false;
+    isFav = _user.wishlist.any((element) => element.productId == productId);
+    print('issfav ${isFav}');
+    return isFav;
   }
 
   // Future<void> updateWishlist(String productId) async {

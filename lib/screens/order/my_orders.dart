@@ -24,6 +24,7 @@ class _MyOrdersState extends State<MyOrders> {
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
       await context.read<MyOrdersProvider>().setIsFetching(),
       await context.read<MyOrdersProvider>().getUser(),
+      await context.read<MyOrdersProvider>().setOrderLength(),
       await context.read<MyOrdersProvider>().getProductsList(),
       await context.read<MyOrdersProvider>().getOrderList(),
       await context.read<MyOrdersProvider>().getMyOrders(),
@@ -43,11 +44,10 @@ class _MyOrdersState extends State<MyOrders> {
         ),
         body: Layout(
           widget: context.watch<MyOrdersProvider>().isOrderEmpty
-              ? Text('Cart is empty'):
+              ? Text('You have not placed any order yet :('):
               ListView(
               children: orderList
                   .map((e) => OrderCard(
-                productImage: context.read<MyOrdersProvider>().getProductInfo(e.cart.first.productId).image,
                 title: "Order ID: ${e.id}",
                 placedOn: "Placed on: ${e.date_created.toString().split(' ')[0]}",
                 status: e.status,

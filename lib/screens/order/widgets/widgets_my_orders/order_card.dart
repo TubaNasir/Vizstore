@@ -8,14 +8,12 @@ import 'title_widget_order.dart';
 class OrderCard extends StatelessWidget {
   const OrderCard(
       {Key? key,
-      required this.productImage,
       required this.title,
       required this.placedOn,
       required this.status,
       required this.press})
       : super(key: key);
 
-  final String productImage;
   final String title, placedOn, status;
   final VoidCallback press;
   @override

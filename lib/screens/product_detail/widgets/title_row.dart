@@ -52,11 +52,20 @@ class _TitleRowState extends State<TitleRow> {
               //   context.read<ProductDetailsProvider>().updateWishlist(widget.product.id);
               // },
                   child: Center(
-                      child: Icon(
-                        Icons.favorite_border_rounded,
-                        size: 30,
-                        color:  Colors.black.withOpacity(0.4),
-                      ),
+                      child:
+                      context.read<ProductDetailsProvider>().getIsFavourite(widget.product.id) ?
+                      IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: BoxConstraints(),
+                          icon: const Icon(Icons.favorite, size:30),
+                          color: Colors.red,
+                          onPressed: () {context.read<ProductDetailsProvider>().updateWishlist(widget.product.id);}) :
+                      IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: BoxConstraints(),
+                          icon: const Icon(Icons.favorite_border_rounded, size:30),
+                          color: Colors.black.withOpacity(0.4),
+                          onPressed: () {context.read<ProductDetailsProvider>().updateWishlist(widget.product.id);})
                     ),
                 )),
       ],

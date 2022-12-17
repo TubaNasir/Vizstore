@@ -72,8 +72,9 @@ class HomeProvider with ChangeNotifier {
     if (contain)
     {
       for (var item in _user.wishlist){
-        newWishlist.add(item);
-        //if ()
+        if(item.productId != productId){
+          newWishlist.add(item);
+        }
       }
       print('already in wishlist');
     }
