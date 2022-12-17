@@ -42,12 +42,11 @@ class _EditProfileFormState extends State<EditProfileForm> {
             height: 20,
           ),
           TextFormField(
-            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: Color(0xFF595959)),
+            style: TextStyle(color: SecondaryDarkColor),
             controller: emailController,
             decoration: InputDecoration(
               labelText: "Email",
-              //hintText: user.email,
-              enabled: enabled,
+              enabled: false,
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon:
                   SuffixIcon(icon: Icons.email), //SuffixIcon(icon: Icons.email)
@@ -57,11 +56,10 @@ class _EditProfileFormState extends State<EditProfileForm> {
             height: 20,
           ),
           TextFormField(
-            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: Color(0xFF595959)),
+            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: SecondaryDarkColor),
             controller: firstNameController,
             decoration: InputDecoration(
               labelText: "First Name",
-              hintText: user.firstName,
               enabled: enabled,
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: SuffixIcon(
@@ -72,11 +70,10 @@ class _EditProfileFormState extends State<EditProfileForm> {
             height: 20,
           ),
           TextFormField(
-            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: Color(0xFF595959)),
+            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: SecondaryDarkColor),
             controller: lastNameController,
             decoration: InputDecoration(
               labelText: "Last Name",
-              hintText: user.lastName,
               enabled: enabled,
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: SuffixIcon(
@@ -87,11 +84,10 @@ class _EditProfileFormState extends State<EditProfileForm> {
             height: 20,
           ),
           TextFormField(
-            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: Color(0xFF595959)),
+            style: enabled == false ? TextStyle(color: Color(0xFF9E9E9E)) : TextStyle(color: SecondaryDarkColor),
             controller: contactController,
             decoration: InputDecoration(
               labelText: "Contact Number",
-              hintText: user.contact,
               enabled: enabled,
               floatingLabelBehavior: FloatingLabelBehavior.always,
               suffixIcon: SuffixIcon(

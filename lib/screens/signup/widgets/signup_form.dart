@@ -63,6 +63,9 @@ class _SignUpFormState extends State<SignUpForm> {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';
                 }
+                else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)){
+                  return 'Please enter a valid email address';
+                }
                 return null;
               },
             ),
@@ -87,6 +90,9 @@ class _SignUpFormState extends State<SignUpForm> {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your password';
+                }
+                else if(value.length < 6) {
+                  return 'Password should be at least 6 characters long';
                 }
                 return null;
               },

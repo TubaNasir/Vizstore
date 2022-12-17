@@ -48,14 +48,25 @@ class _SearchState extends State<Search> {
               children: [
                 SearchPageBar(searchText: widget.searchText,),
                 const SizedBox(height: 20),
-                SizedBox(
-                  height: 150,
-                  width: 150,
-                  child: Image.file(File(widget.imagePath)), //ADD BOUNDARY
-                ),
-                const SizedBox(height: 20),
-                Text('Related Products', style: Theme.of(context).textTheme.titleMedium,),
-                const SizedBox(height: 8),
+                widget.imagePath.isNotEmpty ?
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 150,
+                      width: 150,
+                      child: Image.file(File(widget.imagePath)), //ADD BOUNDARY
+                    ),
+                    const SizedBox(height: 20),
+                    Text('Related Products', style: Theme.of(context).textTheme.titleMedium,),
+                    const SizedBox(height: 8),
+                    (products.isNotEmpty)
+                        ? StaggeredProductView(
+                      products: products,
+                    )
+                        : const Text('No Products Found'),
+                  ],
+                )
+                :
                 (products.isNotEmpty)
                     ? StaggeredProductView(
                         products: products,
