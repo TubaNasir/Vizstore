@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:provider/provider.dart';
-
 import '../../../models/product_model.dart';
 
 class QuantityCounter extends StatefulWidget {
@@ -14,8 +13,6 @@ class QuantityCounter extends StatefulWidget {
 }
 
 class _QuantityCounterState extends State<QuantityCounter> {
-
-
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
 import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:flutterdemo/models/product_model.dart';
-import 'package:flutterdemo/models/store_model.dart';
 import 'package:provider/provider.dart';
 import '../../store/store_main.dart';
 
@@ -19,23 +18,24 @@ class StoreDetails extends StatefulWidget {
 }
 
 class _StoreDetailsState extends State<StoreDetails> {
-
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) =>
-    context.read<ProductDetailsProvider>().getStore(widget.product.storeId));
+    WidgetsBinding.instance.addPostFrameCallback((_) => context
+        .read<ProductDetailsProvider>()
+        .getStore(widget.product.storeId));
   }
 
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: InkWell(
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => StoreMain(store: context.read<HomeProvider>().store,),
+              builder: (context) => StoreMain(
+                store: context.read<HomeProvider>().store,
+              ),
             ),
           );
         },

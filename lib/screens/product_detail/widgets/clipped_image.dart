@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/constants.dart';
-
 import '../../../models/product_model.dart';
 import 'curve_clipper.dart';
 

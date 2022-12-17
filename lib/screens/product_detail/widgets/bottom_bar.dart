@@ -1,16 +1,12 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/controllers/cart_provider.dart';
 import 'package:flutterdemo/controllers/product_details_provider.dart';
-import 'package:flutterdemo/screens/cart/cart.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutterdemo/screens/product_detail/widgets/quantity_counter.dart';
 import 'package:provider/provider.dart';
-
 import '../../../models/product_model.dart';
 
 class BottomBar extends StatelessWidget {
-  BottomBar({required this.product,Key? key}) : super(key: key);
+  BottomBar({required this.product, Key? key}) : super(key: key);
 
   ProductJson product;
 
@@ -48,35 +44,38 @@ class BottomBar extends StatelessWidget {
               child: QuantityCounter(product: product),
             ),
             Container(
-              width: MediaQuery.of(context).size.width/2 + 8,
+              width: MediaQuery.of(context).size.width / 2 + 8,
               height: 78,
               child: TextButton(
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.white,
                 ),
-                onPressed: product.stock == 0 ? (){
-                  context.read<ProductDetailsProvider>().showOutOfStock();
-                } : () {
-                  context.read<ProductDetailsProvider>().addToCart(product.id);
-                  //context.read<CartProvider>().setCartLength();
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) => Cart(),
-                  //   ),
-                  // );
-                },
+                onPressed: product.stock == 0
+                    ? () {
+                        context.read<ProductDetailsProvider>().showOutOfStock();
+                      }
+                    : () {
+                        context
+                            .read<ProductDetailsProvider>()
+                            .addToCart(product.id);
+                      },
                 child: Ink(
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     gradient: PrimaryGradientColor,
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(80.0), bottomLeft: Radius.circular(80.0)),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(80.0),
+                        bottomLeft: Radius.circular(80.0)),
                   ),
                   child: Container(
                     alignment: Alignment.center,
                     child: Text(
                       'Add to Cart',
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),

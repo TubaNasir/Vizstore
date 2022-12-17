@@ -16,11 +16,8 @@ class TitleRow extends StatefulWidget {
 }
 
 class _TitleRowState extends State<TitleRow> {
-
   @override
   Widget build(BuildContext context) {
-    bool isFav = context.watch<ProductDetailsProvider>().isFav;
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -47,23 +44,32 @@ class _TitleRowState extends State<TitleRow> {
                   bottomLeft: Radius.circular(15.0)),
             ),
             child: InkWell(
-                  child: Center(
-                      child:
-                      context.read<ProductDetailsProvider>().getIsFavourite(widget.product.id) ?
-                      IconButton(
+              child: Center(
+                  child: context
+                          .watch<ProductDetailsProvider>()
+                          .getIsFavourite(widget.product.id)
+                      ? IconButton(
                           padding: EdgeInsets.zero,
                           constraints: BoxConstraints(),
-                          icon: const Icon(Icons.favorite, size:30),
+                          icon: const Icon(Icons.favorite, size: 30),
                           color: Colors.red,
-                          onPressed: () {context.read<ProductDetailsProvider>().updateWishlist(widget.product.id);}) :
-                      IconButton(
+                          onPressed: () {
+                            context
+                                .read<ProductDetailsProvider>()
+                                .updateWishlist(widget.product.id);
+                          })
+                      : IconButton(
                           padding: EdgeInsets.zero,
                           constraints: BoxConstraints(),
-                          icon: const Icon(Icons.favorite_border_rounded, size:30),
+                          icon: const Icon(Icons.favorite_border_rounded,
+                              size: 30),
                           color: Colors.black.withOpacity(0.4),
-                          onPressed: () {context.read<ProductDetailsProvider>().updateWishlist(widget.product.id);})
-                    ),
-                )),
+                          onPressed: () {
+                            context
+                                .read<ProductDetailsProvider>()
+                                .updateWishlist(widget.product.id);
+                          })),
+            )),
       ],
     );
   }

@@ -1,10 +1,8 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutterdemo/screens/product_detail/widgets/store_details.dart';
 import 'package:flutterdemo/screens/product_detail/widgets/title_row.dart';
 import 'package:provider/provider.dart';
-
 import '../../../controllers/product_details_provider.dart';
 import '../../../models/product_model.dart';
 import 'clipped_image.dart';
@@ -49,15 +47,16 @@ class _ProductBodyState extends State<ProductBody> {
                           StoreDetails(product: widget.product),
                           widget.product.stock == 0
                               ? Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                                child: Text(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12.0),
+                                  child: Text(
                                     'Out of stock',
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleMedium
                                         ?.copyWith(color: Colors.red),
                                   ),
-                              )
+                                )
                               : Text('')
                         ],
                       ),
