@@ -14,11 +14,11 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> categories = [
-      {"icon": "assets/icons/clothes.svg", "text": "Clothes"},
-      {"icon": "assets/icons/electronics.svg", "text": "Electronics"},
-      {"icon": "assets/icons/groceries.svg", "text": "Lifestyle"},
-      {"icon": "assets/icons/beauty.svg", "text": "Furniture"},
-      {"icon": "assets/icons/sports.svg", "text": "Sports"},
+      {"icon": "assets/icons/sweatshirt.svg", "text": "Clothes"},
+      {"icon": "assets/icons/laptop.svg", "text": "Electronics"},
+      {"icon": "assets/icons/toys.svg", "text": "Toys"},
+      {"icon": "assets/icons/furniture.svg", "text": "Furniture"},
+      {"icon": "assets/icons/cricket.svg", "text": "Sports"},
     ];
 
     return Row(

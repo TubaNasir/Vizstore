@@ -18,7 +18,7 @@ class Promotion extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: 100,
                 child:
-                Image.asset("assets/images/banner1.png", fit: BoxFit.fill)),
+                Image.asset("assets/images/banner2.jpg", fit: BoxFit.fill)),
             Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
