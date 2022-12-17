@@ -1,15 +1,10 @@
 import 'package:flutterdemo/controllers/checkout_provider.dart';
-import 'package:flutterdemo/controllers/my_orders_provider.dart';
-import 'package:flutterdemo/models/order_model.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
 class TotalCard extends StatelessWidget {
   const TotalCard({Key? key,}) : super(key: key);
-
-
 
   @override
   Widget build(BuildContext context) {

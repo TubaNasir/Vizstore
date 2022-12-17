@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/my_orders_provider.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:provider/provider.dart';
-import '../../../widgets/image_widget.dart';
 import 'title_widget_order.dart';
 
 class OrderCard extends StatelessWidget {
@@ -56,7 +55,6 @@ class OrderCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  //ImageWidget(image: productImage),
                   const SizedBox(
                     width: 20,
                   ),

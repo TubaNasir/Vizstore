@@ -12,7 +12,6 @@ class ProductsCard extends StatefulWidget {
 
   final OrderJson order;
 
-
   @override
   State<ProductsCard> createState() => _ProductsCardState();
 }
@@ -20,7 +19,6 @@ class ProductsCard extends StatefulWidget {
 class _ProductsCardState extends State<ProductsCard> {
   @override
   Widget build(BuildContext context) {
-    //OrderJson order = context.watch<MyOrdersProvider>().clickedOrder;
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
@@ -59,7 +57,6 @@ class _ProductsCardState extends State<ProductsCard> {
                   Expanded(
                     child: ListView.builder(
                       shrinkWrap: true,
-                      //physics: NeverScrollableScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       itemCount: widget.order.cart.length,
                       itemBuilder: (context, index) => HorizontalProductCard(

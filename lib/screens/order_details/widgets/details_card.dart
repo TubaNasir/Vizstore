@@ -1,8 +1,6 @@
-import 'package:flutterdemo/controllers/my_orders_provider.dart';
 import 'package:flutterdemo/models/order_model.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
-
 
 class DetailsCard extends StatefulWidget {
   const DetailsCard({
@@ -10,8 +8,6 @@ class DetailsCard extends StatefulWidget {
   }) : super(key: key);
 
   final OrderJson order;
-
-
 
   @override
   State<DetailsCard> createState() => _DetailsCardState();
@@ -21,7 +17,6 @@ class _DetailsCardState extends State<DetailsCard> {
 
   @override
   Widget build(BuildContext context) {
-    //OrderJson order = context.watch<MyOrdersProvider>().clickedOrder;
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
@@ -54,22 +49,6 @@ class _DetailsCardState extends State<DetailsCard> {
                 const Divider(
                   color: SecondaryColor,
                 ),
-                /*Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Contact #: ',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      Text(
-                        '${order.contact}',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
-                ),*/
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Row(
