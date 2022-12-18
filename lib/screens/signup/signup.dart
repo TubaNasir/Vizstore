@@ -1,9 +1,7 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/signup/widgets/register_message.dart';
 import 'package:flutterdemo/screens/signup/widgets/signup_form.dart';
 import 'package:flutterdemo/screens/signup/widgets/signup_redirection.dart';
-
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});

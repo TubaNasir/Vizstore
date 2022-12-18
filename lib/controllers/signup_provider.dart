@@ -4,7 +4,6 @@ import 'package:flutterdemo/screens/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutterdemo/domain/user_repository.dart';
-import '../models/user_json.dart';
 
 class SignupProvider with ChangeNotifier{
 
@@ -33,7 +32,6 @@ class SignupProvider with ChangeNotifier{
   }
 
   Future<User?> signUp(String email, String password) async {
-
     dynamic result  = await _coreRepository.signUp(email, password);
     if(result is User){
       return result;
@@ -42,7 +40,6 @@ class SignupProvider with ChangeNotifier{
       showErrorToast('This email address is already in use');
     }
     return null;
-
   }
 
   void showErrorToast(String text){
@@ -55,11 +52,8 @@ class SignupProvider with ChangeNotifier{
     );
   }
 
-
-
   Future<UserCredential?> googleLogin() async {
     final googleUser = await _googleSignIn.signIn();
-    print("googleUser ${googleUser}");
     if(googleUser == null) return null;
     _userGoogle = googleUser;
 

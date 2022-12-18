@@ -1,22 +1,14 @@
-import 'dart:convert';
-import 'package:camera/camera.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/signup_provider.dart';
+import 'package:flutterdemo/screens/complete_profile/complete_profile.dart';
 import 'package:flutterdemo/screens/home/home.dart';
 import 'package:flutterdemo/screens/signup/widgets/social_card.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutterdemo/screens/widgets/custom_button.dart';
+import 'package:flutterdemo/screens/widgets/suffix_icon.dart';
 import 'package:provider/provider.dart';
 
-import '../../../controllers/signup_provider.dart';
-import '../../complete_profile/complete_profile.dart';
-import '../../widgets/custom_button.dart';
-import '../../widgets/suffix_icon.dart';
-import 'package:http/http.dart' as http;
-
-
 class SignUpForm extends StatefulWidget {
-
   const SignUpForm({super.key});
 
   @override
@@ -26,7 +18,6 @@ class SignUpForm extends StatefulWidget {
 class _SignUpFormState extends State<SignUpForm> {
   bool enabled = true;
 
-  String _contactText = '';
   FirebaseAuth firebaseauth = FirebaseAuth.instance;
 
   TextEditingController controllerEmail = TextEditingController();
@@ -37,10 +28,8 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-
     bool passwordVisible = context.watch<SignupProvider>().passwordVisible;
     bool rePasswordVisible = context.watch<SignupProvider>().rePasswordVisible;
-
 
     return Form(
       key: _formKey,
@@ -63,8 +52,8 @@ class _SignUpFormState extends State<SignUpForm> {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';
-                }
-                else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)){
+                } else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                    .hasMatch(value)) {
                   return 'Please enter a valid email address';
                 }
                 return null;
@@ -80,8 +69,9 @@ class _SignUpFormState extends State<SignUpForm> {
                 enabled: enabled,
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 suffixIcon: IconButton(
-                  icon: Icon(
-                      passwordVisible ? Icons.visibility : Icons.visibility_off),
+                  icon: Icon(passwordVisible
+                      ? Icons.visibility
+                      : Icons.visibility_off),
                   onPressed: () {
                     context.read<SignupProvider>().changePasswordVisible();
                   },
@@ -91,14 +81,12 @@ class _SignUpFormState extends State<SignUpForm> {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your password';
-                }
-                else if(value.length < 6) {
+                } else if (value.length < 6) {
                   return 'Password should be at least 6 characters long';
                 }
                 return null;
               },
               obscureText: !passwordVisible,
-
             ),
             SizedBox(
               height: 20,
@@ -110,8 +98,9 @@ class _SignUpFormState extends State<SignUpForm> {
                 enabled: enabled,
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 suffixIcon: IconButton(
-                  icon: Icon(
-                      rePasswordVisible ? Icons.visibility : Icons.visibility_off),
+                  icon: Icon(rePasswordVisible
+                      ? Icons.visibility
+                      : Icons.visibility_off),
                   onPressed: () {
                     context.read<SignupProvider>().changeRePasswordVisible();
                   },
@@ -122,7 +111,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 if (value == null || value.isEmpty) {
                   return 'Please re-enter your password';
                 }
-                if(value != controllerPassword.text) {
+                if (value != controllerPassword.text) {
                   return 'Please make sure your passwords match';
                 }
                 return null;
@@ -137,16 +126,13 @@ class _SignUpFormState extends State<SignUpForm> {
                 pressed: () async {
                   if (_formKey.currentState!.validate()) {
                     try {
-                      User? user = await context
-                          .read<SignupProvider>()
-                          .signUp(
+                      User? user = await context.read<SignupProvider>().signUp(
                           controllerEmail.text, controllerPassword.text);
 
-                      if(user != null){
+                      if (user != null) {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) =>
-                                CompleteProfile(user: user),
+                            builder: (context) => CompleteProfile(user: user),
                           ),
                         );
                       }
@@ -171,11 +157,10 @@ class _SignUpFormState extends State<SignUpForm> {
               SocialCard(
                 icon: 'assets/icons/google-icon.svg',
                 onPressed: () async {
-                  UserCredential? user = await context
-                      .read<SignupProvider>()
-                      .googleLogin();
+                  UserCredential? user =
+                      await context.read<SignupProvider>().googleLogin();
 
-                  if(user!.additionalUserInfo!.isNewUser){
+                  if (user!.additionalUserInfo!.isNewUser) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => CompleteProfile(
@@ -183,8 +168,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         ),
                       ),
                     );
-                  }
-                  else{
+                  } else {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => Home(),
@@ -193,7 +177,6 @@ class _SignUpFormState extends State<SignUpForm> {
                   }
                 },
               ),
-
             ]),
           ],
         ),
