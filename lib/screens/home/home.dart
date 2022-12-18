@@ -24,10 +24,11 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
+          context.read<HomeProvider>().setIsFetchingTrue(),
           await context.read<HomeProvider>().getProductsList(),
           await context.read<HomeProvider>().getUser(),
           await context.read<HomeProvider>().getPopularProducts(),
-          context.read<HomeProvider>().sendNotifications(),
+          context.read<HomeProvider>().setIsFetchingFalse(),
         });
   }
 
@@ -39,41 +40,43 @@ class _HomeState extends State<Home> {
         appBar: const CustomAppBar(title: 'VizStore', backButton: false),
         body: Stack(
           children: [
-            Layout(
-              widget: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Expanded(child: SearchBar()),
-                        NotificationIcon(),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    const Promotion(),
-                    const SizedBox(height: 20),
-                    const Heading(text: 'Categories'),
-                    const SizedBox(height: 10),
-                    Categories(),
-                    const SizedBox(height: 20),
-                    const Heading(text: "Popular Products"),
-                    const SizedBox(height: 10),
-                    PopularProducts(),
-                    const SizedBox(height: 20),
-                    const Heading(text: "All Products"),
-                    const SizedBox(height: 10),
-                    SingleChildScrollView(
-                      child: StaggeredProductView(
-                        products: context.watch<HomeProvider>().products,
+            context.watch<HomeProvider>().isFetching
+                ? Center(child: CircularProgressIndicator())
+                : Layout(
+                    widget: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Expanded(child: SearchBar()),
+                              NotificationIcon(),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          const Promotion(),
+                          const SizedBox(height: 20),
+                          const Heading(text: 'Categories'),
+                          const SizedBox(height: 10),
+                          Categories(),
+                          const SizedBox(height: 20),
+                          const Heading(text: "Popular Products"),
+                          const SizedBox(height: 10),
+                          PopularProducts(),
+                          const SizedBox(height: 20),
+                          const Heading(text: "All Products"),
+                          const SizedBox(height: 10),
+                          SingleChildScrollView(
+                            child: StaggeredProductView(
+                              products: context.watch<HomeProvider>().products,
+                            ),
+                            physics: NeverScrollableScrollPhysics(),
+                          ),
+                          const SizedBox(height: 100),
+                        ],
                       ),
-                      physics: NeverScrollableScrollPhysics(),
                     ),
-                    const SizedBox(height: 100),
-                  ],
-                ),
-              ),
-            ),
+                  ),
             BottomNavBar(),
           ],
         ),
