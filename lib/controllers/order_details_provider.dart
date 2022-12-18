@@ -10,8 +10,8 @@ class OrderDetailsProvider with ChangeNotifier {
 
   OrderDetailsProvider(this._productRepository, this._userRepository, this._storeRepository);
 
-  FirebaseProductRepository _productRepository;
-  UserRepository _userRepository;
+  final FirebaseProductRepository _productRepository;
+  final UserRepository _userRepository;
   final FirebaseStoreRepository _storeRepository;
 
   List<ProductJson> _products = [];
