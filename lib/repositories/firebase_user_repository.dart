@@ -23,15 +23,6 @@ class FirebaseUserRepository implements UserRepository {
     }).catchError((error) => print("Failed to fetch user. Error : ${error}"));
   }
 
-  Future<void> setUser(String? id) async {
-    UserJson newUser = UserJson.empty();
-    await db.collection("user").doc(id).get().then((event) {
-      newUser =
-          UserJson.fromJson(event.data() as Map<String, dynamic>, event.id);
-    }).catchError((error) => print("Failed to fetch user. Error : ${error}"));
-    _user = newUser;
-  }
-
   Future<UserJson> sendNotifications() async {
     streamSubscription = db
         .collection("order")

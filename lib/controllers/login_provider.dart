@@ -36,8 +36,6 @@ class LoginProvider with ChangeNotifier {
     dynamic result = await _userRepository.signIn(email, password);
 
     if(result is String){
-      await _userRepository.setUser(result);
-      notifyListeners();
       _isLoading = false;
       notifyListeners();
       return true;

@@ -28,13 +28,6 @@ class MockUserRepository implements UserRepository {
   }
 
 
-
-  @override
-  Future<void> setUser(String? id) {
-    // TODO: implement setUser
-    throw UnimplementedError();
-  }
-
   @override
   Future signUp(String email, String password) {
     // TODO: implement signUp

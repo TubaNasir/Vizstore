@@ -6,9 +6,9 @@ import 'package:flutterdemo/screens/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CompleteProfileProvider with ChangeNotifier {
-  CompleteProfileProvider(this._coreRepository);
+  CompleteProfileProvider(this._userRepository);
 
-  UserRepository _coreRepository;
+  UserRepository _userRepository;
 
   bool _isLoading = false;
 
@@ -34,7 +34,7 @@ class CompleteProfileProvider with ChangeNotifier {
       notifications: [],
     );
 
-    await _coreRepository.addUser(newUser);
+    await _userRepository.addUser(newUser);
     _isLoading = false;
     notifyListeners();
     showSignedUpToast('Successfully signed up! Please login to continue');
