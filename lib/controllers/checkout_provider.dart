@@ -65,7 +65,8 @@ class CheckoutProvider with ChangeNotifier {
           date_created: date,
           city: _city,
           address: _address,
-          total: total));
+          total: total,
+      storeId: element.id));
     }
 
     orders.forEach((element) async {

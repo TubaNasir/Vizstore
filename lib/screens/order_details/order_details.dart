@@ -28,6 +28,7 @@ class _OrderDetailsState extends State<OrderDetails> {
       await context.read<OrderDetailsProvider>().setIsFetchingTrue(),
       await context.read<OrderDetailsProvider>().getUser(),
       await context.read<OrderDetailsProvider>().getProductsList(),
+      await context.read<OrderDetailsProvider>().getStore(widget.order.storeId),
       //await context.read<OrderDetailsProvider>().getOrderList(),
       //await context.read<OrderDetailsProvider>().getMyOrders(),
       await context.read<OrderDetailsProvider>().setIsFetchingFalse(),
@@ -39,7 +40,9 @@ class _OrderDetailsState extends State<OrderDetails> {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(title: 'Order Details', backButton: true),
-        body: Layout(
+        body: context.watch<OrderDetailsProvider>().isFetching
+            ? Center(child: CircularProgressIndicator())
+            :Layout(
           widget: SingleChildScrollView(
             child: Column(
               children: [
@@ -51,7 +54,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                 ),
                 DetailsCard(order: widget.order),
                 ProductsCard(order: widget.order),
-                TotalCard(),
+                TotalCard(order: widget.order),
               ],
             ),
           ),

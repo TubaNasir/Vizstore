@@ -1,10 +1,13 @@
 import 'package:flutterdemo/controllers/checkout_provider.dart';
+import 'package:flutterdemo/models/order_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TotalCard extends StatelessWidget {
-  const TotalCard({Key? key,}) : super(key: key);
+  const TotalCard({Key? key, required this.order}) : super(key: key);
+
+  final OrderJson order;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,7 @@ class TotalCard extends StatelessWidget {
                       textAlign: TextAlign.left,
                     ),
                     Text(
-                      'Rs. $total',
+                      'Rs. ${order.total}',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ],
