@@ -1,8 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/screens/camera/camera.dart';
 import 'package:flutterdemo/screens/constants.dart';
-
-import '../../../camera/camera.dart';
 
 class Camera extends StatelessWidget {
   const Camera({

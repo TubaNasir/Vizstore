@@ -1,8 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/bottom_nav_bar_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../controllers/bottom_nav_bar_provider.dart';
 
 class NavBarIcon extends StatefulWidget {
   const NavBarIcon({Key? key, required this.icon, required this.selectedIcon,required this.onPress}) : super(key: key);

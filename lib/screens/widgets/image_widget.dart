@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/screens/constants.dart';
 
-import '../constants.dart';
 
 class ImageWidget extends StatelessWidget {
   const ImageWidget({

@@ -1,6 +1,6 @@
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
-import '../notifications/notification_model.dart';
+import 'package:flutterdemo/screens/notifications/notification_model.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({Key? key, required this.title, required this.backButton})

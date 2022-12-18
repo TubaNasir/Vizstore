@@ -6,10 +6,10 @@ import 'package:flutterdemo/screens/home/widgets/notification_icon.dart';
 import 'package:flutterdemo/screens/home/widgets/popular_products.dart';
 import 'package:flutterdemo/screens/home/widgets/promotion.dart';
 import 'package:flutterdemo/screens/home/widgets/staggered_product_view.dart';
+import 'package:flutterdemo/screens/widgets/custom_app_bar.dart';
+import 'package:flutterdemo/screens/widgets/layout.dart';
 import '../widgets/bottom_nav_bar/bottom_nav_bar.dart';
-import '../widgets/custom_app_bar.dart';
-import '../widgets/layout.dart';
-import '../widgets/search_bar.dart';
+import 'widgets/search_bar.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {

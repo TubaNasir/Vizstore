@@ -1,11 +1,10 @@
+import 'package:flutterdemo/controllers/bottom_nav_bar_provider.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/screens/home/home.dart';
+import 'package:flutterdemo/screens/widgets/custom_button.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import '../home/home.dart';
-import '../../controllers/bottom_nav_bar_provider.dart';
-import '../widgets/custom_button.dart';
-
 
 class Success extends StatefulWidget {
   const Success({super.key});

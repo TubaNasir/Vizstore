@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
-import '../../models/product_json.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
