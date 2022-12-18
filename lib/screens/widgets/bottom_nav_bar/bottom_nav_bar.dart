@@ -46,74 +46,110 @@ class BottomNavBar extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  IconButton(
-                    icon: GlowIcon(
-                      Icons.home,
-                      color: context.watch<NavBar>().page.toString() == navBarPages[0] ? Colors.black : Colors.grey,
-                      glowColor: context.watch<NavBar>().page.toString() == navBarPages[0] ? Colors.grey : Colors.transparent,
-                      blurRadius: 9,
-                      size: 24,
-                    ),
-                    onPressed: () {
-                      context.read<NavBar>().setPage(navBarPages[0]);
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => Home(),
+                  Column(
+                    children: [
+                      IconButton(
+                        padding: EdgeInsets.only(top:24),
+                        constraints: BoxConstraints(),
+                        icon: GlowIcon(
+                          Icons.home,
+                          color: context.watch<NavBar>().page.toString() == navBarPages[0] ? Colors.black : Colors.grey,
+                          glowColor: context.watch<NavBar>().page.toString() == navBarPages[0] ? Colors.grey : Colors.transparent,
+                          blurRadius: 5,
+                          size: 24,
                         ),
-                      );
-                    },
+                        onPressed: () {
+                          context.read<NavBar>().setPage(navBarPages[0]);
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => Home(),
+                            ),
+                          );
+                        },
+                      ),
+                      Text('Home',
+                      style: TextStyle(color:context.watch<NavBar>().page.toString() == navBarPages[0] ? Colors.black : Colors.grey,
+                      fontSize: 10),)
+                    ],
                   ),
-                  IconButton(
-                    icon: GlowIcon(
-                      Icons.shopping_cart,
-                      color: context.watch<NavBar>().page.toString() == navBarPages[1] ? Colors.black : Colors.grey,
-                      glowColor: context.watch<NavBar>().page.toString() == navBarPages[1] ? Colors.grey : Colors.transparent,
-                      blurRadius: 9,
-                      size: 24,
-                    ),
-                    onPressed: () {
-                      context.read<NavBar>().setPage(navBarPages[1]);
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => Cart(),
+                  Column(
+                    children: [
+                      IconButton(
+                        padding: EdgeInsets.only(top:24),
+                        constraints: BoxConstraints(),
+                        icon: GlowIcon(
+                          Icons.shopping_cart,
+                          color: context.watch<NavBar>().page.toString() == navBarPages[1] ? Colors.black : Colors.grey,
+                          glowColor: context.watch<NavBar>().page.toString() == navBarPages[1] ? Colors.grey : Colors.transparent,
+                          blurRadius: 5,
+                          size: 24,
                         ),
-                      );
-                    },
+                        onPressed: () {
+                          context.read<NavBar>().setPage(navBarPages[1]);
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => Cart(),
+                            ),
+                          );
+                        },
+                      ),
+                      Text('Cart',
+                        style: TextStyle(color:context.watch<NavBar>().page.toString() == navBarPages[1] ? Colors.black : Colors.grey,
+                            fontSize: 10),)
+                    ],
                   ),
                   Container(width: size.width * 0.20),
-                  IconButton(
-                    icon: GlowIcon(
-                      Icons.favorite,
-                      color: context.watch<NavBar>().page.toString() == navBarPages[2] ? Colors.black : Colors.grey,
-                      glowColor: context.watch<NavBar>().page.toString() == navBarPages[2] ? Colors.grey : Colors.transparent,
-                      blurRadius: 9,
-                      size: 24,
-                    ),
-                    onPressed: () {
-                      context.read<NavBar>().setPage(navBarPages[2]);
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => Wishlist(),
+                  Column(
+                    children: [
+                      IconButton(
+                        padding: EdgeInsets.only(top:24),
+                        constraints: BoxConstraints(),
+                        icon: GlowIcon(
+                          Icons.favorite,
+                          color: context.watch<NavBar>().page.toString() == navBarPages[2] ? Colors.black : Colors.grey,
+                          glowColor: context.watch<NavBar>().page.toString() == navBarPages[2] ? Colors.grey : Colors.transparent,
+                          blurRadius: 5,
+                          size: 24,
                         ),
-                      );
-                    },
+                        onPressed: () {
+                          context.read<NavBar>().setPage(navBarPages[2]);
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => Wishlist(),
+                            ),
+                          );
+                        },
+                      ),
+                      Text('Wishlist',
+                        style: TextStyle(color:context.watch<NavBar>().page.toString() == navBarPages[2] ? Colors.black : Colors.grey,
+                            fontSize: 10),)
+                    ],
                   ),
-                  IconButton(
-                    icon: GlowIcon(
-                      Icons.person,
-                      color: context.watch<NavBar>().page.toString() == navBarPages[3] ? Colors.black : Colors.grey,
-                      glowColor: context.watch<NavBar>().page.toString() == navBarPages[3] ? Colors.grey : Colors.transparent,
-                      blurRadius: 9,
-                      size: 24,
-                    ),
-                    onPressed: () {
-                      context.read<NavBar>().setPage(navBarPages[3]);
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => MyProfile(),
+                  Column(
+                    children: [
+                      IconButton(
+                        padding: EdgeInsets.only(top:24),
+                        constraints: BoxConstraints(),
+                        icon: GlowIcon(
+                          Icons.person,
+                          color: context.watch<NavBar>().page.toString() == navBarPages[3] ? Colors.black : Colors.grey,
+                          glowColor: context.watch<NavBar>().page.toString() == navBarPages[3] ? Colors.grey : Colors.transparent,
+                          blurRadius: 5,
+                          size: 24,
                         ),
-                      );
-                    },
+                        onPressed: () {
+                          context.read<NavBar>().setPage(navBarPages[3]);
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => MyProfile(),
+                            ),
+                          );
+                        },
+                      ),
+                      Text('Profile',
+                        style: TextStyle(color:context.watch<NavBar>().page.toString() == navBarPages[3] ? Colors.black : Colors.grey,
+                            fontSize: 10),)
+                    ],
                   ),
                 ],
               ),
