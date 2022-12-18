@@ -34,7 +34,6 @@ class FirebaseUserRepository implements UserRepository {
           case DocumentChangeType.modified:
             {
               print(_user.notifications.length);
-              print("Modified City: ${change.doc.data()}");
               List<NotificationItemJson> newList = [];
               for (var notification in _user.notifications) {
                 newList.add(notification);
