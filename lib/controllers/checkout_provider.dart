@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/repositories/user_repository.dart';
+import 'package:flutterdemo/domain/user_repository.dart';
 import 'package:flutterdemo/models/cart_json.dart';
 import 'package:flutterdemo/models/order_json.dart';
 import 'package:flutterdemo/models/product_json.dart';

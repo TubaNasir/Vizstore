@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/repositories/user_repository.dart';
+import 'package:flutterdemo/repositories/firebase_user_repository.dart';
 import 'package:flutterdemo/models/user_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -9,7 +9,7 @@ class CompleteProfileProvider with ChangeNotifier {
 
   CompleteProfileProvider(this._coreRepository);
 
-  UserRepository _coreRepository;
+  FirebaseUserRepository _coreRepository;
 
   void addNewUser(User? user, String firstName,String lastName,String contact,) async {
     UserJson newUser = UserJson(

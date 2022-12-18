@@ -1,15 +1,17 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/repositories/user_repository.dart';
+import 'package:flutterdemo/domain/user_repository.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
+
+import '../repositories/firebase_user_repository.dart';
 
 class GoogleSignInProvider with ChangeNotifier {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   GoogleSignInAccount? _user;
-  UserRepository _userRepository = UserRepository();
+  FirebaseUserRepository _userRepository = FirebaseUserRepository();
 
 
   GoogleSignInAccount get user => _user!;
