@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/repositories/user_repository.dart';
+import 'package:flutterdemo/domain/user_repository.dart';
 import 'package:flutterdemo/models/notification_json.dart';
 import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/models/wishlist_json.dart';

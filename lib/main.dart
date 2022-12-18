@@ -1,4 +1,3 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/camera_provider.dart';
 import 'package:flutterdemo/controllers/cart_provider.dart';
@@ -15,19 +14,17 @@ import 'package:flutterdemo/controllers/signup_provider.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
 import 'package:flutterdemo/controllers/store_provider.dart';
 import 'package:flutterdemo/controllers/wishlist_provider.dart';
-import 'package:flutterdemo/repositories/user_repository.dart';
-import 'package:flutterdemo/models/store_json.dart';
+import 'package:flutterdemo/domain/user_repository.dart';
+import 'package:flutterdemo/repositories/mock_user_repository.dart';
+import 'package:flutterdemo/repositories/firebase_user_repository.dart';
 import 'package:flutterdemo/repositories/order_repository.dart';
 import 'package:flutterdemo/repositories/product_repository.dart';
 import 'package:flutterdemo/repositories/store_repository.dart';
 import 'package:flutterdemo/screens/themes.dart';
 import 'package:flutterdemo/controllers/bottom_nav_bar_provider.dart';
 import 'package:get_it/get_it.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'controllers/camera_provider.dart';
-import 'screens/login/login.dart';
 import 'screens/widgets/splash_screen.dart';
 
 final getIt = GetIt.instance;
@@ -41,7 +38,7 @@ Future<void> main() async {
       instanceName: 'store');
   getIt.registerSingleton<ProductRepository>(ProductRepository(),
       instanceName: 'product');
-  getIt.registerSingleton<UserRepository>(UserRepository(),
+  getIt.registerSingleton<UserRepository>(FirebaseUserRepository(),
       instanceName: 'user');
   getIt.registerSingleton<OrderRepository>(OrderRepository(),
       instanceName: 'order');

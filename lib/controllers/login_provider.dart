@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/domain/user_repository.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../repositories/user_repository.dart';
+import '../repositories/firebase_user_repository.dart';
 import '../models/user_json.dart';
 
 class LoginProvider with ChangeNotifier {
