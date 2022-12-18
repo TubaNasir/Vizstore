@@ -28,8 +28,6 @@ class _OrderDetailsState extends State<OrderDetails> {
       await context.read<OrderDetailsProvider>().setIsFetchingTrue(),
       await context.read<OrderDetailsProvider>().getUser(),
       await context.read<OrderDetailsProvider>().getProductsList(),
-      //await context.read<OrderDetailsProvider>().getOrderList(),
-      //await context.read<OrderDetailsProvider>().getMyOrders(),
       await context.read<OrderDetailsProvider>().setIsFetchingFalse(),
     });
   }
