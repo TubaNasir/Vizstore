@@ -29,7 +29,6 @@ class SearchProvider with ChangeNotifier {
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
     notifyListeners();
-    print('prov' + _user.firstName);
   }
 
   Future<void> getProductsList() async {
@@ -41,25 +40,6 @@ class SearchProvider with ChangeNotifier {
     _changedProducts = list;
     notifyListeners();
     _isFetching = false;
-
-  }
-
-  void getProds(List<String> ids){
-    List<ProductJson> list = [];
-    for (var element in ids) {
-      list.add(getProduct(element));
-    }
-    _changedProducts = list;
-  }
-
-  ProductJson getProduct(String id) {
-    ProductJson product = ProductJson.empty();
-    for (var product in _products) {
-      if(id == product.id){
-        return product;
-      }
-    }
-    return product;
   }
 
   void getFilteredProducts() {
@@ -104,7 +84,6 @@ class SearchProvider with ChangeNotifier {
       newWishlist.add(WishlistItemJson(productId: productId));
     }
     UserJson updatedUser = _user.copyWith(wishlist: newWishlist);
-    //print(updatedUser.cart[0].quantity);
     await _userRepository.updateUser(updatedUser);
     _user = await _userRepository.getUser();
     notifyListeners();

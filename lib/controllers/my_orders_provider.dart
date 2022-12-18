@@ -45,7 +45,6 @@ class MyOrdersProvider with ChangeNotifier {
     allOrders = _orders.where((element) => element.userId == _user.id).toList();
     _myOrders = allOrders;
     notifyListeners();
-    //notifyListeners();
   }
 
   Future<void> setIsFetching() async {
@@ -54,14 +53,10 @@ class MyOrdersProvider with ChangeNotifier {
   }
 
   Future<void> getOrderList() async {
-    print('in method');
     _orders = await _orderRepository.getOrderList();
     notifyListeners();
     _isFetching = false;
     notifyListeners();
-    print(orders);
-
-    //notifyListeners();
   }
 
   Future<void> getProductsList() async {
@@ -70,16 +65,6 @@ class MyOrdersProvider with ChangeNotifier {
     notifyListeners();
     print(products);
     //notifyListeners();
-  }
-
-  ProductJson getProductInfo(String id) {
-    ProductJson product = ProductJson.empty();
-    for (var product in _products) {
-      if (id == product.id) {
-        return product;
-      }
-    }
-    return product;
   }
 
   void setOrder(OrderJson order){

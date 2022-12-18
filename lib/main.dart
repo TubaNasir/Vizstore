@@ -7,6 +7,7 @@ import 'package:flutterdemo/controllers/edit_profile_provider.dart';
 import 'package:flutterdemo/controllers/login_provider.dart';
 import 'package:flutterdemo/controllers/my_orders_provider.dart';
 import 'package:flutterdemo/controllers/notifications_provider.dart';
+import 'package:flutterdemo/controllers/order_details_provider.dart';
 import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:flutterdemo/controllers/my_profile_provider.dart';
 import 'package:flutterdemo/controllers/search_provider.dart';
@@ -46,13 +47,17 @@ Future<void> main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => NavBar()),
-      ChangeNotifierProvider(create: (_) => LoginProvider(getIt.get(instanceName: 'user'))),
-      ChangeNotifierProvider(create: (_) => SignupProvider(getIt.get(instanceName: 'user'))),
-      ChangeNotifierProvider(create: (_) => CompleteProfileProvider(getIt.get(instanceName: 'user'))),
-      ChangeNotifierProvider(create: (_) => MyProfileProvider(getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(
-          create: (_) => HomeProvider(
-              getIt.get(instanceName: 'product'),
+          create: (_) => LoginProvider(getIt.get(instanceName: 'user'))),
+      ChangeNotifierProvider(
+          create: (_) => SignupProvider(getIt.get(instanceName: 'user'))),
+      ChangeNotifierProvider(
+          create: (_) =>
+              CompleteProfileProvider(getIt.get(instanceName: 'user'))),
+      ChangeNotifierProvider(
+          create: (_) => MyProfileProvider(getIt.get(instanceName: 'user'))),
+      ChangeNotifierProvider(
+          create: (_) => HomeProvider(getIt.get(instanceName: 'product'),
               getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(
           create: (_) => CartProvider(
@@ -95,9 +100,19 @@ Future<void> main() async {
           create: (_) => EditProfileProvider(
                 getIt.get(instanceName: 'user'),
               )),
-      ChangeNotifierProvider(create: (_) => CameraProvider(getIt.get(instanceName: 'product'),
-      )),
-      ChangeNotifierProvider(create: (_) => StoreProvider(getIt.get(instanceName: 'product'),)),
+      ChangeNotifierProvider(
+          create: (_) => CameraProvider(
+                getIt.get(instanceName: 'product'),
+              )),
+      ChangeNotifierProvider(
+          create: (_) => StoreProvider(
+                getIt.get(instanceName: 'product'),
+                getIt.get(instanceName: 'user'),
+              )),
+      ChangeNotifierProvider(
+          create: (_) => OrderDetailsProvider(
+                getIt.get(instanceName: 'product'),
+              )),
     ],
     child: MyApp(),
     //create: (_) => NavBar(),

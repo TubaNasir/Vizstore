@@ -1,12 +1,9 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/controllers/home_provider.dart';
 import 'package:flutterdemo/controllers/search_provider.dart';
+import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/screens/product_detail/product_detail.dart';
 import 'package:flutterdemo/screens/widgets/product.dart';
 import 'package:provider/provider.dart';
-
-import '../../../models/product_json.dart';
 
 class StaggeredProductView extends StatelessWidget {
   final List<ProductJson> products;

@@ -12,6 +12,7 @@ class SocialCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: onPressed,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
         child: Container(
@@ -25,7 +26,6 @@ class SocialCard extends StatelessWidget {
             ),
             child: Container(child: SvgPicture.asset(icon))),
       ),
-      onTap: onPressed,
     );
   }
 }

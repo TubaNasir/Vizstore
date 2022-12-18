@@ -1,14 +1,12 @@
 import 'dart:io';
-
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/search_provider.dart';
+import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/screens/search/widgets/search_page_bar.dart';
 import 'package:flutterdemo/screens/search/widgets/staggered_product_view.dart';
+import 'package:flutterdemo/screens/widgets/custom_app_bar.dart';
+import 'package:flutterdemo/screens/widgets/layout.dart';
 import 'package:provider/provider.dart';
-import '../../models/product_json.dart';
-import '../widgets/custom_app_bar.dart';
-import '../widgets/layout.dart';
 
 class Search extends StatefulWidget {
   Search({super.key, required this.allProducts, this.searchText = '', this.imagePath = ''});
@@ -40,7 +38,6 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     bool isFetching = context.watch<SearchProvider>().isFetching;
-    print('isf ${isFetching}');
     List<ProductJson> products =
         context.watch<SearchProvider>().changedProducts;
 

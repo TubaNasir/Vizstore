@@ -1,4 +1,5 @@
 import 'package:flutterdemo/controllers/my_orders_provider.dart';
+import 'package:flutterdemo/controllers/order_details_provider.dart';
 import 'package:flutterdemo/models/order_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,6 @@ class ProductsCard extends StatefulWidget {
 
   final OrderJson order;
 
-
   @override
   State<ProductsCard> createState() => _ProductsCardState();
 }
@@ -20,7 +20,6 @@ class ProductsCard extends StatefulWidget {
 class _ProductsCardState extends State<ProductsCard> {
   @override
   Widget build(BuildContext context) {
-    //OrderJson order = context.watch<MyOrdersProvider>().clickedOrder;
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
@@ -59,20 +58,19 @@ class _ProductsCardState extends State<ProductsCard> {
                   Expanded(
                     child: ListView.builder(
                       shrinkWrap: true,
-                      //physics: NeverScrollableScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       itemCount: widget.order.cart.length,
                       itemBuilder: (context, index) => HorizontalProductCard(
                         productImage: context
-                            .read<MyOrdersProvider>()
+                            .read<OrderDetailsProvider>()
                             .getProductInfo(widget.order.cart[index].productId)
                             .image,
                         cardTitle: context
-                            .read<MyOrdersProvider>()
+                            .read<OrderDetailsProvider>()
                             .getProductInfo(widget.order.cart[index].productId)
                             .title,
                         cardSubtitle:
-                            "Rs. ${context.read<MyOrdersProvider>().getProductInfo(widget.order.cart[index].productId).price}",
+                            "Rs. ${context.read<OrderDetailsProvider>().getProductInfo(widget.order.cart[index].productId).price}",
                         icon: CircleAvatar(
                           radius: 15,
                           backgroundColor: PrimaryColor,

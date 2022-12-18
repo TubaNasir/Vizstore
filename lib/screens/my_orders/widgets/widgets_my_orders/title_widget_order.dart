@@ -22,7 +22,6 @@ class TitleWidgetOrder extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              //mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Flexible(
@@ -35,12 +34,17 @@ class TitleWidgetOrder extends StatelessWidget {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: status == 'Confirmed' ? Colors.lightGreen[300] : status == 'Cancelled' ? Colors.red[400] : Colors.yellow[300],
+                    color: status == 'Confirmed'
+                        ? Colors.lightGreen[300]
+                        : status == 'Cancelled'
+                            ? Colors.red[400]
+                            : Colors.yellow[300],
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                   ),
-                  child:  Padding(
+                  child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text(status, style: Theme.of(context).textTheme.bodyMedium),
+                    child: Text(status,
+                        style: Theme.of(context).textTheme.bodyMedium),
                   ),
                 ),
               ],
@@ -50,7 +54,10 @@ class TitleWidgetOrder extends StatelessWidget {
             ),
             Text(
               placedOn,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(fontWeight: FontWeight.bold),
             )
           ],
         ),
