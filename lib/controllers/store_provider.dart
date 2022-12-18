@@ -14,9 +14,11 @@ class StoreProvider with ChangeNotifier {
   List<ProductJson> _products = [];
   List<ProductJson> _storeProducts = [];
   UserJson _user = UserJson.empty();
+  bool _isFetching = true;
 
   List<ProductJson> get products => _products;
   List<ProductJson> get storeProducts => _storeProducts;
+  bool get isFetching => _isFetching;
 
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
@@ -38,11 +40,12 @@ class StoreProvider with ChangeNotifier {
     return product;
   }
 
-  void getProductsFromStore(String id) {
+  List<ProductJson> getProductsFromStore(String id)  {
     List<ProductJson> list = _products.where((element) => getProduct(element.id).storeId == id).toList();
     print('in get products from store');
-    _storeProducts = list;
-    notifyListeners();
+    // _storeProducts = list;
+    // notifyListeners();
+    return list;
   }
 
   bool getIsFavourite(String productId) {
@@ -72,6 +75,16 @@ class StoreProvider with ChangeNotifier {
     UserJson updatedUser = _user.copyWith(wishlist: newWishlist);
     await _userRepository.updateUser(updatedUser);
     _user = await _userRepository.getUser();
+    notifyListeners();
+  }
+
+  void setIsFetchingTrue() {
+    _isFetching = true;
+    notifyListeners();
+  }
+
+  void setIsFetchingFalse() {
+    _isFetching = false;
     notifyListeners();
   }
 }

@@ -59,7 +59,7 @@ class ProductDetailsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void getStore(String id) async {
+  Future<void> getStore(String id) async {
     _store = await _storeRepository.getStoreInfo(id);
     notifyListeners();
   }

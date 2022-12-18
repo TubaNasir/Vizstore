@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
 import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:flutterdemo/models/product_json.dart';
+import 'package:flutterdemo/models/store_json.dart';
 import 'package:provider/provider.dart';
 import '../../store/store_main.dart';
 
@@ -21,12 +22,17 @@ class _StoreDetailsState extends State<StoreDetails> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => context
+    WidgetsBinding.instance.addPostFrameCallback((_) async =>  {
+        await context
         .read<ProductDetailsProvider>()
-        .getStore(widget.product.storeId));
+        .getStore(widget.product.storeId)
+    });
   }
 
+  @override
   Widget build(BuildContext context) {
+    StoreJson store = context.watch<ProductDetailsProvider>().store;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: InkWell(
@@ -34,7 +40,7 @@ class _StoreDetailsState extends State<StoreDetails> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => StoreMain(
-                store: context.read<HomeProvider>().store,
+                store: store,
               ),
             ),
           );
