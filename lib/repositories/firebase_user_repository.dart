@@ -98,7 +98,6 @@ class FirebaseUserRepository implements UserRepository{
       user = userCred.user;
       return user?.uid;
     } catch (e) {
-      print('error '+e.toString());
       return e;
     }
   }

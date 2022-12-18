@@ -23,6 +23,4 @@ class DeleteIcon extends StatelessWidget {
       icon: Icon(Icons.delete_outline, size: 20),
     );
   }
-
 }
-

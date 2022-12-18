@@ -84,7 +84,6 @@ class _LoginFormState extends State<LoginForm> {
                   Future<bool> login = context
                       .read<LoginProvider>()
                       .signIn(controllerEmail.text, controllerPassword.text);
-
                   if (await login == true) {
                     await context.read<LoginProvider>().sendNotifications();
                     Navigator.of(context).push(
