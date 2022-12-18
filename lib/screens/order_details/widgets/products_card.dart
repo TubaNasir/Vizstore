@@ -71,8 +71,7 @@ class _ProductsCardState extends State<ProductsCard> {
                     scrollDirection: Axis.vertical,
                     itemCount: widget.order.cart.length,
                     itemBuilder: (context, index) => HorizontalProductCard(
-                      productId: widget.order.cart[index].productId,
-                      quantity: widget.order.cart[index].quantity,
+                      cartItem: widget.order.cart[index],
                     ),
                   ),
                 ],
