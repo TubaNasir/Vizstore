@@ -44,17 +44,20 @@ Future<void> main() async {
   getIt.registerSingleton<OrderRepository>(OrderRepository(),
       instanceName: 'order');
 
-  runApp(
-      MultiProvider(
+  runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => NavBar()),
-      ChangeNotifierProvider(create: (_) => LoginProvider(getIt.get(instanceName: 'user'))),
-      ChangeNotifierProvider(create: (_) => SignupProvider(getIt.get(instanceName: 'user'))),
-      ChangeNotifierProvider(create: (_) => CompleteProfileProvider(getIt.get(instanceName: 'user'))),
-      ChangeNotifierProvider(create: (_) => MyProfileProvider(getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(
-          create: (_) => HomeProvider(
-              getIt.get(instanceName: 'product'),
+          create: (_) => LoginProvider(getIt.get(instanceName: 'user'))),
+      ChangeNotifierProvider(
+          create: (_) => SignupProvider(getIt.get(instanceName: 'user'))),
+      ChangeNotifierProvider(
+          create: (_) =>
+              CompleteProfileProvider(getIt.get(instanceName: 'user'))),
+      ChangeNotifierProvider(
+          create: (_) => MyProfileProvider(getIt.get(instanceName: 'user'))),
+      ChangeNotifierProvider(
+          create: (_) => HomeProvider(getIt.get(instanceName: 'product'),
               getIt.get(instanceName: 'user'))),
       ChangeNotifierProvider(
           create: (_) => CartProvider(
@@ -97,10 +100,19 @@ Future<void> main() async {
           create: (_) => EditProfileProvider(
                 getIt.get(instanceName: 'user'),
               )),
-      ChangeNotifierProvider(create: (_) => CameraProvider(getIt.get(instanceName: 'product'),
-      )),
-      ChangeNotifierProvider(create: (_) => StoreProvider(getIt.get(instanceName: 'product'),)),
-      ChangeNotifierProvider(create: (_) => OrderDetailsProvider(getIt.get(instanceName: 'product'),)),
+      ChangeNotifierProvider(
+          create: (_) => CameraProvider(
+                getIt.get(instanceName: 'product'),
+              )),
+      ChangeNotifierProvider(
+          create: (_) => StoreProvider(
+                getIt.get(instanceName: 'product'),
+                getIt.get(instanceName: 'user'),
+              )),
+      ChangeNotifierProvider(
+          create: (_) => OrderDetailsProvider(
+                getIt.get(instanceName: 'product'),
+              )),
     ],
     child: MyApp(),
     //create: (_) => NavBar(),

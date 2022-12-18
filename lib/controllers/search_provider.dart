@@ -29,44 +29,17 @@ class SearchProvider with ChangeNotifier {
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
     notifyListeners();
-    print('prov' + _user.firstName);
   }
 
   Future<void> getProductsList() async {
-    print('in method');
     _products = await _productRepository.getProductList();
     notifyListeners();
-    print('search' + products[0].category);
-    //notifyListeners();
   }
 
   void setProducts(List<ProductJson> list){
-    print('in set prods');
     _changedProducts = list;
     notifyListeners();
     _isFetching = false;
-
-  }
-
-  void getProds(List<String> ids){
-
-    List<ProductJson> list = [];
-    for (var element in ids) {
-      list.add(getProduct(element));
-    }
-
-    _changedProducts = list;
-  }
-
-  ProductJson getProduct(String id) {
-    ProductJson product = ProductJson.empty();
-    for (var product in _products) {
-      print("prod,, ${product.id}");
-      if(id == product.id){
-        return product;
-      }
-    }
-    return product;
   }
 
   void getFilteredProducts() {
@@ -89,7 +62,6 @@ class SearchProvider with ChangeNotifier {
   bool getIsFavourite(String productId) {
     bool isFav = false;
     isFav  = _user.wishlist.any((element) => element.productId == productId);
-    print('issfav ${isFav}');
     return isFav;
   }
 
@@ -104,7 +76,6 @@ class SearchProvider with ChangeNotifier {
         }
       }
     }
-    //value not exists
     else
     {
       for (var item in _user.wishlist){
@@ -113,7 +84,6 @@ class SearchProvider with ChangeNotifier {
       newWishlist.add(WishlistItemJson(productId: productId));
     }
     UserJson updatedUser = _user.copyWith(wishlist: newWishlist);
-    //print(updatedUser.cart[0].quantity);
     await _userRepository.updateUser(updatedUser);
     _user = await _userRepository.getUser();
     notifyListeners();
