@@ -9,7 +9,7 @@ class StoreProvider with ChangeNotifier {
 
   StoreProvider(this._productRepository, this._userRepository);
 
-  ProductRepository _productRepository;
+  FirebaseProductRepository _productRepository;
   UserRepository _userRepository;
   List<ProductJson> _products = [];
   List<ProductJson> _storeProducts = [];

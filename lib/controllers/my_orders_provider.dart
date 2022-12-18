@@ -11,8 +11,8 @@ class MyOrdersProvider with ChangeNotifier {
   MyOrdersProvider(this._userRepository, this._orderRepository, this._productRepository);
 
   UserRepository _userRepository;
-  OrderRepository _orderRepository;
-  ProductRepository _productRepository;
+  FirebaseOrderRepository _orderRepository;
+  FirebaseProductRepository _productRepository;
 
   List<OrderJson> _orders = [];
   List<OrderJson> _myOrders = [];

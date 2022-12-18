@@ -12,9 +12,9 @@ class CartProvider with ChangeNotifier {
   CartProvider(
       this._storeRepository, this._productRepository, this._userRepository);
 
-  final ProductRepository _productRepository;
+  final FirebaseProductRepository _productRepository;
   final UserRepository _userRepository;
-  final StoreRepository _storeRepository;
+  final FirebaseStoreRepository _storeRepository;
 
   StoreJson _store = StoreJson.empty();
   UserJson _user = UserJson.empty();

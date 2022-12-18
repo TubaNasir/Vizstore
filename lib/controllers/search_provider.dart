@@ -8,7 +8,7 @@ import 'package:flutterdemo/repositories/firebase_product_repository.dart';
 class SearchProvider with ChangeNotifier {
   SearchProvider(this._productRepository, this._userRepository);
 
-  ProductRepository _productRepository;
+  FirebaseProductRepository _productRepository;
   UserRepository _userRepository;
 
   String _searchText = '';

@@ -14,9 +14,9 @@ class CheckoutProvider with ChangeNotifier {
       this._productRepository, this._orderRepository);
 
   UserRepository _userRepository;
-  StoreRepository _storeRepository;
-  ProductRepository _productRepository;
-  OrderRepository _orderRepository;
+  FirebaseStoreRepository _storeRepository;
+  FirebaseProductRepository _productRepository;
+  FirebaseOrderRepository _orderRepository;
 
   UserJson _user = UserJson.empty();
   StoreJson _store = StoreJson.empty();

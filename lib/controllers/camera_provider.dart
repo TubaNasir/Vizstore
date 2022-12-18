@@ -8,7 +8,7 @@ import 'dart:convert';
 class CameraProvider with ChangeNotifier {
   CameraProvider(this._productRepository);
 
-  ProductRepository _productRepository;
+  FirebaseProductRepository _productRepository;
 
   File? _selectedImage;
   List<ProductJson> _similarProducts = [];

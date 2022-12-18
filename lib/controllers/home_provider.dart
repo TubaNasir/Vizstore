@@ -11,7 +11,7 @@ import '../models/user_json.dart';
 class HomeProvider with ChangeNotifier {
   HomeProvider(this._productRepository, this._userRepository);
 
-  final ProductRepository _productRepository;
+  final FirebaseProductRepository _productRepository;
   final UserRepository _userRepository;
 
   StoreJson _store =  StoreJson.empty();

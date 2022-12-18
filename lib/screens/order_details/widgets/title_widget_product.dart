@@ -19,6 +19,8 @@ class TitleWidgetProduct extends StatelessWidget {
                   .of(context)
                   .textTheme
                   .bodyMedium,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
             SizedBox(height: 10,),
             Padding(

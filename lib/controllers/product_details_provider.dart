@@ -11,7 +11,7 @@ import 'package:flutterdemo/domain/user_repository.dart';
 class ProductDetailsProvider with ChangeNotifier {
   ProductDetailsProvider(this._storeRepository, this._userRepository);
 
-  final StoreRepository _storeRepository;
+  final FirebaseStoreRepository _storeRepository;
   final UserRepository _userRepository;
 
   StoreJson _store = const StoreJson.empty();
