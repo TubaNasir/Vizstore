@@ -111,6 +111,7 @@ Future<void> main() async {
       ChangeNotifierProvider(
           create: (_) => OrderDetailsProvider(
                 getIt.get(instanceName: 'product'),
+                getIt.get(instanceName: 'user'),
               )),
     ],
     child: MyApp(),

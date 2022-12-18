@@ -25,8 +25,8 @@ class StaggeredProductView extends StatelessWidget {
         );
       },
       child: ProductCard(product: product,
-        isFav: context.read<SearchProvider>().getIsFavourite(product.id),
-        onPressed: () => context.read<SearchProvider>().updateWishlist(product.id),
+        isFav: context.watch<SearchProvider>().getIsFavourite(product.id),
+        onPressed: () => context.watch<SearchProvider>().updateWishlist(product.id),
       ),
     );
   }

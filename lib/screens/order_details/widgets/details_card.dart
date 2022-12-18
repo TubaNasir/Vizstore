@@ -55,6 +55,22 @@ class _DetailsCardState extends State<DetailsCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
+                        'City:',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      Text(
+                        widget.order.city,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
                         'Address:',
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
@@ -74,14 +90,20 @@ class _DetailsCardState extends State<DetailsCard> {
                         'Status:',
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
-                      Text(
-                        widget.order.status,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: widget.order.status == 'confirmed'
-                                ? Colors.green
-                                : widget.order.status == 'cancelled'
-                                    ? Colors.red
-                                    : Colors.grey),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: widget.order.status == 'Confirmed'
+                              ? Colors.lightGreen[300]
+                              : widget.order.status == 'Cancelled'
+                              ? Colors.red[400]
+                              : Colors.yellow[300],
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(widget.order.status,
+                              style: Theme.of(context).textTheme.bodyMedium),
+                        ),
                       ),
                     ],
                   ),

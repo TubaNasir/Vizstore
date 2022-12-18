@@ -47,24 +47,24 @@ class MyOrdersProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> setIsFetching() async {
+  Future<void> setIsFetchingTrue() async {
     _isFetching = true;
+    notifyListeners();
+  }
+
+  Future<void> setIsFetchingFalse() async {
+    _isFetching = false;
     notifyListeners();
   }
 
   Future<void> getOrderList() async {
     _orders = await _orderRepository.getOrderList();
     notifyListeners();
-    _isFetching = false;
-    notifyListeners();
   }
 
   Future<void> getProductsList() async {
-    print('in method');
     _products = await _productRepository.getProductList();
     notifyListeners();
-    print(products);
-    //notifyListeners();
   }
 
   void setOrder(OrderJson order){

@@ -21,6 +21,7 @@ class _CheckoutState extends State<Checkout> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
       context.read<CheckoutProvider>().setIsFetchingTrue(),
+      await context.read<CheckoutProvider>().getUser(),
       await context.read<CheckoutProvider>().getProductsList(),
       await context.read<CheckoutProvider>().getStoresList(),
       context.read<CheckoutProvider>().setTotal(),
@@ -37,13 +38,12 @@ class _CheckoutState extends State<Checkout> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(title: 'Checkout', backButton: true),
-        body: Form(
+        body: context.watch<CheckoutProvider>().isFetching
+            ? Center(child: CircularProgressIndicator())
+            : Form(
           key: _formKey,
           child: Stack(
               children:[
-                context.watch<CheckoutProvider>().isFetching
-                    ? Center(child: CircularProgressIndicator())
-                    :
                 Layout(
                   widget:
                 Column(
