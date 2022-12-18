@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/checkout_provider.dart';
 import 'package:flutterdemo/models/user_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
+import 'package:flutterdemo/screens/edit_profile/edit_profile.dart';
 import 'package:flutterdemo/screens/widgets/suffix_icon.dart';
 import 'package:provider/provider.dart';
 
@@ -21,9 +22,8 @@ class _CheckoutFormState extends State<CheckoutForm> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async => {
-          context.read<CheckoutProvider>().setCity(dropdownvalue)
-        });
+    WidgetsBinding.instance.addPostFrameCallback(
+        (_) async => {context.read<CheckoutProvider>().setCity(dropdownvalue)});
   }
 
   @override
@@ -35,6 +35,43 @@ class _CheckoutFormState extends State<CheckoutForm> {
       padding: const EdgeInsets.all(13.0),
       child: Column(children: [
         SizedBox(height: 15),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            InkWell(
+              onTap: (){
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => EditProfile(),
+                  ),
+                );
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.yellow[300],
+                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.edit_outlined,
+                        color: SecondaryDarkColor,
+                      ),
+                      Text(
+                'Edit Profile',
+                style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: SecondaryDarkColor),
+              ),
+                    ],
+                  )),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 10,
+        ),
         TextFormField(
           decoration: InputDecoration(
             labelText: "Name",
