@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/order_details_provider.dart';
 import 'package:flutterdemo/models/order_json.dart';
 import 'package:flutterdemo/screens/order_details/widgets/details_card.dart';
 import 'package:flutterdemo/screens/order_details/widgets/products_card.dart';
 import 'package:flutterdemo/screens/order_details/widgets/total_card.dart';
 import 'package:flutterdemo/screens/widgets/custom_app_bar.dart';
 import 'package:flutterdemo/screens/widgets/layout.dart';
+import 'package:provider/provider.dart';
 
 class OrderDetails extends StatefulWidget {
   const OrderDetails({Key? key, required this.order}) : super(key: key);
@@ -16,6 +19,20 @@ class OrderDetails extends StatefulWidget {
 }
 
 class _OrderDetailsState extends State<OrderDetails> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async => {
+      await context.read<OrderDetailsProvider>().setIsFetchingTrue(),
+      await context.read<OrderDetailsProvider>().getUser(),
+      await context.read<OrderDetailsProvider>().getProductsList(),
+      //await context.read<OrderDetailsProvider>().getOrderList(),
+      //await context.read<OrderDetailsProvider>().getMyOrders(),
+      await context.read<OrderDetailsProvider>().setIsFetchingFalse(),
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

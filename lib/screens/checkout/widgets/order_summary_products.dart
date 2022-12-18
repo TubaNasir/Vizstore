@@ -14,14 +14,6 @@ class OrderSummaryProducts extends StatefulWidget {
 }
 
 class _OrderSummaryProductsState extends State<OrderSummaryProducts> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async => {
-          await context.read<CheckoutProvider>().getUser(),
-        });
-  }
 
   @override
   Widget build(BuildContext context) {

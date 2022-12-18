@@ -20,13 +20,15 @@ class _MyOrdersState extends State<MyOrders> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
-          await context.read<MyOrdersProvider>().setIsFetching(),
+          await context.read<MyOrdersProvider>().setIsFetchingTrue(),
           await context.read<MyOrdersProvider>().getUser(),
-          await context.read<MyOrdersProvider>().setOrderLength(),
           await context.read<MyOrdersProvider>().getProductsList(),
           await context.read<MyOrdersProvider>().getOrderList(),
           await context.read<MyOrdersProvider>().getMyOrders(),
-        });
+      await context.read<MyOrdersProvider>().setOrderLength(),
+      await context.read<MyOrdersProvider>().setIsFetchingFalse(),
+
+    });
   }
 
   @override

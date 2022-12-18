@@ -19,8 +19,7 @@ class _OrderSummaryState extends State<OrderSummary> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
-          await context.read<CheckoutProvider>().getUser(),
-          context.read<CheckoutProvider>().setTotal()
+          //context.read<CheckoutProvider>().setTotal()
         });
   }
 

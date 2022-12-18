@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/cart_provider.dart';
 import 'package:flutterdemo/models/cart_json.dart';
+import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/models/store_json.dart';
+import 'package:flutterdemo/screens/product_detail/product_detail.dart';
 import 'package:flutterdemo/screens/widgets/image_widget.dart';
 import 'package:provider/provider.dart';
-import '../../../models/product_json.dart';
-import '../../product_detail/product_detail.dart';
 import 'cart_quantity.dart';
 import 'delete_icon.dart';
 

@@ -27,7 +27,7 @@ class ImageWidgetProduct extends StatelessWidget {
                 bottomLeft: Radius.circular(10.0),
               )
           ),
-          child: Image.network(productImage),
+          child: Image.network(productImage,fit: BoxFit.scaleDown),
         ),
       ),
     );
