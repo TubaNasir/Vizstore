@@ -71,24 +71,8 @@ class _ProductsCardState extends State<ProductsCard> {
                     scrollDirection: Axis.vertical,
                     itemCount: widget.order.cart.length,
                     itemBuilder: (context, index) => HorizontalProductCard(
-                      productImage: context
-                          .read<OrderDetailsProvider>()
-                          .getProductInfo(widget.order.cart[index].productId)
-                          .image,
-                      cardTitle: context
-                          .read<OrderDetailsProvider>()
-                          .getProductInfo(widget.order.cart[index].productId)
-                          .title,
-                      cardSubtitle:
-                          "Rs. ${context.read<OrderDetailsProvider>().getProductInfo(widget.order.cart[index].productId).price}",
-                      icon: CircleAvatar(
-                        radius: 15,
-                        backgroundColor: PrimaryColor,
-                        child: Text(
-                          widget.order.cart[index].quantity.toString(),
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
+                      productId: widget.order.cart[index].productId,
+                      quantity: widget.order.cart[index].quantity,
                     ),
                   ),
                 ],
