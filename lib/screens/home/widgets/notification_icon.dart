@@ -55,11 +55,11 @@ class _NotificationIconState extends State<NotificationIcon> {
                   ),
                   if (filteredList != 0)
                     Positioned(
-                      top: -3,
-                      right: -3,
+                      top: -2,
+                      right: 0,
                       child: Container(
                         height: 24,
-                        width: 16,
+                        width: 20,
                         decoration: const BoxDecoration(
                           color: Colors.red,
                           shape: BoxShape.circle,

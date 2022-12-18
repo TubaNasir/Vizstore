@@ -20,6 +20,14 @@ class CategoryCard extends StatelessWidget {
         child: Container(
           height: 80,
           width: 80,
+          //color: Colors.grey,
+          decoration: BoxDecoration(
+            color: Color.fromARGB(255, 240, 240, 240),
+            border: Border.all(
+              color: Color.fromARGB(255, 240, 240, 240),
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(20))
+          ),
           child: Column(
             children: [
               Container(
@@ -28,7 +36,7 @@ class CategoryCard extends StatelessWidget {
                 child: SvgPicture.asset(category["icon"]),
               ),
               const SizedBox(height: 5),
-              Text(category["text"]),
+              Text(category["text"],style: TextStyle(fontSize: 13),),
             ],
           ),
         ),
