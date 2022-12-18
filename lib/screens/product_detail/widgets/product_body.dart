@@ -47,16 +47,19 @@ class _ProductBodyState extends State<ProductBody> {
                           StoreDetails(product: widget.product),
                           widget.product.stock == 0
                               ? Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 12.0),
-                                  child: Text(
-                                    'Out of stock',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(color: Colors.red),
-                                  ),
-                                )
+                                padding: const EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 0.0),
+                                child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.red[400],
+                                borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                            ),
+                            child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text('Out of Stock',
+                                    style: Theme.of(context).textTheme.bodyMedium),
+                            ),
+                          ),
+                              )
                               : Text('')
                         ],
                       ),

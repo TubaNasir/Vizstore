@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/search_provider.dart';
 import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/screens/product_detail/product_detail.dart';
+import 'package:flutterdemo/screens/search/search.dart';
 import 'package:flutterdemo/screens/widgets/product.dart';
 import 'package:provider/provider.dart';
 
@@ -22,11 +23,11 @@ class StaggeredProductView extends StatelessWidget {
               builder: (_) => ProductDetail(
                 product: product,
               )),
-        );
+        ).then((value) => context.read<SearchProvider>().getUser());
       },
       child: ProductCard(product: product,
-        isFav: context.watch<SearchProvider>().getIsFavourite(product.id),
-        onPressed: () => context.watch<SearchProvider>().updateWishlist(product.id),
+        isFav: context.read<SearchProvider>().getIsFavourite(product.id),
+        onPressed: () => context.read<SearchProvider>().updateWishlist(product.id),
       ),
     );
   }

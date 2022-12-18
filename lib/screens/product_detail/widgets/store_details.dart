@@ -50,7 +50,7 @@ class _StoreDetailsState extends State<StoreDetails> {
           style: Theme.of(context)
               .textTheme
               .caption
-              ?.copyWith(fontWeight: FontWeight.bold),
+              ?.copyWith(fontWeight: FontWeight.bold, fontSize: 17),
         ),
       ),
     );
