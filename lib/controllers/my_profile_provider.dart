@@ -12,4 +12,8 @@ class MyProfileProvider with ChangeNotifier {
   void logout() async {
     await _userRepository.signOut();
   }
+
+  Future<void> cancelSubscription()async{
+    await _userRepository.cancelSubscription();
+  }
 }

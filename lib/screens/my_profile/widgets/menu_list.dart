@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/home_provider.dart';
 import 'package:flutterdemo/controllers/my_profile_provider.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutterdemo/screens/edit_profile/edit_profile.dart';
@@ -56,7 +57,8 @@ class MenuList extends StatelessWidget {
                           children: [
                             Expanded(
                               child: CustomButton(
-                                pressed: () => {
+                                pressed: () async => {
+                                  await context.read<MyProfileProvider>().cancelSubscription(),
                                   context.read<MyProfileProvider>().logout(),
                                   Navigator.of(context).push(
                                     MaterialPageRoute(

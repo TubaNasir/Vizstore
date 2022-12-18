@@ -11,10 +11,10 @@ import '../models/user_json.dart';
 class HomeProvider with ChangeNotifier {
   HomeProvider(this._productRepository, this._userRepository);
 
-  ProductRepository _productRepository;
-  UserRepository _userRepository;
+  final ProductRepository _productRepository;
+  final UserRepository _userRepository;
 
-  StoreJson _store = const StoreJson.empty();
+  StoreJson _store =  StoreJson.empty();
   UserJson _user = UserJson.empty();
   List<ProductJson> _products = [];
   List<ProductJson> _categoryProducts = [];
