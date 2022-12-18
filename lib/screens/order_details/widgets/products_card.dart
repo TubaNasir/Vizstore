@@ -1,4 +1,5 @@
 import 'package:flutterdemo/controllers/my_orders_provider.dart';
+import 'package:flutterdemo/controllers/order_details_provider.dart';
 import 'package:flutterdemo/models/order_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
@@ -61,15 +62,15 @@ class _ProductsCardState extends State<ProductsCard> {
                       itemCount: widget.order.cart.length,
                       itemBuilder: (context, index) => HorizontalProductCard(
                         productImage: context
-                            .read<MyOrdersProvider>()
+                            .read<OrderDetailsProvider>()
                             .getProductInfo(widget.order.cart[index].productId)
                             .image,
                         cardTitle: context
-                            .read<MyOrdersProvider>()
+                            .read<OrderDetailsProvider>()
                             .getProductInfo(widget.order.cart[index].productId)
                             .title,
                         cardSubtitle:
-                            "Rs. ${context.read<MyOrdersProvider>().getProductInfo(widget.order.cart[index].productId).price}",
+                            "Rs. ${context.read<OrderDetailsProvider>().getProductInfo(widget.order.cart[index].productId).price}",
                         icon: CircleAvatar(
                           radius: 15,
                           backgroundColor: PrimaryColor,

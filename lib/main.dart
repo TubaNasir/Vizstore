@@ -8,6 +8,7 @@ import 'package:flutterdemo/controllers/edit_profile_provider.dart';
 import 'package:flutterdemo/controllers/login_provider.dart';
 import 'package:flutterdemo/controllers/my_orders_provider.dart';
 import 'package:flutterdemo/controllers/notifications_provider.dart';
+import 'package:flutterdemo/controllers/order_details_provider.dart';
 import 'package:flutterdemo/controllers/product_details_provider.dart';
 import 'package:flutterdemo/controllers/my_profile_provider.dart';
 import 'package:flutterdemo/controllers/search_provider.dart';
@@ -46,7 +47,8 @@ Future<void> main() async {
   getIt.registerSingleton<OrderRepository>(OrderRepository(),
       instanceName: 'order');
 
-  runApp(MultiProvider(
+  runApp(
+      MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => NavBar()),
       ChangeNotifierProvider(create: (_) => LoginProvider(getIt.get(instanceName: 'user'))),
@@ -101,6 +103,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (_) => CameraProvider(getIt.get(instanceName: 'product'),
       )),
       ChangeNotifierProvider(create: (_) => StoreProvider(getIt.get(instanceName: 'product'),)),
+      ChangeNotifierProvider(create: (_) => OrderDetailsProvider(getIt.get(instanceName: 'product'),)),
     ],
     child: MyApp(),
     //create: (_) => NavBar(),

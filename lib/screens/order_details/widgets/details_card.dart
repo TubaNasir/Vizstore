@@ -1,4 +1,4 @@
-import 'package:flutterdemo/models/order_model.dart';
+import 'package:flutterdemo/models/order_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
 

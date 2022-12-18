@@ -15,6 +15,7 @@ class OrderCard extends StatelessWidget {
 
   final String title, placedOn, status;
   final VoidCallback press;
+
   @override
   Widget build(BuildContext context) {
     bool isFetching = context.watch<MyOrdersProvider>().isFetching;
@@ -38,10 +39,8 @@ class OrderCard extends StatelessWidget {
                     width: 16,
                     child: Center(
                         child: CircularProgressIndicator(
-                          strokeWidth: 2.0,
-                        )
-                    )
-                ),
+                      strokeWidth: 2.0,
+                    ))),
               ),
             )
           : ElevatedButton(

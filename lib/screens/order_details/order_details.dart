@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/models/order_model.dart';
+import 'package:flutterdemo/models/order_json.dart';
 import 'package:flutterdemo/screens/order_details/widgets/details_card.dart';
 import 'package:flutterdemo/screens/order_details/widgets/products_card.dart';
 import 'package:flutterdemo/screens/order_details/widgets/total_card.dart';
-import 'package:flutterdemo/screens/widgets/custom_app_bar/custom_app_bar.dart';
+import 'package:flutterdemo/screens/widgets/custom_app_bar.dart';
 import 'package:flutterdemo/screens/widgets/layout.dart';
-
 
 class OrderDetails extends StatefulWidget {
   const OrderDetails({Key? key, required this.order}) : super(key: key);
