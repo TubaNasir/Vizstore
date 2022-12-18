@@ -28,39 +28,41 @@ class _SearchBarState extends State<SearchBar> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(
-            child:
-              TextFormField(
-                decoration: const InputDecoration(
-                    enabledBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    hintText: 'Search',
-                    prefixIcon: Icon(Icons.search),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 90, vertical: 9)),
-               onFieldSubmitted: (String text){
-                  if(text != '') {
-                    context.read<HomeProvider>().setSearchItem(text);
-                    List<ProductJson> list = context.read<HomeProvider>().getFilteredProducts();
-
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            Search(
-                              allProducts: list,
-                              searchText: text,
-                            ))).then((value) => context.read<HomeProvider>().getUser());
-                  }
-               },
-              ),
+            child: TextFormField(
+              decoration: const InputDecoration(
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  hintText: 'Search',
+                  prefixIcon: Icon(Icons.search),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 90, vertical: 9)),
+             onFieldSubmitted: (String text){
+                if(text != '') {
+                  context.read<HomeProvider>().setSearchItem(text);
+                  List<ProductJson> list = context.read<HomeProvider>().getFilteredProducts();
+          
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          Search(
+                            allProducts: list,
+                            searchText: text,
+                          ))).then((value) => context.read<HomeProvider>().getUser());
+                }
+             },
+            ),
           ),
-          IconButton(
-            onPressed: () async {
-              final cameras = await availableCameras();
-              final firstCamera = cameras[0];
-              Navigator.of(context).push(
-                MaterialPageRoute(builder:(context) => ChoiceScreen())
-              );
-            },
-            icon: Icon(Icons.camera_alt,color: Colors.black,)
-          )
+          // // IconButton(
+          // //   onPressed: () async {
+          // //     final cameras = await availableCameras();
+          // //     final firstCamera = cameras[0];
+          // //     Navigator.of(context).push(
+          // //       MaterialPageRoute(builder:(context) => ChoiceScreen())
+          // //     );
+          // //   },
+          // //   icon: Icon(Icons.camera_alt,color: Colors.black,)
+          // // )
+          // Container(
+          //   child: Icon(Icons.camera_alt),
+          // )
         ],
       ),
     );
