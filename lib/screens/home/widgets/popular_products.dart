@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../../../controllers/home_provider.dart';
 import '../../../models/product_json.dart';
 import '../../product_detail/product_detail.dart';
-import '../../widgets/product.dart';
+import '../../widgets/product_card.dart';
 
 class PopularProducts extends StatefulWidget {
   const PopularProducts({super.key});
