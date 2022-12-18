@@ -14,13 +14,6 @@ class EditProfileForm extends StatefulWidget {
 }
 
 class _EditProfileFormState extends State<EditProfileForm> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(
-        (_) async => {context.read<EditProfileProvider>().getUser()});
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,8 +101,8 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   })
               : CustomButton(
                   text: "Save",
-                  pressed: () {
-                    context.read<EditProfileProvider>().editProfile(
+                  pressed: () async {
+                    await context.read<EditProfileProvider>().editProfile(
                         firstNameController.text,
                         lastNameController.text,
                         contactController.text);

@@ -26,6 +26,7 @@ class CheckoutProvider with ChangeNotifier {
   String _address = '';
   String _city = '';
   int _total = 0;
+  bool _isFetching = true;
 
   int get total => _total;
 
@@ -42,6 +43,9 @@ class CheckoutProvider with ChangeNotifier {
   String get address => _address;
 
   String get city => _city;
+
+  bool get isFetching => _isFetching;
+
 
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
@@ -183,5 +187,15 @@ class CheckoutProvider with ChangeNotifier {
     UserJson updatedUser = user.copyWith(cart: emptyCart);
 
     await _userRepository.updateUser(updatedUser);
+  }
+
+  void setIsFetchingTrue() {
+    _isFetching = true;
+    notifyListeners();
+  }
+
+  void setIsFetchingFalse() {
+    _isFetching = false;
+    notifyListeners();
   }
 }
