@@ -17,11 +17,9 @@ class OrderDetailsProvider with ChangeNotifier {
   List<ProductJson> _products = [];
   UserJson _user = UserJson.empty();
   StoreJson _store = const StoreJson.empty();
-  ProductJson _product = ProductJson.empty();
   bool _isFetching = true;
 
   List<ProductJson> get products => _products;
-  ProductJson get product => _product;
   UserJson get user => _user;
   StoreJson get store => _store;
   bool get isFetching => _isFetching;
@@ -36,7 +34,7 @@ class OrderDetailsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getProductInfo(String id) async {
+  ProductJson getProductInfo(String id)  {
     ProductJson prod = ProductJson.empty();
     for (var product in _products) {
       if (id == product.id) {
@@ -44,9 +42,7 @@ class OrderDetailsProvider with ChangeNotifier {
       }
     }
 
-    _product = prod;
-    notifyListeners();
-
+    return prod;
   }
 
   Future<void> setIsFetchingTrue() async {
