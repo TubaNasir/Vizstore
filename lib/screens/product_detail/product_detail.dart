@@ -24,6 +24,7 @@ class _ProductDetailState extends State<ProductDetail> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => {
           context.read<ProductDetailsProvider>().getUser(),
+          context.read<ProductDetailsProvider>().resetQuantity(),
         });
   }
 
