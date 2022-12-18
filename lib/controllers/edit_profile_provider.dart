@@ -11,10 +11,13 @@ class EditProfileProvider with ChangeNotifier {
 
   UserJson _user = UserJson.empty();
   bool _enabled = false;
+  bool _isFetching = true;
 
   UserJson get user => _user;
 
   bool get enabled => _enabled;
+
+  bool get isFetching => _isFetching;
 
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
@@ -43,5 +46,15 @@ class EditProfileProvider with ChangeNotifier {
         gravity: ToastGravity.TOP,
         backgroundColor: SecondaryColor,
         textColor: Colors.black);
+  }
+
+  void setIsFetchingTrue() {
+    _isFetching = true;
+    notifyListeners();
+  }
+
+  void setIsFetchingFalse() {
+    _isFetching = false;
+    notifyListeners();
   }
 }

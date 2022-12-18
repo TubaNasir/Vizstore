@@ -20,9 +20,11 @@ class _CheckoutState extends State<Checkout> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
+      context.read<CheckoutProvider>().setIsFetchingTrue(),
       await context.read<CheckoutProvider>().getProductsList(),
       await context.read<CheckoutProvider>().getStoresList(),
-      context.read<CheckoutProvider>().setTotal()
+      context.read<CheckoutProvider>().setTotal(),
+      context.read<CheckoutProvider>().setIsFetchingFalse(),
     });
   }
 
@@ -39,6 +41,9 @@ class _CheckoutState extends State<Checkout> {
           key: _formKey,
           child: Stack(
               children:[
+                context.watch<CheckoutProvider>().isFetching
+                    ? Center(child: CircularProgressIndicator())
+                    :
                 Layout(
                   widget:
                 Column(
