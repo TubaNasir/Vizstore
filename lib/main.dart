@@ -112,6 +112,7 @@ Future<void> main() async {
           create: (_) => OrderDetailsProvider(
                 getIt.get(instanceName: 'product'),
                 getIt.get(instanceName: 'user'),
+            getIt.get(instanceName: 'store'),
               )),
     ],
     child: MyApp(),

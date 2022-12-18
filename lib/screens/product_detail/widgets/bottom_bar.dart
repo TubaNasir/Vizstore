@@ -59,7 +59,27 @@ class BottomBar extends StatelessWidget {
                             .read<ProductDetailsProvider>()
                             .addToCart(product.id);
                       },
-                child: Ink(
+                child: product.stock == 0
+                    ? Ink(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    gradient: GrayGradientColor,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(80.0),
+                        bottomLeft: Radius.circular(80.0)),
+                  ),
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Add to Cart',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ) : Ink(
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     gradient: PrimaryGradientColor,

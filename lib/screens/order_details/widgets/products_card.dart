@@ -1,6 +1,6 @@
-import 'package:flutterdemo/controllers/my_orders_provider.dart';
 import 'package:flutterdemo/controllers/order_details_provider.dart';
 import 'package:flutterdemo/models/order_json.dart';
+import 'package:flutterdemo/models/store_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +20,7 @@ class ProductsCard extends StatefulWidget {
 class _ProductsCardState extends State<ProductsCard> {
   @override
   Widget build(BuildContext context) {
+    StoreJson store = context.watch<OrderDetailsProvider>().store;
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
@@ -38,10 +39,20 @@ class _ProductsCardState extends State<ProductsCard> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
-              height: 500,
+              height: MediaQuery.of(context).size.height,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        store.storeName,
+                        style: Theme.of(context).textTheme.titleMedium,
+                        textAlign: TextAlign.left,
+                      ),
+                    ],
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -55,33 +66,31 @@ class _ProductsCardState extends State<ProductsCard> {
                   const Divider(
                     color: SecondaryColor,
                   ),
-                  Expanded(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: widget.order.cart.length,
-                      itemBuilder: (context, index) => HorizontalProductCard(
-                        productImage: context
-                            .read<OrderDetailsProvider>()
-                            .getProductInfo(widget.order.cart[index].productId)
-                            .image,
-                        cardTitle: context
-                            .read<OrderDetailsProvider>()
-                            .getProductInfo(widget.order.cart[index].productId)
-                            .title,
-                        cardSubtitle:
-                            "Rs. ${context.read<OrderDetailsProvider>().getProductInfo(widget.order.cart[index].productId).price}",
-                        icon: CircleAvatar(
-                          radius: 15,
-                          backgroundColor: PrimaryColor,
-                          child: Text(
-                            widget.order.cart[index].quantity.toString(),
-                            style: TextStyle(color: Colors.black),
-                          ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: widget.order.cart.length,
+                    itemBuilder: (context, index) => HorizontalProductCard(
+                      productImage: context
+                          .read<OrderDetailsProvider>()
+                          .getProductInfo(widget.order.cart[index].productId)
+                          .image,
+                      cardTitle: context
+                          .read<OrderDetailsProvider>()
+                          .getProductInfo(widget.order.cart[index].productId)
+                          .title,
+                      cardSubtitle:
+                          "Rs. ${context.read<OrderDetailsProvider>().getProductInfo(widget.order.cart[index].productId).price}",
+                      icon: CircleAvatar(
+                        radius: 15,
+                        backgroundColor: PrimaryColor,
+                        child: Text(
+                          widget.order.cart[index].quantity.toString(),
+                          style: TextStyle(color: Colors.black),
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

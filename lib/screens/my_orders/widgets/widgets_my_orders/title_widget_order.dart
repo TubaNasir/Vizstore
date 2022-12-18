@@ -37,7 +37,7 @@ class TitleWidgetOrder extends StatelessWidget {
                     color: status == 'Confirmed'
                         ? Colors.lightGreen[300]
                         : status == 'Cancelled'
-                            ? Colors.red[400]
+                            ? Colors.red[300]
                             : Colors.yellow[300],
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
                   ),

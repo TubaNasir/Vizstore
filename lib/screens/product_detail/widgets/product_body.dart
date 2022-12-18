@@ -50,7 +50,7 @@ class _ProductBodyState extends State<ProductBody> {
                                 padding: const EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 0.0),
                                 child: Container(
                             decoration: BoxDecoration(
-                                color: Colors.red[400],
+                                color: Colors.red[300],
                                 borderRadius: BorderRadius.all(Radius.circular(15.0)),
                             ),
                             child: Padding(
