@@ -6,12 +6,23 @@ import 'package:flutterdemo/screens/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CompleteProfileProvider with ChangeNotifier {
-
   CompleteProfileProvider(this._coreRepository);
 
   FirebaseUserRepository _coreRepository;
 
-  void addNewUser(User? user, String firstName,String lastName,String contact,) async {
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
+
+  void addNewUser(
+    User? user,
+    String firstName,
+    String lastName,
+    String contact,
+  ) async {
+    _isLoading = true;
+    notifyListeners();
+
     UserJson newUser = UserJson(
       id: user?.uid,
       email: user?.email,
@@ -24,16 +35,17 @@ class CompleteProfileProvider with ChangeNotifier {
     );
 
     await _coreRepository.addUser(newUser);
+    _isLoading = false;
+    notifyListeners();
     showSignedUpToast('Successfully signed up! Please login to continue');
   }
 
-  void showSignedUpToast(String text){
+  void showSignedUpToast(String text) {
     Fluttertoast.showToast(
         msg: text,
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.TOP,
         backgroundColor: SecondaryColor,
-        textColor: Colors.black
-    );
+        textColor: Colors.black);
   }
 }

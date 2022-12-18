@@ -16,10 +16,12 @@ class SignupProvider with ChangeNotifier{
 
   bool _passwordVisible = false;
   bool _rePasswordVisible = false;
+  bool _isLoading = false;
 
   bool get passwordVisible => _passwordVisible;
   bool get rePasswordVisible => _rePasswordVisible;
   GoogleSignInAccount get userGoogle => _userGoogle!;
+  bool get isLoading => _isLoading;
 
   void changePasswordVisible() {
     _passwordVisible = !_passwordVisible;
@@ -32,13 +34,21 @@ class SignupProvider with ChangeNotifier{
   }
 
   Future<User?> signUp(String email, String password) async {
+    _isLoading = true;
+    notifyListeners();
     dynamic result  = await _coreRepository.signUp(email, password);
     if(result is User){
+      _isLoading = true;
+      notifyListeners();
       return result;
     }
     else if(result is FirebaseAuthException){
+      _isLoading = false;
+      notifyListeners();
       showErrorToast('This email address is already in use');
     }
+    _isLoading = false;
+    notifyListeners();
     return null;
   }
 

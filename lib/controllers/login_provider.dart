@@ -15,14 +15,15 @@ class LoginProvider with ChangeNotifier {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   GoogleSignInAccount? _userGoogle;
 
+  bool _isLoading = false;
   bool _passwordVisible = false;
   UserJson _user = UserJson.empty();
+  final UserRepository _userRepository;
 
   bool get passwordVisible => _passwordVisible;
   UserJson get user => _user;
   GoogleSignInAccount get userGoogle => _userGoogle!;
-
-  final UserRepository _userRepository;
+  bool get isLoading => _isLoading;
 
   void changePasswordVisible() {
     _passwordVisible = !_passwordVisible;
@@ -30,17 +31,25 @@ class LoginProvider with ChangeNotifier {
   }
 
   Future<bool> signIn(String email, String password) async {
+    _isLoading = true;
+    notifyListeners();
     dynamic result = await _userRepository.signIn(email, password);
 
     if(result is String){
       await _userRepository.setUser(result);
       notifyListeners();
+      _isLoading = false;
+      notifyListeners();
       return true;
     }
     else if(result is FirebaseAuthException){
+      _isLoading = false;
+      notifyListeners();
       showErrorToast('Incorrect Email or Password');
       return false;
     }
+    _isLoading = false;
+    notifyListeners();
     return false;
   }
 
