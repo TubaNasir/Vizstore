@@ -33,7 +33,7 @@ class _HorizontalProductCardState extends State<HorizontalProductCard> {
 
   @override
   Widget build(BuildContext context) {
-    ProductJson product = context.read<OrderDetailsProvider>().getProductInfo(widget.productId);
+    ProductJson product = context.watch<OrderDetailsProvider>().product;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 30.0),
