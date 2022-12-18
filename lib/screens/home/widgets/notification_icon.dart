@@ -25,10 +25,9 @@ class _NotificationIconState extends State<NotificationIcon> {
             return const Text('Something went wrong');
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text("Loading");
+            return const CircularProgressIndicator();
           } else {
-            int filteredList =
-                context.read<HomeProvider>().notifications(snapshot);
+            int filteredList = context.read<HomeProvider>().notifications(snapshot);
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Stack(
@@ -57,7 +56,7 @@ class _NotificationIconState extends State<NotificationIcon> {
                   if (filteredList != 0)
                     Positioned(
                       top: -3,
-                      right: 0,
+                      right: -3,
                       child: Container(
                         height: 24,
                         width: 16,

@@ -88,4 +88,14 @@ class SearchProvider with ChangeNotifier {
     _user = await _userRepository.getUser();
     notifyListeners();
   }
+
+  void setIsFetchingTrue() {
+    _isFetching = true;
+    notifyListeners();
+  }
+
+  void setIsFetchingFalse() {
+    _isFetching = false;
+    notifyListeners();
+  }
 }

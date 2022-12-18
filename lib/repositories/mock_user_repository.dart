@@ -53,4 +53,9 @@ class MockUserRepository implements UserRepository {
     throw UnimplementedError();
   }
 
+  @override
+  Future<void> cancelSubscription() async {
+    // TODO: implement cancelSubscription
+  }
+
 }

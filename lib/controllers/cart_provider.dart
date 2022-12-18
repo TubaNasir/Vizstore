@@ -125,6 +125,17 @@ class CartProvider with ChangeNotifier {
     setTotal();
   }
 
+  void removeFromCart(String productId) async {
+    List<CartItemJson> newCart = [];
+    for (var item in user.cart) {
+      if (item.productId != productId) {
+        newCart.add(item);
+      }
+    }
+    await updateList(newCart);
+    setTotal();
+  }
+
   void setTotalDeliveryCharges() {
     List<ProductJson> cartProducts = _user.cart
         .map((e) => getProductInfo(e.productId))

@@ -25,11 +25,14 @@ class _SearchState extends State<Search> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async => {
+          context.read<SearchProvider>().setIsFetchingTrue(),
           await context.read<SearchProvider>().getUser(),
           await context.read<SearchProvider>().getProductsList(),
           context.read<SearchProvider>().setProducts(widget.allProducts),
-          context.read<SearchProvider>().setSearchItem(widget.searchText)
-        });
+          context.read<SearchProvider>().setSearchItem(widget.searchText),
+          context.read<SearchProvider>().setIsFetchingFalse(),
+
+    });
   }
 
   @override
@@ -42,7 +45,9 @@ class _SearchState extends State<Search> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(title: "Search", backButton: true),
-        body: Layout(
+        body: context.watch<SearchProvider>().isFetching
+            ? Center(child: CircularProgressIndicator())
+            :Layout(
           widget: SingleChildScrollView(
             child: Column(
               children: [

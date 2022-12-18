@@ -9,4 +9,5 @@ abstract class UserRepository {
   Future signUp(String email, String password);
   addUser(UserJson newUser);
   Future<void> signOut();
+  Future<void> cancelSubscription();
 }

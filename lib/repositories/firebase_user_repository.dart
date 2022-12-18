@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterdemo/domain/user_repository.dart';
@@ -7,8 +9,9 @@ import '../models/user_json.dart';
 class FirebaseUserRepository implements UserRepository{
   final db = FirebaseFirestore.instance;
   FirebaseAuth firebaseauth = FirebaseAuth.instance;
-
   UserJson _user = UserJson.empty();
+
+  late StreamSubscription<QuerySnapshot<Map<String, dynamic>>> streamSubscription;
 
   Future<void> updateUser(UserJson user) async {
 
@@ -31,7 +34,7 @@ class FirebaseUserRepository implements UserRepository{
   }
 
   Future<UserJson> sendNotifications() async {
-    db
+    streamSubscription = db
         .collection("order")
         .where("userId", isEqualTo: _user.id)
         .snapshots()
@@ -70,6 +73,12 @@ class FirebaseUserRepository implements UserRepository{
     return _user;
   }
 
+  @override
+  Future<void> cancelSubscription() async {
+      await streamSubscription.cancel(); //Cancel your subscription here.
+  }
+
+  @override
   Future<UserJson> getUser() async {
     String? id = await firebaseauth.currentUser?.uid;
     await db.collection("user").doc(id).get().then((event) {

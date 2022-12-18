@@ -11,22 +11,24 @@ import '../models/user_json.dart';
 class HomeProvider with ChangeNotifier {
   HomeProvider(this._productRepository, this._userRepository);
 
-  ProductRepository _productRepository;
-  UserRepository _userRepository;
+  final ProductRepository _productRepository;
+  final UserRepository _userRepository;
 
-  StoreJson _store = const StoreJson.empty();
+  StoreJson _store =  StoreJson.empty();
   UserJson _user = UserJson.empty();
   List<ProductJson> _products = [];
   List<ProductJson> _categoryProducts = [];
   List<ProductJson> _filteredProducts = [];
   List<ProductJson> _popularProducts = [];
   String _searchText = '';
+  bool _isFetching = true;
 
   StoreJson get store => _store;
   List<ProductJson> get products => _products;
   UserJson get user => _user;
   List<ProductJson> get categoryProducts => _categoryProducts;
   List<ProductJson> get popularProducts => _popularProducts;
+  bool get isFetching => _isFetching;
 
   Future<void> getUser() async {
     _user = await _userRepository.getUser();
@@ -63,11 +65,6 @@ class HomeProvider with ChangeNotifier {
     UserJson updatedUser = _user.copyWith(wishlist: newWishlist);
     await _userRepository.updateUser(updatedUser);
     _user = await _userRepository.getUser();
-    notifyListeners();
-  }
-
-  Future<void> sendNotifications() async {
-    _user = await _userRepository.sendNotifications();
     notifyListeners();
   }
 
@@ -136,6 +133,16 @@ class HomeProvider with ChangeNotifier {
       list.add(products[i]);
     }
     _popularProducts = list;
+    notifyListeners();
+  }
+
+  void setIsFetchingTrue() {
+    _isFetching = true;
+    notifyListeners();
+  }
+
+  void setIsFetchingFalse() {
+    _isFetching = false;
     notifyListeners();
   }
 }

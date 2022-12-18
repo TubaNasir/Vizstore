@@ -73,5 +73,10 @@ class LoginProvider with ChangeNotifier {
 
   }
 
+  Future<void> sendNotifications() async {
+    _user = await _userRepository.sendNotifications();
+    notifyListeners();
+  }
+
 
 }
