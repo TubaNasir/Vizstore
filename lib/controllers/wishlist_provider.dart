@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/domain/user_repository.dart';
-import 'package:flutterdemo/models/wishlist_json.dart';
+import 'package:flutterdemo/models/wishlist_item_json.dart';
 import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/repositories/firebase_product_repository.dart';
 import '../models/store_json.dart';
