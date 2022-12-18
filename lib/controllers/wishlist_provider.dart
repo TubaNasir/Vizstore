@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/domain/user_repository.dart';
 import 'package:flutterdemo/models/wishlist_json.dart';
 import 'package:flutterdemo/models/product_json.dart';
-import 'package:flutterdemo/repositories/product_repository.dart';
+import 'package:flutterdemo/repositories/firebase_product_repository.dart';
 import '../models/store_json.dart';
 import '../models/user_json.dart';
-import '../repositories/store_repository.dart';
+import '../repositories/firebase_store_repository.dart';
 
 class WishlistProvider with ChangeNotifier {
   WishlistProvider(

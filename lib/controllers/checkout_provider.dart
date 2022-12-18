@@ -5,9 +5,9 @@ import 'package:flutterdemo/models/order_json.dart';
 import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/models/store_json.dart';
 import 'package:flutterdemo/models/user_json.dart';
-import 'package:flutterdemo/repositories/order_repository.dart';
-import 'package:flutterdemo/repositories/product_repository.dart';
-import 'package:flutterdemo/repositories/store_repository.dart';
+import 'package:flutterdemo/repositories/firebase_order_repository.dart';
+import 'package:flutterdemo/repositories/firebase_product_repository.dart';
+import 'package:flutterdemo/repositories/firebase_store_repository.dart';
 
 class CheckoutProvider with ChangeNotifier {
   CheckoutProvider(this._userRepository, this._storeRepository,

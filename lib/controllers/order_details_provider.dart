@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/models/product_json.dart';
-import 'package:flutterdemo/repositories/product_repository.dart';
+import 'package:flutterdemo/repositories/firebase_product_repository.dart';
 
 class OrderDetailsProvider with ChangeNotifier {
 

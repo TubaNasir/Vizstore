@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/models/product_json.dart';
-import 'package:flutterdemo/repositories/product_repository.dart';
+import 'package:flutterdemo/repositories/firebase_product_repository.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

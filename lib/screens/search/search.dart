@@ -31,7 +31,6 @@ class _SearchState extends State<Search> {
           context.read<SearchProvider>().setProducts(widget.allProducts),
           context.read<SearchProvider>().setSearchItem(widget.searchText),
           context.read<SearchProvider>().setIsFetchingFalse(),
-
     });
   }
 
