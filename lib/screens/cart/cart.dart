@@ -4,8 +4,6 @@ import 'package:flutterdemo/models/user_json.dart';
 import 'package:flutterdemo/screens/cart/widgets/cart_card.dart';
 import 'package:flutterdemo/screens/cart/widgets/total_card_cart.dart';
 import 'package:provider/provider.dart';
-import '../../controllers/home_provider.dart';
-import '../../models/product_json.dart';
 import '../checkout/checkout.dart';
 import '../widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import '../widgets/custom_app_bar.dart';

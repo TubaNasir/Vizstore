@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/controllers/cart_provider.dart';
+import 'package:provider/provider.dart';
 import '../../../models/product_json.dart';
 
-class DeleteIcon extends StatefulWidget {
+class DeleteIcon extends StatelessWidget {
   const DeleteIcon(
       {Key? key,
         required this.product})
@@ -10,25 +12,17 @@ class DeleteIcon extends StatefulWidget {
   final ProductJson product;
 
   @override
-  State<DeleteIcon> createState() => _DeleteIconState();
-}
-
-class _DeleteIconState extends State<DeleteIcon> {
-  @override
   Widget build(BuildContext context) {
     return IconButton(
       padding: EdgeInsets.zero,
-      constraints: BoxConstraints(),
+      color: Colors.red.shade400,
       onPressed: () {
-        setState(() {
-          //widget.cartList.remove(widget.product);
-        });
+        context.read<CartProvider>().removeFromCart(product.id);
       },
-      icon: Icon(
-        Icons.delete_outline,
-        color: Colors.red.shade900,
-        size: 25,
-      ),
+      constraints: BoxConstraints(),
+      icon: Icon(Icons.delete_outline, size: 20),
     );
   }
+
 }
+
