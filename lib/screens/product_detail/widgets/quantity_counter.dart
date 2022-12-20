@@ -25,7 +25,7 @@ class _QuantityCounterState extends State<QuantityCounter> {
             children: [
               IconButton(
                   onPressed: () {
-                    context.read<ProductDetailsProvider>().decrementQuantity();
+                    context.read<ProductDetailsProvider>().decrementQuantity(widget.product.id);
                   },
                   icon: const CircleAvatar(
                       radius: 20,
@@ -44,7 +44,7 @@ class _QuantityCounterState extends State<QuantityCounter> {
               ),
               IconButton(
                   onPressed: () {
-                    context.read<ProductDetailsProvider>().incrementQuantity();
+                    context.read<ProductDetailsProvider>().incrementQuantity(widget.product.id);
                   },
                   icon: const CircleAvatar(
                       radius: 20,

@@ -41,7 +41,10 @@ class _WishlistState extends State<Wishlist> {
           children: [
             Layout(
                 widget: context.watch<WishlistProvider>().isWishlistEmpty
-                    ? const Text('Wishlist is empty')
+                    ? Container(width: MediaQuery.of(context).size.width,
+                    child: Align(
+                        alignment: Alignment.topCenter,
+                        child: Text('Wishlist is empty')))
                     : SingleChildScrollView(
                         child: Column(
                           children: [

@@ -33,38 +33,48 @@ class _CustomAppBarState extends State<CustomAppBar> {
         Expanded(
           child: Column(
             children: [
-              Container(
-                  height: 70.0,
-                  decoration: const BoxDecoration(
-                    borderRadius:
-                        BorderRadius.only(bottomRight: Radius.circular(30.0)),
-                    gradient: PrimaryGradientColor,
+              Stack(
+                children: [
+                  Container(
+                    height: 70.0,
+                    color: Color(0xFDFDFDFF),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        widget.backButton
-                            ? InkWell(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Icon(
-                                  Icons.arrow_back_ios,
-                                  color: Colors.black,
-                                ),
-                              )
-                            : SizedBox(width: 30),
-                        Text(
-                          widget.title,
-                          style: Theme.of(context).textTheme.headlineSmall,
-                          textAlign: TextAlign.center,
+                  Container(
+                      height: 70.0,
+                      //color: Color(0xFDFDFDFF),
+                      decoration: BoxDecoration(
+                        //color: Color(0xFDFDFDFF),
+                        borderRadius:
+                            BorderRadius.only(bottomRight: Radius.circular(30.0)),
+                        gradient: PrimaryGradientColor,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            widget.backButton
+                                ? InkWell(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Icon(
+                                      Icons.arrow_back_ios,
+                                      color: Colors.black,
+                                    ),
+                                  )
+                                : SizedBox(width: 30),
+                            Text(
+                              widget.title,
+                              style: Theme.of(context).textTheme.headlineSmall,
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(width: 30),
+                          ],
                         ),
-                        SizedBox(width: 30),
-                      ],
-                    ),
-                  )),
+                      )),
+                ],
+              ),
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 30,
@@ -74,8 +84,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: 30,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
+                  decoration: BoxDecoration(
+                    color: Color(0xFDFDFDFF),
                     borderRadius:
                         BorderRadius.only(topLeft: Radius.circular(30.0)),
                   ),

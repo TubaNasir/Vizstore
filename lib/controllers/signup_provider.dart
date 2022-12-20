@@ -12,7 +12,7 @@ class SignupProvider with ChangeNotifier{
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   GoogleSignInAccount? _userGoogle;
 
-  UserRepository _coreRepository;
+  final UserRepository _coreRepository;
 
   bool _passwordVisible = false;
   bool _rePasswordVisible = false;

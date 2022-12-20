@@ -25,8 +25,9 @@ class _MyOrdersState extends State<MyOrders> {
           await context.read<MyOrdersProvider>().getProductsList(),
           await context.read<MyOrdersProvider>().getOrderList(),
           await context.read<MyOrdersProvider>().getMyOrders(),
-      await context.read<MyOrdersProvider>().setOrderLength(),
-      //await context.read<MyOrdersProvider>().setIsFetchingFalse(),
+          await context.read<MyOrdersProvider>().setOrderLength(),
+          await context.read<MyOrdersProvider>().setIsFetchingFalse(),
+
 
     });
   }
@@ -43,7 +44,10 @@ class _MyOrdersState extends State<MyOrders> {
           ),
           body: Layout(
             widget: context.watch<MyOrdersProvider>().isOrderEmpty
-                ? Text('You have not placed any order yet :(')
+                ? Container(width: MediaQuery.of(context).size.width,
+                child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Text('You have not placed any order yet :(')))
                 :
                 ListView(
                     children: orderList

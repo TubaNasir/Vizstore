@@ -8,8 +8,8 @@ import 'package:flutterdemo/repositories/firebase_product_repository.dart';
 class SearchProvider with ChangeNotifier {
   SearchProvider(this._productRepository, this._userRepository);
 
-  FirebaseProductRepository _productRepository;
-  UserRepository _userRepository;
+  final FirebaseProductRepository _productRepository;
+  final UserRepository _userRepository;
 
   String _searchText = '';
   bool _isFetching = true;
