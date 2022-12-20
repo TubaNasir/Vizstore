@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/models/cart_item_json.dart';
+import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/models/wishlist_item_json.dart';
 import 'package:flutterdemo/screens/constants.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -17,21 +18,60 @@ class ProductDetailsProvider with ChangeNotifier {
   StoreJson _store = const StoreJson.empty();
   UserJson _user = UserJson.empty();
   int _quantity = 1;
+  bool _isFetching = true;
 
   StoreJson get store => _store;
   UserJson get user => _user;
   int get quantity => _quantity;
+  bool get isFetching => _isFetching;
 
-  void incrementQuantity() {
+  void incrementQuantity(String productId) async {
+    List<CartItemJson> newCart = [];
     _quantity = _quantity + 1;
     notifyListeners();
+    var contain = user.cart.any((element) => element.productId == productId);
+    if (contain) {
+      for(var item in user.cart){
+        if(item.productId == productId){
+          CartItemJson i = item.copyWith(
+              productId: item.productId, quantity: item.quantity + 1);
+          newCart.add(i);
+        }
+        else{
+          newCart.add(item);
+
+        }
+      }
+      await updateList(newCart);
+    }
+
   }
 
-  void decrementQuantity() {
+
+
+  void decrementQuantity(String productId) async {
+    List<CartItemJson> newCart = [];
     if (_quantity != 1) {
       _quantity = _quantity - 1;
       notifyListeners();
     }
+    var contain = user.cart.any((element) => element.productId == productId);
+    if (contain) {
+      for(var item in user.cart){
+        if(item.productId == productId){
+          if (item.quantity != 1) {
+            CartItemJson i = item.copyWith(
+                productId: item.productId, quantity: item.quantity - 1);
+            newCart.add(i);
+          }
+        }
+        else{
+          newCart.add(item);
+        }
+      }
+      await updateList(newCart);
+    }
+
   }
 
   void addToCart(String productId) async {
@@ -43,9 +83,10 @@ class ProductDetailsProvider with ChangeNotifier {
       for (var item in user.cart) {
         newCart.add(item);
       }
+      print('qty' +_quantity.toString());
       newCart.add(CartItemJson(productId: productId, quantity: _quantity));
-      _quantity = 1;
-      notifyListeners();
+      // _quantity = 1;
+      // notifyListeners();
       await updateList(newCart);
       showCartToast('Added to cart');
     }
@@ -64,14 +105,24 @@ class ProductDetailsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void getUser() async {
+  Future<void> getUser() async {
     _user = await _userRepository.getUser();
     notifyListeners();
   }
 
-  void resetQuantity() {
-    _quantity = 1;
-    notifyListeners();
+  Future<void> resetQuantity(ProductJson product) async {
+    for(var item in user.cart){
+      if(item.productId == product.id){
+        _quantity = item.quantity;
+        notifyListeners();
+        break;
+      }
+      else {
+        _quantity = 1;
+        notifyListeners();
+      }
+    }
+
   }
 
   void showCartToast(String text) {
@@ -122,5 +173,15 @@ class ProductDetailsProvider with ChangeNotifier {
         gravity: ToastGravity.TOP,
         backgroundColor: SecondaryColor,
         textColor: Colors.black);
+  }
+
+  void setIsFetchingTrue() {
+    _isFetching = true;
+    notifyListeners();
+  }
+
+  void setIsFetchingFalse() {
+    _isFetching = false;
+    notifyListeners();
   }
 }

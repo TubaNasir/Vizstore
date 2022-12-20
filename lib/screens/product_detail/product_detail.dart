@@ -22,24 +22,29 @@ class _ProductDetailState extends State<ProductDetail> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => {
-          context.read<ProductDetailsProvider>().getUser(),
-          context.read<ProductDetailsProvider>().resetQuantity(),
-        });
+    WidgetsBinding.instance.addPostFrameCallback((_) async => {
+      context.read<ProductDetailsProvider>().setIsFetchingTrue(),
+      await context.read<ProductDetailsProvider>().getUser(),
+      await context.read<ProductDetailsProvider>().resetQuantity(widget.product),
+      context.read<ProductDetailsProvider>().setIsFetchingFalse(),
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    bool isFetching = context.watch<ProductDetailsProvider>().isFetching;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: Stack(
+        body: isFetching ? Center(child: CircularProgressIndicator())
+            : Stack(
           clipBehavior: Clip.none,
           children: [
             ProductBody(product: widget.product),
             BottomBar(product: widget.product),
             CustomAppBar2(onPressed: () {
-              context.read<ProductDetailsProvider>().resetQuantity();
+              //context.read<ProductDetailsProvider>().resetQuantity();
             }),
           ],
         ),
