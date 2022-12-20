@@ -28,8 +28,7 @@ class _CartState extends State<Cart> {
           await context.read<CartProvider>().getProductsList(),
           await context.read<CartProvider>().getStoresList(),
           context.read<CartProvider>().setTotal(),
-
-    });
+        });
   }
 
   @override
@@ -48,7 +47,10 @@ class _CartState extends State<Cart> {
           body: Stack(children: [
             Layout(
               widget: context.watch<CartProvider>().isCartEmpty
-                  ? Text('Cart is empty')
+                  ? Container(width: MediaQuery.of(context).size.width,
+                  child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Text('Cart is empty')))
                   : SingleChildScrollView(
                       child: Column(children: [
                         Column(

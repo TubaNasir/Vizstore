@@ -60,8 +60,6 @@ class MyOrdersProvider with ChangeNotifier {
   Future<void> getOrderList() async {
     _orders = await _orderRepository.getOrderList();
     notifyListeners();
-    _isFetching = false;
-    notifyListeners();
   }
 
   Future<void> getProductsList() async {
