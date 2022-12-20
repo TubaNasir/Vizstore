@@ -95,7 +95,7 @@ class _LoginFormState extends State<LoginForm> {
                 }
               }),
           Text(
-            "or signup with",
+            "or signin with",
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 30),
