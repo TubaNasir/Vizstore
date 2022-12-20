@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/domain/user_repository.dart';
 import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/models/user_json.dart';
-import 'package:flutterdemo/models/wishlist_json.dart';
+import 'package:flutterdemo/models/wishlist_item_json.dart';
 import 'package:flutterdemo/repositories/firebase_product_repository.dart';
 
 class StoreProvider with ChangeNotifier {
 
   StoreProvider(this._productRepository, this._userRepository);
 
-  ProductRepository _productRepository;
+  final FirebaseProductRepository _productRepository;
   UserRepository _userRepository;
   List<ProductJson> _products = [];
   List<ProductJson> _storeProducts = [];

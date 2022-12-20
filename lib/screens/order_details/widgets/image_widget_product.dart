@@ -27,7 +27,10 @@ class ImageWidgetProduct extends StatelessWidget {
                 bottomLeft: Radius.circular(10.0),
               )
           ),
-          child: Image.network(productImage,fit: BoxFit.scaleDown),
+          child: Image.network(productImage,fit: BoxFit.scaleDown, errorBuilder:
+              (BuildContext context, Object exception, StackTrace? stackTrace) {
+            return const CircularProgressIndicator();
+          })
         ),
       ),
     );

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/domain/user_repository.dart';
 import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/models/user_json.dart';
-import 'package:flutterdemo/models/wishlist_json.dart';
+import 'package:flutterdemo/models/wishlist_item_json.dart';
 import 'package:flutterdemo/repositories/firebase_product_repository.dart';
 
 class SearchProvider with ChangeNotifier {
   SearchProvider(this._productRepository, this._userRepository);
 
-  ProductRepository _productRepository;
-  UserRepository _userRepository;
+  final FirebaseProductRepository _productRepository;
+  final UserRepository _userRepository;
 
   String _searchText = '';
   bool _isFetching = true;

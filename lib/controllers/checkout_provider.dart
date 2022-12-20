@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/domain/user_repository.dart';
-import 'package:flutterdemo/models/cart_json.dart';
+import 'package:flutterdemo/models/cart_item_json.dart';
 import 'package:flutterdemo/models/order_json.dart';
 import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/models/store_json.dart';
@@ -13,10 +13,10 @@ class CheckoutProvider with ChangeNotifier {
   CheckoutProvider(this._userRepository, this._storeRepository,
       this._productRepository, this._orderRepository);
 
-  UserRepository _userRepository;
-  StoreRepository _storeRepository;
-  ProductRepository _productRepository;
-  OrderRepository _orderRepository;
+  final UserRepository _userRepository;
+  final FirebaseStoreRepository _storeRepository;
+  final FirebaseProductRepository _productRepository;
+  final FirebaseOrderRepository _orderRepository;
 
   UserJson _user = UserJson.empty();
   StoreJson _store = StoreJson.empty();

@@ -8,7 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class CompleteProfileProvider with ChangeNotifier {
   CompleteProfileProvider(this._userRepository);
 
-  UserRepository _userRepository;
+  final UserRepository _userRepository;
 
   bool _isLoading = false;
 

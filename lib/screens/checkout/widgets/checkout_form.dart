@@ -38,35 +38,56 @@ class _CheckoutFormState extends State<CheckoutForm> {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            InkWell(
-              onTap: (){
+            // InkWell(
+            //   onTap: (){
+            //     Navigator.of(context).push(
+            //       MaterialPageRoute(
+            //         builder: (context) => EditProfile(),
+            //       ),
+            //     );
+            //   },
+            //   child: Container(
+            //     decoration: BoxDecoration(
+            //       color: Colors.yellow[300],
+            //       borderRadius: BorderRadius.all(Radius.circular(15.0)),
+            //     ),
+            //       child: Row(
+            //         children: [
+            //           Icon(
+            //             Icons.edit_outlined,
+            //             color: SecondaryDarkColor,
+            //           ),
+            //           Text(
+            //     'Edit Profile',
+            //     style: Theme.of(context)
+            //             .textTheme
+            //             .titleMedium
+            //             ?.copyWith(color: SecondaryDarkColor),
+            //   ),
+            //         ],
+            //       )),
+            // ),
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 250, 204, 67))
+              ),
+              onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => EditProfile(),
                   ),
                 );
               },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.yellow[300],
-                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.edit_outlined,
-                        color: SecondaryDarkColor,
-                      ),
-                      Text(
-                'Edit Profile',
-                style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(color: SecondaryDarkColor),
-              ),
-                    ],
-                  )),
-            ),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Icon(Icons.edit,color: Colors.black,),
+                  ),
+                  const Text("Edit Profile",style: TextStyle(color: Colors.black),),
+                ],
+              )
+            )
           ],
         ),
         SizedBox(

@@ -7,7 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class EditProfileProvider with ChangeNotifier {
   EditProfileProvider(this._userRepository);
 
-  UserRepository _userRepository;
+  final UserRepository _userRepository;
 
   UserJson _user = UserJson.empty();
   bool _enabled = false;

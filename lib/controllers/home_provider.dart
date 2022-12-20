@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterdemo/domain/user_repository.dart';
 import 'package:flutterdemo/models/notification_json.dart';
 import 'package:flutterdemo/models/product_json.dart';
-import 'package:flutterdemo/models/wishlist_json.dart';
+import 'package:flutterdemo/models/wishlist_item_json.dart';
 import 'package:flutterdemo/repositories/firebase_product_repository.dart';
 import '../models/store_json.dart';
 import '../models/user_json.dart';
@@ -11,7 +11,7 @@ import '../models/user_json.dart';
 class HomeProvider with ChangeNotifier {
   HomeProvider(this._productRepository, this._userRepository);
 
-  final ProductRepository _productRepository;
+  final FirebaseProductRepository _productRepository;
   final UserRepository _userRepository;
 
   StoreJson _store =  StoreJson.empty();

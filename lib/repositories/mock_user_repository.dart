@@ -1,6 +1,6 @@
-import 'package:flutterdemo/models/cart_json.dart';
+import 'package:flutterdemo/models/cart_item_json.dart';
 import 'package:flutterdemo/models/user_json.dart';
-import 'package:flutterdemo/models/wishlist_json.dart';
+import 'package:flutterdemo/models/wishlist_item_json.dart';
 
 import '../domain/user_repository.dart';
 

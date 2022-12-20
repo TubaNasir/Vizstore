@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/domain/user_repository.dart';
-import 'package:flutterdemo/models/cart_json.dart';
+import 'package:flutterdemo/models/cart_item_json.dart';
 import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/repositories/firebase_product_repository.dart';
 import '../models/store_json.dart';
@@ -12,9 +12,9 @@ class CartProvider with ChangeNotifier {
   CartProvider(
       this._storeRepository, this._productRepository, this._userRepository);
 
-  final ProductRepository _productRepository;
+  final FirebaseProductRepository _productRepository;
   final UserRepository _userRepository;
-  final StoreRepository _storeRepository;
+  final FirebaseStoreRepository _storeRepository;
 
   StoreJson _store = StoreJson.empty();
   UserJson _user = UserJson.empty();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/wishlist_provider.dart';
 import 'package:flutterdemo/models/store_json.dart';
-import 'package:flutterdemo/models/wishlist_json.dart';
+import 'package:flutterdemo/models/wishlist_item_json.dart';
 import 'package:flutterdemo/screens/wishlist/widgets/wishlist_card_details.dart';
 import 'package:provider/provider.dart';
 import '../../product_detail/product_detail.dart';

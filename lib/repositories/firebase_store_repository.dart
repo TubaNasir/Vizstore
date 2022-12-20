@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutterdemo/models/store_json.dart";
 
-class StoreRepository{
+class FirebaseStoreRepository{
   final db = FirebaseFirestore.instance;
 
   Future<List<StoreJson>> getStoresList() async {

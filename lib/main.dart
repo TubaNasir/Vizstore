@@ -15,7 +15,6 @@ import 'package:flutterdemo/controllers/signup_provider.dart';
 import 'package:flutterdemo/controllers/home_provider.dart';
 import 'package:flutterdemo/controllers/store_provider.dart';
 import 'package:flutterdemo/controllers/wishlist_provider.dart';
-import 'package:flutterdemo/domain/user_repository.dart';
 import 'package:flutterdemo/repositories/firebase_order_repository.dart';
 import 'package:flutterdemo/repositories/firebase_user_repository.dart';
 import 'package:flutterdemo/repositories/firebase_product_repository.dart';
@@ -25,6 +24,7 @@ import 'package:flutterdemo/controllers/bottom_nav_bar_provider.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'domain/user_repository.dart';
 import 'screens/widgets/splash_screen.dart';
 
 final getIt = GetIt.instance;
@@ -34,13 +34,13 @@ Future<void> main() async {
   // can be called before `runApp()`
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  getIt.registerSingleton<StoreRepository>(StoreRepository(),
+  getIt.registerSingleton<FirebaseStoreRepository>(FirebaseStoreRepository(),
       instanceName: 'store');
-  getIt.registerSingleton<ProductRepository>(ProductRepository(),
+  getIt.registerSingleton<FirebaseProductRepository>(FirebaseProductRepository(),
       instanceName: 'product');
   getIt.registerSingleton<UserRepository>(FirebaseUserRepository(),
       instanceName: 'user');
-  getIt.registerSingleton<OrderRepository>(OrderRepository(),
+  getIt.registerSingleton<FirebaseOrderRepository>(FirebaseOrderRepository(),
       instanceName: 'order');
 
   runApp(MultiProvider(

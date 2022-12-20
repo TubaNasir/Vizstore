@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutterdemo/models/order_json.dart';
 
-class OrderRepository {
+class FirebaseOrderRepository {
   final db = FirebaseFirestore.instance;
 
   Future<List<OrderJson>> getOrderList() async {
