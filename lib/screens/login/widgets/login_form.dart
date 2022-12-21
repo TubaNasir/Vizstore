@@ -35,47 +35,48 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         children: [
           TextFormField(
-            decoration: InputDecoration(
-              labelText: "Email",
-              hintText: "Enter your email",
-              enabled: enabled,
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              suffixIcon: SuffixIcon(icon: Icons.email),
-            ),
-            controller: controllerEmail,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your email';
-              }
-              return null;
-            },
-          ),
+              decoration: InputDecoration(
+                labelText: "Email",
+                hintText: "Enter your email",
+                enabled: enabled,
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                suffixIcon: SuffixIcon(icon: Icons.email),
+              ),
+              controller: controllerEmail,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your email';
+                }
+                return null;
+              },
+              autovalidateMode: AutovalidateMode.onUserInteraction),
           SizedBox(
             height: 20,
           ),
           TextFormField(
-            decoration: InputDecoration(
-              labelText: "Password",
-              hintText: "Enter your password",
-              enabled: enabled,
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              suffixIcon: IconButton(
-                icon: Icon(
-                    passwordVisible ? Icons.visibility : Icons.visibility_off),
-                onPressed: () {
-                  context.read<LoginProvider>().changePasswordVisible();
-                },
+              decoration: InputDecoration(
+                labelText: "Password",
+                hintText: "Enter your password",
+                enabled: enabled,
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                suffixIcon: IconButton(
+                  icon: Icon(passwordVisible
+                      ? Icons.visibility
+                      : Icons.visibility_off),
+                  onPressed: () {
+                    context.read<LoginProvider>().changePasswordVisible();
+                  },
+                ),
               ),
-            ),
-            controller: controllerPassword,
-            obscureText: !passwordVisible,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your password';
-              }
-              return null;
-            },
-          ),
+              controller: controllerPassword,
+              obscureText: !passwordVisible,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your password';
+                }
+                return null;
+              },
+              autovalidateMode: AutovalidateMode.onUserInteraction),
           SizedBox(height: 30),
           CustomButton(
               text: "Continue",
