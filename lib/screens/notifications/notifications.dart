@@ -31,12 +31,14 @@ class _NotificationsState extends State<Notifications> {
             title: "Notifications",
             backButton: true,
           ),
-          body: SingleChildScrollView(
+          body: notifications.length == 0 ? Center(child: Text('You do not have any notifications')) :
+          SingleChildScrollView(
               child: ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   itemCount: notifications.length,
-                  itemBuilder: (context, index) => Padding(
+                  itemBuilder: (context, index) =>
+                      Padding(
                         padding:
                             const EdgeInsets.fromLTRB(12.0, 5.0, 12.0, 5.0),
                         child: ListTile(
