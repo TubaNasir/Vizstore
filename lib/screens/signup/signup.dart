@@ -3,6 +3,7 @@ import 'package:flutterdemo/controllers/signup_provider.dart';
 import 'package:flutterdemo/screens/signup/widgets/register_message.dart';
 import 'package:flutterdemo/screens/signup/widgets/signup_form.dart';
 import 'package:flutterdemo/screens/signup/widgets/signup_redirection.dart';
+import 'package:flutterdemo/screens/signup/widgets/logo.dart';
 import 'package:flutterdemo/screens/widgets/loader.dart';
 import 'package:provider/provider.dart';
 
@@ -31,13 +32,12 @@ class _SignUpState extends State<SignUp> {
                 children: [
                   Column(
                     children: [
-                      SizedBox(height: 30),
+                      Logo(),
                       RegisterMessage(),
-                      SizedBox(height: 10),
+                      SizedBox(height: 1),
                       SignUpForm(),
-                      SizedBox(height: 15),
+                      SizedBox(height: 2),
                       SignupRedirection(),
-                      SizedBox(height: 15),
                     ],
                   ),
                   if(isLoading)

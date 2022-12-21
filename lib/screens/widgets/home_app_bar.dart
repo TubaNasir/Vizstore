@@ -2,23 +2,20 @@ import 'package:flutterdemo/screens/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/notifications/notification_model.dart';
 
-class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const CustomAppBar({Key? key, required this.title, required this.backButton})
+class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
+  const HomeAppBar({Key? key})
       : super(key: key);
 
-  final String title;
-  final bool backButton;
 
   @override
-  State<CustomAppBar> createState() => _CustomAppBarState();
+  State<HomeAppBar> createState() => _HomeAppBarState();
 
   @override
   // TODO: implement preferredSize
   Size get preferredSize => const Size.fromHeight(100);
 }
 
-class _CustomAppBarState extends State<CustomAppBar> {
-  int numOfitem = notificationList.length;
+class _HomeAppBarState extends State<HomeAppBar> {
 
   @override
   void initState() {
@@ -45,32 +42,14 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       decoration: BoxDecoration(
                         //color: Color(0xFDFDFDFF),
                         borderRadius:
-                            BorderRadius.only(bottomRight: Radius.circular(30.0)),
+                        BorderRadius.only(bottomRight: Radius.circular(30.0)),
                         gradient: PrimaryGradientColor,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            widget.backButton
-                                ? InkWell(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Icon(
-                                      Icons.arrow_back_ios,
-                                      color: Colors.black,
-                                    ),
-                                  )
-                                : SizedBox(width: 30),
-                            Text(
-                              widget.title,
-                              style: Theme.of(context).textTheme.headlineSmall,
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(width: 30),
-                          ],
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: Image.asset("assets/images/VizStoreLogo.png")
                         ),
                       )),
                 ],
@@ -87,7 +66,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   decoration: BoxDecoration(
                     color: Color(0xFDFDFDFF),
                     borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(30.0)),
+                    BorderRadius.only(topLeft: Radius.circular(30.0)),
                   ),
                 ),
               ),

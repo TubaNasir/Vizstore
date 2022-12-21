@@ -37,9 +37,6 @@ class _SignUpFormState extends State<SignUpForm> {
         padding: const EdgeInsets.all(13.0),
         child: Column(
           children: [
-            SizedBox(
-              height: 20,
-            ),
             TextFormField(
               decoration: InputDecoration(
                 labelText: "Email",
@@ -119,7 +116,7 @@ class _SignUpFormState extends State<SignUpForm> {
               obscureText: !rePasswordVisible,
             ),
             SizedBox(
-              height: 25,
+              height: 15,
             ),
             CustomButton(
                 text: "Continue",
@@ -141,18 +138,18 @@ class _SignUpFormState extends State<SignUpForm> {
                     }
                   }
                 }),
-            SizedBox(height: 10),
+            SizedBox(height: 5),
             Text(
               'By continuing, you confirm that you agree \nwith our Terms and Conditions',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.caption,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 15),
             Text(
               "or signin with",
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 25),
+            SizedBox(height: 15),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               SocialCard(
                 icon: 'assets/icons/google-icon.svg',

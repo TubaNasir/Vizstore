@@ -7,6 +7,7 @@ import 'package:flutterdemo/screens/home/widgets/popular_products.dart';
 import 'package:flutterdemo/screens/home/widgets/promotion.dart';
 import 'package:flutterdemo/screens/home/widgets/staggered_product_view.dart';
 import 'package:flutterdemo/screens/widgets/custom_app_bar.dart';
+import 'package:flutterdemo/screens/widgets/home_app_bar.dart';
 import 'package:flutterdemo/screens/widgets/layout.dart';
 import '../widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import 'widgets/search_bar.dart';
@@ -37,7 +38,7 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: const CustomAppBar(title: 'VizStore', backButton: false),
+        appBar: const HomeAppBar(),
         body: Stack(
           children: [
             context.watch<HomeProvider>().isFetching

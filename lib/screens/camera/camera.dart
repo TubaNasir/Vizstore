@@ -82,7 +82,7 @@ class _CameraScreenState extends State<CameraScreen> {
             List similarImagesList = await context
                 .read<CameraProvider>()
                 .getSimilarImages(File(_selectedImage!.path),
-                    "https://99d8-111-88-47-28.ngrok.io/similar_image_search");
+                    "https://3785-111-88-41-149.ngrok.io/similar_image_search");
 
             List<ProductJson> list = context
                 .read<CameraProvider>()
