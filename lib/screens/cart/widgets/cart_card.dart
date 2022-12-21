@@ -48,7 +48,7 @@ class _CartCardState extends State<CartCard> {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => ProductDetail(
                           product: product,
-                        )));
+                        ))).then((value) => context.read<CartProvider>().getUser());
               },
               style: ElevatedButton.styleFrom(
                   elevation: 2,

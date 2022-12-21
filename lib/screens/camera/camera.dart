@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 import 'storage_services.dart';
 
 class CameraScreen extends StatefulWidget {
-
   CameraScreen({super.key, required this.camera});
 
   final CameraDescription camera;
@@ -91,6 +90,7 @@ class _CameraScreenState extends State<CameraScreen> {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => Search(
                       allProducts: list,
+                      imagePath: _selectedImage!.path,
                     )));
           } catch (e) {
             print(e);

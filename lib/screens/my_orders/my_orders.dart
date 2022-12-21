@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/my_orders_provider.dart';
 import 'package:flutterdemo/models/order_json.dart';
-import 'package:flutterdemo/screens/my_orders/widgets/widgets_my_orders/order_card.dart';
+import 'package:flutterdemo/screens/my_orders/widgets/order_card.dart';
 import 'package:flutterdemo/screens/order_details/order_details.dart';
 import 'package:flutterdemo/screens/widgets/custom_app_bar.dart';
 import 'package:flutterdemo/screens/widgets/layout.dart';

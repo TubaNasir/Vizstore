@@ -125,12 +125,13 @@ class HomeProvider with ChangeNotifier {
   }
 
   Future<void> getPopularProducts() async {
-    if (products.isNotEmpty) {
-      products.sort((b, a) => a.sold.compareTo(b.sold));
+    List<ProductJson> sortedProducts = products;
+    if (sortedProducts.isNotEmpty) {
+      sortedProducts.sort((b, a) => a.sold.compareTo(b.sold));
     }
     List<ProductJson> list = [];
     for (var i = 0; i < 6; i++) {
-      list.add(products[i]);
+      list.add(sortedProducts[i]);
     }
     _popularProducts = list;
     notifyListeners();
