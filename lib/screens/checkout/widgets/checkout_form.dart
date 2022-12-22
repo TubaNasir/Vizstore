@@ -26,10 +26,11 @@ class _CheckoutFormState extends State<CheckoutForm> {
         (_) async => {context.read<CheckoutProvider>().setCity(dropdownvalue)});
   }
 
+  TextEditingController controllerAddress = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     UserJson user = context.watch<CheckoutProvider>().user;
-    TextEditingController controllerAddress = TextEditingController();
 
     return Padding(
       padding: const EdgeInsets.all(13.0),
