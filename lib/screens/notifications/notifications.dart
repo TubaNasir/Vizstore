@@ -40,45 +40,41 @@ class _NotificationsState extends State<Notifications> {
                   scrollDirection: Axis.vertical,
                   itemCount: notifications.length,
                   itemBuilder: (context, index) =>
-                      Padding(
-                        padding:
-                            const EdgeInsets.fromLTRB(12.0, 5.0, 12.0, 5.0),
-                        child: ListTile(
-                  itemBuilder: (context, index) => InkWell(
+                  InkWell(
                     onTap: () async {
                       OrderJson order = await context.read<NotificationsProvider>().getOrderInfo(notifications[index].orderId);
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => OrderDetails(
-                            order: order,
-                          ))).then((value) =>
-                              {
-                                 context.read<NotificationsProvider>().markAsOpened(notifications[index].notificationId),
-                                setState((){})
-                              });
+                        builder: (context) => OrderDetails(
+                          order: order,
+                        ))).then((value) =>
+                            {
+                               context.read<NotificationsProvider>().markAsOpened(notifications[index].notificationId),
+                              setState((){})
+                            });
                     },
                     child: Column(
                       children: [
-                        ListTile(
-                          dense: true,
-                          visualDensity: VisualDensity(vertical: 3),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          tileColor: Color(0xFFF5F6F9),
-                          leading: Icon(Icons.person),
-                          //store logo?
-                          title: Text(notifications[index].message,
-                              style: notifications[index].read
-                                  ? null
-                                  : TextStyle(fontWeight: FontWeight.bold)),
-                          trailing: Text(
-                            "${notifications[index].dateTime.day}/${notifications[index].dateTime.month} | ${notifications[index].dateTime.hour}:${notifications[index].dateTime.minute}",
-                            style: Theme.of(context).textTheme.bodySmall,
-                          ),
+                      ListTile(
+                        dense: true,
+                        visualDensity: VisualDensity(vertical: 3),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        tileColor: Color(0xFFF5F6F9),
+                        leading: Icon(Icons.person),
+                        //store logo?
+                        title: Text(notifications[index].message,
+                            style: notifications[index].read
+                                ? null
+                                : TextStyle(fontWeight: FontWeight.bold)),
+                        trailing: Text(
+                          "${notifications[index].dateTime.day}/${notifications[index].dateTime.month} | ${notifications[index].dateTime.hour}:${notifications[index].dateTime.minute}",
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
-                        Divider(color: Colors.black12, height: 1),
+                      ),
+                      Divider(color: Colors.black12, height: 1),
                       ],
                     ),
-                  )))),
+              )))),
     );
   }
 }
