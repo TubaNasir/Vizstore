@@ -8,35 +8,34 @@ class CategoryCard extends StatelessWidget {
     required this.onPress,
   }) : super(key: key);
 
-  final VoidCallback onPress;
+  VoidCallback onPress;
   final Map<String, dynamic> category;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: InkWell(
         onTap: onPress,
         child: Container(
           height: 80,
           width: 80,
-          //color: Colors.grey,
-          decoration: BoxDecoration(
-            color: Color.fromARGB(255, 240, 240, 240),
-            border: Border.all(
-              color: Color.fromARGB(255, 240, 240, 240),
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(20))
-          ),
           child: Column(
             children: [
               Container(
                 height: 50,
                 width: 50,
-                child: SvgPicture.asset(category["icon"]),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 240, 240, 240),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SvgPicture.asset(category["icon"]),
+                ),
               ),
               const SizedBox(height: 5),
-              Text(category["text"],style: TextStyle(fontSize: 13),),
+              Text(category["text"]),
             ],
           ),
         ),
