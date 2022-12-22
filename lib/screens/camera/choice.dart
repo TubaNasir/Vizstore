@@ -6,6 +6,7 @@ import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/screens/camera/camera.dart';
 import 'package:flutterdemo/screens/camera/storage_services.dart';
 import 'package:flutterdemo/screens/search/search.dart';
+import 'package:flutterdemo/screens/widgets/custom_app_bar.dart';
 import 'package:flutterdemo/screens/widgets/custom_button.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -35,17 +36,21 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(
-          color: Colors.black,
-        ),
-        title: const Text(
-          'AI Visual Search',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22),
-        ),
+      appBar: CustomAppBar(
+        title: 'AI Visual Search',
+        backButton: true,
       ),
+      // appBar: AppBar(
+      //   leading: const BackButton(
+      //     color: Colors.black,
+      //   ),
+      //   title: const Text(
+      //     'AI Visual Search',
+      //     textAlign: TextAlign.center,
+      //     style: TextStyle(
+      //         color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22),
+      //   ),
+      // ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

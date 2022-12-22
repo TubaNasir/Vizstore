@@ -70,7 +70,7 @@ class _TotalCardCartState extends State<TotalCardCart> {
                       children: [
                         Text(
                           'Total: ',
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                           textAlign: TextAlign.left,
                         ),
                         Text(
