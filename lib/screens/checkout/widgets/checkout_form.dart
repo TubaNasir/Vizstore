@@ -98,6 +98,7 @@ class _CheckoutFormState extends State<CheckoutForm> {
             context.read<CheckoutProvider>().setAddress(text);
           },
           controller: controllerAddress,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Please enter shipping address';

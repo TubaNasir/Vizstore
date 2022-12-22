@@ -23,10 +23,10 @@ const navBarPages = ['home', 'cart', 'wishlist', 'my_profile'];
 
 List<Map<String, dynamic>> categories = [
   {"icon": "assets/icons/sweatshirt.svg", "text": "Clothes"},
-  {"icon": "assets/icons/laptop.svg", "text": "Electronics"},
+  {"icon": "assets/icons/beauty.svg", "text": "Lifestyle"},
   {"icon": "assets/icons/toys.svg", "text": "Toys"},
   {"icon": "assets/icons/furniture.svg", "text": "Furniture"},
-  {"icon": "assets/icons/cricket.svg", "text": "Sports"},
+  {"icon": "assets/icons/cricket.svg", "text": "Shoes"},
 ];
 
 final items = [

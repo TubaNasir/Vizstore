@@ -24,13 +24,13 @@ class _QuantityCounterState extends State<QuantityCounter> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                  onPressed: () {
-                    context.read<ProductDetailsProvider>().decrementQuantity(widget.product.id);
+                  onPressed: widget.product.stock == 0 ? null : () async {
+                    await context.read<ProductDetailsProvider>().decrementQuantity(widget.product.id);
                   },
-                  icon: const CircleAvatar(
+                  icon: CircleAvatar(
                       radius: 20,
-                      backgroundColor: PrimaryColor,
-                      child: Icon(
+                      backgroundColor: widget.product.stock == 0 ? SecondaryDarkColor : PrimaryColor,
+                      child: const Icon(
                         Icons.remove,
                         color: Colors.black,
                         size: 20,
@@ -43,13 +43,13 @@ class _QuantityCounterState extends State<QuantityCounter> {
                     ?.copyWith(fontWeight: FontWeight.bold),
               ),
               IconButton(
-                  onPressed: () {
-                    context.read<ProductDetailsProvider>().incrementQuantity(widget.product.id);
+                  onPressed: widget.product.stock == 0 ? null : () async {
+                    await context.read<ProductDetailsProvider>().incrementQuantity(widget.product.id);
                   },
-                  icon: const CircleAvatar(
+                  icon: CircleAvatar(
                       radius: 20,
-                      backgroundColor: PrimaryColor,
-                      child: Icon(
+                      backgroundColor: widget.product.stock == 0 ? SecondaryDarkColor : PrimaryColor,
+                      child: const Icon(
                         Icons.add,
                         color: Colors.black,
                         size: 20,
