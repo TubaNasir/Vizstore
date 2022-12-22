@@ -83,7 +83,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                 List similarImagesList = await context
                     .read<CameraProvider>()
                     .getSimilarImages(File(_selectedImage!.path),
-                        "https://3785-111-88-41-149.ngrok.io/similar_image_search");
+                        "https://195a-111-88-41-214.ngrok.io/similar_image_search");
 
                 List<ProductJson> list = context
                     .read<CameraProvider>()
