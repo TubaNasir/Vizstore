@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/my_orders_provider.dart';
 import 'package:flutterdemo/screens/constants.dart';
+import 'package:flutterdemo/screens/my_orders/widgets/title_widget_order.dart';
 import 'package:provider/provider.dart';
-import 'title_widget_order.dart';
 
 class OrderCard extends StatelessWidget {
   const OrderCard(

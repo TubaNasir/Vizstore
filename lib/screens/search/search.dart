@@ -5,6 +5,7 @@ import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/screens/search/widgets/search_page_bar.dart';
 import 'package:flutterdemo/screens/search/widgets/staggered_product_view.dart';
 import 'package:flutterdemo/screens/widgets/custom_app_bar.dart';
+import 'package:flutterdemo/screens/widgets/custom_app_bar_search.dart';
 import 'package:flutterdemo/screens/widgets/layout.dart';
 import 'package:provider/provider.dart';
 
@@ -43,7 +44,7 @@ class _SearchState extends State<Search> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: CustomAppBar(title: "Search", backButton: true),
+        appBar: CustomAppBarSearch(title: "Search", backButton: true),
         body: context.watch<SearchProvider>().isFetching
             ? Center(child: CircularProgressIndicator())
             :Layout(

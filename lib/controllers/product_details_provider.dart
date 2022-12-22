@@ -28,7 +28,6 @@ class ProductDetailsProvider with ChangeNotifier {
   void incrementQuantity(String productId) async {
     List<CartItemJson> newCart = [];
     _quantity = _quantity + 1;
-    notifyListeners();
     var contain = user.cart.any((element) => element.productId == productId);
     if (contain) {
       for(var item in user.cart){
@@ -39,11 +38,12 @@ class ProductDetailsProvider with ChangeNotifier {
         }
         else{
           newCart.add(item);
-
         }
       }
       await updateList(newCart);
     }
+    notifyListeners();
+
 
   }
 
@@ -53,7 +53,6 @@ class ProductDetailsProvider with ChangeNotifier {
     List<CartItemJson> newCart = [];
     if (_quantity != 1) {
       _quantity = _quantity - 1;
-      notifyListeners();
     }
     var contain = user.cart.any((element) => element.productId == productId);
     if (contain) {
@@ -71,6 +70,8 @@ class ProductDetailsProvider with ChangeNotifier {
       }
       await updateList(newCart);
     }
+    notifyListeners();
+
 
   }
 

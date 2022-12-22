@@ -50,12 +50,14 @@ class MenuList extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                      content: Text('Are you sure you want to logout?'),
+                      content: Text('Are you sure you want to logout?', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),),
                       actions: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Expanded(
+                            SizedBox(
+                              height: 60,
+                              width: 100,
                               child: CustomButton(
                                 pressed: () async => {
                                   //await context.read<MyProfileProvider>().cancelSubscription(),
@@ -70,7 +72,9 @@ class MenuList extends StatelessWidget {
                                 text: 'Yes',
                               ),
                             ),
-                            Expanded(
+                            SizedBox(
+                              height: 60,
+                              width: 100,
                               child: CustomButton(
                                 pressed: () => Navigator.pop(context),
                                 text: 'No',

@@ -38,24 +38,24 @@ class _SignUpFormState extends State<SignUpForm> {
         child: Column(
           children: [
             TextFormField(
-              decoration: InputDecoration(
-                labelText: "Email",
-                hintText: "Enter your email",
-                enabled: enabled,
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                suffixIcon: SuffixIcon(icon: Icons.email),
-              ),
-              controller: controllerEmail,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
-                } else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                    .hasMatch(value)) {
-                  return 'Please enter a valid email address';
-                }
-                return null;
-              },
-            ),
+                decoration: InputDecoration(
+                  labelText: "Email",
+                  hintText: "Enter your email",
+                  enabled: enabled,
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  suffixIcon: SuffixIcon(icon: Icons.email),
+                ),
+                controller: controllerEmail,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  } else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      .hasMatch(value)) {
+                    return 'Please enter a valid email address';
+                  }
+                  return null;
+                },
+                autovalidateMode: AutovalidateMode.onUserInteraction),
             SizedBox(
               height: 20,
             ),
@@ -83,6 +83,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 }
                 return null;
               },
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               obscureText: !passwordVisible,
             ),
             SizedBox(
@@ -113,6 +114,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 }
                 return null;
               },
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               obscureText: !rePasswordVisible,
             ),
             SizedBox(

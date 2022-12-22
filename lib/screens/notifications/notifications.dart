@@ -33,11 +33,17 @@ class _NotificationsState extends State<Notifications> {
             title: "Notifications",
             backButton: true,
           ),
-          body: SingleChildScrollView(
+          body: notifications.length == 0 ? Center(child: Text('You do not have any notifications')) :
+          SingleChildScrollView(
               child: ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   itemCount: notifications.length,
+                  itemBuilder: (context, index) =>
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(12.0, 5.0, 12.0, 5.0),
+                        child: ListTile(
                   itemBuilder: (context, index) => InkWell(
                     onTap: () async {
                       OrderJson order = await context.read<NotificationsProvider>().getOrderInfo(notifications[index].orderId);
@@ -57,13 +63,11 @@ class _NotificationsState extends State<Notifications> {
                           visualDensity: VisualDensity(vertical: 3),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          tileColor: notifications[index].opened ?
-                                    null:
-                                    Color(0xFFF5F6F9),
+                          tileColor: Color(0xFFF5F6F9),
                           leading: Icon(Icons.person),
                           //store logo?
                           title: Text(notifications[index].message,
-                              style: notifications[index].opened
+                              style: notifications[index].read
                                   ? null
                                   : TextStyle(fontWeight: FontWeight.bold)),
                           trailing: Text(

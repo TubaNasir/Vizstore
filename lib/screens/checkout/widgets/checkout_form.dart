@@ -38,35 +38,6 @@ class _CheckoutFormState extends State<CheckoutForm> {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            // InkWell(
-            //   onTap: (){
-            //     Navigator.of(context).push(
-            //       MaterialPageRoute(
-            //         builder: (context) => EditProfile(),
-            //       ),
-            //     );
-            //   },
-            //   child: Container(
-            //     decoration: BoxDecoration(
-            //       color: Colors.yellow[300],
-            //       borderRadius: BorderRadius.all(Radius.circular(15.0)),
-            //     ),
-            //       child: Row(
-            //         children: [
-            //           Icon(
-            //             Icons.edit_outlined,
-            //             color: SecondaryDarkColor,
-            //           ),
-            //           Text(
-            //     'Edit Profile',
-            //     style: Theme.of(context)
-            //             .textTheme
-            //             .titleMedium
-            //             ?.copyWith(color: SecondaryDarkColor),
-            //   ),
-            //         ],
-            //       )),
-            // ),
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 250, 204, 67))
@@ -76,7 +47,7 @@ class _CheckoutFormState extends State<CheckoutForm> {
                   MaterialPageRoute(
                     builder: (context) => EditProfile(),
                   ),
-                );
+                ).then((value) => context.read<CheckoutProvider>().getUser());
               },
               child: Row(
                 children: [

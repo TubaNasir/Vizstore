@@ -46,8 +46,11 @@ class _WishListCardState extends State<WishListCard> {
             )
           : ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ProductDetail(product: product)));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(
+                        builder: (context) => ProductDetail(product: product)))
+                    .then(
+                        (value) => context.read<WishlistProvider>().getUser());
               },
               style: ElevatedButton.styleFrom(
                   elevation: 2,
