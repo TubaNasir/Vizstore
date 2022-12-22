@@ -33,12 +33,14 @@ class Promotion extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.all(15.0),
               child: Text.rich(
-                TextSpan(style: TextStyle(color: Colors.white), children: [
+                TextSpan(style: TextStyle(color: Colors.black), children: [
                   TextSpan(
                     text: "10% Off\n",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  TextSpan(text: 'Offer valid till Friday!'),
+                  TextSpan(text: 'Offer valid till Friday!',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ]),
               ),
             ),

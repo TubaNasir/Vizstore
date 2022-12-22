@@ -26,7 +26,7 @@ List<Map<String, dynamic>> categories = [
   {"icon": "assets/icons/beauty.svg", "text": "Lifestyle"},
   {"icon": "assets/icons/toys.svg", "text": "Toys"},
   {"icon": "assets/icons/furniture.svg", "text": "Furniture"},
-  {"icon": "assets/icons/cricket.svg", "text": "Shoes"},
+  {"icon": "assets/icons/shoes.svg", "text": "Shoes"},
 ];
 
 final items = [
