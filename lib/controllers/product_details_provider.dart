@@ -25,7 +25,7 @@ class ProductDetailsProvider with ChangeNotifier {
   int get quantity => _quantity;
   bool get isFetching => _isFetching;
 
-  void incrementQuantity(String productId) async {
+  Future<void> incrementQuantity(String productId) async {
     List<CartItemJson> newCart = [];
     _quantity = _quantity + 1;
     var contain = user.cart.any((element) => element.productId == productId);
@@ -49,7 +49,7 @@ class ProductDetailsProvider with ChangeNotifier {
 
 
 
-  void decrementQuantity(String productId) async {
+  Future<void> decrementQuantity(String productId) async {
     List<CartItemJson> newCart = [];
     if (_quantity != 1) {
       _quantity = _quantity - 1;
