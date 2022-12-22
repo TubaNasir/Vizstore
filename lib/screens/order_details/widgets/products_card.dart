@@ -39,7 +39,6 @@ class _ProductsCardState extends State<ProductsCard> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -68,7 +67,8 @@ class _ProductsCardState extends State<ProductsCard> {
                   ),
                   ListView.builder(
                     shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
+                    primary: false,
+                    //scrollDirection: Axis.vertical,
                     itemCount: widget.order.cart.length,
                     itemBuilder: (context, index) => HorizontalProductCard(
                       cartItem: widget.order.cart[index],

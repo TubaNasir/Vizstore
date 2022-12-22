@@ -3,6 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/camera_provider.dart';
 import 'package:flutterdemo/models/product_json.dart';
+import 'package:flutterdemo/screens/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
 import '../search/search.dart';
 import 'package:http/http.dart' as http;
@@ -46,60 +47,66 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(
-          color: Colors.black,
+    return SafeArea(
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title: 'AI Visual Search',
+          backButton: true,
         ),
-        title: const Text(
-          'Image Search',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22),
-        ),
-      ),
-      body: FutureBuilder<void>(
-        future: _initializeControllerFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return CameraPreview(_controller);
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          try {
-            await _initializeControllerFuture;
-            final image = await _controller.takePicture();
-
-            if (image != null) {
-              _selectedImage = File(image.path);
+        // appBar: AppBar(
+        //   leading: const BackButton(
+        //     color: Colors.black,
+        //   ),
+        //   title: const Text(
+        //     'Image Search',
+        //     textAlign: TextAlign.center,
+        //     style: TextStyle(
+        //         color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22),
+        //   ),
+        // ),
+        body: FutureBuilder<void>(
+          future: _initializeControllerFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return CameraPreview(_controller);
+            } else {
+              return const Center(child: CircularProgressIndicator());
             }
-            setState(() {});
-            if (!mounted) return;
-            List similarImagesList = await context
-                .read<CameraProvider>()
-                .getSimilarImages(File(_selectedImage!.path),
-                    "https://3785-111-88-41-149.ngrok.io/similar_image_search");
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            try {
+              await _initializeControllerFuture;
+              final image = await _controller.takePicture();
 
-            List<ProductJson> list = context
-                .read<CameraProvider>()
-                .setSimilarProducts(similarImagesList);
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Search(
-                      allProducts: list,
-                      imagePath: _selectedImage!.path,
-                    )));
-          } catch (e) {
-            print(e);
-          }
-        },
-        child: const Icon(Icons.camera_alt),
+              if (image != null) {
+                _selectedImage = File(image.path);
+              }
+              setState(() {});
+              if (!mounted) return;
+              List similarImagesList = await context
+                  .read<CameraProvider>()
+                  .getSimilarImages(File(_selectedImage!.path),
+                      "https://195a-111-88-41-214.ngrok.io/similar_image_search");
+
+              List<ProductJson> list = context
+                  .read<CameraProvider>()
+                  .setSimilarProducts(similarImagesList);
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Search(
+                        allProducts: list,
+                        imagePath: _selectedImage!.path,
+                      )));
+            } catch (e) {
+              print(e);
+            }
+          },
+          child: const Icon(Icons.camera_alt),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        backgroundColor: Colors.transparent,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      backgroundColor: Colors.transparent,
     );
   }
 }

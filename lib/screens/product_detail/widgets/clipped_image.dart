@@ -19,12 +19,13 @@ class ClippedImage extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Center(
           child: Container(
+            alignment: Alignment.center,
             height: MediaQuery.of(context).size.height * 0.5,
             width: MediaQuery.of(context).size.width,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: SecondaryColor,
             ),
-            child: Image.network(product.image, fit: BoxFit.fitHeight),
+            child: Image.network(product.image, fit: BoxFit.contain),
           ),
         ),
       ),

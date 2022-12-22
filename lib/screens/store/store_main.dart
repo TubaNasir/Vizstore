@@ -48,16 +48,18 @@ class _StoreMainState extends State<StoreMain> {
             ? Center(child: CircularProgressIndicator())
             :Padding(
           padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 10.0),
-          child: Column(
-            children: [
-              const Heading(text: 'Our Products'),
-              const SizedBox(height: 10),
-              SingleChildScrollView(
-                  physics: NeverScrollableScrollPhysics(),
-                  child: StaggeredProductView(
-                    products: storeProducts,
-                  )),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const Heading(text: 'Our Products'),
+                const SizedBox(height: 10),
+                SingleChildScrollView(
+                    physics: NeverScrollableScrollPhysics(),
+                    child: StaggeredProductView(
+                      products: storeProducts,
+                    )),
+              ],
+            ),
           ),
         ),
       ),

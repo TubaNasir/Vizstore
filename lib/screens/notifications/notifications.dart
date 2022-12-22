@@ -46,9 +46,9 @@ class _NotificationsState extends State<Notifications> {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => OrderDetails(
                           order: order,
-                        ))).then((value) =>
+                        ))).then((value) async =>
                             {
-                               context.read<NotificationsProvider>().markAsOpened(notifications[index].notificationId),
+                               await context.read<NotificationsProvider>().markAsOpened(notifications[index].notificationId),
                               setState((){})
                             });
                     },
@@ -57,13 +57,12 @@ class _NotificationsState extends State<Notifications> {
                       ListTile(
                         dense: true,
                         visualDensity: VisualDensity(vertical: 3),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+
                         tileColor: Color(0xFFF5F6F9),
                         leading: Icon(Icons.person),
                         //store logo?
                         title: Text(notifications[index].message,
-                            style: notifications[index].read
+                            style: notifications[index].opened
                                 ? null
                                 : TextStyle(fontWeight: FontWeight.bold)),
                         trailing: Text(

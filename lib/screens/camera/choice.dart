@@ -6,6 +6,7 @@ import 'package:flutterdemo/models/product_json.dart';
 import 'package:flutterdemo/screens/camera/camera.dart';
 import 'package:flutterdemo/screens/camera/storage_services.dart';
 import 'package:flutterdemo/screens/search/search.dart';
+import 'package:flutterdemo/screens/widgets/custom_app_bar.dart';
 import 'package:flutterdemo/screens/widgets/custom_button.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -34,81 +35,87 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(
-          color: Colors.black,
+    return SafeArea(
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title: 'AI Visual Search',
+          backButton: true,
         ),
-        title: const Text(
-          'AI Visual Search',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22),
-        ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-                height: 150,
-                child: Image.asset(
-                  "assets/images/image_scan.png",
-                  fit: BoxFit.cover,
-                )),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                "Upload or click an image to find similar products in our app using AI.",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+        // appBar: AppBar(
+        //   leading: const BackButton(
+        //     color: Colors.black,
+        //   ),
+        //   title: const Text(
+        //     'AI Visual Search',
+        //     textAlign: TextAlign.center,
+        //     style: TextStyle(
+        //         color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22),
+        //   ),
+        // ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                  height: 150,
+                  child: Image.asset(
+                    "assets/images/image_scan.png",
+                    fit: BoxFit.cover,
+                  )),
+              SizedBox(
+                height: 20,
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            CustomButton(
-              text: 'Upload Image',
-              pressed: () async {
-                final image = await ImagePicker.platform
-                    .pickImage(source: ImageSource.gallery);
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  "Upload or click an image to find similar products in our app using AI.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              CustomButton(
+                text: 'Upload Image',
+                pressed: () async {
+                  final image = await ImagePicker.platform
+                      .pickImage(source: ImageSource.gallery);
 
-                if (image != null) {
-                  _selectedImage = File(image.path);
-                }
+                  if (image != null) {
+                    _selectedImage = File(image.path);
+                  }
 
-                List similarImagesList = await context
-                    .read<CameraProvider>()
-                    .getSimilarImages(File(_selectedImage!.path),
-                        "https://3785-111-88-41-149.ngrok.io/similar_image_search");
+                  List similarImagesList = await context
+                      .read<CameraProvider>()
+                      .getSimilarImages(File(_selectedImage!.path),
+                          "https://195a-111-88-41-214.ngrok.io/similar_image_search");
 
-                List<ProductJson> list = context
-                    .read<CameraProvider>()
-                    .setSimilarProducts(similarImagesList);
+                  List<ProductJson> list = context
+                      .read<CameraProvider>()
+                      .setSimilarProducts(similarImagesList);
 
-                await Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Search(
-                          allProducts: list,
-                          imagePath: _selectedImage!.path,
-                        )));
-              },
-            ),
-            const Text("or"),
-            CustomButton(
-              text: 'Take Photo',
-              pressed: () async {
-                final cameras = await availableCameras();
-                final firstCamera = cameras[0];
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => CameraScreen(camera: firstCamera)));
-              },
-            ),
-          ],
+                  await Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Search(
+                            allProducts: list,
+                            imagePath: _selectedImage!.path,
+                          )));
+                },
+              ),
+              const Text("or"),
+              CustomButton(
+                text: 'Take Photo',
+                pressed: () async {
+                  final cameras = await availableCameras();
+                  final firstCamera = cameras[0];
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => CameraScreen(camera: firstCamera)));
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

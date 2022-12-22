@@ -36,7 +36,7 @@ class OrderJson {
 
   factory OrderJson.fromJson(Map<String, dynamic> json, String id) => OrderJson(
       userId: json["userId"] as String? ?? '',
-      id: id ?? '',
+      id: id as String? ?? '',
       cart: List<CartItemJson>.from(
           json["cart"].map((x) => CartItemJson.fromJson(x))),
       status: json["status"] as String? ?? '',

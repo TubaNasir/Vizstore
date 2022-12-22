@@ -43,6 +43,9 @@ class MyOrdersProvider with ChangeNotifier {
   Future<void> getMyOrders() async {
     List<OrderJson> allOrders = [];
     allOrders = _orders.where((element) => element.userId == _user.id).toList();
+
+    allOrders.sort((a, b) => b.date_created.compareTo(a.date_created));
+
     _myOrders = allOrders;
     notifyListeners();
   }
