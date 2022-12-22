@@ -85,7 +85,7 @@ class _LoginFormState extends State<LoginForm> {
                       .read<LoginProvider>()
                       .signIn(controllerEmail.text, controllerPassword.text);
                   if (await login == true) {
-                    await context.read<LoginProvider>().sendNotifications();
+                    //await context.read<LoginProvider>().sendNotifications();
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => Home(),

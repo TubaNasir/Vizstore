@@ -20,4 +20,12 @@ class FirebaseOrderRepository {
         .then((value) => print("Order Added"))
         .catchError((error) => print('Error:' + error));
   }
+
+  Future<OrderJson> getOrderInfo(String id) async {
+    OrderJson store = OrderJson.empty();
+    await db.collection("order").doc(id).get().then((event) {
+      store = OrderJson.fromJson(event.data() as Map<String, dynamic>, event.id);
+    }).catchError((error) => print("Failed to fetch order. Error : ${error}"));
+    return store;
+  }
 }

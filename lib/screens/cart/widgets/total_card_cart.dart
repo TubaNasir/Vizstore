@@ -44,8 +44,7 @@ class _TotalCardCartState extends State<TotalCardCart> {
                           ("Rs. ${context.watch<CartProvider>().subTotal.toString()}"),
                           style: Theme.of(context)
                               .textTheme
-                              .titleMedium
-                              ?.copyWith(fontWeight: FontWeight.bold),
+                              .titleMedium,
                         ),
                       ],
                     ),
@@ -61,8 +60,7 @@ class _TotalCardCartState extends State<TotalCardCart> {
                           ("Rs. ${context.watch<CartProvider>().delivery.toString()}"),
                           style: Theme.of(context)
                               .textTheme
-                              .titleMedium
-                              ?.copyWith(fontWeight: FontWeight.bold),
+                              .titleMedium,
                         ),
                       ],
                     ),

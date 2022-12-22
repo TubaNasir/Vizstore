@@ -40,12 +40,14 @@ class FirebaseUserRepository implements UserRepository {
               }
               if (change.doc.data()!['status'] == 'Confirmed') {
                 newList.add(NotificationItemJson(
+                    notificationId: '${change.doc.id} ${DateTime.now()}',
                     orderId: change.doc.id,
                     message: 'You order# ${change.doc.id} has been confirmed!',
                     dateTime: DateTime.now()));
               }
               if (change.doc.data()!['status'] == 'Cancelled') {
                 newList.add(NotificationItemJson(
+                    notificationId: '${change.doc.id} ${DateTime.now()}',
                     orderId: change.doc.id,
                     message: 'You order# ${change.doc.id} has been cancelled.',
                     dateTime: DateTime.now()));

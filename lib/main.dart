@@ -83,6 +83,7 @@ Future<void> main() async {
       ChangeNotifierProvider(
           create: (_) => NotificationsProvider(
                 getIt.get(instanceName: 'user'),
+                getIt.get(instanceName: 'order'),
               )),
       ChangeNotifierProvider(
           create: (_) => MyOrdersProvider(

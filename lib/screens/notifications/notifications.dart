@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/controllers/notifications_provider.dart';
 import 'package:flutterdemo/models/notification_json.dart';
+import 'package:flutterdemo/models/order_json.dart';
+import 'package:flutterdemo/screens/order_details/order_details.dart';
 import 'package:provider/provider.dart';
 import '../widgets/custom_app_bar.dart';
 
@@ -36,19 +38,32 @@ class _NotificationsState extends State<Notifications> {
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   itemCount: notifications.length,
-                  itemBuilder: (context, index) => Padding(
-                        padding:
-                            const EdgeInsets.fromLTRB(12.0, 5.0, 12.0, 5.0),
-                        child: ListTile(
+                  itemBuilder: (context, index) => InkWell(
+                    onTap: () async {
+                      OrderJson order = await context.read<NotificationsProvider>().getOrderInfo(notifications[index].orderId);
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => OrderDetails(
+                            order: order,
+                          ))).then((value) =>
+                              {
+                                 context.read<NotificationsProvider>().markAsOpened(notifications[index].notificationId),
+                                setState((){})
+                              });
+                    },
+                    child: Column(
+                      children: [
+                        ListTile(
                           dense: true,
                           visualDensity: VisualDensity(vertical: 3),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          tileColor: Color(0xFFF5F6F9),
+                          tileColor: notifications[index].opened ?
+                                    null:
+                                    Color(0xFFF5F6F9),
                           leading: Icon(Icons.person),
                           //store logo?
                           title: Text(notifications[index].message,
-                              style: notifications[index].read
+                              style: notifications[index].opened
                                   ? null
                                   : TextStyle(fontWeight: FontWeight.bold)),
                           trailing: Text(
@@ -56,7 +71,10 @@ class _NotificationsState extends State<Notifications> {
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ),
-                      )))),
+                        Divider(color: Colors.black12, height: 1),
+                      ],
+                    ),
+                  )))),
     );
   }
 }

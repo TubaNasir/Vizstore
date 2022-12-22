@@ -88,9 +88,6 @@ class HomeProvider with ChangeNotifier {
     List<NotificationItemJson> newList = [];
     for (var item in _user.notifications) {
       NotificationItemJson i = item.copyWith(
-          orderId: item.orderId,
-          message: item.message,
-          dateTime: item.dateTime,
           read: true);
       newList.add(i);
     }

@@ -58,7 +58,7 @@ class MenuList extends StatelessWidget {
                             Expanded(
                               child: CustomButton(
                                 pressed: () async => {
-                                  await context.read<MyProfileProvider>().cancelSubscription(),
+                                  //await context.read<MyProfileProvider>().cancelSubscription(),
                                   context.read<MyProfileProvider>().logout(),
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
