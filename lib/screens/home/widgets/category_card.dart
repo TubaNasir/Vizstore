@@ -14,7 +14,7 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 3.0),
       child: InkWell(
         onTap: onPress,
         child: Container(
@@ -35,7 +35,8 @@ class CategoryCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 5),
-              Text(category["text"]),
+              Text(category["text"],
+              style: TextStyle(fontWeight: FontWeight.w600)),
             ],
           ),
         ),
